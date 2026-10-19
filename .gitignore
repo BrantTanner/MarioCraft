@@ -1,0 +1,18 @@
+# Local reference artifacts and downloaded tools
+*.z64
+*.n64
+*.v64
+*.jar
+*.zip
+*.7z
+*.exe
+*.dll
+*.bin
+tools/
+references-local/
+extracted-assets/
+emulator-saves/
+node_modules/
+.env
+.env.*
+

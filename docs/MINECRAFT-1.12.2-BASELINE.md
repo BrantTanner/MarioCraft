@@ -13,7 +13,8 @@ The default Minecraft Launcher installation had no `1.12.2` directory. The
 official Mojang 1.12.2 launcher metadata was retrieved from
 `https://launchermeta.mojang.com/v1/packages/6e69e85d0f85f4f4b9e12dd99d102092a6e15918/1.12.2.json`.
 Its SHA-1 is `6e69e85d0f85f4f4b9e12dd99d102092a6e15918`, matching the package
-identifier in the official URL. The metadata identifies a release dated
+identifier in the official URL; its local SHA-256 is
+`827aaf8f97209f7747897e6c78875ae2c1bf732bb81ab85a298e6d22223cf385`. The metadata identifies a release dated
 2017-09-18 and provides the client and server object hashes below.
 
 | Artifact | Official object URL | Size | SHA-1 (Mojang object identity) | SHA-256 (local verification) |
@@ -22,10 +23,14 @@ identifier in the official URL. The metadata identifies a release dated
 | Vanilla server jar | `https://launcher.mojang.com/v1/objects/886945bfb2b978778c3a0288fd7fab09d315b25f/server.jar` | 30,222,121 bytes | `886945bfb2b978778c3a0288fd7fab09d315b25f` | `fe1f9274e6dad9191bf6e6e8e36ee6ebc737f373603df0946aafcded0d53167e` |
 
 The local SHA-1 values exactly match both SHA-1 object identifiers from the
-version metadata. Mojang's release announcement also links the cross-platform
-server jar directly. The metadata has no `javaVersion` field; Java compatibility
-was established separately from the Forge 1.12 documentation and the class
-file target below.
+version metadata. The downloads used Mojang's official launcher host at
+`https://launcher.mojang.com/mc/game/1.12.2/client/<sha1>/client.jar` and
+`https://launcher.mojang.com/mc/game/1.12.2/server/<sha1>/server.jar`; the
+table lists the content-addressed URLs returned by the version metadata.
+Mojang's release announcement also links the cross-platform server jar
+directly. The metadata has no `javaVersion` field; Java compatibility was
+established separately from the Forge 1.12 documentation and the class file
+target below.
 
 The files and all generated inspection material are kept under the
 git-ignored `MarioCraft/tools/` directory. Do not add game jars, extracted game
@@ -66,9 +71,9 @@ server jar's declared main class (`META-INF/MANIFEST.MF`).
 **Static finding:** CFR 0.152's reconstruction of `MinecraftServer.run()`
 accumulates elapsed milliseconds and schedules server updates at 50 ms
 intervals, corresponding to a 20 Hz target. When more than 2,000 ms behind, it
-logs a “Can't keep up” warning and caps accumulated backlog before continuing
-the loop. If the accumulator still exceeds 50 ms, it performs repeated update
-calls to catch up. This is a finding from decompilation of one class in the
+logs a “Can't keep up” warning (rate-limited to one warning per 15 seconds) and
+caps accumulated backlog before continuing the loop. If the accumulator still
+exceeds 50 ms, it performs repeated update calls to catch up. This is a finding from decompilation of one class in the
 identified original server jar; it is not a runtime observation or proof of
 the behavior of every subsystem. CFR output has incomplete external types and
 obfuscated identifiers, so the meaning of unrelated short-named members is
@@ -77,6 +82,15 @@ not asserted.
 **Reproduction (PowerShell from the workspace root):**
 
 ```powershell
+$tools = 'MarioCraft/tools'
+$metadata = Get-Content "$tools/version-1.12.2.json" -Raw | ConvertFrom-Json
+foreach ($file in @("$tools/version-1.12.2.json", "$tools/client-1.12.2.jar", "$tools/server-1.12.2.jar")) {
+  foreach ($algorithm in @('SHA1', 'SHA256')) {
+    Get-FileHash -LiteralPath $file -Algorithm $algorithm
+  }
+}
+$metadata.downloads.client.sha1
+$metadata.downloads.server.sha1
 $jar = 'tools/java/jdk-21.0.12.1+1/bin/jar.exe'
 $java = 'tools/java/jdk-21.0.12.1+1/bin/java.exe'
 $javap = 'tools/java/jdk-21.0.12.1+1/bin/javap.exe'

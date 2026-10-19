@@ -66,7 +66,19 @@ Not yet observed live: player interaction or digging; partial-block collision an
 
 ## Reproduction
 
-From the workspace root, verify the jar hash against the baseline, then start the local server from a disposable ignored directory with the same settings above. Accept the EULA for that local test only, set `server-ip=127.0.0.1`, set a non-conflicting port, and use `level-seed=43112`, `level-name=issue4-overworld`, `view-distance=4`, `max-build-height=256`, `spawn-protection=0`, and `max-tick-time=-1`. Run with the pinned Temurin JDK 8 and official `MarioCraft/tools/server-1.12.2.jar`. After `Done`, issue `seed`, `time query daytime`, the listed block commands if repeating the failed probe, then `stop`; preserve the local log and save under `MarioCraft/tools/`, which is git-ignored. Do not upload the generated world or runtime logs. A successful gameplay observation requires joining with a client and recording the actual loaded/player position; this server-only procedure does not satisfy that separate observation.
+From the workspace root, verify the jar hash against the baseline, then start the local server from a disposable ignored directory with the same settings above. Accept the EULA for that local test only, set `server-ip=127.0.0.1`, set a non-conflicting port, and use `level-seed=43112`, `level-name=issue4-overworld`, `view-distance=4`, `max-build-height=256`, `spawn-protection=0`, and `max-tick-time=-1`. Run with the pinned Temurin JDK 8 and official `MarioCraft/tools/server-1.12.2.jar`. After `Done`, issue `seed`, `time query daytime`, and at the recorded spawn chunk run:
+
+```text
+testforblock 188 64 244 stone
+testforblock 188 200 244 air
+setblock 188 200 244 stone 0 replace
+testforblock 188 200 244 stone
+setblock 188 200 244 air 0 replace
+testforblock 188 200 244 air
+stop
+```
+
+The `setblock` step is reversible because the preceding query confirms the cell is air. Preserve the local log and save under `MarioCraft/tools/`, which is git-ignored. Do not upload the generated world or runtime logs. A connected-player gameplay observation requires joining with a client and recording the actual player position; this server-command procedure does not claim collision or player interaction behavior.
 
 ## Evidence inventory and reproduction tooling
 

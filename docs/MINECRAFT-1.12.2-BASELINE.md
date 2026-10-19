@@ -14,8 +14,9 @@ official Mojang 1.12.2 launcher metadata was retrieved from
 `https://launchermeta.mojang.com/v1/packages/6e69e85d0f85f4f4b9e12dd99d102092a6e15918/1.12.2.json`.
 Its SHA-1 is `6e69e85d0f85f4f4b9e12dd99d102092a6e15918`, matching the package
 identifier in the official URL; its local SHA-256 is
-`827aaf8f97209f7747897e6c78875ae2c1bf732bb81ab85a298e6d22223cf385`. The metadata identifies a release dated
-2017-09-18 and provides the client and server object hashes below.
+`827aaf8f97209f7747897e6c78875ae2c1bf732bb81ab85a298e6d22223cf385`. The
+metadata identifies a release dated 2017-09-18 and provides the client and
+server object hashes below.
 
 | Artifact | Official object URL | Size | SHA-1 (Mojang object identity) | SHA-256 (local verification) |
 | --- | --- | ---: | --- | --- |
@@ -73,11 +74,14 @@ accumulates elapsed milliseconds and schedules server updates at 50 ms
 intervals, corresponding to a 20 Hz target. When more than 2,000 ms behind, it
 logs a “Can't keep up” warning (rate-limited to one warning per 15 seconds) and
 caps accumulated backlog before continuing the loop. If the accumulator still
-exceeds 50 ms, it performs repeated update calls to catch up. This is a finding from decompilation of one class in the
-identified original server jar; it is not a runtime observation or proof of
-the behavior of every subsystem. CFR output has incomplete external types and
-obfuscated identifiers, so the meaning of unrelated short-named members is
-not asserted.
+exceeds 50 ms, it performs repeated update calls to catch up. This is a finding
+from decompilation of one class in the identified original server jar; it is
+not a runtime observation or proof of the behavior of every subsystem. CFR
+output has incomplete external types and obfuscated identifiers, so the
+meaning of unrelated short-named members is not asserted.
+
+The resulting CFR source file SHA-256 is
+`8def155c73356237b36779df37fd9ac663e722dfd9b280064d7413ea033e7f2c`.
 
 **Reproduction (PowerShell from the workspace root):**
 

@@ -55,7 +55,7 @@ recommended. We pin the recommended `.2859` MDK for the research and eventual
 prototype baseline; the existence of a later latest build is recorded so the
 choice can be revisited with evidence. The official 1.12 MDK workflow expects
 the Gradle wrapper and Forge's decompilation setup; do not infer successful
-Gradle resolution merely from the verified MDK download.
+Gradle resolution merely from the verified MDK download. Issue [#34](https://github.com/BrantTanner/MarioCraft/issues/34) later established that clean `.2859` and `.2864` MDK runs reproduce the same pre-title NPE. A verified generated `Side.class` replacement in an isolated `.2864` runtime reached title and a disposable world; the exact provenance, hashes, script, and runtime limits are in the [startup report](issue34/MINECRAFT-FORGE-STARTUP-ISSUE34.md). The stock ForgeGradle merge configuration still needs this local workaround; the separate #9 audit and #18 readiness review remain pending.
 
 ## Bounded inspection and finding
 

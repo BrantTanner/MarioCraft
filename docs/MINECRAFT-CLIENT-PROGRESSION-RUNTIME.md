@@ -1,6 +1,6 @@
 # Minecraft 1.12.2 connected-client runtime follow-up
 
-Status: connected-client vanilla runtime evidence complete for issue [#33](https://github.com/BrantTanner/MarioCraft/issues/33). The Forge investigation in [#34](https://github.com/BrantTanner/MarioCraft/issues/34) now has an evidence-backed generated-artifact cause and a reproducible local `.2864` runtime repair; see the linked [startup report](issue34/MINECRAFT-FORGE-STARTUP-ISSUE34.md). The successful Forge run is separate from the vanilla observations below. Issues [#6](https://github.com/BrantTanner/MarioCraft/issues/6) and [#9](https://github.com/BrantTanner/MarioCraft/issues/9) remain open for parent review.
+Status: connected-client vanilla runtime evidence complete for issue [#33](https://github.com/BrantTanner/MarioCraft/issues/33). The Forge investigation in [#34](https://github.com/BrantTanner/MarioCraft/issues/34) now has an evidence-backed generated-artifact cause and a reproducible local `.2864` runtime repair; see the linked [startup report](issue34/MINECRAFT-FORGE-STARTUP-ISSUE34.md). The successful Forge run is separate from the vanilla observations below. Issue [#6](https://github.com/BrantTanner/MarioCraft/issues/6) is complete; issue [#9](https://github.com/BrantTanner/MarioCraft/issues/9) remains open for the final cross-ticket audit.
 
 ## Launch evidence
 

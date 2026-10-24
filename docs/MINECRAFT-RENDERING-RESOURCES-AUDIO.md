@@ -1,6 +1,6 @@
 # Minecraft 1.12.2 rendering, resources, menus, and audio (issue #7)
 
-Status: acceptance evidence gathered for vanilla 1.12.2. This dossier combines static inspection of the exact official client with bounded observations in the user's matching vanilla client. Forge 14.23.5.2859 is a separate, currently failing development launch and is not used to infer vanilla behavior.
+Status: acceptance evidence gathered for vanilla 1.12.2. This dossier combines static inspection of the exact official client with bounded observations in the user's matching vanilla client. Forge development behavior is kept separate from the vanilla findings; see #34 for the generated-artifact startup diagnosis and local repair.
 
 ## Artifact identity and evidence method
 
@@ -100,7 +100,7 @@ Cached ForgeGradle 1.12.2 mappings translate obfuscated/SRG identifiers for navi
 
 For the visible runtime check, use only the disposable `codexissue33run202610` world with seed `33102024` documented in [the #33 runtime report](MINECRAFT-CLIENT-PROGRESSION-RUNTIME.md). From the title screen, inspect Options, Video Settings, Music & Sounds, and Resource Packs; open only that named world; observe first person, press F5 once for rear third person and again for front third person; choose Save and Quit to Title. Do not treat the world as an untouched default: it was created for testing with cheats enabled and has documented gamerule changes. The user-owned client was returned to the title screen and left open. No pre-existing world was opened.
 
-Static inventory and representative vanilla behavior are covered. Untested presentation details include live pack-switch/reload behavior, language switching, changing settings, individual shader-effect activation, dynamic skin download/fallback cases, each HUD/effect overlay state, and actual sound audibility/device output. These gaps do not alter the identified renderer/resource seam; any implementation relying on them should add a targeted runtime check. Forge 14.23.5.2859 still fails before the title screen with the `NetworkRegistry.newChannel` NPE documented in the #33 report; its `Side.class` BUKKIT versus source CLIENT/SERVER discrepancy remains unexplained and is not attributed to this vanilla trace.
+Static inventory and representative vanilla behavior are covered. Untested presentation details include live pack-switch/reload behavior, language switching, changing settings, individual shader-effect activation, dynamic skin download/fallback cases, each HUD/effect overlay state, and actual sound audibility/device output. These gaps do not alter the identified renderer/resource seam; any implementation relying on them should add a targeted runtime check. The original Forge 14.23.5.2859 NPE and its generated-artifact cause and local 2864 repair are documented in the [#34 report](issue34/MINECRAFT-FORGE-STARTUP-ISSUE34.md); this vanilla trace does not claim Forge renderer behavior.
 
 ## Issue #7 acceptance checklist
 

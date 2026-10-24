@@ -15,4 +15,4 @@ emulator-saves/
 node_modules/
 .env
 .env.*
-
+logs/issue10-*.log

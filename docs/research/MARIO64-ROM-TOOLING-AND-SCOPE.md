@@ -1,0 +1,98 @@
+# Mario 64 ROM tooling validation and research scope
+
+Status: parent-reviewed issue #10 evidence, 2026-10-24. Required reproducibility/address corrections were applied and verified. Investigation only; this report does not implement a gameplay prototype.
+
+## Cartridge identity and custody
+
+The supplied `Super Mario 64 (USA).z64` was read without modifying it. It is 8,388,608 bytes, big-endian N64 byte order (`80 37 12 40`), title `SUPER MARIO 64`, product ID `NSME`, country code `E` (USA), revision byte `00` (revision 0). SHA-256: `17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91`; MD5: `20B854B239203BAF6C961B850A4A51A2`. A separate local analysis copy matched the original hash; both files remain local. The original remains the user-owned source; do not publish it or any derived ROM content.
+
+## Standalone Ghidra loader validation
+
+Ghidra 12.1.4 with the locally built N64LoaderWV extension imported the actual cartridge as MIPS big-endian / o32. Import created loader-defined ROM, BOOT, and initial RAM blocks and analysis completed successfully. The import log is `MarioCraft/logs/issue10-ghidra-import.log`. This proves the actual cartridge can be loaded by the standalone extension, not that every inferred mapping is correct. Auto-analysis emitted out-of-range reference/p-code/decompiler warnings; static output is incomplete where code expects runtime-loaded or unmapped memory.
+
+For ROM-only loading, the extension maps the whole 8 MiB file at `0xB0000000` (so file offset `0` maps there), maps BOOT from file offset `0x40` at `0xA4000040`, and interprets the header load address at file offset `0x08` (`0x80246000`) by copying bytes beginning at file offset `0x1000` into initial RAM. This interpretation was checked against the runtime capture: ROM offset `0x1000` and RDRAM address `0x80246000` (RDRAM file offset `0x246000`) match byte-for-byte for the first 947,552 bytes, through ROM offset `0xE855F` / address `0x8032D55F`. The next byte differs at ROM offset `0xE8560` / `0x8032D560`; the ROM has zeroes there while the runtime capture has `8033B160...`. This demonstrates one exact initial contiguous mapping and a boundary where the simple linear-copy assumption stops matching the title-screen RAM snapshot. The mismatching RAM content is only a candidate for runtime-initialized or dynamically populated data; no specific BSS, DMA, compression, overlay, or relocation mechanism is claimed without further evidence. The remainder of the 8 MiB ROM and runtime-loaded segments is assigned to the following bounded research slices.
+
+| Observed cartridge / runtime region | Evidence and interpretation | Confidence / gap |
+| --- | --- | --- |
+| ROM header `0x00000000–0x0000003F` | Big-endian header; `NSME`, country `E`, revision `00`, load address field `0x80246000` | Direct cartridge bytes |
+| ROM `0x00000040–0x00000FFF` | Loader maps bytes after the header to a BOOT block at `0xA4000040` | Loader-derived mapping; boundary must be audited in runtime work |
+| ROM `0x00001000–0x007FFFFF` (inclusive) | Remaining cartridge image; loader maps it at `0xB0001000` and makes an initial RAM copy from `0x80246000` | Cartridge range is direct; linear RAM interpretation is only confirmed for matching prefix below |
+| ROM `0x00001000–0x000E855F` → RDRAM `0x80246000–0x8032D55F` | Runtime dump contains an exact 947,552-byte match under the header-derived correspondence | Direct byte comparison in this title-screen snapshot |
+| ROM `0x000E8560` → RDRAM `0x8032D560` | First mismatch; ROM bytes are zero, RDRAM starts `8033B160...` | Direct mismatch; semantic classification unresolved |
+| Captured RDRAM `0x80000000–0x803FFFFF` | 4 MiB raw big-endian memory dump accepted as a separate runtime image by N64LoaderWV | Direct capture extent; runtime contents vary by state |
+| ROM `0x00800000` onward | Outside this 8 MiB cartridge file | Not applicable |
+
+N64LoaderWV's extra peripheral/register/PIF segments in the Ghidra project are extension-created analysis constructs; they are not evidence that the ROM contains mappings or values for those hardware regions. `pifdata.bin` is bundled external reference data, not cartridge content. The initial file-level candidate inventory was also scanned directly from the supplied cartridge. A read-only marker scan found 79 `MIO0` strings from `0x108A40` through `0x4D1910`; each candidate's 16-byte header has ordered compressed/raw offsets within the span to the next marker (`79/79` pass this structural plausibility check). This is a candidate list, not proof that each marker begins an independently valid compressed stream or identifies its asset. The scan script prints the complete offset list and output-size/header fields; its first 16 candidates include `0x108A40` (output `0x18A0E`), `0x114750` (`0x35378`), `0x12A7E0` (`0x15360`), `0x132C60` (`0x6180`), `0x134D20` (`0x110A0`), `0x13B910` (`0x13D30`), `0x145E90` (`0x14650`), and `0x1521D0` (`0x160B8`). The confirmed initial RAM copy range contains MIPS instruction and data bytes together; this pass does not classify the two into functions/data tables. The remaining ROM range and unclassified runtime blocks are explicit inputs to #11–#17. No `Yay0`, `Yay!`, RNC1/RNC2, `gspF3DEX`, or `aspMain` marker was found, and no zero run of at least `0x1000` bytes was found. These negative scans do not rule out unmarked formats, embedded or relocated microcode, script tables, or runtime-loaded data. The initial confirmed code/data boundary is therefore limited to the header fields, boot bytes, the loader's proposed initial copy, and the byte-verified prefix; all later code/data/assets/scripts and runtime segments remain unresolved and are assigned to #11–#16/#17 rather than inferred from loader block names.
+
+The extension also supplies `pifdata.bin`, register labels, and loader metadata. Those are external tools/reference resources, not bytes or symbols proven to originate in the user's cartridge. REA 6.7.0 lacks a direct N64/raw-MIPS import route in this setup; standalone Ghidra results must not be described as REA Evidence records. Setup and reproducible environment details are in `tools/N64-SETUP.md`.
+
+A second standalone Ghidra project at `MarioUSA_Runtime` under the external `$projectRoot` imported the same ROM copy with the 4 MiB title-screen RDRAM file passed as the loader's `-loader-rdram` option. Both inputs are explicitly present in this project; the RAM dump is a separate runtime snapshot and does not replace or modify the ROM. Ghidra reported analysis succeeded and import succeeded; warnings about invalid delay slots and unreadable runtime addresses remain. The log is `MarioCraft/logs/issue10-ghidra-runtime-import.log`. The RDRAM dump SHA-256 is `3B94D5FDC08C1F53D9BC54A5DA9F3A0E0B8C41269404421C109D9429E03ED1A5`; its size is 4,194,304 bytes. This validates a combined cartridge-plus-runtime analysis project and loader acceptance of the capture, not a complete correspondence map.
+
+## Runtime observation
+
+Project64 3.0.1.5664 at `C:\Program Files (x86)\Project64 3.0\Project64.exe` launched the supplied ROM to the title screen. Existing keyboard mapping was inspected: Start Enter; D-pad I/K/J/L; analog arrows; A X; B C; Z Z; C buttons Home/End/PageDown/Delete. A debugger setting was enabled through the application UI after preserving the prior config as `MarioCraft/tools/issue10-local/Project64.cfg.before-debugger` (SHA-256 `85023AE16424F1CAFB2B851AA0FB996803388887D5E8CBEC3AEDDA100DF4E08`). The game directory was already set to the supplied ROM directory.
+
+The debugger memory viewer exposed RDRAM at `0x80000000`. A 4 MiB big-endian raw RDRAM capture was taken at the title screen to the ignored local path `MarioCraft/tools/issue10-local/sm64-title-rdram.bin`; this is one runtime snapshot, not a ROM image. A Project64 state was saved with F5 and restored with F7; the UI confirmed `Loaded state Super Mario 64 (U).pj.zip` and returned to the title screen. The state file resides under the installed emulator's `Save` directory. Project64 screenshots remain under its `Screenshots` folder; before/after copies are in ignored local paths `MarioCraft/tools/issue10-local/project64-input-before.png` (SHA-256 `4C0722DB3519609DE15A4D331FFA38E6668EEEF8783626F738D828B881F8129A`) and `project64-input-after.png` (SHA-256 `F77AA58D4E04051887D84F14A3057C3667543F84C997E5B17E50C0745D805184`). A further local screenshot records the current file-select screen at `MarioCraft/tools/issue10-local/project64-user-file-select.png` (SHA-256 `18B3D0D1BF98D5550AA871B23995E93C85EB3CAAF51E04CA09C49CB37EB5CA7F`). These binary captures, save state, and screenshots remain local/ignored and must not be committed or uploaded.
+
+The user physically pressed Enter at the title screen and reported that file select appeared; this is a user-assisted baseline and is not counted as automated input. All four slots were visibly `NEW`, with Mario A highlighted. Before activating a slot, I copied the existing 1,374,703-byte Project64 state to ignored local path `MarioCraft/tools/issue10-local/sm64-title-state-before-file-select.pj.zip` (SHA-256 `68EB47233F30DFE14C15116C2D937FA165585A3A78E7C50C42A6449E48F0107D`) and copied the 512-byte EEPROM save to `MarioCraft/tools/issue10-local/sm64-save-before-new-slot.eep` (SHA-256 `ED22A78D4E77DED30CD61898A7AA03A355A1DB16D15B5A19D24A4538AAC9020A`). F5 saved the current file-select state; F7 visibly restored it, returning to the file-select GUI with Mario A / `NEW` highlighted; persistent save contents were not inferred from that screen. I then ran the Project64-only helper in `docs/research/project64-input.ps1` with the exact observed game process and game-window IDs, `-Key A -HoldMs 160`. Its scan-code A event (Project64 binding X) entered the new-game letter screen. After F7, the same A action produced the same visible transition; F7 again returned to the file-select GUI with all four slots visibly `NEW`; this does not verify EEPROM/persistent-save contents. This is repeatable accepted host input plus a visible in-game UI response, with repeatable state restoration. It does not establish frame-exact input or deterministic simulation. The helper validates the Project64 executable path, PID, window ownership/title, and exact foreground game HWND; it checks focus every 10 ms, aborts before keydown if the debugger window is foreground, and releases the key in `finally`. The deliberate focus test aborted with foreground HWND `1773320` while game HWND `592674` was expected, recording no keydown. Successful runs logged requested hold 160 ms and actual host elapsed time about 163–190 ms. These are host timestamps/elapsed times, not N64 frame timestamps or a native movie. Sky API taps had previously failed to operate the menu, which is why the documented, scoped Project64-only helper was used. Current emulator UI is the file-select screen with Mario A `NEW` highlighted; the visible menu is evidence about the restored GUI state only and is not a verification of EEPROM/persistent-save contents. No save-slot completion was observed. Project64 remains open.
+
+## Scope coverage assignment
+
+| Research area to inventory and prove from cartridge plus repeatable runtime observations | Assigned slice |
+| --- | --- |
+| Controller sampling, input edges, action state transitions, locomotion, jump/attack action families | #11 |
+| Surface types, collision, floor/wall/ceiling queries, damage, health, hazards, recovery | #12 |
+| Camera modes, Mario model/animation, HUD, audio sequences and sound behavior; include code/data, graphics/audio resources and runtime RSP task/microcode candidates | #13 |
+| Object lifecycle, behaviors, enemies, interaction/collision dispatch | #14 |
+| Course/level scripts, progression, actors and asset formats, segment tables, dynamic course/object data, compression/decompression; validate MIO0 candidates and identify asset/script region boundaries | #15 |
+| Scheduler/task queues, memory layout, boot/runtime initialization, PI/DMA paths, overlays/relocation, RSP tasks and graphics/audio microcode, hardware interfaces, save and persistent state | #16 |
+| Cross-slice completeness, ROM-to-RAM evidence audit, unresolved gaps and readiness | #17 |
+
+The ROM's complete file-level inventory and runtime-loaded regions are not yet established by issue #10. The issue #10 inventory is a bounded initial map: cartridge header and boot candidate, loader-derived initial copy with an exact runtime prefix match, first observed mismatch, all identified MIO0 marker/header candidates, and an explicit unresolved remainder. Static reconstruction and emulator observations must be cross-referenced by address, file offset, runtime state, and capture provenance. Do not use third-party decompilation as evidence in place of the exact cartridge and runtime.
+
+## Reproduction checklist
+
+1. Re-hash the original read-only ROM and verify its size, header bytes, `NSME`, region `E`, revision `00`, and hashes above.
+2. Use the local JDK 21 and Ghidra 12.1.4 setup in `tools/N64-SETUP.md`; keep the Ghidra project outside any dot-prefixed path. The successful imports used these PowerShell commands from the workspace root (output projects are outside `.codex`):
+
+   ```powershell
+   $env:JAVA_HOME = (Resolve-Path 'tools\java\jdk-21.0.12.1+1').Path
+   $env:PATH = "$env:JAVA_HOME\bin;$env:PATH"
+   $analyze = (Resolve-Path 'tools\ghidra\ghidra_12.1.4_PUBLIC\support\analyzeHeadless.bat').Path
+   # Keep both Ghidra projects outside the dot-prefixed Codex workspace.
+   $projectRoot = Join-Path $env:USERPROFILE 'Documents'
+   $rom = Join-Path $projectRoot 'MarioUSA-local-analysis-copy.z64'
+   & $analyze $projectRoot 'MarioUSA' -import $rom -loader N64LoaderWVLoader -analysisTimeoutPerFile 900 *> 'MarioCraft\logs\issue10-ghidra-import.log'
+   & $analyze $projectRoot 'MarioUSA_Runtime' -import $rom -loader N64LoaderWVLoader -loader-rdram (Resolve-Path 'MarioCraft\tools\issue10-local\sm64-title-rdram.bin').Path -analysisTimeoutPerFile 900 *> 'MarioCraft\logs\issue10-ghidra-runtime-import.log'
+   ```
+
+   Both commands returned successful imports after analysis; the second includes the title-screen RDRAM dump as a separate loader input. The local logs contain absolute paths and should stay local; the public report should carry only sanitized findings.
+3. Launch the supplied ROM in Project64 3.0.1.5664. Through its UI, inspect controller bindings and debugger memory; save and reload a state; capture RDRAM with explicit address range and byte order. Keep all resulting binary files, screenshots, save states, and config backups local and ignored.
+4. Reproduce the initial-ROM comparison with `python MarioCraft\docs\research\compare_sm64_rom_ram.py (Join-Path $env:USERPROFILE 'Downloads\Super Mario 64\Super Mario 64 (USA).z64') MarioCraft\tools\issue10-local\sm64-title-rdram.bin`. The script pins and checks the expected ROM/RDRAM SHA-256, ROM size/header/region/revision, and capture size before comparing ROM offset `0x1000` with raw RDRAM file offset `0x246000`. It prints byte count, matching prefix, first mismatch in file/RAM/address coordinates, and both differing bytes. The observed first 947,552 bytes match; the next byte differs. Do not generalize this result to another scene or the full runtime map.
+5. Reproduce the bounded marker scan (candidate-only; no extraction or modification): `python MarioCraft\docs\research\scan_mario64_rom.py (Join-Path $env:USERPROFILE 'Downloads\Super Mario 64\Super Mario 64 (USA).z64')`. It prints every marker offset and candidate MIO0 header fields.
+6. With Project64 already at file-select, visually verify the highlighted slot says `NEW`; record the current Project64 PID and game-window HWND using the supported app/window inspection route. From a 64-bit PowerShell prompt run `& .\MarioCraft\docs\research\project64-input.ps1 -ExpectedPid <observed-PID> -ExpectedHwnd <observed-game-HWND> -Key A -HoldMs 160`. The script refuses a mismatched process, HWND, title, or foreground window; it logs JSONL locally and releases the key. Observe the new-game letter screen, then restore the saved state with Project64 F7 and verify the menu returns with all slots `NEW`. Repeat once. These are bounded host key events with host clock precision, not frame-exact N64 input. Keep the state, EEPROM backup, logs, captures and screenshots local. `MarioCraft/.gitignore` now excludes `logs/issue10-*.log`; generated `.bin`, `.pj.zip`, and screenshots are under the existing ignored `tools/` rule. The helper uses Windows `SendInput` only for the authorized, hard-coded Project64 process and does not target arbitrary windows.
+
+## Local evidence paths
+
+- `MarioCraft/logs/issue10-ghidra-import.log` — actual ROM Ghidra import/analysis; local-only because it contains absolute paths.
+- `MarioCraft/logs/issue10-ghidra-runtime-import.log` — completed combined ROM + runtime RDRAM Ghidra import and analysis; local-only because it contains absolute paths.
+- `MarioCraft/tools/issue10-local/` — ignored local config backup, runtime capture and before/after screenshots; never publish.
+- `tools/N64-SETUP.md` — pinned loader build, invocation and known limitations.
+
+## Input, restore, and evidence boundary
+
+Input acceptance is now demonstrated for the file-select A action: two 160 ms host holds generated the same visible transition from the highlighted, verified `NEW` slot, and F7 restored the same file-select state between and after them. The helper's JSONL log is `MarioCraft/tools/issue10-local/project64-input-log.jsonl`; the helper source is `MarioCraft/docs/research/project64-input.ps1`. The host clock records keydown/key-up UTC and elapsed duration; scheduler and emulator polling latency mean this is not frame-accurate or a native input/movie capture. The physical Enter used to reach file select remains separately labeled user-assisted. `F5`/`F7` restoration and raw 4 MiB RDRAM memory capture are demonstrated from Project64. The state file currently in the emulator's Save directory reflects file select; the earlier title-state backup and pre-existing EEPROM copy are local only. EEPROM persistence after the menu transitions was not independently re-read or verified.
+
+The scan script, ROM/RAM compare script, helper, report and sanitized hashes/addresses are suitable for publication. Do not publish `MarioCraft/tools/issue10-local/`, either Ghidra log under `MarioCraft/logs/`, the original ROM, the analysis ROM copy, RDRAM dump, save state, EEPROM, Project64 screenshots, config backup, or any derived game content. The ignored/local policy applies even if a path is accidentally selected for upload.
+
+## Completion checklist for #10
+
+- [x] Resolve and verify the supplied USA ROM identity, region/revision, header, size and hashes without modifying the original.
+- [x] Import actual cartridge bytes into standalone Ghidra/N64LoaderWV; document mapping assumptions, runtime-prefix validation, first mismatch and REA direct-ROM limitation.
+- [x] Locate/configure installed Project64; demonstrate repeatable observation, F5/F7 state save/restore, accepted bounded A input and visible response, and RDRAM memory capture.
+- [x] Record initial ROM/header/boot/copy candidates and MIO0 marker/header scan, separate cartridge facts from loader resources, and assign subsystem/region analysis to #11–#17.
+- [x] Record ROM-to-RAM comparison provenance and preserve runtime capture/state/config artifacts locally.
+- [x] Restrict work to investigation and measurement; no prototype implemented.
+- [x] Parent review of the corrected draft and evidence completed; proceed with publication and ticket closure.
+
+

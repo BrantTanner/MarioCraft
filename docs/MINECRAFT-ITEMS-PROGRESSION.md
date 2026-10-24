@@ -2,7 +2,7 @@
 
 Research for [issue #6](https://github.com/BrantTanner/MarioCraft/issues/6). This dossier inventories the full-release player item and progression systems, follows representative state changes through UI/network/save code, and identifies player-specific exclusion seams for the MarioCraft MVP. The research target is the official Minecraft Java Edition 1.12.2 client and server recorded in the [release baseline](MINECRAFT-1.12.2-BASELINE.md). All runtime claims are separated from static findings below.
 
-**Status:** The static research and exhaustive vanilla registry/variant-family and alternate-mutation-path audit are complete for #32. The connected-client vanilla UI and player save/reload evidence is now recorded in [#33](https://github.com/BrantTanner/MarioCraft/issues/33); #6 remains open for parent review of this dossier and the cross-ticket audit.
+**Status:** Issue #6 acceptance is complete. The exhaustive original-byte registry and mutation audit is in [#32](https://github.com/BrantTanner/MarioCraft/issues/32), and connected-client vanilla UI, progression, death/drop and save/reload evidence is in [#33](https://github.com/BrantTanner/MarioCraft/issues/33). The Forge startup failure remains unresolved and is not attributed to vanilla behavior; all live gameplay claims are vanilla 1.12.2 only.
 
 ## Evidence and limits
 
@@ -110,7 +110,7 @@ The original classes and CFR 0.152 outputs are under ignored `MarioCraft/tools/i
 - MarioCraft needs a settled read-only/hidden policy for advancement and statistics presentation, and exact handling of player-earned XP versus world XP orbs. Until that policy is selected, the safe exclusion recommendation is to block player collection/reward changes while retaining world-generated mob drops/effects.
 - REA's client ZIP inventory count differs by one from independent `jar tf` and .NET ZIP counts. The release digest matches the baseline; reconcile the tool's occurrence accounting before using its total entry count as evidence.
 
-The exhaustive static gap in #32 is closed with the linked catalogs, original-byte probe, hashes and path audit. The bounded connected-client vanilla UI, progression, death/drop and save/reload evidence is linked from [issue #33](https://github.com/BrantTanner/MarioCraft/issues/33); the unresolved Forge launch failure is explicitly kept separate. Issue #6 and the #9 cross-ticket dossier audit remain open for parent review. Neither ticket changes the research-only status of MVP-excluded systems.
+The bounded limits above remain explicit: unbounded NBT value combinations and unnamed third-party mods are outside the named vanilla target; the Forge `.2859` client launch failure and Side discrepancy remain unresolved; one of four crafted planks was absent from the pre-death saved inventory, with its disposition unknown; and REA reports one more archive entry than independent Java/.NET listings. None invalidates the completed representative release behavior and save trace or the exhaustive bounded vanilla registry/path audit. The pre-death NBT binary was overwritten after the post-death save, so its recorded parsed values and SHA-256 are the retained evidence; the post-death NBT and stats/advancement files remain local. These limits do not claim Forge-runtime equivalence or universal coverage of third-party content. Issues #32 and #33 are complete, and the #9 cross-ticket dossier audit remains open. MVP-excluded systems remain research-only.
 
 ## Related evidence
 

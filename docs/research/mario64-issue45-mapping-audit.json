@@ -1,0 +1,3786 @@
+{
+  "rom_size": 8388608,
+  "main_mapping": {
+    "pc_base": "0x80245000",
+    "rom_min": "0x1000",
+    "rom_end_exclusive": "0xe8560"
+  },
+  "dossier_range_pairs": [
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x802507fc",
+        "0x8025093c"
+      ],
+      "rom": [
+        "0xb7fc",
+        "0xb93c"
+      ],
+      "expected_main_map": [
+        "0xb7fc",
+        "0xb93c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8025065c",
+        "0x80250724"
+      ],
+      "rom": [
+        "0xb65c",
+        "0xb724"
+      ],
+      "expected_main_map": [
+        "0xb65c",
+        "0xb724"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x80270500",
+        "0x80270918"
+      ],
+      "rom": [
+        "0x2b500",
+        "0x2b918"
+      ],
+      "expected_main_map": [
+        "0x2b500",
+        "0x2b918"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x80270918",
+        "0x80270a74"
+      ],
+      "rom": [
+        "0x2b918",
+        "0x2ba74"
+      ],
+      "expected_main_map": [
+        "0x2b918",
+        "0x2ba74"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x802518a8",
+        "0x80251a48"
+      ],
+      "rom": [
+        "0xc8a8",
+        "0xca48"
+      ],
+      "expected_main_map": [
+        "0xc8a8",
+        "0xca48"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x80253a60",
+        "0x80253d58"
+      ],
+      "rom": [
+        "0xea60",
+        "0xed58"
+      ],
+      "expected_main_map": [
+        "0xea60",
+        "0xed58"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8028fc9c",
+        "0x8028fe24"
+      ],
+      "rom": [
+        "0x4ac9c",
+        "0x4ae24"
+      ],
+      "expected_main_map": [
+        "0x4ac9c",
+        "0x4ae24"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x802868f8",
+        "0x80286f68"
+      ],
+      "rom": [
+        "0x418f8",
+        "0x41f68"
+      ],
+      "expected_main_map": [
+        "0x418f8",
+        "0x41f68"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8028724c",
+        "0x802879ec"
+      ],
+      "rom": [
+        "0x4224c",
+        "0x429ec"
+      ],
+      "expected_main_map": [
+        "0x4224c",
+        "0x429ec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8028eeb0",
+        "0x8028f670"
+      ],
+      "rom": [
+        "0x49eb0",
+        "0x4a670"
+      ],
+      "expected_main_map": [
+        "0x49eb0",
+        "0x4a670"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8028d5fc",
+        "0x8028d658"
+      ],
+      "rom": [
+        "0x485fc",
+        "0x48658"
+      ],
+      "expected_main_map": [
+        "0x485fc",
+        "0x48658"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8028ec58",
+        "0x8028ed30"
+      ],
+      "rom": [
+        "0x49c58",
+        "0x49d30"
+      ],
+      "expected_main_map": [
+        "0x49c58",
+        "0x49d30"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8028ed98",
+        "0x8028eeb0"
+      ],
+      "rom": [
+        "0x49d98",
+        "0x49eb0"
+      ],
+      "expected_main_map": [
+        "0x49d98",
+        "0x49eb0"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x80286088",
+        "0x80286188"
+      ],
+      "rom": [
+        "0x41088",
+        "0x41188"
+      ],
+      "expected_main_map": [
+        "0x41088",
+        "0x41188"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x80280b00",
+        "0x80281188"
+      ],
+      "rom": [
+        "0x3bb00",
+        "0x3c188"
+      ],
+      "expected_main_map": [
+        "0x3bb00",
+        "0x3c188"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8037e0b4",
+        "0x8037e1a0"
+      ],
+      "rom": [
+        "0xfae34",
+        "0xfaf1c"
+      ],
+      "expected_main_map": null,
+      "status": "outside-main-map; independent mapping evidence required",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8037de34",
+        "0x8037de94"
+      ],
+      "rom": [
+        "0xfabb4",
+        "0xfac14"
+      ],
+      "expected_main_map": null,
+      "status": "outside-main-map; independent mapping evidence required",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8037be28",
+        "0x8037becc"
+      ],
+      "rom": [
+        "0xf8ba8",
+        "0xf8c4c"
+      ],
+      "expected_main_map": null,
+      "status": "outside-main-map; independent mapping evidence required",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8037cc74",
+        "0x8037cd60"
+      ],
+      "rom": [
+        "0xf99f4",
+        "0xf9ae0"
+      ],
+      "expected_main_map": null,
+      "status": "outside-main-map; independent mapping evidence required",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8037c1e4",
+        "0x8037c360"
+      ],
+      "rom": [
+        "0xf8f64",
+        "0xf90e0"
+      ],
+      "expected_main_map": null,
+      "status": "outside-main-map; independent mapping evidence required",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8037b220",
+        "0x8037b244"
+      ],
+      "rom": [
+        "0xf7fa0",
+        "0xf7fc4"
+      ],
+      "expected_main_map": null,
+      "status": "outside-main-map; independent mapping evidence required",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8027dea8",
+        "0x8027e130"
+      ],
+      "rom": [
+        "0x38ea8",
+        "0x39130"
+      ],
+      "expected_main_map": [
+        "0x38ea8",
+        "0x39130"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8027c7a4",
+        "0x8027c858"
+      ],
+      "rom": [
+        "0x377a4",
+        "0x37858"
+      ],
+      "expected_main_map": [
+        "0x377a4",
+        "0x37858"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x802605d0",
+        "0x802608ac"
+      ],
+      "rom": [
+        "0x1b5d0",
+        "0x1b8ac"
+      ],
+      "expected_main_map": [
+        "0x1b5d0",
+        "0x1b8ac"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x802c5b54",
+        "0x802c5ca8"
+      ],
+      "rom": [
+        "0x80b54",
+        "0x80ca8"
+      ],
+      "expected_main_map": [
+        "0x80b54",
+        "0x80ca8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8026a494",
+        "0x8026a598"
+      ],
+      "rom": [
+        "0x25494",
+        "0x25598"
+      ],
+      "expected_main_map": [
+        "0x25494",
+        "0x25598"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8026c9fc",
+        "0x8026cd0c"
+      ],
+      "rom": [
+        "0x279fc",
+        "0x27d0c"
+      ],
+      "expected_main_map": [
+        "0x279fc",
+        "0x27d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "MarioCraft\\docs\\research\\MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "pc": [
+        "0x8026a224",
+        "0x8026a400"
+      ],
+      "rom": [
+        "0x25224",
+        "0x25400"
+      ],
+      "expected_main_map": [
+        "0x25224",
+        "0x25400"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    }
+  ],
+  "csv_range_pairs": [
+    {
+      "source": "CSV row 3 surface 0x0001",
+      "pc": [
+        "0x8025065c",
+        "0x80250724"
+      ],
+      "rom": [
+        "0xb65c",
+        "0xb724"
+      ],
+      "expected_main_map": [
+        "0xb65c",
+        "0xb724"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 5 surface 0x0005",
+      "pc": [
+        "0x8025ef58",
+        "0x8025f0b4"
+      ],
+      "rom": [
+        "0x19f58",
+        "0x1a0b4"
+      ],
+      "expected_main_map": [
+        "0x19f58",
+        "0x1a0b4"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 5 surface 0x0005",
+      "pc": [
+        "0x8025f0b4",
+        "0x8025f1e4"
+      ],
+      "rom": [
+        "0x1a0b4",
+        "0x1a1e4"
+      ],
+      "expected_main_map": [
+        "0x1a0b4",
+        "0x1a1e4"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 5 surface 0x0005",
+      "pc": [
+        "0x8025f1e4",
+        "0x8025f384"
+      ],
+      "rom": [
+        "0x1a1e4",
+        "0x1a384"
+      ],
+      "expected_main_map": [
+        "0x1a1e4",
+        "0x1a384"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 8 surface 0x000B",
+      "pc": [
+        "0x8028ec58",
+        "0x8028ed30"
+      ],
+      "rom": [
+        "0x49c58",
+        "0x49d30"
+      ],
+      "expected_main_map": [
+        "0x49c58",
+        "0x49d30"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 8 surface 0x000B",
+      "pc": [
+        "0x8028ed98",
+        "0x8028eeb0"
+      ],
+      "rom": [
+        "0x49d98",
+        "0x49eb0"
+      ],
+      "expected_main_map": [
+        "0x49d98",
+        "0x49eb0"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 8 surface 0x000B",
+      "pc": [
+        "0x80286088",
+        "0x80286188"
+      ],
+      "rom": [
+        "0x41088",
+        "0x41188"
+      ],
+      "expected_main_map": [
+        "0x41088",
+        "0x41188"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 10 surface 0x000E",
+      "pc": [
+        "0x80270500",
+        "0x80270918"
+      ],
+      "rom": [
+        "0x2b500",
+        "0x2b918"
+      ],
+      "expected_main_map": [
+        "0x2b500",
+        "0x2b918"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 10 surface 0x000E",
+      "pc": [
+        "0x80270918",
+        "0x80270a74"
+      ],
+      "rom": [
+        "0x2b918",
+        "0x2ba74"
+      ],
+      "expected_main_map": [
+        "0x2b918",
+        "0x2ba74"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 12 surface 0x0013",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 13 surface 0x0014",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 14 surface 0x0015",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 16 surface 0x001A",
+      "pc": [
+        "0x802c5b54",
+        "0x802c5ca8"
+      ],
+      "rom": [
+        "0x80b54",
+        "0x80ca8"
+      ],
+      "expected_main_map": [
+        "0x80b54",
+        "0x80ca8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 21 surface 0x0021",
+      "pc": [
+        "0x80255414",
+        "0x80255654"
+      ],
+      "rom": [
+        "0x10414",
+        "0x10654"
+      ],
+      "expected_main_map": [
+        "0x10414",
+        "0x10654"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 22 surface 0x0022",
+      "pc": [
+        "0x80255414",
+        "0x80255654"
+      ],
+      "rom": [
+        "0x10414",
+        "0x10654"
+      ],
+      "expected_main_map": [
+        "0x10414",
+        "0x10654"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 23 surface 0x0023",
+      "pc": [
+        "0x80255414",
+        "0x80255654"
+      ],
+      "rom": [
+        "0x10414",
+        "0x10654"
+      ],
+      "expected_main_map": [
+        "0x10414",
+        "0x10654"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 24 surface 0x0024",
+      "pc": [
+        "0x80255414",
+        "0x80255654"
+      ],
+      "rom": [
+        "0x10414",
+        "0x10654"
+      ],
+      "expected_main_map": [
+        "0x10414",
+        "0x10654"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 24 surface 0x0024",
+      "pc": [
+        "0x8025570c",
+        "0x8025580c"
+      ],
+      "rom": [
+        "0x1070c",
+        "0x1080c"
+      ],
+      "expected_main_map": [
+        "0x1070c",
+        "0x1080c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 25 surface 0x0025",
+      "pc": [
+        "0x80255414",
+        "0x80255654"
+      ],
+      "rom": [
+        "0x10414",
+        "0x10654"
+      ],
+      "expected_main_map": [
+        "0x10414",
+        "0x10654"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 25 surface 0x0025",
+      "pc": [
+        "0x8025570c",
+        "0x8025580c"
+      ],
+      "rom": [
+        "0x1070c",
+        "0x1080c"
+      ],
+      "expected_main_map": [
+        "0x1070c",
+        "0x1080c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 26 surface 0x0026",
+      "pc": [
+        "0x80255414",
+        "0x80255654"
+      ],
+      "rom": [
+        "0x10414",
+        "0x10654"
+      ],
+      "expected_main_map": [
+        "0x10414",
+        "0x10654"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 27 surface 0x0027",
+      "pc": [
+        "0x80255414",
+        "0x80255654"
+      ],
+      "rom": [
+        "0x10414",
+        "0x10654"
+      ],
+      "expected_main_map": [
+        "0x10414",
+        "0x10654"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 27 surface 0x0027",
+      "pc": [
+        "0x8025570c",
+        "0x8025580c"
+      ],
+      "rom": [
+        "0x1070c",
+        "0x1080c"
+      ],
+      "expected_main_map": [
+        "0x1070c",
+        "0x1080c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 28 surface 0x0028",
+      "pc": [
+        "0x80280368",
+        "0x802804f4"
+      ],
+      "rom": [
+        "0x3b368",
+        "0x3b4f4"
+      ],
+      "expected_main_map": [
+        "0x3b368",
+        "0x3b4f4"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 29 surface 0x0029",
+      "pc": [
+        "0x802518a8",
+        "0x80251a48"
+      ],
+      "rom": [
+        "0xc8a8",
+        "0xca48"
+      ],
+      "expected_main_map": [
+        "0xc8a8",
+        "0xca48"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 29 surface 0x0029",
+      "pc": [
+        "0x80253a60",
+        "0x80253d58"
+      ],
+      "rom": [
+        "0xea60",
+        "0xed58"
+      ],
+      "expected_main_map": [
+        "0xea60",
+        "0xed58"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 30 surface 0x002A",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 31 surface 0x002C",
+      "pc": [
+        "0x8025580c",
+        "0x802559b0"
+      ],
+      "rom": [
+        "0x1080c",
+        "0x109b0"
+      ],
+      "expected_main_map": [
+        "0x1080c",
+        "0x109b0"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 32 surface 0x002D",
+      "pc": [
+        "0x80255414",
+        "0x80255654"
+      ],
+      "rom": [
+        "0x10414",
+        "0x10654"
+      ],
+      "expected_main_map": [
+        "0x10414",
+        "0x10654"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 32 surface 0x002D",
+      "pc": [
+        "0x8025570c",
+        "0x8025580c"
+      ],
+      "rom": [
+        "0x1070c",
+        "0x1080c"
+      ],
+      "expected_main_map": [
+        "0x1070c",
+        "0x1080c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 33 surface 0x002E",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 35 surface 0x0030",
+      "pc": [
+        "0x8026a494",
+        "0x8026a598"
+      ],
+      "rom": [
+        "0x25494",
+        "0x25598"
+      ],
+      "expected_main_map": [
+        "0x25494",
+        "0x25598"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 35 surface 0x0030",
+      "pc": [
+        "0x8026c9fc",
+        "0x8026cd0c"
+      ],
+      "rom": [
+        "0x279fc",
+        "0x27d0c"
+      ],
+      "expected_main_map": [
+        "0x279fc",
+        "0x27d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 35 surface 0x0030",
+      "pc": [
+        "0x8026a224",
+        "0x8026a400"
+      ],
+      "rom": [
+        "0x25224",
+        "0x25400"
+      ],
+      "expected_main_map": [
+        "0x25224",
+        "0x25400"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 39 surface 0x0035",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 40 surface 0x0036",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 41 surface 0x0037",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 43 surface 0x0065",
+      "pc": [
+        "0x8028eeb0",
+        "0x8028f670"
+      ],
+      "rom": [
+        "0x49eb0",
+        "0x4a670"
+      ],
+      "expected_main_map": [
+        "0x49eb0",
+        "0x4a670"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 43 surface 0x0065",
+      "pc": [
+        "0x8028d5fc",
+        "0x8028d658"
+      ],
+      "rom": [
+        "0x485fc",
+        "0x48658"
+      ],
+      "expected_main_map": [
+        "0x485fc",
+        "0x48658"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 44 surface 0x0066",
+      "pc": [
+        "0x8028ec58",
+        "0x8028ed30"
+      ],
+      "rom": [
+        "0x49c58",
+        "0x49d30"
+      ],
+      "expected_main_map": [
+        "0x49c58",
+        "0x49d30"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 44 surface 0x0066",
+      "pc": [
+        "0x8028ed98",
+        "0x8028eeb0"
+      ],
+      "rom": [
+        "0x49d98",
+        "0x49eb0"
+      ],
+      "expected_main_map": [
+        "0x49d98",
+        "0x49eb0"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 44 surface 0x0066",
+      "pc": [
+        "0x80286088",
+        "0x80286188"
+      ],
+      "rom": [
+        "0x41088",
+        "0x41188"
+      ],
+      "expected_main_map": [
+        "0x41088",
+        "0x41188"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 46 surface 0x0069",
+      "pc": [
+        "0x8028ed98",
+        "0x8028eeb0"
+      ],
+      "rom": [
+        "0x49d98",
+        "0x49eb0"
+      ],
+      "expected_main_map": [
+        "0x49d98",
+        "0x49eb0"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 46 surface 0x0069",
+      "pc": [
+        "0x80286088",
+        "0x80286188"
+      ],
+      "rom": [
+        "0x41088",
+        "0x41188"
+      ],
+      "expected_main_map": [
+        "0x41088",
+        "0x41188"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 47 surface 0x006E",
+      "pc": [
+        "0x80280b00",
+        "0x80281188"
+      ],
+      "rom": [
+        "0x3bb00",
+        "0x3c188"
+      ],
+      "expected_main_map": [
+        "0x3bb00",
+        "0x3c188"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 47 surface 0x006E",
+      "pc": [
+        "0x8028fc9c",
+        "0x8028fe24"
+      ],
+      "rom": [
+        "0x4ac9c",
+        "0x4ae24"
+      ],
+      "expected_main_map": [
+        "0x4ac9c",
+        "0x4ae24"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 47 surface 0x006E",
+      "pc": [
+        "0x802868f8",
+        "0x80286f68"
+      ],
+      "rom": [
+        "0x418f8",
+        "0x41f68"
+      ],
+      "expected_main_map": [
+        "0x418f8",
+        "0x41f68"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 48 surface 0x006F",
+      "pc": [
+        "0x80280b00",
+        "0x80281188"
+      ],
+      "rom": [
+        "0x3bb00",
+        "0x3c188"
+      ],
+      "expected_main_map": [
+        "0x3bb00",
+        "0x3c188"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 48 surface 0x006F",
+      "pc": [
+        "0x8028fc9c",
+        "0x8028fe24"
+      ],
+      "rom": [
+        "0x4ac9c",
+        "0x4ae24"
+      ],
+      "expected_main_map": [
+        "0x4ac9c",
+        "0x4ae24"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 48 surface 0x006F",
+      "pc": [
+        "0x802868f8",
+        "0x80286f68"
+      ],
+      "rom": [
+        "0x418f8",
+        "0x41f68"
+      ],
+      "expected_main_map": [
+        "0x418f8",
+        "0x41f68"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 49 surface 0x0070",
+      "pc": [
+        "0x80280b00",
+        "0x80281188"
+      ],
+      "rom": [
+        "0x3bb00",
+        "0x3c188"
+      ],
+      "expected_main_map": [
+        "0x3bb00",
+        "0x3c188"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 49 surface 0x0070",
+      "pc": [
+        "0x8028fc9c",
+        "0x8028fe24"
+      ],
+      "rom": [
+        "0x4ac9c",
+        "0x4ae24"
+      ],
+      "expected_main_map": [
+        "0x4ac9c",
+        "0x4ae24"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 49 surface 0x0070",
+      "pc": [
+        "0x802868f8",
+        "0x80286f68"
+      ],
+      "rom": [
+        "0x418f8",
+        "0x41f68"
+      ],
+      "expected_main_map": [
+        "0x418f8",
+        "0x41f68"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 51 surface 0x0073",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 52 surface 0x0074",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 53 surface 0x0075",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 56 surface 0x0078",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 57 surface 0x0079",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 58 surface 0x007A",
+      "pc": [
+        "0x8025177c",
+        "0x802518a8"
+      ],
+      "rom": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "expected_main_map": [
+        "0xc77c",
+        "0xc8a8"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 60 surface 0x00A6",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 60 surface 0x00A6",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 61 surface 0x00A7",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 61 surface 0x00A7",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 62 surface 0x00A8",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 62 surface 0x00A8",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 63 surface 0x00A9",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 63 surface 0x00A9",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 64 surface 0x00AA",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 64 surface 0x00AA",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 65 surface 0x00AB",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 65 surface 0x00AB",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 66 surface 0x00AC",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 66 surface 0x00AC",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 67 surface 0x00AD",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 67 surface 0x00AD",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 68 surface 0x00AE",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 68 surface 0x00AE",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 69 surface 0x00AF",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 69 surface 0x00AF",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 70 surface 0x00B0",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 70 surface 0x00B0",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 71 surface 0x00B1",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 71 surface 0x00B1",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 72 surface 0x00B2",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 72 surface 0x00B2",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 73 surface 0x00B3",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 73 surface 0x00B3",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 74 surface 0x00B4",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 74 surface 0x00B4",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 75 surface 0x00B5",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 75 surface 0x00B5",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 76 surface 0x00B6",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 76 surface 0x00B6",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 77 surface 0x00B7",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 77 surface 0x00B7",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 78 surface 0x00B8",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 78 surface 0x00B8",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 79 surface 0x00B9",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 79 surface 0x00B9",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 80 surface 0x00BA",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 80 surface 0x00BA",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 81 surface 0x00BB",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 81 surface 0x00BB",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 82 surface 0x00BC",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 82 surface 0x00BC",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 83 surface 0x00BD",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 83 surface 0x00BD",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 84 surface 0x00BE",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 84 surface 0x00BE",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 85 surface 0x00BF",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 85 surface 0x00BF",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 86 surface 0x00C0",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 86 surface 0x00C0",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 87 surface 0x00C1",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 87 surface 0x00C1",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 88 surface 0x00C2",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 88 surface 0x00C2",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 89 surface 0x00C3",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 89 surface 0x00C3",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 90 surface 0x00C4",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 90 surface 0x00C4",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 91 surface 0x00C5",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 91 surface 0x00C5",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 92 surface 0x00C6",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 92 surface 0x00C6",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 93 surface 0x00C7",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 93 surface 0x00C7",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 94 surface 0x00C8",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 94 surface 0x00C8",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 95 surface 0x00C9",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 95 surface 0x00C9",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 96 surface 0x00CA",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 96 surface 0x00CA",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 97 surface 0x00CB",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 97 surface 0x00CB",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 98 surface 0x00CC",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 98 surface 0x00CC",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 99 surface 0x00CD",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 99 surface 0x00CD",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 100 surface 0x00CE",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 100 surface 0x00CE",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 101 surface 0x00CF",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 101 surface 0x00CF",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 102 surface 0x00D0",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 102 surface 0x00D0",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 103 surface 0x00D1",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 103 surface 0x00D1",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 104 surface 0x00D2",
+      "pc": [
+        "0x802d3a2c",
+        "0x802d3bec"
+      ],
+      "rom": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "expected_main_map": [
+        "0x8ea2c",
+        "0x8ebec"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 104 surface 0x00D2",
+      "pc": [
+        "0x802d5b98",
+        "0x802d5d0c"
+      ],
+      "rom": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "expected_main_map": [
+        "0x90b98",
+        "0x90d0c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 105 surface 0x00D3",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 106 surface 0x00D4",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 107 surface 0x00D5",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 108 surface 0x00D6",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 109 surface 0x00D7",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 110 surface 0x00D8",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 111 surface 0x00D9",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 112 surface 0x00DA",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 113 surface 0x00DB",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 114 surface 0x00DC",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 115 surface 0x00DD",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 116 surface 0x00DE",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 117 surface 0x00DF",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 118 surface 0x00E0",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 119 surface 0x00E1",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 120 surface 0x00E2",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 121 surface 0x00E3",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 122 surface 0x00E4",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 123 surface 0x00E5",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 124 surface 0x00E6",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 125 surface 0x00E7",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 126 surface 0x00E8",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 127 surface 0x00E9",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 128 surface 0x00EA",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 129 surface 0x00EB",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 130 surface 0x00EC",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 131 surface 0x00ED",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 132 surface 0x00EE",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 133 surface 0x00EF",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 134 surface 0x00F0",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 135 surface 0x00F1",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 136 surface 0x00F2",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 137 surface 0x00F3",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 138 surface 0x00F4",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 139 surface 0x00F5",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 140 surface 0x00F6",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 141 surface 0x00F7",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 142 surface 0x00F8",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 143 surface 0x00F9",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 144 surface 0x00FA",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 145 surface 0x00FB",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 146 surface 0x00FC",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 147 surface 0x00FD",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    },
+    {
+      "source": "CSV row 148 surface 0x00FF",
+      "pc": [
+        "0x8024a7b4",
+        "0x8024a85c"
+      ],
+      "rom": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "expected_main_map": [
+        "0x57b4",
+        "0x585c"
+      ],
+      "status": "main-map-pass",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

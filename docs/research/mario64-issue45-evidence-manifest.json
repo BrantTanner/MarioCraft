@@ -1,0 +1,64 @@
+{
+  "title": "Mario 64 issue 45 exact special-surface consumer census",
+  "target": {
+    "path": "C:\\Users\\brant\\Documents\\MarioUSA-local-analysis-copy.z64",
+    "bytes": 8388608,
+    "sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "revision": "USA rev0"
+  },
+  "mapping": {
+    "linear": "PC = 0x80245000 + ROM offset",
+    "rom_offsets_inclusive_min_exclusive_max": [
+      "0x1000",
+      "0xE8560"
+    ],
+    "independent_engine_matches": "Per-function exact byte matches only; no global delta extrapolation."
+  },
+  "coverage": {
+    "distinct_inventory_rows": 147,
+    "targetReferenceStatus_counts": {
+      "exact-ROM consumer verified; behavior scoped as below": 36,
+      "exact-ROM consumer verified; grouped branch/effect scoped in issue45 census": 50,
+      "exact-ROM consumer verified; loader flag mapping": 2,
+      "exact-ROM consumer verified; grounded movement branch": 1,
+      "exact-ROM consumer verified; camera surface branch scoped in issue45 census": 7,
+      "Source-only candidate; exact-ROM consumer/effect unverified in this scan.": 3,
+      "exact-ROM consumer verified; grouped effect scoped in issue45 census": 2,
+      "exact-ROM consumers verified; hard-fall route and sound selector scoped in issue45 census": 1,
+      "target GEO_ASM pointer records and renderer dispatch verified; painting-index to per-ID mapping unresolved": 45
+    },
+    "totals": {
+      "exact_consumers": 99,
+      "geo_records_renderer_dispatch_per_id_unresolved": 45,
+      "bounded_source_only": 3
+    },
+    "source_only_ids": [
+      "0x0D",
+      "0x16",
+      "0x68"
+    ],
+    "search_limits": "3,367 analyzed mapped-PC procedures checked for Mario floor-pointer/type-load pattern; six-function Mario collision-pointer/type pass; bounded source consumer query over surface_collision.c, surface_load.c, mario.c and Mario action files, camera.c, level_update.c, graph_node.c, geo_layout.c, rendering_graph_node.c; targeted target code/data scans as recorded in dossier."
+  },
+  "files": [
+    {
+      "path": "MarioCraft/docs/research/MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "bytes": 28574,
+      "sha256": "D613DFC3F1C3BE441029837D96920D35C8ABB84D7C7EB7610A350D813115924F"
+    },
+    {
+      "path": "MarioCraft/docs/research/mario64-issue43-surface-inventory.csv",
+      "bytes": 163524,
+      "sha256": "4D2700D77390F497CE2C6B7662AE61B9F148B2992307D52C913C85176965767F"
+    },
+    {
+      "path": "MarioCraft/docs/research/mario64-issue45-mapping-audit.json",
+      "bytes": 74237,
+      "sha256": "9FD4111AA127384CEEAD254281B528197A05303370CEF981F65AEF9847145A42"
+    },
+    {
+      "path": "MarioCraft/docs/research/mario64-issue45-mapping-audit.py",
+      "bytes": 2903,
+      "sha256": "437201BF444017AF21F60CC0E96CFEBF2772DE50EEFCF1CB1DA1ABBF2DE1FFB2"
+    }
+  ]
+}

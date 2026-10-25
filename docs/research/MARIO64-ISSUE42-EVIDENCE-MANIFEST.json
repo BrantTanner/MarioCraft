@@ -1,0 +1,183 @@
+{
+  "issue": 42,
+  "rom": {
+    "region": "USA rev0",
+    "bytes": 8388608,
+    "sha256": "17ce077343c6133f8c9f2d6d6d9a4ab62c8cd2aa57c40aea1f490b4c8bb21d91"
+  },
+  "runtime": {
+    "emulator": "Project64 3.0.1.5664-2df3434",
+    "executableSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "controller": "N-Rage Real N64 Range; stick 100; deadzone 5"
+  },
+  "localEvidence": [
+    {
+      "localPath": "tools/issue11-local/pj64-portable/issue42-baseline-restore1.jsonl",
+      "bytes": 1420,
+      "sha256": "4f4775fc897a5ab5abd99f7c7ba1af36c1b88162d3070febec9182e812fc96b4",
+      "publicSelection": true
+    },
+    {
+      "localPath": "tools/issue11-local/pj64-portable/issue42-courtyard-walk-02.jsonl",
+      "bytes": 165856,
+      "sha256": "685af53f0217495f142de02fe7d6f473cf07ab62c3225bea3b8a8121a747cb34",
+      "publicSelection": true
+    },
+    {
+      "localPath": "tools/issue11-local/pj64-portable/issue42-lower-ceiling-triple-probe-01.jsonl",
+      "bytes": 105068,
+      "sha256": "26ff67bb304e105dba7da45f7e42e42fb2bbd413eeb39fd7d4f10ab44def0102",
+      "publicSelection": true
+    },
+    {
+      "localPath": "tools/issue11-local/pj64-portable/issue42-south-edge-approach-01.jsonl",
+      "bytes": 8586192,
+      "sha256": "dc8980ad2fef477ea3106e08b34d50b6f0bbdb4f4298af429f4d22db84a9fc56",
+      "publicSelection": true
+    },
+    {
+      "localPath": "tools/issue11-local/pj64-portable/issue42-ledge-approach-z-03.jsonl",
+      "bytes": 127521,
+      "sha256": "1296d3fb01feed46907e4aa1c5abd9d16f5b7ced2680f4e7cf4214b82bbb0f70",
+      "publicSelection": true
+    },
+    {
+      "localPath": "tools/issue11-local/pj64-portable/issue41-wall-contact-A-29.jsonl",
+      "bytes": 8342902,
+      "sha256": "f70fdbbb2cee22f93be237e7d2bbfd9c7b0eeab73acd2ac1eeeee5c59a42e373",
+      "publicSelection": true
+    },
+    {
+      "localPath": "tools/issue11-local/traces/issue41-continuous-runup-27-events.jsonl",
+      "bytes": 11840,
+      "sha256": "3b7955f4cde4a02ba7748c9963ec29e16df5b7c7a9313dadd351d53f72f32048",
+      "publicSelection": true
+    },
+    {
+      "localPath": "tools/issue11-local/issue40-project64-input-log.jsonl",
+      "bytes": 120153,
+      "sha256": "c98f0bde7e748444c120c9ae026b95b6a1e727561472f2b117da0f75d59f0e5d",
+      "publicSelection": "two AnalogDown keydown/keyup pairs for issue42-ledge-approach-z-03; remaining records local"
+    }
+  ],
+  "localSeeds": [
+    {
+      "path": "tools/issue11-local/seeds/issue41-lower-platform-y803-z2670.pj.zip",
+      "bytes": 1434741,
+      "sha256": "E3AF591D10EE312438A88F57351ADA6CB35D1B0A8BE80128B38D7242429DE616",
+      "usedAsRouteOrigin": true
+    },
+    {
+      "path": "tools/issue11-local/seeds/issue41-ground-runup-z1740-range20.pj.zip",
+      "bytes": 1399012,
+      "sha256": "51FE7D7A1242AE55D88E3616AD47266AE8A83C555D4DFAF04AC3E4C8423B18B5",
+      "note": "A-29 driver checked runtime F7 bounds, not this archive hash"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "tools/issue11-local/issue42-candidate-fns.txt",
+      "sha256": "8edc57c8948dcaf36a7a1c5d914f4862fc0cdbd87bba4fa8f3136711510987c2"
+    },
+    {
+      "path": "tools/issue11-local/issue42_heightprofile.py",
+      "sha256": "59bda579dae22afae226530969a2bc4e4a5f1c3d66f239be9f0b7902ef56fb39"
+    },
+    {
+      "path": "tools/issue11-local/castle_grounds-collision-nav-only.c",
+      "sha256": "c6bb2dd5fec399f680b3b15319d2f09d45cbf31077c2831141d8260f47a55ee6"
+    },
+    {
+      "path": "tools/issue11-local/surface-collision-nav.h",
+      "sha256": "b89d2fbe90c5f6eccbbbd1f87755f35be863181ac2280ac4ac276eb6fa69c236"
+    },
+    {
+      "path": "docs/research/mario64-issue42-external-capture.ps1",
+      "sha256": "be6e296ea32132a3ea502b69da423385375213a602a993b08ddc1504389e7603"
+    },
+    {
+      "path": "docs/research/mario64-issue41-find-rdram-base.ps1",
+      "sha256": "b28006fe44279c08b14ca085e8dd6045a441e7eb6b43a105da79958f90ddded6"
+    },
+    {
+      "path": "docs/research/mario64-issue40-project64-input.ps1",
+      "sha256": "c922f6ce5cccffa3648ec8586e8e2069040ce998935908c3fd1dc305f6b21249"
+    }
+  ],
+  "romSlices": [
+    {
+      "role": "ground quarter-step query/classification",
+      "pc": "0x80255B04",
+      "romOffsetStart": "0x10B04",
+      "romOffsetEndExclusive": "0x10D88",
+      "bytes": 644,
+      "sha256": "256d52f30ffdb533c68e2d82f3c2c0a57fa7dc811fe6fed2dbd002661aadffb2",
+      "note": "contiguous bounding slice; see Ghidra body ranges in report; slice includes gaps"
+    },
+    {
+      "role": "four-quarter ground-step caller",
+      "pc": "0x80255D88",
+      "romOffsetStart": "0x10D88",
+      "romOffsetEndExclusive": "0x10EC4",
+      "bytes": 316,
+      "sha256": "f40bee52ce29f850029dee2828fc89402b75877d7c7336dea90955e0398a21ec",
+      "note": "contiguous bounding slice; see Ghidra body ranges in report; slice includes gaps"
+    },
+    {
+      "role": "ledge-grab candidate/result checks",
+      "pc": "0x80255EC4",
+      "romOffsetStart": "0x10EC4",
+      "romOffsetEndExclusive": "0x110AC",
+      "bytes": 488,
+      "sha256": "7cff1dfb0e2d00ca40a547b9376d42f349e0d1a140798b9642ac53b3754ef6e2",
+      "note": "contiguous bounding slice; see Ghidra body ranges in report; slice includes gaps"
+    },
+    {
+      "role": "air quarter-step query/classification",
+      "pc": "0x802560AC",
+      "romOffsetStart": "0x110AC",
+      "romOffsetEndExclusive": "0x114E0",
+      "bytes": 1076,
+      "sha256": "fd272b7c245d6f2da296c503f9e350b19544fd8181d479c102bec609035647b8",
+      "note": "contiguous bounding slice; see Ghidra body ranges in report; slice includes gaps"
+    },
+    {
+      "role": "additional action/geometry consumer; role not assigned here",
+      "pc": "0x8025DF04",
+      "romOffsetStart": "0x18F04",
+      "romOffsetEndExclusive": "0x1921C",
+      "bytes": 792,
+      "sha256": "ff35653fe245ad84647683283a9adca4059493ace237ad0c9a83378f80215b0d",
+      "note": "contiguous bounding slice; see Ghidra body ranges in report; slice includes gaps"
+    },
+    {
+      "role": "additional action/geometry consumer; role not assigned here",
+      "pc": "0x8025F6C0",
+      "romOffsetStart": "0x1A6C0",
+      "romOffsetEndExclusive": "0x1A970",
+      "bytes": 688,
+      "sha256": "38437f7c4d7e7a23bad03b260b5f129135ff56736919d4843a81132570228b5a",
+      "note": "contiguous bounding slice; see Ghidra body ranges in report; slice includes gaps"
+    }
+  ],
+  "publishedArtifacts": [
+    {
+      "path": "MARIO64-ISSUE42-COLLISION-AND-GEOMETRY.md",
+      "bytes": 16647,
+      "sha256": "7d60a4a2b3457f0476e9c403d3cc479f81d4efed474508c12e9345ce4a05ce51"
+    },
+    {
+      "path": "MARIO64-ISSUE42-TRACE-SAMPLES.jsonl",
+      "bytes": 24811,
+      "sha256": "558e58a55ceb3983c23978467fe647f083a747e05d6569b61c1f0eeb584bf155"
+    }
+  ],
+  "limits": [
+    "Counter equality is not atomicity.",
+    "Ceiling query was observed but no ceiling contact was tested.",
+    "No successful ledge grab or isolated controlled step-up threshold trial.",
+    "A-29 F7 state was not bound to an archive hash.",
+    "Raw process captures, ROM, and save-state bytes remain local.",
+    "No isolated controlled step-up or ceiling-contact trial; the #42 walk-off input edges are documented in sanitized UTC event rows."
+  ]
+}

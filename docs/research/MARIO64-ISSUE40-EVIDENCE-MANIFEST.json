@@ -1,0 +1,131 @@
+{
+  "issue": 40,
+  "title": "Original Super Mario 64 USA crouch, slide, dive, and ground-pound research",
+  "status": "draft for review; keep issue open",
+  "rom": {
+    "identity": "Super Mario 64 USA retail ROM, 8 MiB",
+    "sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "originalReadOnly": true,
+    "runtimeAnalysisCopyByteIdentical": true
+  },
+  "runtime": {
+    "project64": "3.0.1.5664-2df3434",
+    "project64Sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "nRageSha256": "8B06D0BC29DEC6233640400E15051B945923BB6283E290B40AF64016992E6C20",
+    "profile": "Controller 1 plugged; RealN64Range=1; StickRange=100; PadDeadZone=5",
+    "baseline": {
+      "sha256": "6E2C8265A8A9A19761BCC6CE29FA20694FAD5444B325B1F22CA987776A2D6DFE",
+      "xyz": [
+        -1328,
+        260,
+        4354
+      ],
+      "floorType": 0,
+      "floorNormalY": 1.0,
+      "lives": 4,
+      "stars": 0
+    }
+  },
+  "publishedFiles": [
+    {
+      "path": "docs/research/MARIO64-ISSUE40-CROUCH-SLIDE-DIVE-GROUND-POUND.md",
+      "sha256": "49F14F841740337C7942C69FCB2E78083B8E64D3DE65A77647A655CEF8550179",
+      "bytes": 15114
+    },
+    {
+      "path": "docs/research/MARIO64-ISSUE40-CROUCH-SLIDE-DIVE-GROUND-POUND-TRACE-SAMPLES.jsonl",
+      "sha256": "79B7D9C5763D7B75B4DDF44D1FC2878AEC43FE4842066CFDE4B1612D464A268C",
+      "bytes": 95925
+    },
+    {
+      "path": "docs/research/mario64-issue40-external-capture.ps1",
+      "sha256": "04BA20BA10C148FA9F2AA85B973594B0031E24989C04649F7E232C4AC705D752",
+      "bytes": 11448
+    },
+    {
+      "path": "docs/research/mario64-issue40-project64-input.ps1",
+      "sha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249",
+      "bytes": 13186
+    },
+    {
+      "path": "docs/research/mario64-issue41-find-rdram-base.ps1",
+      "sha256": "B28006FE44279C08B14CA085E8DD6045A441E7EB6B43A105DA79958F90DDDED6",
+      "bytes": 8148,
+      "note": "Existing #41 shared read-only locator"
+    }
+  ],
+  "helperProvenance": {
+    "finalThreePhaseRevisionSha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249",
+    "reviewedBackup": "tools/issue11-local/issue40-project64-input-reviewed-three-phase-20261025.ps1",
+    "reviewedBackupIsByteIdenticalToFinal": true,
+    "note": "The reviewed backup is not an earlier pre-Z→B revision. Earliest helper bytes were not preserved; legacy captures have a source revision limitation."
+  },
+  "acceptedRuntimeEvidence": [
+    {
+      "trial": "issue40-crouch-stationary",
+      "sha256": "AC9501844AC7210FA74F1E6C95FBB7DDDF3FEF7413460224F0632412835056ED",
+      "bytes": 72878,
+      "origin": "F7 courtyard baseline"
+    },
+    {
+      "trial": "issue40-crawl-baseline",
+      "sha256": "281542D365C191448BD48C8904EB01DB9FB5924D26156040BB0BCFE22F37ACD4",
+      "bytes": 41357,
+      "origin": "F7 courtyard baseline"
+    },
+    {
+      "trial": "issue40-moving-z-slide-release",
+      "sha256": "03F2C5727A128D6784B40636FC504C7E0DD55B8F4E92D4E7C16D119E0E83D48C",
+      "bytes": 67543,
+      "origin": "F7 courtyard baseline"
+    },
+    {
+      "trial": "issue40-slidekick-fast-up-z-b",
+      "sha256": "BBD1666533F262CD9B5E328B80CDF53CC8A19F2B95866061A1C6DA27C81A55EF",
+      "bytes": 404933,
+      "origin": "F7 courtyard baseline",
+      "helperSha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249"
+    },
+    {
+      "trial": "issue40-slidekick-slow-up-z-b",
+      "sha256": "FAE19F3886549EF12D13891BE001B15DF59ADF2F2A2591C03BCF15472D05EF39",
+      "bytes": 354974,
+      "origin": "F7 courtyard baseline",
+      "helperSha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249"
+    },
+    {
+      "trial": "issue40-grounded-dive-full",
+      "sha256": "FDE6D39A0F4B02A8788560271FD63AB5725F72A219BDAD50B444C081CD8079F5",
+      "bytes": 87878,
+      "origin": "F7 courtyard baseline",
+      "helperSha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249"
+    },
+    {
+      "trial": "issue40-ground-pound-baseline-full-3",
+      "sha256": "117BFD86A51285CAB1BDD1B677B3E44B589C68B6395F41F6B9BCE838BD988FDF",
+      "bytes": 402330,
+      "origin": "F7 courtyard baseline"
+    },
+    {
+      "trial": "issue40-air-b-dive",
+      "sha256": "8C27A7045CDBE46599252F0C0D96D0849A7609704CF33364CCF38381AF494D09",
+      "bytes": 84104,
+      "origin": "drifted origin; low-speed jump-kick control"
+    },
+    {
+      "trial": "issue40-longjump-dive-combo",
+      "sha256": "989200E1DDB2B9F798158B28E26A97B836F1210FF1C6E3CFF881430AF9B1D727",
+      "bytes": 157219,
+      "origin": "accepted #39 clean baseline crouch-slide long-jump combination"
+    }
+  ],
+  "captureLimits": {
+    "maxRows": 7200,
+    "readAccess": "OpenProcess QUERY_INFORMATION|VM_READ only; ReadProcessMemory; no process writes",
+    "snapshot": "counter-bracketed; equal pairs are not atomic",
+    "timing": "loop-counter units only; not a physics-frame or VI clock",
+    "rollout": "dedicated A/B dive-slide rollout trial not captured",
+    "rawData": "full raw traces, input log, ROM, save states and game assets remain local and are not published"
+  }
+}
+

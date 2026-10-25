@@ -27,7 +27,7 @@ $expectedHash = 'C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB
 $expectedPath = if ($TargetInstance -eq 'Installed') {
     [IO.Path]::GetFullPath('C:\Program Files (x86)\Project64 3.0\Project64.exe')
 } else {
-    [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..\MarioCraft\tools\issue11-local\pj64-portable\Project64.exe'))
+    [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..\tools\issue11-local\pj64-portable\Project64.exe'))
 }
 $keys = @($Key) + @($AdditionalKeys)
 if ($keys.Count -gt 3 -or (@($keys | Select-Object -Unique).Count -ne $keys.Count)) {
@@ -132,7 +132,7 @@ function Assert-TargetForeground {
     }
 }
 
-$logRelativePath = if ($TargetInstance -eq 'Installed') { 'MarioCraft\tools\issue10-local\project64-input-log.jsonl' } else { 'MarioCraft\tools\issue11-local\project64-input-log.jsonl' }
+$logRelativePath = if ($TargetInstance -eq 'Installed') { 'tools\issue10-local\project64-input-log.jsonl' } else { 'tools\issue11-local\project64-input-log.jsonl' }
 $logPath = Join-Path (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path $logRelativePath
 $null = [IO.Directory]::CreateDirectory((Split-Path -Parent $logPath))
 $record = [ordered]@{
@@ -198,7 +198,6 @@ $record.keyUpUtc = [DateTime]::UtcNow.ToString('o')
 
 if ($record.outcome -ne 'completed') { throw "Input helper ended with outcome '$($record.outcome)'" }
 $record | ConvertTo-Json -Compress
-
 
 
 

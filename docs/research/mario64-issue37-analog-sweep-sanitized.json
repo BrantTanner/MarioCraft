@@ -1,0 +1,2196 @@
+{
+  "title": "Super Mario 64 USA analog input sweep, sanitized runtime observations",
+  "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "baseline": {
+    "saveStateFile": "issue35-mario-gameplay-baseline.pj.zip",
+    "saveStateSha256": "6E2C8265A8A9A19761BCC6CE29FA20694FAD5444B325B1F22CA987776A2D6DFE",
+    "saveStateBytes": 1387126,
+    "restoreMethod": "Project64 UI Load State F7 before each trial; visually verified courtyard, lives 4, stars 0"
+  },
+  "excludedTrials": "Earlier attract/demo-screen captures and attempts without an aligned bounded capture plus guarded hold window were excluded from calibration claims.",
+  "romTransformCrossCheck": {
+    "samplesChecked": 28800,
+    "counterPairMismatches": 0,
+    "maximumAbsoluteComponentError": {
+      "range6": 0,
+      "range7": 0,
+      "range10": 0,
+      "range100": 3.814697265625E-06
+    },
+    "transform": "raw axis -7..+7 -> 0; <=-8 add 6; >=8 subtract 6; radial magnitude cap 64"
+  },
+  "endState": {
+    "portableClone": "Closed after captures; active Project64.cfg restored byte-for-byte from the pre-N-Rage clone backup",
+    "restoredConfigSha256": "8A928DE3F1C4BA8A5ABFD9ECB3675FC07C6AC06A391FF4621955A9E6D3F0CCFA",
+    "restoredInputPlugin": "Project64 input plugin 3.0.1.5664-2df3434; clone config [Input-Controller 1] stores Deadzone=1 and Range=5",
+    "preservedCalibration": "N-Rage-selected clone config and final N-Rage INI snapshot retained locally"
+  },
+  "inputPlugin": {
+    "name": "N-Rage Input V2",
+    "version": "3.0.1.5664-2df3434",
+    "dllSha256": "8B06D0BC29DEC6233640400E15051B945923BB6283E290B40AF64016992E6C20",
+    "padDeadZoneSetting": 5,
+    "realN64Range": true
+  },
+  "sampler": {
+    "event": "Project64 events.ondraw",
+    "publicSamplerSha256": "C57356AA188FF7DC0FA4D6C8B4F33BF10DED31FEA4CEC348363A9E8DC1CC01A6",
+    "guardedInputHelperSha256": "B0712C4C7EBF97BFFF69D0B0D73D7A553DEDE9BD183831CB8ACBB2AD25E38473",
+    "samplesPerRun": 7200,
+    "maximumCallbackInvocations": 14400,
+    "selectedSamplesPerInputHold": [
+      "pre-input",
+      "edge",
+      "held",
+      "first sample after key-up"
+    ],
+    "counterPairsEqual": "7200/7200 in every run",
+    "counter": "0x8032D5D4; diagnostic only, not an emulated-frame guarantee",
+    "drawCallbacksAreEmulatedFrames": false,
+    "wallTimeBounded": false,
+    "startedMarker": "hostUnixMs and trialId logged when callback starts; use a unique timestamped trialId and verify the new marker before guarded input",
+    "guardedInputTargets": "Installed or Issue11 portable Project64 executable, pinned by exact path and SHA-256"
+  },
+  "observations": [
+    {
+      "rangePercent": 6,
+      "traceSha256": "6BE137FDF98BB797D96D64C82E7A34F110A50ACC3CCB04696501FF3AB65FF720",
+      "counterDelta": 3600,
+      "guardedHolds": "8/8 completed; 350 ms each",
+      "stableVectors": [
+        {
+          "input": "up",
+          "raw": [
+            0,
+            7
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 16
+        },
+        {
+          "input": "down",
+          "raw": [
+            0,
+            -7
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 16
+        },
+        {
+          "input": "left",
+          "raw": [
+            -7,
+            0
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 16
+        },
+        {
+          "input": "right",
+          "raw": [
+            7,
+            0
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 16
+        },
+        {
+          "input": "up+right",
+          "raw": [
+            5,
+            5
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 17
+        },
+        {
+          "input": "up+left",
+          "raw": [
+            -5,
+            5
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 16
+        },
+        {
+          "input": "down+right",
+          "raw": [
+            5,
+            -5
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 14
+        },
+        {
+          "input": "down+left",
+          "raw": [
+            -5,
+            -5
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 16
+        }
+      ],
+      "inputEvents": [
+        {
+          "input": "AnalogUp",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 20454,
+          "inputUpMs": 20821,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1224,
+              "relativeHostMs": 20439,
+              "loopCounterBefore": 6187,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1225,
+              "relativeHostMs": 20466,
+              "loopCounterBefore": 6188,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1240,
+              "relativeHostMs": 20707,
+              "loopCounterBefore": 6195,
+              "rawX": 0,
+              "rawY": 7,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1247,
+              "relativeHostMs": 20836,
+              "loopCounterBefore": 6199,
+              "rawX": 0,
+              "rawY": 7,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 21139,
+          "inputUpMs": 21491,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1264,
+              "relativeHostMs": 21106,
+              "loopCounterBefore": 6207,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1265,
+              "relativeHostMs": 21140,
+              "loopCounterBefore": 6208,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1281,
+              "relativeHostMs": 21404,
+              "loopCounterBefore": 6216,
+              "rawX": 0,
+              "rawY": -7,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1287,
+              "relativeHostMs": 21505,
+              "loopCounterBefore": 6219,
+              "rawX": 0,
+              "rawY": -7,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 21777,
+          "inputUpMs": 22141,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1304,
+              "relativeHostMs": 21774,
+              "loopCounterBefore": 6227,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1305,
+              "relativeHostMs": 21806,
+              "loopCounterBefore": 6228,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1320,
+              "relativeHostMs": 22038,
+              "loopCounterBefore": 6235,
+              "rawX": -7,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1327,
+              "relativeHostMs": 22165,
+              "loopCounterBefore": 6239,
+              "rawX": -7,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogRight",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 22430,
+          "inputUpMs": 22783,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1342,
+              "relativeHostMs": 22408,
+              "loopCounterBefore": 6246,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1343,
+              "relativeHostMs": 22435,
+              "loopCounterBefore": 6247,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1358,
+              "relativeHostMs": 22681,
+              "loopCounterBefore": 6254,
+              "rawX": 7,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1365,
+              "relativeHostMs": 22807,
+              "loopCounterBefore": 6258,
+              "rawX": 7,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogUp+AnalogRight",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 23071,
+          "inputUpMs": 23439,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1380,
+              "relativeHostMs": 23041,
+              "loopCounterBefore": 6265,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1381,
+              "relativeHostMs": 23075,
+              "loopCounterBefore": 6266,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1397,
+              "relativeHostMs": 23336,
+              "loopCounterBefore": 6274,
+              "rawX": 5,
+              "rawY": 5,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1404,
+              "relativeHostMs": 23441,
+              "loopCounterBefore": 6277,
+              "rawX": 5,
+              "rawY": 5,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown+AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 23729,
+          "inputUpMs": 24083,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1420,
+              "relativeHostMs": 23710,
+              "loopCounterBefore": 6285,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1421,
+              "relativeHostMs": 23739,
+              "loopCounterBefore": 6286,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1436,
+              "relativeHostMs": 23978,
+              "loopCounterBefore": 6293,
+              "rawX": -5,
+              "rawY": -5,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1443,
+              "relativeHostMs": 24105,
+              "loopCounterBefore": 6297,
+              "rawX": -5,
+              "rawY": -5,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogUp+AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 24365,
+          "inputUpMs": 24724,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1458,
+              "relativeHostMs": 24340,
+              "loopCounterBefore": 6304,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1459,
+              "relativeHostMs": 24374,
+              "loopCounterBefore": 6305,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1475,
+              "relativeHostMs": 24638,
+              "loopCounterBefore": 6313,
+              "rawX": -5,
+              "rawY": 5,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1481,
+              "relativeHostMs": 24737,
+              "loopCounterBefore": 6316,
+              "rawX": -5,
+              "rawY": 5,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown+AnalogRight",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 25011,
+          "inputUpMs": 25364,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1497,
+              "relativeHostMs": 25009,
+              "loopCounterBefore": 6324,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1498,
+              "relativeHostMs": 25012,
+              "loopCounterBefore": 6324,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1513,
+              "relativeHostMs": 25276,
+              "loopCounterBefore": 6332,
+              "rawX": 5,
+              "rawY": -5,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1519,
+              "relativeHostMs": 25375,
+              "loopCounterBefore": 6335,
+              "rawX": 5,
+              "rawY": -5,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rangePercent": 7,
+      "traceSha256": "74AC93DF5A650270D072BFB3A9CD9783484301667F72A9C085CCEA3B8A53BAB5",
+      "counterDelta": 3599,
+      "guardedHolds": "8/8 completed; 350 ms each",
+      "stableVectors": [
+        {
+          "input": "up",
+          "raw": [
+            0,
+            8
+          ],
+          "processed": [
+            0,
+            2
+          ],
+          "magnitude": 2,
+          "samples": 16
+        },
+        {
+          "input": "down",
+          "raw": [
+            0,
+            -8
+          ],
+          "processed": [
+            0,
+            -2
+          ],
+          "magnitude": 2,
+          "samples": 16
+        },
+        {
+          "input": "left",
+          "raw": [
+            -8,
+            0
+          ],
+          "processed": [
+            -2,
+            0
+          ],
+          "magnitude": 2,
+          "samples": 14
+        },
+        {
+          "input": "right",
+          "raw": [
+            8,
+            0
+          ],
+          "processed": [
+            2,
+            0
+          ],
+          "magnitude": 2,
+          "samples": 16
+        },
+        {
+          "input": "up+right",
+          "raw": [
+            6,
+            6
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 16
+        },
+        {
+          "input": "up+left",
+          "raw": [
+            -6,
+            6
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 14
+        },
+        {
+          "input": "down+right",
+          "raw": [
+            6,
+            -6
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 16
+        },
+        {
+          "input": "down+left",
+          "raw": [
+            -6,
+            -6
+          ],
+          "processed": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "samples": 16
+        }
+      ],
+      "inputEvents": [
+        {
+          "input": "AnalogUp",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 21060,
+          "inputUpMs": 21417,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1261,
+              "relativeHostMs": 21044,
+              "loopCounterBefore": 5782,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1262,
+              "relativeHostMs": 21070,
+              "loopCounterBefore": 5783,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1277,
+              "relativeHostMs": 21311,
+              "loopCounterBefore": 5790,
+              "rawX": 0,
+              "rawY": 8,
+              "processedX": 0,
+              "processedY": 2,
+              "magnitude": 2,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1284,
+              "relativeHostMs": 21438,
+              "loopCounterBefore": 5794,
+              "rawX": 0,
+              "rawY": 8,
+              "processedX": 0,
+              "processedY": 2,
+              "magnitude": 2,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 21728,
+          "inputUpMs": 22087,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1301,
+              "relativeHostMs": 21715,
+              "loopCounterBefore": 5802,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1302,
+              "relativeHostMs": 21740,
+              "loopCounterBefore": 5803,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1317,
+              "relativeHostMs": 21972,
+              "loopCounterBefore": 5810,
+              "rawX": 0,
+              "rawY": -8,
+              "processedX": 0,
+              "processedY": -2,
+              "magnitude": 2,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1324,
+              "relativeHostMs": 22110,
+              "loopCounterBefore": 5814,
+              "rawX": 0,
+              "rawY": -8,
+              "processedX": 0,
+              "processedY": -2,
+              "magnitude": 2,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 22376,
+          "inputUpMs": 22733,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1341,
+              "relativeHostMs": 22373,
+              "loopCounterBefore": 5822,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1342,
+              "relativeHostMs": 22410,
+              "loopCounterBefore": 5823,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1356,
+              "relativeHostMs": 22640,
+              "loopCounterBefore": 5830,
+              "rawX": -8,
+              "rawY": 0,
+              "processedX": -2,
+              "processedY": 0,
+              "magnitude": 2,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1362,
+              "relativeHostMs": 22740,
+              "loopCounterBefore": 5833,
+              "rawX": -8,
+              "rawY": 0,
+              "processedX": -2,
+              "processedY": 0,
+              "magnitude": 2,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogRight",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 23016,
+          "inputUpMs": 23379,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1379,
+              "relativeHostMs": 23011,
+              "loopCounterBefore": 5841,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1380,
+              "relativeHostMs": 23039,
+              "loopCounterBefore": 5842,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1395,
+              "relativeHostMs": 23271,
+              "loopCounterBefore": 5849,
+              "rawX": 8,
+              "rawY": 0,
+              "processedX": 2,
+              "processedY": 0,
+              "magnitude": 2,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1402,
+              "relativeHostMs": 23409,
+              "loopCounterBefore": 5853,
+              "rawX": 8,
+              "rawY": 0,
+              "processedX": 2,
+              "processedY": 0,
+              "magnitude": 2,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogUp+AnalogRight",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 23666,
+          "inputUpMs": 24019,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1417,
+              "relativeHostMs": 23643,
+              "loopCounterBefore": 5860,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1418,
+              "relativeHostMs": 23674,
+              "loopCounterBefore": 5861,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1433,
+              "relativeHostMs": 23916,
+              "loopCounterBefore": 5868,
+              "rawX": 6,
+              "rawY": 6,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1440,
+              "relativeHostMs": 24041,
+              "loopCounterBefore": 5872,
+              "rawX": 6,
+              "rawY": 6,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown+AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 24305,
+          "inputUpMs": 24665,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1455,
+              "relativeHostMs": 24284,
+              "loopCounterBefore": 5879,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1456,
+              "relativeHostMs": 24311,
+              "loopCounterBefore": 5880,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1472,
+              "relativeHostMs": 24578,
+              "loopCounterBefore": 5888,
+              "rawX": -6,
+              "rawY": -6,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1478,
+              "relativeHostMs": 24677,
+              "loopCounterBefore": 5891,
+              "rawX": -6,
+              "rawY": -6,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogUp+AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 24950,
+          "inputUpMs": 25308,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1495,
+              "relativeHostMs": 24944,
+              "loopCounterBefore": 5899,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1496,
+              "relativeHostMs": 24978,
+              "loopCounterBefore": 5900,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1510,
+              "relativeHostMs": 25209,
+              "loopCounterBefore": 5907,
+              "rawX": -6,
+              "rawY": 6,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1516,
+              "relativeHostMs": 25309,
+              "loopCounterBefore": 5910,
+              "rawX": -6,
+              "rawY": 6,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown+AnalogRight",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 25594,
+          "inputUpMs": 25954,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1533,
+              "relativeHostMs": 25578,
+              "loopCounterBefore": 5918,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1534,
+              "relativeHostMs": 25605,
+              "loopCounterBefore": 5919,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1549,
+              "relativeHostMs": 25844,
+              "loopCounterBefore": 5926,
+              "rawX": 6,
+              "rawY": -6,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1556,
+              "relativeHostMs": 25977,
+              "loopCounterBefore": 5930,
+              "rawX": 6,
+              "rawY": -6,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rangePercent": 10,
+      "traceSha256": "B2DC69675EBAAF7972942CB469D02FA4B029217C963A53D61A641FD07A90C78C",
+      "counterDelta": 3599,
+      "guardedHolds": "8/8 completed; 350 ms each",
+      "stableVectors": [
+        {
+          "input": "up",
+          "raw": [
+            0,
+            12
+          ],
+          "processed": [
+            0,
+            6
+          ],
+          "magnitude": 6,
+          "samples": 16
+        },
+        {
+          "input": "down",
+          "raw": [
+            0,
+            -12
+          ],
+          "processed": [
+            0,
+            -6
+          ],
+          "magnitude": 6,
+          "samples": 16
+        },
+        {
+          "input": "left",
+          "raw": [
+            -12,
+            0
+          ],
+          "processed": [
+            -6,
+            0
+          ],
+          "magnitude": 6,
+          "samples": 16
+        },
+        {
+          "input": "right",
+          "raw": [
+            12,
+            0
+          ],
+          "processed": [
+            6,
+            0
+          ],
+          "magnitude": 6,
+          "samples": 14
+        },
+        {
+          "input": "up+right",
+          "raw": [
+            8,
+            8
+          ],
+          "processed": [
+            2,
+            2
+          ],
+          "magnitude": 2.828427,
+          "samples": 16
+        },
+        {
+          "input": "up+left",
+          "raw": [
+            -8,
+            8
+          ],
+          "processed": [
+            -2,
+            2
+          ],
+          "magnitude": 2.828427,
+          "samples": 14
+        },
+        {
+          "input": "down+right",
+          "raw": [
+            8,
+            -8
+          ],
+          "processed": [
+            2,
+            -2
+          ],
+          "magnitude": 2.828427,
+          "samples": 16
+        },
+        {
+          "input": "down+left",
+          "raw": [
+            -8,
+            -8
+          ],
+          "processed": [
+            -2,
+            -2
+          ],
+          "magnitude": 2.828427,
+          "samples": 16
+        }
+      ],
+      "inputEvents": [
+        {
+          "input": "AnalogUp",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 33647,
+          "inputUpMs": 34012,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 2015,
+              "relativeHostMs": 33634,
+              "loopCounterBefore": 5848,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 2016,
+              "relativeHostMs": 33657,
+              "loopCounterBefore": 5849,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 2031,
+              "relativeHostMs": 33901,
+              "loopCounterBefore": 5856,
+              "rawX": 0,
+              "rawY": 12,
+              "processedX": 0,
+              "processedY": 6,
+              "magnitude": 6,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 2038,
+              "relativeHostMs": 34027,
+              "loopCounterBefore": 5860,
+              "rawX": 0,
+              "rawY": 12,
+              "processedX": 0,
+              "processedY": 6,
+              "magnitude": 6,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 37960,
+          "inputUpMs": 38329,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 2273,
+              "relativeHostMs": 37943,
+              "loopCounterBefore": 5977,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 2274,
+              "relativeHostMs": 37968,
+              "loopCounterBefore": 5978,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 2290,
+              "relativeHostMs": 38239,
+              "loopCounterBefore": 5986,
+              "rawX": 0,
+              "rawY": -12,
+              "processedX": 0,
+              "processedY": -6,
+              "magnitude": 6,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 2296,
+              "relativeHostMs": 38340,
+              "loopCounterBefore": 5989,
+              "rawX": 0,
+              "rawY": -12,
+              "processedX": 0,
+              "processedY": -6,
+              "magnitude": 6,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 38396,
+          "inputUpMs": 38750,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 2299,
+              "relativeHostMs": 38371,
+              "loopCounterBefore": 5990,
+              "rawX": 0,
+              "rawY": -3,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 2300,
+              "relativeHostMs": 38400,
+              "loopCounterBefore": 5991,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 2315,
+              "relativeHostMs": 38651,
+              "loopCounterBefore": 5998,
+              "rawX": -12,
+              "rawY": 0,
+              "processedX": -6,
+              "processedY": 0,
+              "magnitude": 6,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 2322,
+              "relativeHostMs": 38767,
+              "loopCounterBefore": 6002,
+              "rawX": -12,
+              "rawY": 0,
+              "processedX": -6,
+              "processedY": 0,
+              "magnitude": 6,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogRight",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 38773,
+          "inputUpMs": 39137,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 2322,
+              "relativeHostMs": 38767,
+              "loopCounterBefore": 6002,
+              "rawX": -12,
+              "rawY": 0,
+              "processedX": -6,
+              "processedY": 0,
+              "magnitude": 6,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 2323,
+              "relativeHostMs": 38773,
+              "loopCounterBefore": 6002,
+              "rawX": -12,
+              "rawY": 0,
+              "processedX": -6,
+              "processedY": 0,
+              "magnitude": 6,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 2338,
+              "relativeHostMs": 39049,
+              "loopCounterBefore": 6010,
+              "rawX": 12,
+              "rawY": 0,
+              "processedX": 6,
+              "processedY": 0,
+              "magnitude": 6,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 2344,
+              "relativeHostMs": 39144,
+              "loopCounterBefore": 6013,
+              "rawX": 12,
+              "rawY": 0,
+              "processedX": 6,
+              "processedY": 0,
+              "magnitude": 6,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogUp+AnalogRight",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 39175,
+          "inputUpMs": 39528,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 2345,
+              "relativeHostMs": 39153,
+              "loopCounterBefore": 6013,
+              "rawX": 12,
+              "rawY": 0,
+              "processedX": 6,
+              "processedY": 0,
+              "magnitude": 6,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 2346,
+              "relativeHostMs": 39190,
+              "loopCounterBefore": 6014,
+              "rawX": 3,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 2361,
+              "relativeHostMs": 39424,
+              "loopCounterBefore": 6021,
+              "rawX": 8,
+              "rawY": 8,
+              "processedX": 2,
+              "processedY": 2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 2368,
+              "relativeHostMs": 39552,
+              "loopCounterBefore": 6025,
+              "rawX": 8,
+              "rawY": 8,
+              "processedX": 2,
+              "processedY": 2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogUp+AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 39554,
+          "inputUpMs": 39918,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 2368,
+              "relativeHostMs": 39552,
+              "loopCounterBefore": 6025,
+              "rawX": 8,
+              "rawY": 8,
+              "processedX": 2,
+              "processedY": 2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 2369,
+              "relativeHostMs": 39554,
+              "loopCounterBefore": 6025,
+              "rawX": 8,
+              "rawY": 8,
+              "processedX": 2,
+              "processedY": 2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 2384,
+              "relativeHostMs": 39821,
+              "loopCounterBefore": 6033,
+              "rawX": -8,
+              "rawY": 8,
+              "processedX": -2,
+              "processedY": 2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 2390,
+              "relativeHostMs": 39920,
+              "loopCounterBefore": 6036,
+              "rawX": -8,
+              "rawY": 8,
+              "processedX": -2,
+              "processedY": 2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown+AnalogRight",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 39945,
+          "inputUpMs": 40309,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 2391,
+              "relativeHostMs": 39922,
+              "loopCounterBefore": 6036,
+              "rawX": -8,
+              "rawY": 8,
+              "processedX": -2,
+              "processedY": 2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 2392,
+              "relativeHostMs": 39950,
+              "loopCounterBefore": 6037,
+              "rawX": -2,
+              "rawY": 2,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 2408,
+              "relativeHostMs": 40218,
+              "loopCounterBefore": 6045,
+              "rawX": 8,
+              "rawY": -8,
+              "processedX": 2,
+              "processedY": -2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 2414,
+              "relativeHostMs": 40321,
+              "loopCounterBefore": 6048,
+              "rawX": 8,
+              "rawY": -8,
+              "processedX": 2,
+              "processedY": -2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown+AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 350,
+          "inputDownMs": 40337,
+          "inputUpMs": 40700,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 2415,
+              "relativeHostMs": 40324,
+              "loopCounterBefore": 6048,
+              "rawX": 8,
+              "rawY": -8,
+              "processedX": 2,
+              "processedY": -2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 2416,
+              "relativeHostMs": 40349,
+              "loopCounterBefore": 6049,
+              "rawX": 2,
+              "rawY": -2,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 2431,
+              "relativeHostMs": 40591,
+              "loopCounterBefore": 6056,
+              "rawX": -8,
+              "rawY": -8,
+              "processedX": -2,
+              "processedY": -2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 2438,
+              "relativeHostMs": 40722,
+              "loopCounterBefore": 6060,
+              "rawX": -8,
+              "rawY": -8,
+              "processedX": -2,
+              "processedY": -2,
+              "magnitude": 2.8284270763397217,
+              "counterPairEqual": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rangePercent": 100,
+      "traceSha256": "CAF59A107A5CB647D361853DB61F4DC12274116AEEA0C4A92B5BC0A23CB2BF9D",
+      "counterDelta": 3600,
+      "guardedHolds": "6/6 completed; 500 ms each",
+      "stableVectors": [
+        {
+          "input": "up",
+          "raw": [
+            0,
+            127
+          ],
+          "processed": [
+            0,
+            63.999996
+          ],
+          "magnitude": 64,
+          "samples": 24
+        },
+        {
+          "input": "down",
+          "raw": [
+            0,
+            -127
+          ],
+          "processed": [
+            0,
+            -63.999996
+          ],
+          "magnitude": 64,
+          "samples": 24
+        },
+        {
+          "input": "left",
+          "raw": [
+            -127,
+            0
+          ],
+          "processed": [
+            -63.999996,
+            0
+          ],
+          "magnitude": 64,
+          "samples": 24
+        },
+        {
+          "input": "right",
+          "raw": [
+            127,
+            0
+          ],
+          "processed": [
+            63.999996,
+            0
+          ],
+          "magnitude": 64,
+          "samples": 24
+        },
+        {
+          "input": "up+right",
+          "raw": [
+            89,
+            89
+          ],
+          "processed": [
+            45.254833,
+            45.254833
+          ],
+          "magnitude": 64,
+          "samples": 24
+        },
+        {
+          "input": "down+left",
+          "raw": [
+            -89,
+            -89
+          ],
+          "processed": [
+            -45.254833,
+            -45.254833
+          ],
+          "magnitude": 64,
+          "samples": 24
+        }
+      ],
+      "inputEvents": [
+        {
+          "input": "AnalogUp",
+          "outcome": "completed",
+          "holdMs": 500,
+          "inputDownMs": 16646,
+          "inputUpMs": 17164,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 996,
+              "relativeHostMs": 16640,
+              "loopCounterBefore": 5500,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 997,
+              "relativeHostMs": 16666,
+              "loopCounterBefore": 5501,
+              "rawX": 0,
+              "rawY": 0,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1018,
+              "relativeHostMs": 17009,
+              "loopCounterBefore": 5511,
+              "rawX": 0,
+              "rawY": 127,
+              "processedX": 0,
+              "processedY": 63.999996185302734,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1027,
+              "relativeHostMs": 17167,
+              "loopCounterBefore": 5516,
+              "rawX": 0,
+              "rawY": 127,
+              "processedX": 0,
+              "processedY": 63.999996185302734,
+              "magnitude": 64,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogRight",
+          "outcome": "completed",
+          "holdMs": 500,
+          "inputDownMs": 17219,
+          "inputUpMs": 17720,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1030,
+              "relativeHostMs": 17208,
+              "loopCounterBefore": 5517,
+              "rawX": 0,
+              "rawY": 31,
+              "processedX": 0,
+              "processedY": 25,
+              "magnitude": 25,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1031,
+              "relativeHostMs": 17235,
+              "loopCounterBefore": 5518,
+              "rawX": 0,
+              "rawY": 7,
+              "processedX": 0,
+              "processedY": 0,
+              "magnitude": 0,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1052,
+              "relativeHostMs": 17571,
+              "loopCounterBefore": 5528,
+              "rawX": 127,
+              "rawY": 0,
+              "processedX": 63.999996185302734,
+              "processedY": 0,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1061,
+              "relativeHostMs": 17737,
+              "loopCounterBefore": 5533,
+              "rawX": 127,
+              "rawY": 0,
+              "processedX": 63.999996185302734,
+              "processedY": 0,
+              "magnitude": 64,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogUp+AnalogRight",
+          "outcome": "completed",
+          "holdMs": 500,
+          "inputDownMs": 17746,
+          "inputUpMs": 18251,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1062,
+              "relativeHostMs": 17740,
+              "loopCounterBefore": 5533,
+              "rawX": 127,
+              "rawY": 0,
+              "processedX": 63.999996185302734,
+              "processedY": 0,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1063,
+              "relativeHostMs": 17766,
+              "loopCounterBefore": 5534,
+              "rawX": 31,
+              "rawY": 0,
+              "processedX": 25,
+              "processedY": 0,
+              "magnitude": 25,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1084,
+              "relativeHostMs": 18107,
+              "loopCounterBefore": 5544,
+              "rawX": 89,
+              "rawY": 89,
+              "processedX": 45.25483322143555,
+              "processedY": 45.25483322143555,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1093,
+              "relativeHostMs": 18264,
+              "loopCounterBefore": 5549,
+              "rawX": 89,
+              "rawY": 89,
+              "processedX": 45.25483322143555,
+              "processedY": 45.25483322143555,
+              "magnitude": 64,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown+AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 500,
+          "inputDownMs": 18278,
+          "inputUpMs": 18785,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1094,
+              "relativeHostMs": 18268,
+              "loopCounterBefore": 5549,
+              "rawX": 89,
+              "rawY": 89,
+              "processedX": 45.25483322143555,
+              "processedY": 45.25483322143555,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1095,
+              "relativeHostMs": 18305,
+              "loopCounterBefore": 5550,
+              "rawX": 22,
+              "rawY": 22,
+              "processedX": 16,
+              "processedY": 16,
+              "magnitude": 22.627416610717773,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1116,
+              "relativeHostMs": 18639,
+              "loopCounterBefore": 5560,
+              "rawX": -89,
+              "rawY": -89,
+              "processedX": -45.25483322143555,
+              "processedY": -45.25483322143555,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1125,
+              "relativeHostMs": 18804,
+              "loopCounterBefore": 5565,
+              "rawX": -89,
+              "rawY": -89,
+              "processedX": -45.25483322143555,
+              "processedY": -45.25483322143555,
+              "magnitude": 64,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogDown",
+          "outcome": "completed",
+          "holdMs": 500,
+          "inputDownMs": 18809,
+          "inputUpMs": 19316,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1126,
+              "relativeHostMs": 18807,
+              "loopCounterBefore": 5565,
+              "rawX": -89,
+              "rawY": -89,
+              "processedX": -45.25483322143555,
+              "processedY": -45.25483322143555,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1127,
+              "relativeHostMs": 18834,
+              "loopCounterBefore": 5566,
+              "rawX": -22,
+              "rawY": -22,
+              "processedX": -16,
+              "processedY": -16,
+              "magnitude": 22.627416610717773,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1148,
+              "relativeHostMs": 19171,
+              "loopCounterBefore": 5576,
+              "rawX": 0,
+              "rawY": -127,
+              "processedX": 0,
+              "processedY": -63.999996185302734,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1157,
+              "relativeHostMs": 19335,
+              "loopCounterBefore": 5581,
+              "rawX": 0,
+              "rawY": -127,
+              "processedX": 0,
+              "processedY": -63.999996185302734,
+              "magnitude": 64,
+              "counterPairEqual": true
+            }
+          ]
+        },
+        {
+          "input": "AnalogLeft",
+          "outcome": "completed",
+          "holdMs": 500,
+          "inputDownMs": 19340,
+          "inputUpMs": 19847,
+          "selectedSamples": [
+            {
+              "role": "baseline",
+              "sequence": 1158,
+              "relativeHostMs": 19339,
+              "loopCounterBefore": 5581,
+              "rawX": 0,
+              "rawY": -127,
+              "processedX": 0,
+              "processedY": -63.999996185302734,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "edge",
+              "sequence": 1159,
+              "relativeHostMs": 19363,
+              "loopCounterBefore": 5582,
+              "rawX": 0,
+              "rawY": -31,
+              "processedX": 0,
+              "processedY": -25,
+              "magnitude": 25,
+              "counterPairEqual": true
+            },
+            {
+              "role": "stable",
+              "sequence": 1179,
+              "relativeHostMs": 19706,
+              "loopCounterBefore": 5592,
+              "rawX": -127,
+              "rawY": 0,
+              "processedX": -63.999996185302734,
+              "processedY": 0,
+              "magnitude": 64,
+              "counterPairEqual": true
+            },
+            {
+              "role": "release",
+              "sequence": 1189,
+              "relativeHostMs": 19874,
+              "loopCounterBefore": 5597,
+              "rawX": -127,
+              "rawY": 0,
+              "processedX": -63.999996185302734,
+              "processedY": 0,
+              "magnitude": 64,
+              "counterPairEqual": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

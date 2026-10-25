@@ -1,0 +1,635 @@
+{
+  "issue": "BrantTanner/MarioCraft#50",
+  "title": "Mario sound requests, voices, music sequencing",
+  "status": "independently reviewed research; issue remains open for closure review",
+  "target": {
+    "romLabel": "USA revision 0 analysis copy",
+    "romBytes": 8388608,
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "project64Build": "portable Project64 3.0.1.5664-2df3434",
+    "project64ExeSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8"
+  },
+  "publicationPolicy": {
+    "allowed": [
+      "Markdown dossier",
+      "sanitized JSON manifest",
+      "read-only sampler scripts",
+      "numeric IDs, offsets, sizes, hashes, state scalars"
+    ],
+    "excluded": [
+      "ROM bytes",
+      "derived audio/sample/book assets",
+      "raw RAM reads",
+      "raw trial JSONL",
+      "save states",
+      "screenshots",
+      "waveform or system-audio captures"
+    ],
+    "runtimeClaimLimit": "Queued request IDs and sequence/player scalar changes do not prove acceptance, decoded output, or audible playback."
+  },
+  "scripts": [
+    {
+      "path": "docs/research/mario64-issue50-audio-queue-capture.ps1",
+      "version": "v1 request queue",
+      "sha256": "FBB5D1540652F4CEEFADC85206DF56D640A2129048CDB2C38EB2B978641D3DAE",
+      "purpose": "Guarded external read-only sound queue sampler; captures request IDs, cursors, loop brackets, action/play-mode scalars. Omits source pointer."
+    },
+    {
+      "path": "docs/research/mario64-issue50-audio-lifecycle-v2.ps1",
+      "version": "v2 queue and sequence lifecycle",
+      "sha256": "DBE39831F86A40F14A9BB15D7B906569529772FC97B70D0A21875CCAA537E08D",
+      "purpose": "v1 queue fields plus player-0 sequence ID/state/flags, queued sequence count, and Mario terrain offset scalar."
+    },
+    {
+      "path": "docs/research/mario64-issue47-project64-input.ps1",
+      "version": "reviewed Project64-scoped helper",
+      "sha256": "2E78A7B6685C010C8FD2DDAD9D92815A77E9FB87202EAE6DA640A8579B0F9463",
+      "purpose": "Whitelisted bounded controller key edges scoped to the exact verified Project64 PID/HWND/executable."
+    }
+  ],
+  "trials": [
+    {
+      "trialId": "issue50-courtyard-idle-a",
+      "sampler": "v1",
+      "rows": 450,
+      "traceSha256": "F2DC4E0BF7C19C64D85383CEC4A13E6EF93A94A66FA1DE07E75BF0913D0320DE",
+      "metadataSha256": "075C10D5983F185795204BEA5D711B938CA08ECAB6264D567A89765AB8CA51C1",
+      "input": "none",
+      "observations": {
+        "playModeS16": [
+          0
+        ],
+        "marioAction": [
+          "0x0C000203"
+        ],
+        "requestTotal": 3127,
+        "requestCounts": {
+          "0x50514001": 772,
+          "0x80504001": 772,
+          "0x90524001": 772,
+          "0x40010001": 772,
+          "0x240E8081": 20,
+          "0x240F8081": 19
+        },
+        "interpretation": "Numeric submissions only; no playback assertion."
+      }
+    },
+    {
+      "trialId": "issue50-action-terrain-b",
+      "sampler": "v1",
+      "rows": 450,
+      "traceSha256": "9A6F5D1A4CCE2F836F586740B864BF4309FACD074574522F09EA5ACA909CD0B5",
+      "metadataSha256": "893B89B65BEDB512B7325CD36909FA8E1670164135A39043432E2DDAB7F458B5",
+      "inputsUtc": [
+        "2026-10-25T21:32:57.7566834Z",
+        "2026-10-25T21:32:59.1837016Z"
+      ],
+      "input": "AnalogUp then B; 1.4-second bounded helper hold",
+      "observations": {
+        "actions": {
+          "0x0C000203": 244,
+          "0x0C000204": 9,
+          "0x0C400201": 186,
+          "0x04000440": 4,
+          "0x00800457": 7
+        },
+        "requestCounts": {
+          "0x50514001": 836,
+          "0x80504001": 836,
+          "0x90524001": 836,
+          "0x40010001": 836,
+          "0x06108081": 2,
+          "0x241E8081": 1
+        },
+        "interpretation": "Target caller paths associate the footstep-family request with an animation-gated step phase and 0x241E8081 with the punch action case; timing alone is not a causal playback claim."
+      }
+    },
+    {
+      "trialId": "issue50-jump-courtyard-b",
+      "sampler": "v2",
+      "rows": 900,
+      "traceSha256": "1054A274ED994DC1899B400140B23274E47F086FA626B8F2C2D633277C2C8DBF",
+      "metadataSha256": "690DEABA6070FFA527674FD358CB14C638DE12036AA6DBC5798AB3BEF652C113",
+      "inputsUtc": [
+        "2026-10-25T21:35:47.8755411Z",
+        "2026-10-25T21:35:49.4381675Z"
+      ],
+      "input": "AnalogUp 900 ms, A 180 ms",
+      "observations": {
+        "actions": [
+          "0x03000880",
+          "0x04000440",
+          "0x0400044A",
+          "0x04000470",
+          "0x0C000203",
+          "0x0C400201",
+          "0x0C400202"
+        ],
+        "terrainSoundOffsetU32": [
+          "0x00000000"
+        ],
+        "selectedRequests": {
+          "0x06108081": 3,
+          "0x04008081": 1,
+          "0x24008081": 1,
+          "0x04088081": 1,
+          "0x240D8081": 1,
+          "0x240E8081": 10,
+          "0x240F8081": 10,
+          "0x24378081": 1,
+          "0x043F8081": 2,
+          "0x04188081": 1
+        },
+        "interpretation": "Action/terrain/voice-family numeric submissions supported by target call paths; the scalar terrain offset stayed zero, and no second terrain was tested."
+      }
+    },
+    {
+      "trialId": "issue50-music-pause-a",
+      "sampler": "v2",
+      "rows": 450,
+      "traceSha256": "2F09BE39477BE484281A043D90BEB6B0F74BEAD6AA235809CDF14F18EBCF087C",
+      "metadataSha256": "497FC3875F7265418DCACF33BE564A874CEBBC64D47A773AE7A206366BF5071F",
+      "inputsUtc": [
+        "2026-10-25T21:35:07.8345722Z",
+        "2026-10-25T21:35:09.374423Z"
+      ],
+      "input": "Start pulse, 1.2-second gap, Start pulse",
+      "observations": {
+        "playModeRowCounts": {
+          "0": 427,
+          "2": 23
+        },
+        "player0Flags": {
+          "0x40000000": 427,
+          "0x60000000": 23
+        },
+        "currentSequenceIdU8": [
+          30
+        ],
+        "sequenceStateCounterU8": [
+          0
+        ],
+        "queuedSequenceCountU8": [
+          3
+        ],
+        "interpretation": "Pause-flag scalar correlation only; sequence 30 may be retained and is not evidence of active music."
+      }
+    },
+    {
+      "trialId": "issue50-title-fileselect-music-a",
+      "sampler": "v2",
+      "rows": 900,
+      "traceSha256": "4D36ECB2B46FDECACE5859207436311B14713C97FEE8422131B58C967AE998B5",
+      "metadataSha256": "7E0DDC0B9DFE88BCE34B8F5E6BE71E8C696D27A098F7BA3FFAED27FE3C3D831D",
+      "fixture": {
+        "path": "tools/issue10-local/sm64-title-state-before-file-select.pj.zip",
+        "sha256": "68EB47233F30DFE14C15116C2D937FA165585A3A78E7C50C42A6449E48F0107D"
+      },
+      "inputUtc": [
+        "2026-10-25T21:38:10.1599918Z",
+        "2026-10-25T21:38:10.2997857Z"
+      ],
+      "input": "Start once into SELECT FILE; no file slot or bottom action activated",
+      "observations": {
+        "playModeRowCounts": {
+          "4": 900
+        },
+        "sequenceFlagCountQueueTriples": [
+          {
+            "firstRow": 0,
+            "lastRow": 230,
+            "currentSequenceIdU8": 2,
+            "player0FlagsU32": "0xC0000000",
+            "queuedSequenceCountU8": 1
+          },
+          {
+            "firstRow": 231,
+            "lastRow": 242,
+            "currentSequenceIdU8": 2,
+            "player0FlagsU32": "0xC0000100",
+            "queuedSequenceCountU8": 1
+          },
+          {
+            "firstRow": 243,
+            "lastRow": 244,
+            "currentSequenceIdU8": 255,
+            "player0FlagsU32": "0x40000100",
+            "queuedSequenceCountU8": 0
+          },
+          {
+            "firstRow": 245,
+            "lastRow": 899,
+            "currentSequenceIdU8": 33,
+            "player0FlagsU32": "0xC0000000",
+            "queuedSequenceCountU8": 1
+          }
+        ],
+        "interpretation": "Music sequence selection/queue lifecycle across title-to-file-select; numeric state only, not proof of loaded or audible output. File select remained untouched."
+      }
+    }
+  ],
+  "staticEvidence": {
+    "soundRequestRing": {
+      "base": "0x80361498",
+      "slotCount": 256,
+      "recordBytes": 8,
+      "recordFields": [
+        "U32 request ID at +0",
+        "U32 source position pointer at +4 (omitted from runtime capture)"
+      ],
+      "readIndexU8": "0x80332F40",
+      "writeIndexU8": "0x80332F44",
+      "submitter": {
+        "pcRange": "[0x8031EB00,0x8031EB30)",
+        "romRange": "[0xD9B00,0xD9B30)",
+        "bytes": 48,
+        "sha256": "1C8030B66E81554A34AD2DE254654341111204835C71FC45C6B4EF5AEF4FD57F"
+      },
+      "drainer": {
+        "pcRange": "[0x8031EDEC,0x8031EE70)",
+        "romRange": "[0xD9DEC,0xD9E70)",
+        "bytes": 132,
+        "sha256": "9C0717CFE716FB661D699D59FBF33AF365087AD7265703C66A3FD2A0390C34B2"
+      },
+      "consumer": {
+        "pcRange": "[0x8031EB30,0x8031EDEC)",
+        "romRange": "[0xD9B30,0xD9DEC)",
+        "envelopeBytes": 700,
+        "bodyBytes": 696,
+        "sha256": "6BE924A8F694F774C3D85171FE612D3139A3A0081D1229D54B1A29D015A435E8"
+      }
+    },
+    "musicTables": [
+      {
+        "name": "sequence",
+        "romHeader": "0x7B0860",
+        "revision": 3,
+        "count": 35,
+        "alignedHeaderAndEntriesBytes": 288,
+        "sha256": "14A4FF536CC2D8FC28E2E0EB234FF6A5A2C6840418244D9F652289C79E08F9FC"
+      },
+      {
+        "name": "bankControl",
+        "romHeader": "0x57B720",
+        "revision": 1,
+        "count": 38,
+        "alignedHeaderAndEntriesBytes": 320,
+        "sha256": "2012230D09CDC2BDDDA5850987E1C9CB9D5C850ACB766870638286D1F827DAE2"
+      },
+      {
+        "name": "sample",
+        "romHeader": "0x593560",
+        "revision": 2,
+        "count": 38,
+        "alignedHeaderAndEntriesBytes": 320,
+        "sha256": "6E1283529E9A9DA8CFD6A21CCC913488CA3D6B8BBD9179DC4CFD218EA258B4C3"
+      },
+      {
+        "name": "sequenceBankAssociation",
+        "romOffset": "0x7CC620",
+        "bytes": 256,
+        "sha256": "C7DE922BC792C9C715284C8FC0BF679732ED73DB00C4827E49C4250CD521C4C1",
+        "scope": "target-loaded window; not a full bank-map format/catalog"
+      }
+    ],
+    "sampleFormatEvidence": {
+      "sourceFunction": {
+        "pcRange": "[0x80315590,0x80316010)",
+        "romRange": "[0xD0590,0xD1010)",
+        "envelopeBytes": 2688,
+        "bodyBytes": 2676,
+        "sha256": "4BAA93EBE4896878CF9F7637C0FF389BAC053A6204BD1CF5BBACB51ACB2B3622"
+      },
+      "frameEvidence": "Decoder command stream uses 9-byte blocks, each representing 16 samples; predictor book metadata is referenced. Full waveform decoder is out of scope.",
+      "sample0Linkage": {
+        "bank0EntryRom": "[0x57B860,0x57BC80)",
+        "bank0RelocationBase": "0x57B870",
+        "bank0InstrumentCount": 6,
+        "bank0DrumCount": 0,
+        "instrument0Rom": "[0x57BBC0,0x57BBE0)",
+        "sampleRecord0Rom": "[0x57B890,0x57B8A4)",
+        "sampleData0Rom": "[0x5936A0,0x593D8E)",
+        "sampleData0Bytes": 1774,
+        "sampleData0Sha256": "D6D58E52B91976C735A29EE344260F85CA0B785EFF118758282DC586C45359F0",
+        "loopHeader0Rom": "[0x57B900,0x57B910)",
+        "predictorBook0Rom": "[0x57B8B0,0x57B8F8)",
+        "bookOrder": 2,
+        "bookPredictors": 2,
+        "warning": "1774 is not divisible by 9; do not infer a padding byte or final decode boundary."
+      }
+    },
+    "musicSequenceFields": {
+      "sequenceStarter": "0x80320544",
+      "currentSequenceIdPlayer0": "0x803331AC",
+      "player0Flags": "0x80222618",
+      "pauseHelpers": [
+        "0x80248C58",
+        "0x80248CE8",
+        "0x803210D4"
+      ],
+      "sequencePriorityQueueCount": "0x80333238",
+      "sequencePriorityQueue": "0x80364B88",
+      "queueCapacity": 6
+    }
+  },
+  "targetCodeFunctions": [
+    {
+      "name": "FUN_80251120",
+      "pcRange": "[0x80251120,0x8025118C)",
+      "romRange": "[0xC120,0xC18C)",
+      "bytes": 108,
+      "sha256": "E42C29C8E2E6C32511EFF477DA48971FD132EAEBD795B3A9F369E15907AED922"
+    },
+    {
+      "name": "FUN_8025118C",
+      "pcRange": "[0x8025118C,0x80251274)",
+      "romRange": "[0xC18C,0xC274)",
+      "bytes": 232,
+      "sha256": "26DDFFE726725BCDBD56429DDBB29C723F171A0AA0CB82CE235920E92C561650"
+    },
+    {
+      "name": "FUN_80251310",
+      "pcRange": "[0x80251310,0x80251444)",
+      "romRange": "[0xC310,0xC444)",
+      "bytes": 308,
+      "sha256": "FDEC2D4334401E5A3A51228395C580FB499AC95CD8393CA709F01472156E28B8"
+    },
+    {
+      "name": "FUN_80251444",
+      "pcRange": "[0x80251444,0x802514AC)",
+      "romRange": "[0xC444,0xC4AC)",
+      "bytes": 104,
+      "sha256": "73C1C28EFB150A0E812B902227B72FD2010E42D16FF8275C206430D634A30AD7"
+    },
+    {
+      "name": "FUN_8025163C",
+      "pcRange": "[0x8025163C,0x80251708)",
+      "romRange": "[0xC63C,0xC708)",
+      "bytes": 204,
+      "sha256": "212B0FA058C47B72EE005CE20F65F2845C02D0FBE9B850B13361672835AF60C0"
+    },
+    {
+      "name": "FUN_802518A8",
+      "pcRange": "[0x802518A8,0x80251A48)",
+      "romRange": "[0xC8A8,0xCA48)",
+      "sha256": "631FA3592EAAF41F57359BCC0274011DF6BBD8141F38E7BE470FCE692CB249ED",
+      "envelopeBytes": 416,
+      "bodyBytes": 408
+    },
+    {
+      "name": "FUN_80263EE4",
+      "pcRange": "[0x80263EE4,0x80264024)",
+      "romRange": "[0x1EEE4,0x1F024)",
+      "bytes": 320,
+      "sha256": "B0E8F69D4691467DB735FC93391C898222AA9BB1713CA74B718527AD78D83BB3"
+    },
+    {
+      "name": "FUN_80274F10",
+      "pcRange": "[0x80274F10,0x80275328)",
+      "romRange": "[0x2FF10,0x30328)",
+      "envelopeBytes": 1048,
+      "bodyBytes": 1040,
+      "sha256": "733D16BF0971742B00C72E1BE793F4AB938F0613BD51D5D7492257228CF67DCF"
+    },
+    {
+      "name": "FUN_8024651C",
+      "pcRange": "[0x8024651C,0x8024659C)",
+      "romRange": "[0x151C,0x159C)",
+      "bytes": 128,
+      "sha256": "266626D154099588D54CF7C2C21B16F4D486868400189056FD0DF10C09C705FC"
+    },
+    {
+      "name": "FUN_8031EB00",
+      "pcRange": "[0x8031EB00,0x8031EB30)",
+      "romRange": "[0xD9B00,0xD9B30)",
+      "bytes": 48,
+      "sha256": "1C8030B66E81554A34AD2DE254654341111204835C71FC45C6B4EF5AEF4FD57F"
+    },
+    {
+      "name": "FUN_8031EDEC",
+      "pcRange": "[0x8031EDEC,0x8031EE70)",
+      "romRange": "[0xD9DEC,0xD9E70)",
+      "bytes": 132,
+      "sha256": "9C0717CFE716FB661D699D59FBF33AF365087AD7265703C66A3FD2A0390C34B2"
+    },
+    {
+      "name": "FUN_8031EB30",
+      "pcRange": "[0x8031EB30,0x8031EDEC)",
+      "romRange": "[0xD9B30,0xD9DEC)",
+      "envelopeBytes": 700,
+      "bodyBytes": 696,
+      "sha256": "6BE924A8F694F774C3D85171FE612D3139A3A0081D1229D54B1A29D015A435E8"
+    },
+    {
+      "name": "FUN_8031EFF4",
+      "pcRange": "[0x8031EFF4,0x8031F810)",
+      "romRange": "[0xD9FF4,0xDA810)",
+      "envelopeBytes": 2076,
+      "bodyBytes": 2064,
+      "sha256": "96437C9CE4932213F3AD257E18E46033706BABFC4F06E9206C7D716C31F86EA7"
+    },
+    {
+      "name": "FUN_8031FBE8",
+      "pcRange": "[0x8031FBE8,0x8031FD7C)",
+      "romRange": "[0xDABE8,0xDAD7C)",
+      "envelopeBytes": 404,
+      "bodyBytes": 400,
+      "sha256": "72304919F149BE9E17D7094B839E21A6FB95F8D8F8F2B14F9F81D50ECF90A252"
+    },
+    {
+      "name": "FUN_8031FDAC",
+      "pcRange": "[0x8031FDAC,0x80320544)",
+      "romRange": "[0xDADAC,0xDB544)",
+      "envelopeBytes": 1944,
+      "bodyBytes": 1932,
+      "sha256": "9A15EE97FF07E058D8770A094DCCDF07D9B683543DD5E93C35521017FE7E35A9"
+    },
+    {
+      "name": "FUN_8031950C",
+      "pcRange": "[0x8031950C,0x80319914)",
+      "romRange": "[0xD450C,0xD4914)",
+      "bytes": 1032,
+      "sha256": "7E73675AEEB84482BCFA5C8580040849858A252A574C27B19BA653E60D1BE441"
+    },
+    {
+      "name": "FUN_80325CD8",
+      "pcRange": "[0x80325CD8,0x80325D18)",
+      "romRange": "[0xE0CD8,0xE0D18)",
+      "bytes": 64,
+      "sha256": "5A4ABE723B1ADE23A5042F2245782F5118DC69C7316D19FD88A79D88424801EE"
+    },
+    {
+      "name": "FUN_803188F4",
+      "pcRange": "[0x803188F4,0x80318B30)",
+      "romRange": "[0xD38F4,0xD3B30)",
+      "bytes": 572,
+      "sha256": "A65BBBF9E9FB2C40EE9978ED1FE31413518A8A2E4DD9332D6329BA9BE4814657"
+    },
+    {
+      "name": "FUN_80318B30",
+      "pcRange": "[0x80318B30,0x80318C8C)",
+      "romRange": "[0xD3B30,0xD3C8C)",
+      "bytes": 348,
+      "sha256": "DB879EFDB614002F14CB6F5D5CF6297B570DCEC9263B444C6DB97E195329C583"
+    },
+    {
+      "name": "FUN_80315590",
+      "pcRange": "[0x80315590,0x80316010)",
+      "romRange": "[0xD0590,0xD1010)",
+      "envelopeBytes": 2688,
+      "bodyBytes": 2676,
+      "sha256": "4BAA93EBE4896878CF9F7637C0FF389BAC053A6204BD1CF5BBACB51ACB2B3622"
+    },
+    {
+      "name": "FUN_80320544",
+      "pcRange": "[0x80320544,0x80320678)",
+      "romRange": "[0xDB544,0xDB678)",
+      "bytes": 308,
+      "sha256": "2E8AD70754CAA80FE59E4631C9689F2A59C357D4A1ED87330189BD9ABEF44C63"
+    },
+    {
+      "name": "FUN_803219AC",
+      "pcRange": "[0x803219AC,0x80321BAC)",
+      "romRange": "[0xDC9AC,0xDCBAC)",
+      "envelopeBytes": 512,
+      "bodyBytes": 508,
+      "sha256": "3EC0D72BC29FAF2C80B5FFCB2AA0359A16587FACA6BCE006DD50C29DF4DEC28D"
+    },
+    {
+      "name": "FUN_80321BAC",
+      "pcRange": "[0x80321BAC,0x80321CE4)",
+      "romRange": "[0xDCBAC,0xDCCE4)",
+      "bytes": 312,
+      "sha256": "710D916FCA38D610151B32659AAD8B5FE0F97BA15903ED6E2E28C624C698B5AC"
+    },
+    {
+      "name": "FUN_80321E48",
+      "pcRange": "[0x80321E48,0x80321F48)",
+      "romRange": "[0xDCE48,0xDCF48)",
+      "bytes": 256,
+      "sha256": "72B6DF04769C1200655869A0169A140B646A902690AA36C8374D1C75C8490513"
+    },
+    {
+      "name": "FUN_80321F48",
+      "pcRange": "[0x80321F48,0x80321F9C)",
+      "romRange": "[0xDCF48,0xDCF9C)",
+      "bytes": 84,
+      "sha256": "DACFB7D6669717F0B6B0DA095B4888BB32596E34564EB5C30E504AF651BD355D"
+    },
+    {
+      "name": "FUN_803210D4",
+      "pcRange": "[0x803210D4,0x8032112C)",
+      "romRange": "[0xDC0D4,0xDC12C)",
+      "bytes": 88,
+      "sha256": "914611EBE7BE61F071CEB8CC9B9F7C91107105C5454BE24D5B0B50FFC015430A"
+    },
+    {
+      "name": "FUN_80248C58",
+      "pcRange": "[0x80248C58,0x80248CE8)",
+      "romRange": "[0x3C58,0x3CE8)",
+      "bytes": 144,
+      "sha256": "9A115B2FA79A6B46DECFF450900627631D17E1DB5DD0F689AE18285E8D467F28"
+    },
+    {
+      "name": "FUN_80248CE8",
+      "pcRange": "[0x80248CE8,0x80248D78)",
+      "romRange": "[0x3CE8,0x3D78)",
+      "bytes": 144,
+      "sha256": "D214D298814E042DDDEF1987E4DEDEC2E47E227284435C024697F01703E73657"
+    },
+    {
+      "name": "FUN_803208EC",
+      "pcRange": "[0x803208EC,0x80320D70)",
+      "romRange": "[0xDB8EC,0xDBD70)",
+      "bytes": 1156,
+      "sha256": "0AB0FA747A83ABA23E7A0324293B4801E23D4CF0C2DC372224E70AFABD39F58A"
+    },
+    {
+      "name": "FUN_80319328",
+      "pcRange": "[0x80319328,0x80319388)",
+      "romRange": "[0xD4328,0xD4388)",
+      "bytes": 96,
+      "sha256": "66E1B1FCD3D78C1CA5A0B69E5EE2BF1960EC156D23A011B1DB0D3AF4BF6186BF"
+    },
+    {
+      "name": "FUN_8031E374",
+      "pcRange": "[0x8031E374,0x8031E4E4)",
+      "romRange": "[0xD9374,0xD94E4)",
+      "bytes": 368,
+      "sha256": "50C48CA9E0559298CB319343F996C0A3F03E60A770239E5A8E5DB55F8B47D580"
+    },
+    {
+      "name": "FUN_80320678",
+      "pcRange": "[0x80320678,0x803206BC)",
+      "romRange": "[0xDB678,0xDB6BC)",
+      "bytes": 68,
+      "sha256": "555F45FCAD1E4C826F88ED4A21EE2FFC0775BADE98AFC00C3993F6A3F60C353F"
+    },
+    {
+      "name": "FUN_8031A6CC",
+      "pcRange": "[0x8031A6CC,0x8031A794)",
+      "romRange": "[0xD56CC,0xD5794)",
+      "envelopeBytes": 200,
+      "bodyBytes": 196,
+      "sha256": "DA7BEFAF633F65956D47DE29A38BA9632FBE688C97783D8EB65134E666D031A4"
+    },
+    {
+      "name": "FUN_8031E578",
+      "pcRange": "[0x8031E578,0x8031E5C0)",
+      "romRange": "[0xD9578,0xD95C0)",
+      "bytes": 72,
+      "sha256": "A0B0CEEB19FCC95B1252385FAAFDE8462B57253D86D1519B79426C05413AF6F1"
+    },
+    {
+      "name": "FUN_8031C03C",
+      "pcRange": "[0x8031C03C,0x8031C050)",
+      "romRange": "[0xD703C,0xD7050)",
+      "bytes": 20,
+      "sha256": "F0A001A8E406B4DC1EE42FC4D9B2B936BD6C7F2805C9DFF509914CB976C6482F"
+    },
+    {
+      "name": "FUN_8031C050",
+      "pcRange": "[0x8031C050,0x8031C080)",
+      "romRange": "[0xD7050,0xD7080)",
+      "bytes": 48,
+      "sha256": "EA0A4C014CCB671B8BB7362E15550543ACC0D56D50520B1BC8F7CB49FCAFFA82"
+    },
+    {
+      "name": "FUN_8031C080",
+      "pcRange": "[0x8031C080,0x8031C0C4)",
+      "romRange": "[0xD7080,0xD70C4)",
+      "bytes": 68,
+      "sha256": "A4FD186DBC089104A9C06443A9BDA75E783CA984DEC523641D2EC7932FF8C0F6"
+    },
+    {
+      "name": "FUN_8031D9EC",
+      "pcRange": "[0x8031D9EC,0x8031E240)",
+      "romRange": "[0xD89EC,0xD9240)",
+      "envelopeBytes": 2132,
+      "bodyBytes": 2120,
+      "sha256": "B72317B57394321B140F72F1D1AEE0EEBFB2DD15BB4E7EF671778D6DB016A3F9"
+    },
+    {
+      "name": "FUN_8031E240",
+      "pcRange": "[0x8031E240,0x8031E2E8)",
+      "romRange": "[0xD9240,0xD92E8)",
+      "bytes": 168,
+      "sha256": "2183F5AEEB66BFE46AB3D217DD3749F845A6F1DAE8D30BE0DCFA10C6A41ABCDF"
+    }
+  ],
+  "provenance": {
+    "navigationSource": "n64decomp/sm64@9921382a68bb0c865e5e45eb594d9c64db59b1af, navigation only",
+    "runtimeEvidence": "locally verified target ROM and guarded Project64 sampler",
+    "mainCodeMapping": "PC 0x80245000 + ROM offset; only within validated main-image interval 0x1000..0xE855F",
+    "disassemblerGaps": "Envelope hashes cover [entry,maxBody+1) including any address gaps; body byte count is listed separately."
+  },
+  "limitations": [
+    "No whole desktop/system audio capture and no waveform capture were performed.",
+    "A queued SFX request is not proof of consumer acceptance or audible playback.",
+    "Sequence ID and player flags are numeric state, not proof that a sequence was audible.",
+    "Loop counter 0x8032D5D4 is not a physics or audio clock; field reads are separately bracketed and non-atomic.",
+    "The queue has modulo-256 cursors; records are only recovered from observed cursor deltas. A wrap spanning more than 255 unobserved submissions is not reconstructable.",
+    "No exhaustive action, floor-type, course, fade, channel-overlap, voice-priority, or sequence-transition catalog was built.",
+    "No EEPROM slot was selected or initialized and no new in-game save state was generated; pre-existing local state fixtures were loaded."
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "issue": "BrantTanner/MarioCraft#47",
+  "target": {
+    "rom": "USA rev 0, 8 MiB",
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "project64": "3.0.1.5664-2df3434",
+    "project64Sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "processId": 21000,
+    "windowHandle": "0xA650E20",
+    "processStartUtc": "2026-10-25T13:13:07.2026713Z",
+    "saveSeedSha256": "6E2C8265A8A9A19761BCC6CE29FA20694FAD5444B325B1F22CA987776A2D6DFE",
+    "nrageIniSha256Unchanged": "7A05EC7DFD8DDB939CB45A30B03B502544E1DD8892D9B48529670A77FC8D3E73",
+    "memoryAccess": "Read-only OpenProcess(PROCESS_QUERY_INFORMATION|PROCESS_VM_READ) and ReadProcessMemory; no emulator-memory writes",
+    "sampler": "issue47-camera-v2-aligned-camera-flags, SHA-256 68FAFE9D5CAD76F6CC947D1285A99A69F6C75A21904E706B127CA9A86414F77A",
+    "inputHelper": "mario64-issue47-project64-input.ps1, SHA-256 2E78A7B6685C010C8FD2DDAD9D92815A77E9FB87202EAE6DA640A8579B0F9463",
+    "waterDriver": "mario64-issue47-water-route-driver.ps1, SHA-256 4C940DFC072BEDE9E8F5B689BC95D02A1C41A7F2E8C0512E6083F1FC26F59538",
+    "samplingCadence": "10 or 15 ms polling; Project64 counter is approximately 30 Hz main loop, not a physics-frame counter; start/end brackets do not make a multi-field read atomic"
+  },
+  "staticEvidence": [
+    { "symbol": "FUN_80286188 mode setter", "pcRangeExclusiveEnd": "[0x80286188,0x80286420)", "romRangeExclusiveEnd": "[0x41188,0x41420)", "length": 664, "sha256": "9CBE83C38D7774C900441D7E1DEFAE7A06A1045897E053FA550198F28E32CDC6" },
+    { "symbol": "FUN_80286420 goal/current interpolation and render-vector copy", "pcRangeExclusiveEnd": "[0x80286420,0x802868F8)", "romRangeExclusiveEnd": "[0x41420,0x418F8)", "length": 1240, "sha256": "FCD6A5C781B2C400F22C18620A6D112449B5F480A17BCB8F155C14C31912410C" },
+    { "symbol": "FUN_802868F8 camera mode update and scripted-cutscene branch", "pcRangeExclusiveEnd": "[0x802868F8,0x80286F68)", "romRangeExclusiveEnd": "[0x418F8,0x41F68)", "length": 1648, "sha256": "EC248194AFBAC4C5FE56C064E2771017062A35C45C0CE9F829DF3B6EC81B4E72" },
+    { "symbol": "FUN_8028F914 camera obstruction ray/sample handling", "pcRangeExclusiveEnd": "[0x8028F914,0x8028FC9C)", "romRangeExclusiveEnd": "[0x48914,0x48C9C)", "length": 896, "sha256": "7163C4A9DF83411608679D04B04723C15C908CBEC8AF9E4F47A693F816590F82" },
+    { "symbol": "FUN_802763D4 skybox callback argument consumer (not full render-matrix proof)", "pcRangeExclusiveEnd": "[0x802763D4,0x802764B0)", "romRangeExclusiveEnd": "[0x313D4,0x314B0)", "length": 220, "sha256": "EDE71202922CA00776DF298CF9431C50B42677C2FD5B7257958C85A559FAFD87" },
+    { "symbol": "mode handler pointer table, exact unique full-block match outside global PC map", "guestRangeExclusiveEnd": "[0x8032DFA8,0x8032DFF0)", "romRangeExclusiveEnd": "[0xE8FA8,0xE8FF0)", "length": 72, "sha256": "58ABF2D20CAD1918E9F3DE5CC2F167FC8154163F5C59B3D9022507D0405C7517", "provenance": "independent read-only Project64 memory probe; canonical full 72-byte block matched uniquely; raw bytes omitted" }
+  ],
+  "trials": [
+    { "id": "issue47-ground-controls-runtime-a", "startedUtc": "2026-10-25T17:37:43.1011077Z", "rows": 1662, "traceBytes": 4077863, "traceSha256": "DD65C2FC235BD0CA1508E10FA224FAFB35097DEDE36B506360BC54BABCB7D04C", "inputs": "sleep wake A; C-right/C-left/C-up/C-down and R/L mapping/response probes; raw per-pulse edges remain in local issue40 helper log; camera masks were verified in the read-only trace", "result": "C-button response and mode-16/6 transitions; v2 aligned flags only" },
+    { "id": "issue47-ground-follow-runtime-b", "startedUtc": "2026-10-25T17:39:31.9424443Z", "rows": 1134, "traceBytes": 2807112, "traceSha256": "A9E8A43FA0F949422C6FE914BA5091BD9643CB14F720E17B64034B5AECEA04D8", "inputs": "sleep wake A; AnalogUp 900 ms; neutral 250 ms; AnalogRight 350 ms; neutral 250 ms; A 200 ms; neutral follow window 2 s; exact key edges in local helper log", "result": "ground locomotion, jump/landing/action transition, and mode-16 render focus/position follow" },
+    { "id": "issue47-water-entry-01", "startedUtc": "2026-10-25T17:45:51.4284686Z", "rows": 534, "traceBytes": 1304191, "traceSha256": "639F0C8665EFC16B903269BE0A9F7F577DFC0FF7B0C12E55FB9989EA3E370C0D", "inputs": "bounded copied courtyard route with conditional sleep-wake A 150 ms and 36 AnalogUp route pulses, each capped at 300 ms; outcome threw reverse-progress as the pulse crossed the water threshold", "result": "partial driver result; trace captured water crossing and camera mode 16-to-8. Not reported as clean route completion" },
+    { "id": "issue47-water-camera-settle-01", "startedUtc": "2026-10-25T17:46:58.6494447Z", "rows": 57, "traceBytes": 139602, "traceSha256": "3227211094ACA84C36DB487BFA2740494B9E00A5D74172C3067E564F3CDC55C5", "inputs": "none; stationary follow/settle sample, 2.67 s span", "result": "mode 8 at water surface Y=-161, waterLevel=-81" },
+    { "id": "issue47-water-swim-follow-02", "startedUtc": "2026-10-25T17:47:44.0982819Z", "rows": 82, "traceBytes": 201091, "traceSha256": "1BE1D55A6D3E45520FDAC4C97192360FC512924500233EDBFCC4327A37C44F1B", "inputEdgesUtc": [{ "key": "A", "down": "2026-10-25T17:47:45.5186456Z", "up": "2026-10-25T17:47:45.7376000Z", "holdMsRequested": 200 }], "result": "swim stroke and Mario displacement; render focus and position followed in mode 8" },
+    { "id": "issue47-water-turn-02", "startedUtc": "2026-10-25T17:48:34.9270200Z", "rows": 54, "traceBytes": 131939, "traceSha256": "A7D62A2EDEDBD4487BC3FD191D73CED5B757334579A8DABE72AEA97F992BFB54", "inputEdgesUtc": [{ "key": "AnalogRight", "down": "2026-10-25T17:48:35.8085999Z", "up": "2026-10-25T17:48:36.8269292Z", "holdMsRequested": 1000 }], "result": "water-state turn in place; faceYaw 8727 to -505 across signed wrap, no meaningful Mario translation" },
+    { "id": "issue47-water-turn-03", "startedUtc": "2026-10-25T17:48:52.8380747Z", "rows": 110, "traceBytes": 268658, "traceSha256": "025A6B009C6D1A5EDD9C760E88A839EF12235C4D83FEEF7310E4B6BF90353BA9", "inputEdgesUtc": [{ "key": "AnalogRight", "down": "2026-10-25T17:48:53.7272366Z", "up": "2026-10-25T17:48:56.7505663Z", "holdMsRequested": 3000 }], "result": "additional water turning in place with wrapped face yaw; not used to infer universal angular speed" },
+    { "id": "issue47-water-turn-04", "startedUtc": "2026-10-25T17:49:29.3142053Z", "rows": 77, "traceBytes": 188238, "traceSha256": "0EBAD367CF08619FE76185F39AF989638A159123D8180073968FE853F43914F5", "inputEdgesUtc": [{ "key": "AnalogLeft", "down": "2026-10-25T17:49:30.7214446Z", "up": "2026-10-25T17:49:32.2394979Z", "holdMsRequested": 1500 }], "result": "water turning in place; sampler flushed successfully; subsequent progress-display read failed after sampler stopped and is not treated as capture failure" },
+    { "id": "issue47-water-exit-02", "startedUtc": "2026-10-25T17:50:22.7598581Z", "rows": 64, "traceBytes": 156481, "traceSha256": "DFBF783C07731C375DC11CF2A5D4792BE9A31F3256D450DE76E3BCC788433867", "inputEdgesUtc": [{ "key": "A", "down": "2026-10-25T17:50:23.6713949Z", "up": "2026-10-25T17:50:23.8890476Z", "holdMsRequested": 200 }], "result": "shoreline exit evidenced by action 0x0400044A and camera mode 8-to-16, then idle; Y rose -161 to -136.59; waterLevel remained stale at -81" }
+  ],
+  "excluded": [
+    "Earlier v1 sampler cameraStateFlags decode began at unaligned guest address and is invalid; no v1 state-flag claims are used.",
+    "Some early probes occurred during tutorial dialog/cutscene gating; they do not establish disabled normal camera controls.",
+    "Raw JSONL process-memory traces, emulator state files, ROM/data assets, and UI screenshots remain local-only."
+  ]
+}
+

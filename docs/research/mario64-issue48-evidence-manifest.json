@@ -1,0 +1,569 @@
+{
+  "issue": 48,
+  "status": "bounded research complete; awaiting independent review",
+  "target": {
+    "rom_sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "rom_bytes": 8388608,
+    "endianness": "big-endian",
+    "region_revision": "USA rev 0",
+    "project64": "3.0.1.5664-2df3434",
+    "project64_sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "navigation_source": "n64decomp/sm64@9921382a68bb0c865e5e45eb594d9c64db59b1af (names/navigation only; target values are independently measured)"
+  },
+  "reproduction": {
+    "rom_inspector": {
+      "path": "mario64-issue48-asset-inspect.py",
+      "sha256": "FC448A1074686CBB4609D43248B008AC8BE40EB1EFCDD5B04783022A927569A5",
+      "run": "python mario64-issue48-asset-inspect.py <private-USA-rev0-ROM-path>",
+      "outputs": "scalar hashes/offsets/header fields only; MIO0 decoded in memory; no asset writes"
+    },
+    "sampler": {
+      "path": "mario64-issue48-external-capture.ps1",
+      "version": "issue48-animation-and-graphics-state-v1",
+      "sha256": "BC378E5FE6022C6E65C0D27E04047927682A354410FCE1E83E055BE8768C4766",
+      "mode": "OpenProcess(PROCESS_QUERY_INFORMATION|PROCESS_VM_READ), ReadProcessMemory only; exact exe/ROM-prefix/process/HWND guards; no writes"
+    },
+    "input_helper": {
+      "path": "mario64-issue47-project64-input.ps1",
+      "sha256": "2E78A7B6685C010C8FD2DDAD9D92815A77E9FB87202EAE6DA640A8579B0F9463",
+      "mode": "foreground-checked Project64 key pulses; key release in finally"
+    },
+    "process": {
+      "pid": 21000,
+      "hwnd": "0xA650E20",
+      "process_start_utc": "2026-10-25T13:13:07.2026713Z",
+      "host_base": "0xDFEA0000",
+      "executable_sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+      "rom_sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91"
+    },
+    "controller_profile": {
+      "plugin": "NRage",
+      "ini_sha256": "7A05EC7DFD8DDB939CB45A30B03B502544E1DD8892D9B48529670A77FC8D3E73",
+      "stick_range": 100,
+      "dead_zone": 5,
+      "real_n64_range": true
+    },
+    "seed": {
+      "path": "tools/issue11-local/issue35-mario-gameplay-baseline.pj.zip",
+      "sha256": "6E2C8265A8A9A19761BCC6CE29FA20694FAD5444B325B1F22CA987776A2D6DFE",
+      "courtyard_start_xyz": [
+        -1328,
+        260,
+        4354
+      ]
+    },
+    "input_log": {
+      "local_only": true,
+      "sha256": "1231618087D371795C3E141C0BA1754345A7EC7CCE0898F4E6CD5C438D88BCAB"
+    },
+    "sampler_counter_limit": "The loop counter is read before and after fields; equality is not an atomicity guarantee."
+  },
+  "runtime_trials": [
+    {
+      "trial_id": "issue48-presentation-route-a",
+      "started_utc": "2026-10-25T20:03:39.9254603Z",
+      "ended_utc": "2026-10-25T20:05:06.986Z",
+      "rows": 3056,
+      "sha256": "58F81B5337BC23C6988B5D84851B295EC29216785A580A13C55ADE29E91263A4",
+      "equal_counter_rows": 2523,
+      "input_pulses": [
+        {
+          "key": "AnalogDown",
+          "down_utc": "2026-10-25T20:03:52.3653344Z",
+          "up_utc": "2026-10-25T20:03:53.2934397Z"
+        },
+        {
+          "key": "A",
+          "down_utc": "2026-10-25T20:03:57.3332340Z",
+          "up_utc": "2026-10-25T20:03:57.5585216Z"
+        },
+        {
+          "key": "A",
+          "down_utc": "2026-10-25T20:04:55.7593632Z",
+          "up_utc": "2026-10-25T20:04:56.3775171Z"
+        }
+      ],
+      "raw_trace_published": false
+    },
+    {
+      "trial_id": "issue48-courtyard-jump-c",
+      "started_utc": "2026-10-25T20:13:11.4427003Z",
+      "ended_utc": "2026-10-25T20:14:04.290Z",
+      "rows": 1800,
+      "sha256": "166182C1C2D0558FB92C16B65833BC031359AFE2732823BD345F10F4BE5EE6B1",
+      "equal_counter_rows": 1480,
+      "input_pulses": [
+        {
+          "key": "A",
+          "down_utc": "2026-10-25T20:13:30.1375496Z",
+          "up_utc": "2026-10-25T20:13:30.3028268Z"
+        },
+        {
+          "key": "A",
+          "down_utc": "2026-10-25T20:13:39.2571475Z",
+          "up_utc": "2026-10-25T20:13:39.4811023Z"
+        },
+        {
+          "key": "AnalogUp",
+          "down_utc": "2026-10-25T20:13:55.4000517Z",
+          "up_utc": "2026-10-25T20:13:55.7209983Z"
+        },
+        {
+          "key": "A",
+          "down_utc": "2026-10-25T20:14:03.9031318Z",
+          "up_utc": "2026-10-25T20:14:04.2281725Z"
+        }
+      ],
+      "raw_trace_published": false
+    }
+  ],
+  "independent_runtime_probes": [
+    {
+      "utc": "2026-10-25T20:10:29.7170101Z",
+      "scope": "209-entry animation table",
+      "pid": 21000,
+      "hwnd": "0xA650E20",
+      "host_base": "0xDFEA0000",
+      "guarded_read": "whole table read and ROM canonical-byte comparison; runtime header base word was patched; no raw bytes published"
+    },
+    {
+      "utc": "2026-10-25T20:11:31.7489945Z",
+      "scope": "live selected animation payload ID 135",
+      "pid": 21000,
+      "hwnd": "0xA650E20",
+      "guarded_read": "ROM payload compared with loaded buffer; only four patched pointer bytes differed; loop-counter bracket was non-atomic; no raw bytes published"
+    },
+    {
+      "utc": "2026-10-25T20:19:41.0407902Z",
+      "scope": "segment table and graphics-task descriptor",
+      "pid": 21000,
+      "hwnd": "0xA650E20",
+      "guarded_read": "resolved segment 4/17 bases, Mario Geo pointer and task words; loop-counter bracket changed; no raw bytes published"
+    },
+    {
+      "utc": "2026-10-25T20:22:19.3394231Z",
+      "scope": "complete decoded segment 4 runtime comparison",
+      "pid": 21000,
+      "hwnd": "0xA650E20",
+      "guarded_read": "in-memory private ROM decode independently compared with full KSEG0 virtual guest range [0x8007EC20,0x800B3F98); physical RDRAM offsets [0x7EC20,0xB3F98); exact size/SHA match; counter changed during probe"
+    }
+  ],
+  "rom_ram_match_basis": {
+    "title_rdram_snapshot_sha256": "3B94D5FDC08C1F53D9BC54A5DA9F3A0E0B8C41269404421C109D9429E03ED1A5",
+    "method": "each reported function envelope was uniquely byte-matched as a whole contiguous block in the pinned 8 MiB ROM; envelope bytes include internal gaps where stated",
+    "raw_snapshot_published": false
+  },
+  "target_function_blocks": [
+    {
+      "function": "level-script dispatch table (selected entries 0x17/0x18/0x22)",
+      "pc_or_guest": "0x8038B8B8..0x8038B9B8",
+      "rom": "0x108638..0x108738",
+      "bytes": 256,
+      "sha256": "ADD18E0B340AD85C2F64EC537BA4560352E87203FF882315C318AD07E262FD21"
+    },
+    {
+      "function": "opcode 0x17 raw segment loader",
+      "pc": "0x8037ECA4..0x8037ECF8",
+      "rom": "0xFBA24..0xFBA78",
+      "bytes": 84,
+      "sha256": "D38E7A0ADBDC19FEB7D321AEB6592C6009CA81CD4644E3866FFC250392A238D2"
+    },
+    {
+      "function": "opcode 0x18 compressed segment loader",
+      "pc": "0x8037ECF8..0x8037ED48",
+      "rom": "0xFBA78..0xFBAC8",
+      "bytes": 80,
+      "sha256": "C7D58F67CDD4FF265BC11BDC623E86CE40C9BEC4DAF35A0354ED83E48AB9BA9A"
+    },
+    {
+      "function": "MIO0 segment-load helper",
+      "pc": "0x802787D8..0x802788B4",
+      "rom": "0x337D8..0x338B4",
+      "bytes": 220,
+      "sha256": "239150A9914575850464122EED68FC7A38B5D93FD1128D7F816A573F43F0B634",
+      "gap_bytes": 8
+    },
+    {
+      "function": "GeoLayout interpreter",
+      "pc": "0x8037E0B4..0x8037E19C",
+      "rom": "0xFAE34..0xFAF1C",
+      "bytes": 232,
+      "sha256": "7671BD52F7716B47ECBAD388A8E1D4EE86355500F2AC904FDE09950B5080DAB9"
+    },
+    {
+      "function": "GeoLayout opcode 0x13 animated-part handler",
+      "pc": "0x8037DB74..0x8037DC10",
+      "rom": "0xFA8F4..0xFA990",
+      "bytes": 156,
+      "sha256": "B1A57886005C6A165A84B5A7D9517D3D5D1C356EC855D97A60C9090D4B9A326C"
+    },
+    {
+      "function": "GeoLayout opcode 0x15 display-list handler",
+      "pc": "0x8037DCD4..0x8037DD4C",
+      "rom": "0xFAA54..0xFAACC",
+      "bytes": 120,
+      "sha256": "167E9AA48AD01BC9FA747CF794639D70522A9283F9F53C433DA21F07A8469A94"
+    },
+    {
+      "function": "animation setter",
+      "pc": "0x802509B8..0x80250B04",
+      "rom": "0xB9B8..0xBB04",
+      "bytes": 332,
+      "sha256": "9FB7A9870A758651FCE93DF24E9F278F9954D079BC239816EAE2ACF791E29EFB"
+    },
+    {
+      "function": "scaled animation setter",
+      "pc": "0x80250B04..0x80250C7C",
+      "rom": "0xBB04..0xBC7C",
+      "bytes": 376,
+      "sha256": "8555D11D223B9BBA0D2A4A17A637981D7E33B529E7D20AE444D33D2B3EE2DE96"
+    },
+    {
+      "function": "animation buffer wrapper loader",
+      "pc": "0x80279084..0x80279158",
+      "rom": "0x34084..0x34158",
+      "bytes": 212,
+      "sha256": "3C89167367808DA332EE8120753359349CF56EB95AF3FF38EC1C12A000294A42"
+    },
+    {
+      "function": "animated-joint renderer",
+      "pc": "0x8027CA70..0x8027CF38",
+      "rom": "0x37A70..0x37F38",
+      "bytes": 1224,
+      "sha256": "1E983358D25FD26755C43C39B3EA1DCAEF9AC8499250FF41862775C5231AACE6"
+    },
+    {
+      "function": "animation index pair resolver",
+      "pc": "0x8037C7D8..0x8037C844",
+      "rom": "0xF9558..0xF95C4",
+      "bytes": 108,
+      "sha256": "19B676B67934519231FEFEDB85AD74D9968A09489359A705D19B5A2FF9608F16",
+      "body_bytes": 100,
+      "gap_bytes": 8
+    },
+    {
+      "function": "display-list node callback",
+      "pc": "0x8027C73C..0x8027C7A4",
+      "rom": "0x3773C..0x377A4",
+      "bytes": 104,
+      "sha256": "A6DEFF17203CD72809C32A4F8AFCA2565E05F5BEB8C0D3F5461AEF961010A998"
+    },
+    {
+      "function": "area graph renderer",
+      "pc": "0x8027B3B4..0x8027B6C0",
+      "rom": "0x363B4..0x366C0",
+      "bytes": 780,
+      "sha256": "5CFE00C8F840816FE598497DAB037AC1D24B38E49A076C349E35DC30AB21B9EA"
+    },
+    {
+      "function": "queue display list by layer",
+      "pc": "0x8027B904..0x8027BA00",
+      "rom": "0x36904..0x36A00",
+      "bytes": 252,
+      "sha256": "215DF47074A49E73E88F6B2E3807C89ABE874DAF39A8F3265448CE99C3B330B5"
+    },
+    {
+      "function": "flush draw-layer lists",
+      "pc": "0x8027B6C0..0x8027B904",
+      "rom": "0x366C0..0x36904",
+      "bytes": 580,
+      "sha256": "A2184325BC6FD716FD0C789E296084FF7BF12CB9B104F071893BFA3E35A26606"
+    },
+    {
+      "function": "level-script interpreter",
+      "pc": "0x803805C8..0x80380684",
+      "rom": "0xFD348..0xFD404",
+      "bytes": 188,
+      "sha256": "4C9960F45C1C124445D650355ED8391E13504B5C0C42B99C34E78F6E403DFD9D",
+      "body_bytes": 180,
+      "gap_bytes": 8
+    },
+    {
+      "function": "build graphics task",
+      "pc": "0x80247B3C..0x80247CCC",
+      "rom": "0x2B3C..0x2CCC",
+      "bytes": 400,
+      "sha256": "630FAA7B0BD4431BE33BD60A833BBF6EC7BA7C640015A5538E1F9733197CEC45"
+    },
+    {
+      "function": "finalize display-list task",
+      "pc": "0x80247D14..0x80247DB4",
+      "rom": "0x2D14..0x2DB4",
+      "bytes": 160,
+      "sha256": "8ED06AE57D14A06C835028B7399771AE980E8BAE3810814CD31BEB5F1A4AEE04"
+    },
+    {
+      "function": "enqueue graphics task",
+      "pc": "0x80246C10..0x80246C9C",
+      "rom": "0x1C10..0x1C9C",
+      "bytes": 140,
+      "sha256": "C685D107C50B20B0A8598D6351AB72E9535E5378D7B3B9C2CBDBBE11E91F746E"
+    },
+    {
+      "function": "graphics/audio scheduler",
+      "pc": "0x8024651C..0x8024659C",
+      "rom": "0x151C..0x159C",
+      "bytes": 128,
+      "sha256": "266626D154099588D54CF7C2C21B16F4D486868400189056FD0DF10C09C705FC"
+    },
+    {
+      "function": "SP task submitter",
+      "pc": "0x80322A5C..0x80322BBC",
+      "rom": "0xDDA5C..0xDDBBC",
+      "bytes": 352,
+      "sha256": "4923078FCF45566BB483D684BA37DCBC962B5DFB81ACB7D7D6BF4326AFE8C801"
+    }
+  ],
+  "rsp_task_payload_blocks": [
+    {
+      "name": "descriptor boot block",
+      "guest": "0x8032B260..0x8032B330",
+      "rom": "0xE6260..0xE6330",
+      "bytes": 208,
+      "sha256": "589D793EDA195C576C9D767E7A5E4B77352826F59669D20BDCC358A8EBC979A3"
+    },
+    {
+      "name": "descriptor microcode block",
+      "guest": "0x8032B330..0x8032C330",
+      "rom": "0xE6330..0xE7330",
+      "bytes": 4096,
+      "sha256": "FFD76B7092CE0C1B6DC2B1FB9992AB2B330F0D813577F49B3A1F32B2AF9AC618"
+    },
+    {
+      "name": "descriptor microcode data block",
+      "guest": "0x80339AC0..0x8033A2C0",
+      "rom": "0xF4AC0..0xF52C0",
+      "bytes": 2048,
+      "sha256": "B842FB99D1899C2F0345FCD43BD9F61F38675C39E4EC7BAB5CB130518FBF0F3A"
+    }
+  ],
+  "animation_payload_headers": [
+    {
+      "id": 114,
+      "rom": "0x53F138..0x54035A",
+      "bytes": 4642,
+      "sha256": "91473B0B32A6326CC2AC0DBF019DEAD837C9270F50ECC77C0A6235720FFF995B",
+      "header_s16": [
+        0,
+        189,
+        0,
+        0,
+        72,
+        20
+      ],
+      "values_offset": "0x12C",
+      "index_offset": "0x30",
+      "declared_length": 4642
+    },
+    {
+      "id": 170,
+      "rom": "0x564D2C..0x56520C",
+      "bytes": 1248,
+      "sha256": "353C87BC3B20338D7A30B7A8496093B09648C32235526ECABEC9B14AF4373B48",
+      "header_s16": [
+        1,
+        189,
+        0,
+        0,
+        13,
+        20
+      ],
+      "values_offset": "0x114",
+      "index_offset": "0x18",
+      "declared_length": 1248
+    },
+    {
+      "id": 171,
+      "rom": "0x56520C..0x56560E",
+      "bytes": 1026,
+      "sha256": "954E4CED6EFB77CC65A3775CD43BFEEA2D933632E83B144FFF30357A18FC7E4A",
+      "header_s16": [
+        1,
+        189,
+        0,
+        0,
+        10,
+        20
+      ],
+      "values_offset": "0x114",
+      "index_offset": "0x18",
+      "declared_length": 1026
+    },
+    {
+      "id": 172,
+      "rom": "0x565610..0x565DCE",
+      "bytes": 1982,
+      "sha256": "8657757C82B69F05729278AD8881F848C9EAFFD397CEDBA1214B25F47F851E17",
+      "header_s16": [
+        0,
+        189,
+        8,
+        0,
+        24,
+        20
+      ],
+      "values_offset": "0x114",
+      "index_offset": "0x18",
+      "declared_length": 1982
+    },
+    {
+      "id": 178,
+      "rom": "0x5681D0..0x568A04",
+      "bytes": 2100,
+      "sha256": "603E100F7AAB65E2FF2DAE078FEB96B8E95674A10A32F57A6E3A31BFC04E146B",
+      "header_s16": [
+        0,
+        189,
+        0,
+        0,
+        30,
+        20
+      ],
+      "values_offset": "0x114",
+      "index_offset": "0x18",
+      "declared_length": 2100
+    }
+  ],
+  "runtime_linkage": {
+    "animation_table": {
+      "runtime_wrapper": "0x8033B080",
+      "guest_table": "0x80064040",
+      "guest_buffer": "0x80060030",
+      "entry_count": 209,
+      "rom_header_plus_entries": {
+        "rom": "0x4EC000..0x4EC690",
+        "bytes": 1680,
+        "sha256": "4D9A2D99125F146C88202FE1D6AACA5797B980C07146D5FA95A2A900476809EE"
+      },
+      "entry_bytes": {
+        "rom": "0x4EC008..0x4EC690",
+        "bytes": 1672,
+        "sha256": "C7ECA69D5AC38CE79249AD01C95909E119313738AEEF607D2FC629D9C4C68872"
+      },
+      "caveat": "runtime base word is patched; do not claim full runtime table equals ROM"
+    },
+    "live_animation_id_135": {
+      "source_rom": "0x551AF4",
+      "length": 1840,
+      "rom_sha256": "296D5776CFF1F641FF3938F03EC1FD72FCC97FEB59488D1B6FDEBBD44DBBF0D8",
+      "runtime_buffer": "0x80060030",
+      "runtime_matches_rom_except": "pointer words +0x0C/+0x10 patched via (buffer + relative offset) & 0x1FFFFFFF",
+      "counter_before": 10187,
+      "counter_after": 10193,
+      "non_atomic": true
+    },
+    "segment_4": {
+      "physical_offset": "0x7EC20",
+      "guest_kseg0": "0x8007EC20",
+      "size": 217976,
+      "sha256": "2FB26A131C645493A884642360E6355FB4EEE2C5C4B2C205624D2008CDBAC1C4"
+    },
+    "segment_17": {
+      "physical_offset": "0xE72D0",
+      "guest_kseg0": "0x800E72D0"
+    },
+    "mario_geo_pointer": {
+      "segmented": "0x17002DD4",
+      "resolved_guest": "0x800EA0A4"
+    },
+    "task_descriptor": {
+      "guest": "0x80220D50",
+      "display_list_head": "0x80214D60",
+      "display_list_start": "0x80214550",
+      "descriptor_type": 1,
+      "display_list_bytes": 2064,
+      "counter_before": 24841,
+      "counter_after": 24842,
+      "non_atomic": true
+    }
+  },
+  "verified_asset_ranges": [
+    {
+      "name": "group0 MIO0 ROM source",
+      "range": "0x114750..0x1279B0",
+      "bytes": 78432,
+      "sha256": "EF621DBA1B29D022F4FE7E3A2FA9990F9935F79CB89A6C572DFE39523F9D1F45"
+    },
+    {
+      "name": "decoded segment4",
+      "size": 217976,
+      "sha256": "2FB26A131C645493A884642360E6355FB4EEE2C5C4B2C205624D2008CDBAC1C4"
+    },
+    {
+      "name": "group0 raw GeoLayout bank",
+      "range": "0x1279B0..0x12A7E0",
+      "bytes": 11824,
+      "sha256": "00C0DD666AD42E3034762DE5440E0AC933787458DE9117C2049990BC3AABD3C3"
+    },
+    {
+      "name": "Mario root GeoLayout",
+      "range": "0x12A784..0x12A7E0",
+      "bytes": 92,
+      "sha256": "67C073F982ACFF19B7536E7CAD43D1A3E11C43D684C705DE307DEB416AAC76C0"
+    },
+    {
+      "name": "butt animated-part record",
+      "range": "0x127EFC..0x127F08",
+      "bytes": 12,
+      "sha256": "D3D2E35082F45780759E904369BD7FAE790F496762A47CE71AAB5ECC23565C9B",
+      "display_list": "0x0400CC98"
+    },
+    {
+      "name": "torso animated-part record",
+      "range": "0x127F28..0x127F34",
+      "bytes": 12,
+      "sha256": "8D620EAE47B8E8189C02A806D035FDE8FD960194ECA53F58814C6220836F97B2",
+      "display_list": "0x04010370"
+    },
+    {
+      "name": "torso material display list",
+      "segment4_range": "0x10370..0x103F0",
+      "bytes": 128,
+      "sha256": "05C1142D90BCDBF1645BDF5CE2AB06D1CBE524EE7A4D6B661664C4AF8F5FB7C1"
+    },
+    {
+      "name": "32x32 RGBA16 texture span",
+      "segment4_range": "0x1090..0x1890",
+      "bytes": 2048,
+      "sha256": "1BEBDBC8AC4921C0A38852CC640FB531AAD64E82A047791CF40648EE27667559",
+      "target_display_list_fields": "G_SETTIMG fmt=0/siz=2/image=0x04001090; G_SETTILESIZE bounds 0..124 (10.2); G_LOADBLOCK lrs=1023/dxt=256"
+    },
+    {
+      "name": "Mario metal texture candidate",
+      "segment4_range": "0x90..0x1090",
+      "bytes": 4096,
+      "sha256": "8BD005B56B9E31F71C54E7A146A92EEB2E00996A9ED4928C61D4DEE986C56E11"
+    },
+    {
+      "name": "butt display list",
+      "segment4_range": "0xCA00..0xCC98",
+      "bytes": 664,
+      "sha256": "692A5C0FEA7CAA08D6435965EF4FAFE6DA7910EFD157D0693388293FFD7B686B",
+      "gfx_opcode_counts": {
+        "0x04": 10,
+        "0xBF": 72,
+        "0xB8": 1
+      }
+    },
+    {
+      "name": "shared butt list",
+      "segment4_range": "0xCC98..0xCCC8",
+      "bytes": 48,
+      "sha256": "D2CAD4B2E0329B386088A64CD1AE11F7A4877A66122BA581CA83EF876AB05C58"
+    }
+  ],
+  "scope": {
+    "not_included": [
+      "complete actor/course asset catalog (issue 15)",
+      "complete RSP/microcode/hardware analysis (issue 16)",
+      "complete asset decoder/loading workflow (issue 51)",
+      "title/menu camera ownership (issue 49 follow-up)"
+    ],
+    "limitations": [
+      "vertex record layout not decoded",
+      "non-player/course format variation not surveyed",
+      "counter-equal reads can still be non-atomic",
+      "no raw traces, screenshots, save states, ROM, or decoded assets published"
+    ]
+  }
+}

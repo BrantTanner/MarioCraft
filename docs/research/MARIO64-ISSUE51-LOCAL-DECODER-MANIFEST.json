@@ -1,0 +1,245 @@
+{
+  "schema": "mariocraft-issue51-local-validation-v1",
+  "rom": {
+    "title": "Mario USA rev 0",
+    "sizeBytes": 8388608,
+    "sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "published": false
+  },
+  "workflow": {
+    "script": "docs/research/mario64-issue51-local.py",
+    "scriptSha256": "12F8B0BE847A00287B30412D1741E04824BA0122FF626F2DB98AE8FA9374C871",
+    "runtime": "Python 3.13.15, standard library only",
+    "outputPolicy": "Generated asset outputs are restricted to tools/issue11-local/issue51-decoded, ignored by Git",
+    "reloadedFormats": [
+      "PNG RGBA8",
+      "Wavefront OBJ subset",
+      "GeoLayout skeleton subset JSON",
+      "animation JSON",
+      "WAV PCM16 mono"
+    ],
+    "oracleHelper": {
+      "path": "docs/research/mario64-issue51-audio-oracle.py",
+      "sha256": "70FFD2284E376F6DF3B516155394643E7AF255B13CA9624F34F1F3C94AD318E3"
+    },
+    "publicationCandidates": [
+      "docs/research/MARIO64-ISSUE51-LOCAL-DECODER.md",
+      "docs/research/mario64-issue51-local.py",
+      "docs/research/mario64-issue51-audio-oracle.py",
+      "docs/research/MARIO64-ISSUE51-LOCAL-DECODER-MANIFEST.json"
+    ]
+  },
+  "validatedClasses": [
+    {
+      "class": "MIO0 segment-4 bank",
+      "romRange": "0x114750..0x1279B0",
+      "decodedBytes": 217976,
+      "decodedSha256": "2FB26A131C645493A884642360E6355FB4EEE2C5C4B2C205624D2008CDBAC1C4",
+      "independentRuntimeEvidence": "Full decoded hash matches the existing #48 live segment-4 read"
+    },
+    {
+      "class": "RGBA16 texture",
+      "segment4Range": "0x1090..0x1890",
+      "bytes": 2048,
+      "sha256": "1BEBDBC8AC4921C0A38852CC640FB531AAD64E82A047791CF40648EE27667559",
+      "shape": [
+        32,
+        32
+      ],
+      "independentFieldCheck": "Selected pixel fields checked by canonical digest; values remain private"
+    },
+    {
+      "class": "F3D vertex and triangle subset",
+      "vertexSegment4Range": "0xC090..0xC180",
+      "vertexBytes": 240,
+      "vertexSha256": "DEE91D706F0875AABC1ECBECEC4413AEED01C770685D23AFFADFC744AB8F8DB8",
+      "displayListSegment4Range": "0xCA00..0xCC98",
+      "displayListBytes": 664,
+      "displayListSha256": "692A5C0FEA7CAA08D6435965EF4FAFE6DA7910EFD157D0693388293FFD7B686B",
+      "decodedSubset": {
+        "vertices": 15,
+        "triangles": 6
+      },
+      "independentFieldCheck": "Selected vertex fields checked by canonical digest; values remain private"
+    },
+    {
+      "class": "GeoLayout skeleton subset",
+      "romRange": "0x127EEC..0x127F50",
+      "bytes": 100,
+      "sha256": "19A639705B8B779A388B9FE753B9B73D0C7544869068CE1C6F13BC9502374805",
+      "decodedSubset": {
+        "nodes": 5,
+        "commandRecords": 13
+      },
+      "coverage": "Animated root, butt, rotation, torso, one child; callback words and branch target uninterpreted"
+    },
+    {
+      "class": "Animation 114",
+      "romRange": "0x53F138..0x54035A",
+      "bytes": 4642,
+      "sha256": "91473B0B32A6326CC2AC0DBF019DEAD837C9270F50ECC77C0A6235720FFF995B",
+      "decodedSubset": {
+        "tracks": 63,
+        "signedValues": 2171
+      },
+      "independentFieldCheck": "Six selected track/frame samples checked by canonical digest; values remain private"
+    },
+    {
+      "class": "Order-2 VADPCM instrument 0 sample",
+      "sampleRomRange": "0x5936A0..0x593D8E",
+      "sampleBytes": 1774,
+      "sampleSha256": "D6D58E52B91976C735A29EE344260F85CA0B785EFF118758282DC586C45359F0",
+      "completeFrames": 197,
+      "decodedSamples": 3152,
+      "pcmSha256": "EA7849B2B490E402B2C5A24FED4AD3382E161CF17EA5724A57B67524C35F1941",
+      "boundary": "One trailing byte left opaque; nominal loop end 3153 differs by one sample"
+    },
+    {
+      "class": "Order-2 VADPCM instrument 2 sample",
+      "sampleRomRange": "0x596660..0x59698A",
+      "sampleBytes": 810,
+      "sampleSha256": "CFCB907835F9B94FE42152043D34F4D676D2B0C5A3F85AC47FCB1A29DA0CC8C3",
+      "completeFrames": 90,
+      "decodedSamples": 1440,
+      "pcmSha256": "82047EE03497C63DFDB80EB1254D85B76A82B080EB128978F6739A22F47F69C2",
+      "boundary": "Decoded length agrees with nominal loop end"
+    }
+  ],
+  "audioOracle": {
+    "repository": "depp/vadpcm",
+    "commit": "413d52043a928c5fac066ccda1e69b73c7f7132b",
+    "decodeSourceGitBlob": "8f57ec296973d5ceb3107b085863545578973c6e",
+    "decodeSourceSha256": "C03BB813209667F733628E7A91F72FCB200AD7A565778017C135EEA1EB0B1A18",
+    "headerGitBlob": "24161626f46ecbe46d0ee166e608daa5b340a0a4",
+    "headerSha256": "43262C330980946E845B4FD7A5DC5C86B359E70731B880C68614E9146C6FB61D",
+    "oracleDllSha256": "75A1E9DB2AD44239B3CAA06E81DEFD1D1A7D3BF44BA3584E5D0947488738A753",
+    "compiler": "MSVC 19.50.35720.0 x64, C11, /O2 /LD /Drestrict=__restrict",
+    "result": "Both complete-frame PCM hashes match the separately compiled C implementation"
+  },
+  "unsupported": [
+    "Non-RGBA16 texture formats, palettes, mipmaps, and texture animation",
+    "Full model assembly, additional mesh batches, and display-list state",
+    "Full GeoLayout traversal, unknown commands, and branch targets",
+    "Other animation IDs, runtime blending/interpolation, and playback policy",
+    "Other audio codecs, stereo, full banks, sequence bytecode, exact pitch/sample rate, effects, and runtime output"
+  ],
+  "privateMaterialExcluded": [
+    "ROM and ROM fragments",
+    "All decoded/extracted image, geometry, animation, and audio data",
+    "Private scalar-validation fixtures and oracle inputs/outputs",
+    "Saves, raw RAM, local captures, and generated previews"
+  ],
+  "independentSelectedFieldDigests": {
+    "vertices": "8BB477862AD756AC1F75604F8EA5F7B2A763EEA9AC635896F6F81D1F38854F64",
+    "texturePixels": "FEBB0D571719A262E36BA393DC981B2036F3723413A2336CDCA53258EBB4EAF0",
+    "animationSamples": "409DC8A1C47EBD802177D87E36879779DE2F0176595DDCEEA79A2F5B04998635",
+    "note": "Canonical digests of independently selected scalar fields; selected field values omitted"
+  },
+  "independentImageLoader": {
+    "tool": "Pillow",
+    "version": "12.3.0",
+    "python": "3.12.14",
+    "result": "32x32 RGBA",
+    "decodedPixelSha256": "E83281C79B10DFDBFD0EFBC1887B7839D302FBCE0D67705A62C32EBECAFB3C87"
+  },
+  "geoLayoutTargetRanges": [
+    {
+      "label": "manual open-node instruction window",
+      "pcRange": [
+        "0x8037cfc0",
+        "0x8037d010"
+      ],
+      "romRange": [
+        "0xf9d40",
+        "0xf9d90"
+      ],
+      "bytes": 80,
+      "sha256": "9032D549A28A1D02BD7B82607B83041A330EBA65CDB75429AC5125C135E05B7D",
+      "matching": "whole-block unique ROM match"
+    },
+    {
+      "label": "manual close-node instruction window",
+      "pcRange": [
+        "0x8037d018",
+        "0x8037d048"
+      ],
+      "romRange": [
+        "0xf9d98",
+        "0xf9dc8"
+      ],
+      "bytes": 48,
+      "sha256": "B1D59A96F69C5B24DFB23960B3D38E4FC1CB164EF90382CDF72DB1F3EA1C5EC6",
+      "matching": "whole-block unique ROM match"
+    },
+    {
+      "label": "rotation argument reader",
+      "pcRange": [
+        "0x8037cbfc",
+        "0x8037cc64"
+      ],
+      "romRange": [
+        "0xf997c",
+        "0xf99e4"
+      ],
+      "bytes": 104,
+      "sha256": "52E81D7DC259B79FAF4C9D8953E21774843C4F2214FE34FD70ABF2014E60E5FD",
+      "matching": "whole-block unique ROM match"
+    },
+    {
+      "label": "rotation node handler",
+      "pcRange": [
+        "0x8037d998",
+        "0x8037da5c"
+      ],
+      "romRange": [
+        "0xfa718",
+        "0xfa7dc"
+      ],
+      "bytes": 196,
+      "sha256": "0DB27C4D6B30D41BA25F941C6A330131EA4221577AB07585CAFCD1342CD404A3",
+      "matching": "whole-block unique ROM match"
+    },
+    {
+      "label": "animated part handler",
+      "pcRange": [
+        "0x8037db74",
+        "0x8037dc10"
+      ],
+      "romRange": [
+        "0xfa8f4",
+        "0xfa990"
+      ],
+      "bytes": 156,
+      "sha256": "B1A57886005C6A165A84B5A7D9517D3D5D1C356EC855D97A60C9090D4B9A326C",
+      "matching": "whole-block unique ROM match"
+    },
+    {
+      "label": "callback node handler",
+      "pcRange": [
+        "0x8037de34",
+        "0x8037de94"
+      ],
+      "romRange": [
+        "0xfabb4",
+        "0xfac14"
+      ],
+      "bytes": 96,
+      "sha256": "39655955F726AD5689ACBC2F41C114F90536EF70017B825905EB426B459A868D",
+      "matching": "whole-block unique ROM match"
+    },
+    {
+      "label": "graph attach helper",
+      "pcRange": [
+        "0x8037cc74",
+        "0x8037cd60"
+      ],
+      "romRange": [
+        "0xf99f4",
+        "0xf9ae0"
+      ],
+      "bytes": 236,
+      "sha256": "3640EC647561882F5CB15641AFB88D71968702FA59226DA1687B4F6FEA60CB52",
+      "matching": "whole-block unique ROM match"
+    }
+  ]
+}

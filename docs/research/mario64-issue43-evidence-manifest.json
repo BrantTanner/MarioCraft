@@ -1,6 +1,6 @@
 {
-  "schema": "mario64-issue43-evidence-manifest-v1",
-  "status": "partial; issue 43 remains open",
+  "schema": "mariocraft-issue43-evidence-manifest-v2",
+  "status": "integrated evidence from completed followups; parent issue remains open for aggregate review",
   "target": {
     "rom": "Super Mario 64 USA rev0",
     "romBytes": 8388608,
@@ -8,132 +8,97 @@
     "originalRom": "preserved read-only; analysis copy loaded byte-identically",
     "emulator": "Project64 3.0.1.5664-2df3434",
     "emulatorSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
-    "localExecutable": "tools/issue11-local/pj64-portable/Project64.exe",
     "controller": "N-Rage; Real N64 Range; stick range 100; deadzone 5"
   },
   "sourceNavigation": {
+    "repository": "n64decomp/sm64",
     "commit": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
-    "use": "candidate labels only; exact USA rev0 claims are based on ranges below",
-    "repository": "n64decomp/sm64"
+    "use": "Candidate names and comments only; USA rev0 behavior is based on exact ROM evidence."
   },
   "romMapping": {
-    "pcToRom": "ROM offset = PC - 0x80245000 for mapped range; ROM offsets 0x1000..0xE855F",
-    "sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91"
+    "pcToRom": "PC = 0x80245000 + ROM offset",
+    "validatedRomOffsets": "0x1000..0xE855F inclusive",
+    "sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "engineFunctionRule": "Functions outside the linear map are reported only with independent exact byte-match evidence; no global base is extrapolated."
   },
-  "verifiedConsumerRanges": [
-    {
-      "name": "floor type to floor class mapper",
-      "pc": "0x8025177C",
-      "rom": "[0xC77C,0xC8A8)",
-      "sha256": "E0B4CD9EC8A47CE0C87BB0100570B78F4C5A2BC1EB5138C262C93CC62999A70F"
+  "inventory": {
+    "csvPath": "docs/research/mario64-issue43-surface-inventory.csv",
+    "sourceListedIds": 147,
+    "exactRomConsumerVerified": 99,
+    "geoAsmRendererVerifiedPerIdMappingUnresolved": 45,
+    "boundedSourceOnly": 3,
+    "sourceOnlyIds": ["0x0D", "0x16", "0x68"],
+    "currentCsvBlobSha": "2dd49bbc9aa5a30b0c821dc3b9581e90cc4d2ebf",
+    "currentCsvSha256": "4D2700D77390F497CE2C6B7662AE61B9F148B2992307D52C913C85176965767F",
+    "obsoleteCounts": "The earlier 26/101/19/1 breakdown is superseded by the census statuses above."
+  },
+  "followups": {
+    "issue45": {
+      "status": "completed",
+      "commit": "c9bd20ca05e3058a48e9516d27762d73d2ba8073",
+      "dossierPath": "docs/research/MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "dossierSha256": "D613DFC3F1C3BE441029837D96920D35C8ABB84D7C7EB7610A350D813115924F",
+      "manifestPath": "docs/research/mario64-issue45-evidence-manifest.json",
+      "mappingAuditPath": "docs/research/mario64-issue45-mapping-audit.json",
+      "mappingAuditSha256": "9FD4111AA127384CEEAD254281B528197A05303370CEF981F65AEF9847145A42",
+      "mappingAuditScriptPath": "docs/research/mario64-issue45-mapping-audit.py",
+      "mappingAuditScriptSha256": "437201BF444017AF21F60CC0E96CFEBF2772DE50EEFCF1CB1DA1ABBF2DE1FFB2",
+      "scopeLimit": "Bounded search across 3,367 mapped-PC procedures, a six-function collision-pointer pass, selected pinned-source files, and targeted target code/data scans."
     },
-    {
-      "name": "walking floor-class consumer",
-      "pc": "0x802529E4",
-      "rom": "[0xD9E4,0xDBD4)",
-      "sha256": "3F6795A87ABF1CD6CFBE4FBC57ABB880A2CAB9E41801B9943B8FAADF92E9BEC8"
-    },
-    {
-      "name": "quicksand update",
-      "pc": "0x80255414",
-      "rom": "[0x10414,0x10654)",
-      "sha256": "87332F31C02FA00CAB8599571FFC1EE2A5F3FB0AE17F77119EB3E5E85430B7B7"
-    },
-    {
-      "name": "moving-floor force",
-      "pc": "0x8025570C",
-      "rom": "[0x1070C,0x1080C)",
-      "sha256": "844A96F8A9EF2449EDC63BDE93BCBAE016C0E8C591FDFF682297B1266CE39A10"
-    },
-    {
-      "name": "horizontal-wind consumer",
-      "pc": "0x8025580C",
-      "rom": "[0x1080C,0x109B0)",
-      "sha256": "0399104BA593E77B14A95D045E33DEA754DA93C929B21121AE918C1B86560871"
-    },
-    {
-      "name": "air quarter-step wall/ceiling query",
-      "pc": "0x802560AC",
-      "rom": "[0x110AC,0x114E0)",
-      "sha256": "FD272B7C245D6F2DA296C503F9E350B19544FD8181D479C102BEC609035647B8"
-    },
-    {
-      "name": "MarioState water-level field read",
-      "pc": "0x802518A8",
-      "rom": "[0xC8A8,0xCA48)",
-      "sha256": "631FA3592EAAF41F57359BCC0274011DF6BBD8141F38E7BE470FCE692CB249ED"
+    "issue46": {
+      "status": "completed",
+      "commit": "2fc7660bb2b2c8618e13d8a07dc8661897e784c6",
+      "dossierPath": "docs/research/MARIO64-ISSUE46-WATER-LAVA-RUNTIME.md",
+      "dossierSha256": "C31AF0FBF31755E537850649CCE79D26F8C63FE35FABA34EEAA8CD1285A6569E",
+      "waterEvidencePath": "docs/research/mario64-issue46-water-runtime-evidence.json",
+      "waterEvidenceSha256": "21D6997C8FF2BFA88967436E4F72B1F3306F123A12173B2FE5EACF88A38D0D9B",
+      "lavaEvidencePath": "docs/research/mario64-issue46-lava-runtime-evidence.json",
+      "lavaEvidenceSha256": "ADE1681944291455E6D13B7D5C58BE8CD61C46D4170B1D0B33B6F779A3BE68D9",
+      "executedCaptureScriptPath": "docs/research/mario64-issue46-basement-door-entry-capture.ps1",
+      "executedCaptureScriptSha256": "34D93E10D372E1F65B68BD148122A27259D6F5093EF73D7EDAB89E027A4834C8"
     }
-  ],
-  "publishedFiles": [
-    {
-      "path": "docs/research/mario64-issue43-surface-inventory.csv",
-      "description": "147 candidate IDs and evidence statuses",
-      "blobSha": "6fa1e0cfa0a04ce5bd8891fc9184dc41c374b1fb"
-    },
-    {
-      "path": "docs/research/MARIO64-ISSUE43-SPECIAL-SURFACES.md",
-      "description": "partial dossier and acceptance limits",
-      "blobSha": "8fc6f35849eff1c55a3baadf1e87338959a0e6d6"
-    },
-    {
-      "path": "docs/research/mario64-issue43-runtime-samples.json",
-      "description": "selected sanitized scalar samples",
-      "blobSha": "790dddbb272d54475e2b6988d0bb5c5713a7d9a5"
-    },
-    {
+  },
+  "priorIssue43Evidence": {
+    "sampler": {
       "path": "docs/research/mario64-issue43-external-capture.ps1",
       "sha256": "2A967CDB334D249DE5D18AEF20F9B96B903A9CCEFCFD718DF980F85B9FD1AB24",
-      "description": "separate read-only sampler, includes waterLevelS16 from MarioState+0x76",
-      "blobSha": "758d079eac21877bab7560d44b88b66dfc9d42a4",
-      "sha256Description": "SHA-256 of the exact published sampler bytes (12,579 bytes)"
+      "shaDescription": "Exact published sampler bytes, 12,579 bytes; read-only external capture including signed waterLevelS16 at MarioState+0x76."
+    },
+    "sanitizedRuntimeSamples": {
+      "path": "docs/research/mario64-issue43-runtime-samples.json",
+      "blobSha": "790dddbb272d54475e2b6988d0bb5c5713a7d9a5",
+      "status": "Earlier #43 dry-floor water-level observation and selected samples; retained as provenance, superseded for water-entry evidence by #46."
+    },
+    "failedWaterRoute": {
+      "trace": "tools/issue11-local/pj64-portable/issue43-water-entry-06.jsonl",
+      "sha256": "F23ED48BE712456F4F2059FA9AAD68FF6B82A40A34ABA1BBDB96F024B990A70D",
+      "rows": 240,
+      "equalCounterBracketRows": 199,
+      "result": "Reached steep floor 0x13 and slid downhill; a driver hashtable bug resolved every active pulse to AnalogUp. This is not a completed water-route execution."
+    },
+    "earlierDryFloorWaterRead": {
+      "trace": "tools/issue11-local/pj64-portable/issue43-waterbox-lower-seed-01.jsonl",
+      "sha256": "5A137222E97B09FC95FB3A035CEF9350B591564614B64B885C681B2A1BB1B72C",
+      "result": "Water level -81 inside box footprint while Mario stood on floor type 0 at Y 803; field read only."
     }
-  ],
-  "inventoryCounts": {
-    "sourceListedIds": 147,
-    "exactRomConsumersVerified": 26,
-    "sourceOnlyConsumerUnresolved": 101,
-    "sourceCommentUnusedAbsenceUnproven": 19,
-    "runtimeOnlyConsumerUnverified": 1
   },
-  "localEvidence": {
-    "traces": [
-      {
-        "trialId": "issue43-waterbox-lower-seed-01",
-        "path": "tools/issue11-local/pj64-portable/issue43-waterbox-lower-seed-01.jsonl",
-        "sha256": "5A137222E97B09FC95FB3A035CEF9350B591564614B64B885C681B2A1BB1B72C",
-        "metadataPath": "tools/issue11-local/pj64-portable/issue43-waterbox-lower-seed-01.metadata.json",
-        "metadataSha256": "AD9A0375928A60B5D2A07A3426EFB5090E0FA826A6B9307828439842EA90C3B2",
-        "result": "water level -81 inside box footprint; floor type 0, floorY 803; dry-floor field read only"
-      },
-      {
-        "trialId": "issue43-water-entry-06",
-        "path": "tools/issue11-local/pj64-portable/issue43-water-entry-06.jsonl",
-        "sha256": "F23ED48BE712456F4F2059FA9AAD68FF6B82A40A34ABA1BBDB96F024B990A70D",
-        "metadataPath": "tools/issue11-local/pj64-portable/issue43-water-entry-06.metadata.json",
-        "metadataSha256": "0C8D9E40193D80AA63FE69084FB85C050F1CA53D049524D772D980DA6A4F5392",
-        "rows": 240,
-        "equalCounterBracketRows": 199,
-        "result": "steep floor type decimal 19 (0x13), uphill stick held; speed reversed and Mario slid downhill, no swimming or wall contact"
-      }
-    ],
-    "inputEdgesPath": "tools/issue11-local/issue40-project64-input-log.jsonl",
-    "inputEdgesSha256": "78A2F7B6878538FA3D17FBDE9C5F01B5135B5FAB8CB234586FEE71A312486044",
-    "inputEdgesStatus": "local guarded-helper event log; not published"
+  "runtimeConclusions": {
+    "water": "#46 observed one bounded below-threshold entry and water actions, plus one A-stroke sequence. Water level -81 is distinct from floor type. Runtime Y=-161 (waterLevel-80) is observed; exact-ROM clamp mechanism is unproved. Action 0x300024D2 appears as previousAction on a sampled 0x300024D1 row; no current-action D2 row or D2 exit predicate is established.",
+    "lava": "#46 observed floor type 1 contact followed by numeric action 0x010208B7, corroborated by exact ROM ranges [0xB7FC,0xB93C) and [0xB65C,0xB724). 274 observations span 5.932 host seconds with repeated loop counters; they are not 274 simulation frames. HUD lives changed 4 to 3 after respawn. No health field/decrement was measured; MarioState+0xB2 is not labeled health.",
+    "unobservedRuntimeFamilies": ["quicksand", "wind/current force", "moving-platform force", "hanging/climbing contact", "death plane", "painting/camera/course-only behavior"],
+    "scope": "Finite representative trials and bounded static target search, not all placements, parameter values, frames, or reachable consumers."
   },
-  "driver": {
-    "localPath": "tools/issue11-local/issue43-water-route-driver.ps1",
-    "sha256": "B1B8ACAE6A790552CA60BCBE345B1EB4133FB8AE95F80DC0F720D4BB78F45A46",
-    "status": "Corrected bounded driver syntax-checked after trial 06 but neither executed nor published. Trial 06 used the earlier hashtable-key bug; all active pulses resolved to AnalogUp."
-  },
-  "archiveProvenance": "Sanitized scalar traces and helper input log remain at the local paths above; no separate archive was created. Original ROM is preserved; no ROM, raw RAM dump, save state, or copyrighted game asset is published.",
-  "limits": [
-    "No runtime water entry/swim, lava/burn, damage/heal, launch, climb/hang, or death transition is established.",
-    "The exact-ROM consumer scan is partial; source labels and unused comments do not prove USA rev0 references or absence.",
-    "Runtime snapshots are external process reads bracketed by a non-atomic loop counter, not atomic emulator-frame captures."
+  "publishedFiles": [
+    {"path": "docs/research/MARIO64-ISSUE43-SPECIAL-SURFACES.md", "role": "Integrated #43 acceptance audit and cross-followup dossier."},
+    {"path": "docs/research/mario64-issue43-evidence-manifest.json", "role": "Integrated provenance and artifact manifest."},
+    {"path": "docs/research/mario64-issue43-surface-inventory.csv", "role": "147-ID current census crosswalk; published with #45."},
+    {"path": "docs/research/MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md", "role": "Full static consumer census."},
+    {"path": "docs/research/MARIO64-ISSUE46-WATER-LAVA-RUNTIME.md", "role": "Bounded runtime observations and recipes."}
   ],
-  "followUps": [
-    "https://github.com/BrantTanner/MarioCraft/issues/45",
-    "https://github.com/BrantTanner/MarioCraft/issues/46"
-  ],
-  "integrityNote": "GitHub blob SHAs identify the exact published bytes for the four files listed. The issue 43 documentation contents endpoint adds terminal CRLF on some files; local mirror copies were synchronized from fetch_file encoding=base64 after publication."
+  "privacyAndCaptureLimits": [
+    "ROM, copyrighted assets, save states, and full raw traces remain local.",
+    "External process reads are non-atomic snapshots bracketed by a loop counter.",
+    "Static coverage does not establish active-level placement or behavior for every candidate ID.",
+    "No health decrement, exact friction coefficient, quicksand runtime, or hang/death runtime is claimed."
+  ]
 }

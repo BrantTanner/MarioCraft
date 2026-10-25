@@ -1,0 +1,20 @@
+{
+  "schema": "mario64-issue43-evidence-manifest-v1",
+  "status": "partial; issue 43 remains open",
+  "target": {"rom":"Super Mario 64 USA rev0","romBytes":8388608,"romSha256":"17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91","emulator":"Project64 3.0.1.5664-2df3434","emulatorSha256":"C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8"},
+  "published": [
+    {"path":"docs/research/mario64-issue43-surface-inventory.csv","description":"147 candidate IDs with decimal/hex values, candidate family, scope and target evidence status"},
+    {"path":"docs/research/MARIO64-ISSUE43-SPECIAL-SURFACES.md","description":"partial findings, exact-ROM ranges/hashes, runtime notes, acceptance and limits"},
+    {"path":"docs/research/mario64-issue43-runtime-samples.json","description":"selected sanitized scalar rows only"},
+    {"path":"docs/research/mario64-issue43-external-capture.ps1","sha256":"FF4F3BB89EF8AC4DA043C54F99948E6B452582B53F69275C5F00F49A98AF7080","description":"read-only issue 43 sampler with signed MarioState waterLevelS16 at +0x76"}
+  ],
+  "inventoryCounts": {"sourceListedIds":147,"exactRomConsumersVerified":26,"sourceOnlyConsumerUnresolved":101,"sourceCommentUnusedAbsenceUnproven":19,"runtimeOnlyConsumerUnverified":1},
+  "localOnlyEvidence": [
+    {"trialId":"issue43-waterbox-lower-seed-01","traceSha256":"5A137222E97B09FC95FB3A035CEF9350B591564614B64B885C681B2A1BB1B72C","result":"water level -81 inside box footprint; floor type 0, floorY 803; dry-floor read only"},
+    {"trialId":"issue43-water-entry-06","traceSha256":"F23ED48BE712456F4F2059FA9AAD68FF6B82A40A34ABA1BBDB96F024B990A70D","rows":240,"equalCounterBracketRows":199,"result":"surface type decimal 19 (0x13), uphill stick held, speed reversed and Mario slid downhill; no swimming or wall contact"},
+    {"path":"tools/issue11-local/issue40-project64-input-log.jsonl","sha256":"78A2F7B6878538FA3D17FBDE9C5F01B5135B5FAB8CB234586FEE71A312486044","result":"local guarded-helper key edges/timestamps; not published"}
+  ],
+  "driver": {"localPath":"tools/issue11-local/issue43-water-route-driver.ps1","sha256":"B1B8ACAE6A790552CA60BCBE345B1EB4133FB8AE95F80DC0F720D4BB78F45A46","revisionStatus":"corrected bounded driver was syntax-checked after trial 06 but not executed or published; trial 06 used the earlier hashtable-key bug and all active pulses resolved to AnalogUp"},
+  "limits": ["No runtime water entry/swim, lava/burn, damage/heal, launch, climb/hang or death transition is established.","The exact-ROM scan is partial; source labels and unused comments do not prove USA rev0 references or absence.","Complete traces and input logs remain local; no ROM, save state, raw RAM or copyrighted asset is included."],
+  "followUps": ["https://github.com/BrantTanner/MarioCraft/issues/45","https://github.com/BrantTanner/MarioCraft/issues/46"]
+}

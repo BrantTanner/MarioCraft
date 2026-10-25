@@ -1,0 +1,213 @@
+{
+  "title": "Super Mario 64 USA issue 41 evidence manifest",
+  "scope": "Hashes identify local source/evidence artifacts. Full runtime traces, ROM bytes, and save-state bytes are not included in this public package.",
+  "rom": {
+    "sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "sizeBytes": 8388608
+  },
+  "runtimeIdentity": {
+    "project64Version": "3.0.1.5664",
+    "project64ExeSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "nRageDllSha256": "8B06D0BC29DEC6233640400E15051B945923BB6283E290B40AF64016992E6C20",
+    "controller1": "Real N64 Range enabled; stick range 100; deadzone 5"
+  },
+  "addressMapping": "PC = 0x80245000 + ROM file offset, for offsets 0x1000..0xE855F",
+  "romRanges": [
+    {
+      "romEndExclusive": "0x28B54",
+      "sha256": "8FF2C234A346EC918B2B76D3728CF3A1E067619B5FA8F1418CF6CE14D3D4AF59",
+      "bytes": 460,
+      "romStart": "0x28988",
+      "name": "air-hit wall handler"
+    },
+    {
+      "romEndExclusive": "0x2B104",
+      "sha256": "E366613697BA39353876676AEB6C187F108610B8553D3241E2C32F1ECD30F680",
+      "bytes": 1536,
+      "romStart": "0x2AB04",
+      "name": "airborne action dispatcher"
+    },
+    {
+      "romEndExclusive": "0x0FB20",
+      "sha256": "8881CEDD4B56C6E555C21208D5BDC83C768E6955BBA75DB02A0175C5903FD790",
+      "bytes": 752,
+      "romStart": "0x0F830",
+      "name": "action update caller"
+    },
+    {
+      "romEndExclusive": "0x283C4",
+      "sha256": "D119092ADE9BD5059F353F377DE08EBF75E849E8268EE4BE8E34286DCCCFDA00",
+      "bytes": 136,
+      "romStart": "0x2833C",
+      "name": "late soft-bonk wall-kick gate"
+    },
+    {
+      "romEndExclusive": "0x0DE58",
+      "sha256": "1E210F62F404D4BE0E0CD008271C03D47D1166BDF85FE25D50B0B3242918F0BC",
+      "bytes": 356,
+      "romStart": "0x0DCF4",
+      "name": "common action setter"
+    },
+    {
+      "romEndExclusive": "0x0D9E4",
+      "sha256": "2F4D27121501375336334575B07ED17E1C42BDAD2DB3409C849318488711E84A",
+      "bytes": 1412,
+      "romStart": "0x0D460",
+      "name": "wall-kick transition setup"
+    }
+  ],
+  "runtime": [
+    "Contact control trial 36: full 1,033-host-poll trace begins at sequence 0; wall hit at seq 549/counter 53616, soft bonk at seq 550/counter 53617, no second A edge.",
+    "Late trial 38: direct 0x000008A7 -> 0x010208B6 -> 0x03000886; previousAction at kick = 0x010208B6.",
+    "Early trial 39: direct 0x000008A7 -> 0x03000886; previousAction at kick = 0x000008A7."
+  ],
+  "artifacts": [
+    {
+      "projectPath": "docs/research/MARIO64-ISSUE41-WALL-KICKS.md",
+      "published": true,
+      "artifact": "report",
+      "sha256": "74E30FC14EF85D307C71AD668A121F117DCE187FF85F6F9BD74C1EE865CF74B4",
+      "bytes": 13721
+    },
+    {
+      "projectPath": "docs/research/MARIO64-ISSUE41-WALL-KICK-TRACE-SAMPLES.json",
+      "published": true,
+      "artifact": "sanitized_samples",
+      "sha256": "C503A0261947FD2673CA61392B85E80BA15FFFDB4BDF955C330E764B7DB14335",
+      "bytes": 52592
+    },
+    {
+      "projectPath": "docs/research/issue39-project64-input.ps1",
+      "published": true,
+      "artifact": "shared_bounded_input_helper",
+      "sha256": "C82B9AEAE0651C2EA964D22D310D5CCBA550CE517F0036DAA987AFB1D839D169",
+      "bytes": 9049
+    },
+    {
+      "projectPath": "docs/research/mario64-issue41-find-rdram-base.ps1",
+      "published": true,
+      "artifact": "rdram_locator",
+      "sha256": "B28006FE44279C08B14CA085E8DD6045A441E7EB6B43A105DA79958F90DDDED6",
+      "bytes": 8148
+    },
+    {
+      "projectPath": "docs/research/mario64-issue41-external-capture-38.ps1",
+      "published": true,
+      "artifact": "sampler_late",
+      "sha256": "7317104526076987228CDF9F9FA458653D1C88D4D3D5489A2C51E8ECDA30D2E3",
+      "bytes": 11657
+    },
+    {
+      "projectPath": "docs/research/mario64-issue41-external-capture-39.ps1",
+      "published": true,
+      "artifact": "sampler_early",
+      "sha256": "B4B0D1AC731D44F55DBCE586D19CF389782553A644099A4E69F87C370045B938",
+      "bytes": 11658
+    },
+    {
+      "projectPath": "docs/research/mario64-issue41-late-wall-kick-38.ps1",
+      "published": true,
+      "artifact": "driver_late",
+      "sha256": "CD176E122251B4D69BA04B7579E210EEB3D689BF80E6623CD0E076A74365DCFE",
+      "bytes": 13558
+    },
+    {
+      "projectPath": "docs/research/mario64-issue41-early-wall-kick-39.ps1",
+      "published": true,
+      "artifact": "driver_early",
+      "sha256": "D432E62FA2215DD29246CFF7F03081A4FC148FFF16305D8DB45330852D15220A",
+      "bytes": 13355
+    },
+    {
+      "projectPath": "tools/issue11-local/issue41-late-wall-kick-38.ps1",
+      "published": false,
+      "artifact": "captured_driver_late",
+      "sha256": "433003F1A271BF4F36DBAC26A860A1B98B37678D21BB32C69E6067D7D5A5E633",
+      "bytes": 13357
+    },
+    {
+      "projectPath": "tools/issue11-local/issue41-early-wall-kick-39.ps1",
+      "published": false,
+      "artifact": "captured_driver_early",
+      "sha256": "588E2B2BD7265AC9B4181B1982894B93EE78796285CF074C75EE28BF16E5442B",
+      "bytes": 13154
+    },
+    {
+      "projectPath": "tools/issue11-local/issue41-external-capture-38.ps1",
+      "published": false,
+      "artifact": "captured_sampler_late",
+      "sha256": "3300E83114336790B13618233BFF9F3636B3FFCCDC69DF80E66C704D09D35BC3",
+      "bytes": 11306
+    },
+    {
+      "projectPath": "tools/issue11-local/issue41-external-capture-39.ps1",
+      "published": false,
+      "artifact": "captured_sampler_early",
+      "sha256": "044C0D2272DDD1187AE891BB84B5DA39C1F29C2EC2645E25977219965DEBB0AA",
+      "bytes": 11307
+    },
+    {
+      "projectPath": "tools/issue11-local/pj64-portable/issue41-late-wall-kick-36.jsonl",
+      "published": false,
+      "artifact": "full_trace_contact_control",
+      "sha256": "B8752D41DAEF37B2CC0A5FA2DDC0F19AE7D0C05A051A31D715B0D113B3EF105F",
+      "bytes": 1113100
+    },
+    {
+      "projectPath": "tools/issue11-local/pj64-portable/issue41-late-wall-kick-38.jsonl",
+      "published": false,
+      "artifact": "full_trace_late",
+      "sha256": "5ECFA2B86B1F041221D0E3DFC65B6F21AD72507F4857B3638D3183B3886474C8",
+      "bytes": 1393997
+    },
+    {
+      "projectPath": "tools/issue11-local/pj64-portable/issue41-early-wall-kick-39.jsonl",
+      "published": false,
+      "artifact": "full_trace_early",
+      "sha256": "842B9A712FFB882C1038F5A59264FE2EEE73F360D2419060373292858A0F2999",
+      "bytes": 1724956
+    },
+    {
+      "projectPath": "tools/issue11-local/traces/issue41-late-wall-kick-36-events.jsonl",
+      "published": false,
+      "artifact": "events_contact_control",
+      "sha256": "CA97DA0FEA36B7277BE7393F2C425B19C75ACE4D2AA6157C2B8EB235697C2A20",
+      "bytes": 6597
+    },
+    {
+      "projectPath": "tools/issue11-local/traces/issue41-late-wall-kick-38-events.jsonl",
+      "published": false,
+      "artifact": "input_events_late",
+      "sha256": "50D24127067B0832977B11DBE8AC384852F48E0A38756E80B89CA6054BA4F515",
+      "bytes": 8631
+    },
+    {
+      "projectPath": "tools/issue11-local/traces/issue41-early-wall-kick-39-events.jsonl",
+      "published": false,
+      "artifact": "input_events_early",
+      "sha256": "10DCA0926A926CD3B0703BA5139FA150298F50A71553262E708FDD22653AEC1F",
+      "bytes": 9888
+    },
+    {
+      "projectPath": "tools/issue11-local/issue35-mario-gameplay-baseline.pj.zip",
+      "published": false,
+      "artifact": "seed_courtyard",
+      "sha256": "6E2C8265A8A9A19761BCC6CE29FA20694FAD5444B325B1F22CA987776A2D6DFE",
+      "bytes": 1387126
+    },
+    {
+      "projectPath": "tools/issue11-local/seeds/issue41-lower-platform-y803-z2670.pj.zip",
+      "published": false,
+      "artifact": "seed_lower",
+      "sha256": "E3AF591D10EE312438A88F57351ADA6CB35D1B0A8BE80128B38D7242429DE616",
+      "bytes": 1434741
+    },
+    {
+      "projectPath": "tools/issue11-local/seeds/issue41-wide-platform-runway-x169-z2679-range20.pj.zip",
+      "published": false,
+      "artifact": "seed_runway",
+      "sha256": "F304656719C24ADE5F7E7F9F8CB9D0B44C917972E4AB5BB0D85358585F459C38",
+      "bytes": 1413017
+    }
+  ]
+}

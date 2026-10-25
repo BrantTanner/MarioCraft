@@ -1,6 +1,6 @@
 # Mario 64 presentation research plan (#13)
 
-**Status:** planned decomposition; no #13 camera, graphics, HUD/UI, audio, or local-decoder investigation has been completed by this plan. Existing linked findings below are prior evidence anchors, not completion of these presentation criteria.
+**Status:** all five planned children #47–#51 have been independently reviewed, published, and closed. Root independently reviewed and passed the aggregate evidence audit in [MARIO64-ISSUE13-AGGREGATE-AUDIT.md](MARIO64-ISSUE13-AGGREGATE-AUDIT.md): all five original criteria are supported at the explicitly bounded representative scope, with residual limits retained. This plan update and audit have been published. Parent issue #13 remains open with its original checkboxes unchanged for the root's final update.
 
 ## Sequence and dependency graph
 
@@ -26,15 +26,15 @@ The presentation sequence owns only formats and representative assets needed to 
 
 ## Aggregate coverage checklist
 
-Issue #13's original acceptance criteria remain unchecked until the child evidence is complete and audited.
+The original acceptance wording remains unchanged. The status below records the local audit decision; the GitHub parent checkboxes remain unchecked until the root reviews the audit and authorizes the final issue update.
 
 | Original #13 criterion | Planned coverage | Current status |
 | --- | --- | --- |
-| Trace camera modes, controls, following, collision/obstruction, timing across ordinary actions and water transitions. | #47; reuse #11/#12/#45/#46 | Planned; unresolved |
-| Inventory model/texture formats, skeleton/animation state, rendering, HUD, text/UI, SFX, voices, and music systems. | #48, #49, #50 | Planned; unresolved |
-| Record representative Project64 camera/animation/audio scenarios tied to code and data. | #47, #48, #50 | Planned; unresolved |
-| Document reproducible local asset extraction/loading without publishing ROM-derived assets. | #48 defines representative formats; #50 defines audio assets; #51 validates local workflow | Planned; unresolved |
-| Research all presentation behavior including non-MVP modes and identify coverage limits. | Finite mode/UI/audio inventories across #47–#50; explicit residual coverage in each dossier | Planned; unresolved |
+| Trace camera modes, controls, following, collision/obstruction, timing across ordinary actions and water transitions. | #47; reuse #11/#12/#45/#46; title/menu camera ownership reconciled in #49 | Audited complete at stated scope; obstruction contact trial remains unperformed |
+| Inventory model/texture formats, skeleton/animation state, rendering, HUD, text/UI, SFX, voices, and music systems. | #48, #49, #50; representative decoder validation in #51 | Audited complete as finite representative inventory; exhaustive catalog belongs to #15 and full hardware/microcode to #16 |
+| Record representative Project64 camera/animation/audio scenarios tied to code and data. | #47, #48, #50 | Audited complete; numeric audio request/sequence state is not proof of audible output |
+| Document reproducible local asset extraction/loading without publishing ROM-derived assets. | #48 defines representative formats; #50 defines audio resources; #51 validates local workflow | Audited complete for declared subset; outputs guarded to ignored local directory; one sample boundary and unsupported formats documented |
+| Research all presentation behavior including non-MVP modes and identify coverage limits. | Finite inventories across #47–#50 and decoder limits in #51 | Audited complete under explicit finite-inventory contract; untested states/resources remain listed in dossiers and aggregate audit |
 
 ## Publication and evidence boundary
 

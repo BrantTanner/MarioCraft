@@ -82,9 +82,10 @@
     },
     {
       "path": "docs/research/mario64-issue43-external-capture.ps1",
-      "sha256": "FF4F3BB89EF8AC4DA043C54F99948E6B452582B53F69275C5F00F49A98AF7080",
+      "sha256": "2A967CDB334D249DE5D18AEF20F9B96B903A9CCEFCFD718DF980F85B9FD1AB24",
       "description": "separate read-only sampler, includes waterLevelS16 from MarioState+0x76",
-      "blobSha": "758d079eac21877bab7560d44b88b66dfc9d42a4"
+      "blobSha": "758d079eac21877bab7560d44b88b66dfc9d42a4",
+      "sha256Description": "SHA-256 of the exact published sampler bytes (12,579 bytes)"
     }
   ],
   "inventoryCounts": {

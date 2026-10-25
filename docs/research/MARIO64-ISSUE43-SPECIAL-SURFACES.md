@@ -57,6 +57,9 @@ Static collision navigation identifies water box 1 as X `[1024,8230]`, Z `[-58,8
 | Hanging/climbing, death, moving-platform, and other categories | Candidate labels are inventoried; exact target consumers remain pending unless explicitly listed above. |
 | Search and runtime limits | The verified consumer set is a partial exact-ROM scan, not a proof that every reachable consumer was found. Runtime traces are finite, process-read snapshots bracketed by a non-atomic loop counter; they are not complete emulator-frame captures. No ROM, save state, or assets are included. |
 
+## Evidence manifest
+
+The published file inventory and local-only trace hashes are recorded in [`mario64-issue43-evidence-manifest.json`](mario64-issue43-evidence-manifest.json). The corrected bounded route driver is retained locally at `tools/issue11-local/issue43-water-route-driver.ps1` (SHA-256 `B1B8ACAE6A790552CA60BCBE345B1EB4133FB8AE95F80DC0F720D4BB78F45A46`); it was syntax-checked after trial 06 but not executed. Trial 06 used the earlier buggy revision, which resolved every active pulse to AnalogUp.
 ## Follow-up work
 
 This is a partial package, not completion of #43. Follow-up [#45](https://github.com/BrantTanner/MarioCraft/issues/45) completes the exact-ROM consumer census and per-ID status reconciliation; follow-up [#46](https://github.com/BrantTanner/MarioCraft/issues/46) captures bounded water and reachable lava/burn gameplay transitions. The 101 source-only rows and 19 source-commented “unused” rows remain unresolved, and the existing water observation is a field read while standing on dry floor. Trial 06 is a representative steep-slope slide, but it does not satisfy water/lava/burn runtime coverage. Keep #43 open until both follow-ups are reviewed and their findings are incorporated.

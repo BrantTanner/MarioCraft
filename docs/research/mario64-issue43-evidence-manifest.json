@@ -1,20 +1,138 @@
 {
   "schema": "mario64-issue43-evidence-manifest-v1",
   "status": "partial; issue 43 remains open",
-  "target": {"rom":"Super Mario 64 USA rev0","romBytes":8388608,"romSha256":"17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91","emulator":"Project64 3.0.1.5664-2df3434","emulatorSha256":"C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8"},
-  "published": [
-    {"path":"docs/research/mario64-issue43-surface-inventory.csv","description":"147 candidate IDs with decimal/hex values, candidate family, scope and target evidence status"},
-    {"path":"docs/research/MARIO64-ISSUE43-SPECIAL-SURFACES.md","description":"partial findings, exact-ROM ranges/hashes, runtime notes, acceptance and limits"},
-    {"path":"docs/research/mario64-issue43-runtime-samples.json","description":"selected sanitized scalar rows only"},
-    {"path":"docs/research/mario64-issue43-external-capture.ps1","sha256":"FF4F3BB89EF8AC4DA043C54F99948E6B452582B53F69275C5F00F49A98AF7080","description":"read-only issue 43 sampler with signed MarioState waterLevelS16 at +0x76"}
+  "target": {
+    "rom": "Super Mario 64 USA rev0",
+    "romBytes": 8388608,
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "originalRom": "preserved read-only; analysis copy loaded byte-identically",
+    "emulator": "Project64 3.0.1.5664-2df3434",
+    "emulatorSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "localExecutable": "tools/issue11-local/pj64-portable/Project64.exe",
+    "controller": "N-Rage; Real N64 Range; stick range 100; deadzone 5"
+  },
+  "sourceNavigation": {
+    "commit": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
+    "use": "candidate labels only; exact USA rev0 claims are based on ranges below",
+    "repository": "n64decomp/sm64"
+  },
+  "romMapping": {
+    "pcToRom": "ROM offset = PC - 0x80245000 for mapped range; ROM offsets 0x1000..0xE855F",
+    "sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91"
+  },
+  "verifiedConsumerRanges": [
+    {
+      "name": "floor type to floor class mapper",
+      "pc": "0x8025177C",
+      "rom": "[0xC77C,0xC8A8)",
+      "sha256": "E0B4CD9EC8A47CE0C87BB0100570B78F4C5A2BC1EB5138C262C93CC62999A70F"
+    },
+    {
+      "name": "walking floor-class consumer",
+      "pc": "0x802529E4",
+      "rom": "[0xD9E4,0xDBD4)",
+      "sha256": "3F6795A87ABF1CD6CFBE4FBC57ABB880A2CAB9E41801B9943B8FAADF92E9BEC8"
+    },
+    {
+      "name": "quicksand update",
+      "pc": "0x80255414",
+      "rom": "[0x10414,0x10654)",
+      "sha256": "87332F31C02FA00CAB8599571FFC1EE2A5F3FB0AE17F77119EB3E5E85430B7B7"
+    },
+    {
+      "name": "moving-floor force",
+      "pc": "0x8025570C",
+      "rom": "[0x1070C,0x1080C)",
+      "sha256": "844A96F8A9EF2449EDC63BDE93BCBAE016C0E8C591FDFF682297B1266CE39A10"
+    },
+    {
+      "name": "horizontal-wind consumer",
+      "pc": "0x8025580C",
+      "rom": "[0x1080C,0x109B0)",
+      "sha256": "0399104BA593E77B14A95D045E33DEA754DA93C929B21121AE918C1B86560871"
+    },
+    {
+      "name": "air quarter-step wall/ceiling query",
+      "pc": "0x802560AC",
+      "rom": "[0x110AC,0x114E0)",
+      "sha256": "FD272B7C245D6F2DA296C503F9E350B19544FD8181D479C102BEC609035647B8"
+    },
+    {
+      "name": "MarioState water-level field read",
+      "pc": "0x802518A8",
+      "rom": "[0xC8A8,0xCA48)",
+      "sha256": "631FA3592EAAF41F57359BCC0274011DF6BBD8141F38E7BE470FCE692CB249ED"
+    }
   ],
-  "inventoryCounts": {"sourceListedIds":147,"exactRomConsumersVerified":26,"sourceOnlyConsumerUnresolved":101,"sourceCommentUnusedAbsenceUnproven":19,"runtimeOnlyConsumerUnverified":1},
-  "localOnlyEvidence": [
-    {"trialId":"issue43-waterbox-lower-seed-01","traceSha256":"5A137222E97B09FC95FB3A035CEF9350B591564614B64B885C681B2A1BB1B72C","result":"water level -81 inside box footprint; floor type 0, floorY 803; dry-floor read only"},
-    {"trialId":"issue43-water-entry-06","traceSha256":"F23ED48BE712456F4F2059FA9AAD68FF6B82A40A34ABA1BBDB96F024B990A70D","rows":240,"equalCounterBracketRows":199,"result":"surface type decimal 19 (0x13), uphill stick held, speed reversed and Mario slid downhill; no swimming or wall contact"},
-    {"path":"tools/issue11-local/issue40-project64-input-log.jsonl","sha256":"78A2F7B6878538FA3D17FBDE9C5F01B5135B5FAB8CB234586FEE71A312486044","result":"local guarded-helper key edges/timestamps; not published"}
+  "publishedFiles": [
+    {
+      "path": "docs/research/mario64-issue43-surface-inventory.csv",
+      "description": "147 candidate IDs and evidence statuses",
+      "blobSha": "6fa1e0cfa0a04ce5bd8891fc9184dc41c374b1fb"
+    },
+    {
+      "path": "docs/research/MARIO64-ISSUE43-SPECIAL-SURFACES.md",
+      "description": "partial dossier and acceptance limits",
+      "blobSha": "8fc6f35849eff1c55a3baadf1e87338959a0e6d6"
+    },
+    {
+      "path": "docs/research/mario64-issue43-runtime-samples.json",
+      "description": "selected sanitized scalar samples",
+      "blobSha": "790dddbb272d54475e2b6988d0bb5c5713a7d9a5"
+    },
+    {
+      "path": "docs/research/mario64-issue43-external-capture.ps1",
+      "sha256": "FF4F3BB89EF8AC4DA043C54F99948E6B452582B53F69275C5F00F49A98AF7080",
+      "description": "separate read-only sampler, includes waterLevelS16 from MarioState+0x76",
+      "blobSha": "758d079eac21877bab7560d44b88b66dfc9d42a4"
+    }
   ],
-  "driver": {"localPath":"tools/issue11-local/issue43-water-route-driver.ps1","sha256":"B1B8ACAE6A790552CA60BCBE345B1EB4133FB8AE95F80DC0F720D4BB78F45A46","revisionStatus":"corrected bounded driver was syntax-checked after trial 06 but not executed or published; trial 06 used the earlier hashtable-key bug and all active pulses resolved to AnalogUp"},
-  "limits": ["No runtime water entry/swim, lava/burn, damage/heal, launch, climb/hang or death transition is established.","The exact-ROM scan is partial; source labels and unused comments do not prove USA rev0 references or absence.","Complete traces and input logs remain local; no ROM, save state, raw RAM or copyrighted asset is included."],
-  "followUps": ["https://github.com/BrantTanner/MarioCraft/issues/45","https://github.com/BrantTanner/MarioCraft/issues/46"]
+  "inventoryCounts": {
+    "sourceListedIds": 147,
+    "exactRomConsumersVerified": 26,
+    "sourceOnlyConsumerUnresolved": 101,
+    "sourceCommentUnusedAbsenceUnproven": 19,
+    "runtimeOnlyConsumerUnverified": 1
+  },
+  "localEvidence": {
+    "traces": [
+      {
+        "trialId": "issue43-waterbox-lower-seed-01",
+        "path": "tools/issue11-local/pj64-portable/issue43-waterbox-lower-seed-01.jsonl",
+        "sha256": "5A137222E97B09FC95FB3A035CEF9350B591564614B64B885C681B2A1BB1B72C",
+        "metadataPath": "tools/issue11-local/pj64-portable/issue43-waterbox-lower-seed-01.metadata.json",
+        "metadataSha256": "AD9A0375928A60B5D2A07A3426EFB5090E0FA826A6B9307828439842EA90C3B2",
+        "result": "water level -81 inside box footprint; floor type 0, floorY 803; dry-floor field read only"
+      },
+      {
+        "trialId": "issue43-water-entry-06",
+        "path": "tools/issue11-local/pj64-portable/issue43-water-entry-06.jsonl",
+        "sha256": "F23ED48BE712456F4F2059FA9AAD68FF6B82A40A34ABA1BBDB96F024B990A70D",
+        "metadataPath": "tools/issue11-local/pj64-portable/issue43-water-entry-06.metadata.json",
+        "metadataSha256": "0C8D9E40193D80AA63FE69084FB85C050F1CA53D049524D772D980DA6A4F5392",
+        "rows": 240,
+        "equalCounterBracketRows": 199,
+        "result": "steep floor type decimal 19 (0x13), uphill stick held; speed reversed and Mario slid downhill, no swimming or wall contact"
+      }
+    ],
+    "inputEdgesPath": "tools/issue11-local/issue40-project64-input-log.jsonl",
+    "inputEdgesSha256": "78A2F7B6878538FA3D17FBDE9C5F01B5135B5FAB8CB234586FEE71A312486044",
+    "inputEdgesStatus": "local guarded-helper event log; not published"
+  },
+  "driver": {
+    "localPath": "tools/issue11-local/issue43-water-route-driver.ps1",
+    "sha256": "B1B8ACAE6A790552CA60BCBE345B1EB4133FB8AE95F80DC0F720D4BB78F45A46",
+    "status": "Corrected bounded driver syntax-checked after trial 06 but neither executed nor published. Trial 06 used the earlier hashtable-key bug; all active pulses resolved to AnalogUp."
+  },
+  "archiveProvenance": "Sanitized scalar traces and helper input log remain at the local paths above; no separate archive was created. Original ROM is preserved; no ROM, raw RAM dump, save state, or copyrighted game asset is published.",
+  "limits": [
+    "No runtime water entry/swim, lava/burn, damage/heal, launch, climb/hang, or death transition is established.",
+    "The exact-ROM consumer scan is partial; source labels and unused comments do not prove USA rev0 references or absence.",
+    "Runtime snapshots are external process reads bracketed by a non-atomic loop counter, not atomic emulator-frame captures."
+  ],
+  "followUps": [
+    "https://github.com/BrantTanner/MarioCraft/issues/45",
+    "https://github.com/BrantTanner/MarioCraft/issues/46"
+  ],
+  "integrityNote": "GitHub blob SHAs identify the exact published bytes for the four files listed. The issue 43 documentation contents endpoint adds terminal CRLF on some files; local mirror copies were synchronized from fetch_file encoding=base64 after publication."
 }

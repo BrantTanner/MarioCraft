@@ -42,24 +42,26 @@ The code-derived ledge-grab path is narrower than “fall near a wall”: it req
 
 The lower-platform source save is `tools/issue11-local/seeds/issue41-lower-platform-y803-z2670.pj.zip`, 1,434,741 bytes, SHA-256 `E3AF591D10EE312438A88F57351ADA6CB35D1B0A8BE80128B38D7242429DE616`. Use Project64 System → Load… (Ctrl+L) to select this archive, then numerically verify the loaded coordinates and floor fields before sampling. The short wall recipe uses the guarded input helper for AnalogUp in 100–150 ms pulses with telemetry checks until Z is about −3054; stop there, flush the capture, and do not continue toward the castle door. For the floor-to-freefall route, restore that same lower-platform archive and use the external sampler while steering in 100–150 ms analog pulses toward the ground-approach ramp. Use camera-yaw-relative direction selection to approach `(−452,958,−1960)`; once the floor height begins to depart from Mario Y, keep pulses short and capture through the `0x0100088C` transition and subsequent landing. Bound the approach to 30 pulses and stop if coordinates leave the castle-grounds route. For the captured recipe, the verified lower-platform archive was the route origin; the sampler opened after the preparatory movement at `(−497.9889,803,−2605.8289)`. The guarded helper log supplies both AnalogDown edge pairs and hold durations. The pre-capture route was 650 ms AnalogDown from the archive; the captured route held AnalogDown for 1,800 ms while the sampler ran. Use the fresh sample coordinates, camera yaw, action, and floor height to verify the start and reproduce the route; emulator input-to-game-frame timing is still not guaranteed identical.
 
-After loading the archive and preparing the start point with AnalogDown for 650 ms, verify the current coordinates and locate the process-specific RDRAM base. The locator is [mario64-issue41-find-rdram-base.ps1](mario64-issue41-find-rdram-base.ps1); it verifies the ROM-prefix mapping and returns candidates whose fields must match the prepared state. The issue #42 sampler is [mario64-issue42-external-capture.ps1](mario64-issue42-external-capture.ps1). From `docs/research`, with Project64 foreground:
+The following example starts immediately after restoring the lower-platform archive. It performs the single 650 ms preparation hold, verifies the resulting position and locates the process-specific RDRAM base. The locator is [mario64-issue41-find-rdram-base.ps1](mario64-issue41-find-rdram-base.ps1); its JSON result wraps validated candidates under `.scan.candidates`. The issue #42 sampler is [mario64-issue42-external-capture.ps1](mario64-issue42-external-capture.ps1). From `docs/research`, with Project64 foreground:
 
 ```powershell
 $projectRoot = (Resolve-Path '..\..').Path
 $exe = Join-Path $projectRoot 'tools\issue11-local\pj64-portable\Project64.exe'
-$rom = 'C:\Users\brant\Documents\MarioUSA-local-analysis-copy.z64'
-$target = Get-Process -Name Project64 | Where-Object { $_.Path -eq $exe } | Select-Object -First 1
+$rom = 'C:\path\to\MarioUSA-local-analysis-copy.z64' # set to the verified local analysis copy
+$targets = @(Get-Process -Name Project64 | Where-Object { $_.Path -eq $exe })
+if ($targets.Count -ne 1 -or [long]$targets[0].MainWindowHandle -eq 0) { throw 'Expected one visible portable Project64 window.' }
+$target = $targets[0]
 $targetPid = $target.Id
 $targetHwnd = [long]$target.MainWindowHandle
 & .\mario64-issue40-project64-input.ps1 -ExpectedPid $targetPid -ExpectedHwnd $targetHwnd -TargetInstance Issue11Portable -Key AnalogDown -HoldMs 650
 Start-Sleep -Milliseconds 800
-$scan = & .\mario64-issue41-find-rdram-base.ps1 -TargetPid $targetPid -Project64Path $exe -AnalysisRomPath $rom | ConvertFrom-Json
-$match = @($scan.candidates | Where-Object { $_.fieldsValid -and [math]::Abs($_.x + 497.9889) -lt 3 -and [math]::Abs($_.y - 803) -lt 3 -and [math]::Abs($_.z + 2605.8289) -lt 5 })
+$probe = & .\mario64-issue41-find-rdram-base.ps1 -TargetPid $targetPid -Project64Path $exe -AnalysisRomPath $rom | ConvertFrom-Json
+$match = @($probe.scan.candidates | Where-Object { $_.fieldsValid -and [math]::Abs($_.x + 497.9889) -lt 3 -and [math]::Abs($_.y - 803) -lt 3 -and [math]::Abs($_.z + 2605.8289) -lt 5 })
 if ($match.Count -ne 1) { throw 'No unique valid candidate matches the prepared route start.' }
 $base = $match[0].hostBase
 $trial = 'issue42-ledge-replay-01' # choose a new unique ID each run
 $traceDir = Join-Path $projectRoot 'tools\issue11-local\pj64-portable'
-$stale = @('.jsonl','.progress.jsonl','.stop') | ForEach-Object { Join-Path $traceDir ($trial + $_) } | Where-Object { Test-Path -LiteralPath $_ }
+$stale = @('.jsonl','.progress.jsonl','.metadata.json','.stop') | ForEach-Object { Join-Path $traceDir ($trial + $_) } | Where-Object { Test-Path -LiteralPath $_ }
 if ($stale) { throw 'Trial ID already exists; choose a fresh unique ID.' }
 $sampler = Join-Path (Get-Location) 'mario64-issue42-external-capture.ps1'
 $capArgs = '-NoProfile -File "{0}" -TrialId {1} -TargetPid {2} -TargetHwnd {3} -HostBaseHex {4} -ProjectRoot "{5}" -AnalysisRomPath "{6}" -Limit 420 -PollMs 15' -f $sampler,$trial,$targetPid,$targetHwnd,$base,$projectRoot,$rom

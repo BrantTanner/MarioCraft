@@ -28,3 +28,4 @@ Start runtime trials from legitimate reachable course entry with new private bac
 ## Parent acceptance audit
 
 After #52–#56, reconcile each original #14 criterion against the child dossiers: object/behavior inventory and lifecycle; all five attack/contact paths and Mario responses; representative Project64 scenarios corroborated by target code/data; dynamic geometry and action-specific vulnerability/immunity; and the subsystem map with explicit residual object/AI coverage. Keep finite inventory limits and untested families/actions visible. Do not mark the parent complete while required criteria or child work remains open.
+

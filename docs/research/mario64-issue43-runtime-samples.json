@@ -1,0 +1,109 @@
+{
+  "schema": "mario64-issue43-selected-scalar-samples-v1",
+  "scope": "Selected telemetry rows only; complete scalar traces and input-edge logs remain local. No raw RAM, ROM, save state, or game asset is included.",
+  "identity": {
+    "rom": "Super Mario 64 USA rev0",
+    "romBytes": 8388608,
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "emulator": "Project64 3.0.1.5664-2df3434",
+    "emulatorSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "controller": "N-Rage; Real N64 Range; stick range 100; deadzone 5"
+  },
+  "waterLevelRead": {
+    "trialId": "issue43-waterbox-lower-seed-01",
+    "localTraceFile": "tools/issue11-local/pj64-portable/issue43-waterbox-lower-seed-01.jsonl",
+    "localTraceSha256": "5A137222E97B09FC95FB3A035CEF9350B591564614B64B885C681B2A1BB1B72C",
+    "sample": {
+      "sequence": 1,
+      "counterBefore": 51449,
+      "counterAfter": 51449,
+      "counterPairEqual": true,
+      "xyz": [-503.0, 803.0, -2670.075],
+      "floorTypeDecimal": 0,
+      "floorY": 803.0,
+      "floorNormalY": 1.0,
+      "waterLevelS16": -81,
+      "action": "0x0C000203"
+    },
+    "interpretation": "This point is inside the static water-box footprint while Mario stands on an ordinary dry floor. It demonstrates the distinct MarioState water-level field, not a water floor type, swimming entry, drowning, healing, or damage."
+  },
+  "verySlipperySlope": {
+    "trialId": "issue43-water-entry-06",
+    "localTraceFile": "tools/issue11-local/pj64-portable/issue43-water-entry-06.jsonl",
+    "localTraceSha256": "F23ED48BE712456F4F2059FA9AAD68FF6B82A40A34ABA1BBDB96F024B990A70D",
+    "rowCount": 240,
+    "equalCounterBracketRows": 199,
+    "samples": [
+      {
+        "sequence": 180,
+        "counter": 25721,
+        "xyz": [10.585269, 260.0, 4216.914],
+        "floorTypeDecimal": 0,
+        "floorNormalY": 1.0,
+        "waterLevelS16": -11000,
+        "action": "0x04000440",
+        "forwardSpeed": 16.255682,
+        "velocityXYZ": [16.09407, 0.0, 2.2864957]
+      },
+      {
+        "sequence": 189,
+        "counter": 25729,
+        "xyz": [44.335144, 284.77682, 4222.0557],
+        "floorTypeDecimal": 19,
+        "floorTypeHex": "0x0013",
+        "floorNormalY": 0.54986995,
+        "waterLevelS16": -11000,
+        "action": "0x008C0453",
+        "previousAction": "0x04000440",
+        "derivedInput": 9,
+        "rawStickXY": [0, 127],
+        "inputMagnitude": 64.0,
+        "buttonsDown": 0,
+        "buttonsPressed": 0,
+        "intendedYaw": 14917,
+        "faceYaw": 15429,
+        "forwardSpeed": -10.684373,
+        "velocityXYZ": [-10.648132, 0.0, -0.87926364]
+      },
+      {
+        "sequence": 190,
+        "counter": 25730,
+        "xyz": [34.313034, 269.52, 4221.3174],
+        "floorTypeDecimal": 19,
+        "floorTypeHex": "0x0013",
+        "floorNormalY": 0.54986995,
+        "action": "0x008C0453",
+        "forwardSpeed": -18.275677,
+        "velocityXYZ": [-18.226332, 0.0, -1.3420928]
+      },
+      {
+        "sequence": 191,
+        "counter": 25731,
+        "xyz": [14.549095, 260.0, 4219.957],
+        "floorTypeDecimal": 0,
+        "floorTypeHex": "0x0000",
+        "floorNormalY": 1.0,
+        "action": "0x008C0453",
+        "forwardSpeed": -25.564333,
+        "velocityXYZ": [-25.504, 0.0, -1.7553142]
+      },
+      {
+        "sequence": 211,
+        "counter": 25750,
+        "xyz": [-184.84908, 260.0, 4213.0117],
+        "floorTypeDecimal": 0,
+        "floorTypeHex": "0x0000",
+        "floorNormalY": 1.0,
+        "waterLevelS16": -11000,
+        "action": "0x00000386",
+        "previousAction": "0x008C0453",
+        "inputMagnitude": 64.0,
+        "forwardSpeed": 0.0,
+        "velocityXYZ": [0.0, 0.0, 0.0]
+      }
+    ],
+    "inputEvidence": "The helper event log records the direction pulses and timestamps. At sequence 189, A/B/Z buttons were up, but the directional stick was still held uphill (raw Y 127); the observation is not a no-input test.",
+    "interpretation": "The exact-ROM floor mapper maps surface type decimal 19 (0x13) to floor class 0x13, which the walking consumer handles separately. On this steep instance, forward speed and X velocity turned negative while uphill stick input remained held, followed by downhill travel and a return to floor type 0. This is a representative slippery-surface runtime effect; no symbolic action name, numeric friction coefficient, wall collision, or water transition is asserted."
+  }
+}
+

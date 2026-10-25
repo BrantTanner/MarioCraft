@@ -47,4 +47,3 @@ function capture() {
 callbackId=events.ondraw(capture);
 console.log("issue38_capture_started="+JSON.stringify({trialId:trialId,profile:profile,callbackId:callbackId,sampleLimit:limit,callbackLimit:callbackLimit,output:tracePath,event:"Project64 events.ondraw",clock:"host Date.now()"}));
 
-

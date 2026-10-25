@@ -163,13 +163,18 @@
   "publishedArtifacts": [
     {
       "path": "MARIO64-ISSUE42-COLLISION-AND-GEOMETRY.md",
-      "bytes": 16647,
-      "sha256": "7d60a4a2b3457f0476e9c403d3cc479f81d4efed474508c12e9345ce4a05ce51"
+      "bytes": 16849,
+      "sha256": "c2f2bcf9f80b30dda945ba0e4e4c20022f843fd26ef4c9b960fd14cd8287d918"
     },
     {
       "path": "MARIO64-ISSUE42-TRACE-SAMPLES.jsonl",
       "bytes": 24811,
       "sha256": "558e58a55ceb3983c23978467fe647f083a747e05d6569b61c1f0eeb584bf155"
+    },
+    {
+      "path": "mario64-issue42-external-capture.ps1",
+      "bytes": 12476,
+      "sha256": "be6e296ea32132a3ea502b69da423385375213a602a993b08ddc1504389e7603"
     }
   ],
   "limits": [

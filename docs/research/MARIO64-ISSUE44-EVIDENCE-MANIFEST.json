@@ -1,0 +1,751 @@
+{
+  "title": "Mario 64 issue 44 health, damage, falls, healing, and hazards",
+  "status": "target investigation; representative runtime coverage; issue remains open for review",
+  "generatedUtc": "2026-10-25T17:01:17Z",
+  "target": {
+    "rom": "Super Mario 64 (U), rev 0",
+    "romBytes": 8388608,
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "emulator": "Project64 3.0.1.5664-2df3434",
+    "emulatorExeSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "profile": "N-Rage; range 100; dead zone 5; Real N64 Range enabled"
+  },
+  "method": {
+    "runtimeRead": "External OpenProcess(PROCESS_QUERY_INFORMATION|PROCESS_VM_READ) and ReadProcessMemory only",
+    "writesDuringMeasurement": 0,
+    "romPatches": 0,
+    "cheatCodes": 0,
+    "stateMutations": 0,
+    "codeMap": "For ROM offsets 0x1000..0xE855F: PC=0x80245000+ROM offset",
+    "hashRule": "Each function hash covers the contiguous envelope from entry through highest body byte inclusive; Ghidra noncontiguous body byte counts are not used as envelope lengths. All listed mapped code ranges satisfy PC=0x80245000+ROM offset.",
+    "samplerReads": "Loop counter before and after state fields; equal pairs remain non-atomic",
+    "rawMemoryOrRomBytesPublished": false
+  },
+  "fields": {
+    "marioState": {
+      "health": "u16/s16 +0xAE",
+      "lives": "s8 +0xAD",
+      "coins": "s16 +0xA8 (target uses signed halfword load/add)",
+      "pendingHurtTicks": "u8 +0xB2",
+      "pendingHealTicks": "u8 +0xB3",
+      "invulnerabilityTimer": "s16/u16 +0x26; 0xFFFF is the signed -1 transition value",
+      "peakHeight": "f32 +0xBC",
+      "facePitch": "s16 +0x2C"
+    },
+    "health": {
+      "cap": "0x880",
+      "deathSentinel": "0xFF",
+      "displaySegments": "health<1=>0 else u16(health)>>8; cap maps to 8",
+      "queuedTickDelta": "0x40 per update"
+    }
+  },
+  "fallThresholdEvidence": {
+    "probe": "Guarded read-only runtime probe; target process and ROM/executable identities verified; exact process-specific RDRAM base confirmed",
+    "guestBlock": "0x80336BF0..0x80336C30",
+    "probeTimestampUtc": "2026-10-25T16:59:34.6827175Z",
+    "thresholds": {
+      "lesser": {
+        "symbol": "DAT_80336C04",
+        "value": 1150.0,
+        "comparison": "strict greater-than"
+      },
+      "greater": {
+        "symbol": "DAT_80336C08",
+        "value": 3000.0,
+        "comparison": "strict greater-than"
+      }
+    },
+    "matchedRomOffset": "0xF1BF0",
+    "matchedBytes": 64,
+    "matchedSha256": "7825CF946D486511EADFDAB5FFAF694EEE01A357EC563B3B505209AA1F5EC8CB",
+    "uniqueExactByteMatch": true,
+    "localRawEvidence": "traces/issue44-fall-constants-evidence.json (not published)",
+    "noGlobalMapExtrapolation": true
+  },
+  "runtimeTrials": [
+    {
+      "id": "issue44-lava-route-10",
+      "rows": 2600,
+      "counterEqualPairs": 2344,
+      "counterUnequalPairs": 256,
+      "healthMin": "0xFF",
+      "healthMax": "0x880",
+      "result": "Type-1 lava damage, death sentinel, respawn and queued healing to cap",
+      "rawTraceLocalOnly": {
+        "path": "tools/issue11-local/pj64-portable/issue44-lava-route-10.jsonl",
+        "lengthBytes": 4276886,
+        "sha256": "4B159972366DE9BD22407B738476063A86DB0FB978B3C128CF2AD9854EE2FEB3"
+      },
+      "metadataLocalOnly": {
+        "path": "tools/issue11-local/pj64-portable/issue44-lava-route-10.metadata.json",
+        "sha256": "70E9858E61D13BBA66C050860812ED74051DE2EC5BA92D87A1762AEA9CD4A13B"
+      },
+      "sampler": {
+        "path": "tools/issue11-local/issue44-health-capture.ps1",
+        "sha256": "9FA44BDD3786EA6CEB57BD6653F10C09C3B182FDF2A93332B13AE69B640EC84A"
+      },
+      "inputEdges": [
+        {
+          "keys": [
+            "AnalogLeft"
+          ],
+          "keyDownUtc": "2026-10-25T16:30:56.5291882Z",
+          "keyUpUtc": "2026-10-25T16:30:56.7022813Z",
+          "holdMsRequested": 150,
+          "outcome": "completed"
+        },
+        {
+          "keys": [
+            "AnalogLeft"
+          ],
+          "keyDownUtc": "2026-10-25T16:31:01.4638453Z",
+          "keyUpUtc": "2026-10-25T16:31:01.8895501Z",
+          "holdMsRequested": 400,
+          "outcome": "completed"
+        },
+        {
+          "keys": [
+            "AnalogLeft"
+          ],
+          "keyDownUtc": "2026-10-25T16:31:10.1418667Z",
+          "keyUpUtc": "2026-10-25T16:31:10.4141733Z",
+          "holdMsRequested": 250,
+          "outcome": "completed"
+        }
+      ],
+      "seedProvenance": "No save-state load recorded during measured interval; capture begins at course spawn Y=154.",
+      "limitations": [
+        "First two damage bursts consumed 12 queued 0x40 updates each; third consumed six 0x40 updates from 0x280 to 0x100, followed by 0xFF clamp.",
+        "All 31 health-decrease rows had equal counter pairs; two of 31 recovery increases crossed a loop-counter update.",
+        "Early sampler did not read +0x26; no controlled timer re-hit test."
+      ],
+      "processId": 21000,
+      "windowHandle": "0xA650E20",
+      "fieldsRead": [
+        "health +0xAE",
+        "hurt +0xB2",
+        "heal +0xB3",
+        "squish timer +0xB4",
+        "surface/action/position/velocity/counter"
+      ],
+      "timerSampled": false,
+      "healthDecreaseEvents": 31,
+      "healthDecreaseEqualCounterPairs": 31,
+      "healthIncreaseEvents": 31,
+      "healthIncreaseEqualCounterPairs": 29,
+      "healthIncreaseUnequalCounterPairs": 2
+    },
+    {
+      "id": "issue44-fall-route-06",
+      "rows": 3500,
+      "counterEqualPairs": 3142,
+      "counterUnequalPairs": 358,
+      "healthMin": "0x880",
+      "healthMax": "0x880",
+      "result": "~139-unit fall and landing without queued hurt",
+      "rawTraceLocalOnly": {
+        "path": "tools/issue11-local/pj64-portable/issue44-fall-route-06.jsonl",
+        "lengthBytes": 6146148,
+        "sha256": "EC8C03FCA2B557952AD64B2AAF8CD6BE92AC6AF52808A819F983C97C6BFD32EA"
+      },
+      "metadataLocalOnly": {
+        "path": "tools/issue11-local/pj64-portable/issue44-fall-route-06.metadata.json",
+        "sha256": "FC5297FECBFAAF0D99BE7EBF0B3E35CA03165D0AC13E34EEF060D0848E7FADA2"
+      },
+      "sampler": {
+        "path": "tools/issue11-local/issue44-health-pitch-capture.ps1",
+        "sha256": "1871D8B606A7C2207E601EF41B1F691307E8B535E8998BE0811B1B624C17C38C"
+      },
+      "inputEdges": [
+        {
+          "keys": [
+            "AnalogUp"
+          ],
+          "keyDownUtc": "2026-10-25T16:41:00.707817Z",
+          "keyUpUtc": "2026-10-25T16:41:00.872794Z",
+          "holdMsRequested": 150,
+          "outcome": "completed"
+        },
+        {
+          "keys": [
+            "AnalogDown"
+          ],
+          "keyDownUtc": "2026-10-25T16:41:13.1677627Z",
+          "keyUpUtc": "2026-10-25T16:41:13.989111Z",
+          "holdMsRequested": 800,
+          "outcome": "completed"
+        },
+        {
+          "keys": [
+            "AnalogDown"
+          ],
+          "keyDownUtc": "2026-10-25T16:41:27.5593701Z",
+          "keyUpUtc": "2026-10-25T16:41:28.979979Z",
+          "holdMsRequested": 1400,
+          "outcome": "completed"
+        }
+      ],
+      "seedProvenance": "Exact state load not recorded in capture metadata; lower-platform replay reference seed is listed separately.",
+      "limitations": [
+        "No damaging threshold branch observed."
+      ],
+      "processId": 21000,
+      "windowHandle": "0xA650E20",
+      "fieldsRead": [
+        "health +0xAE",
+        "hurt +0xB2",
+        "heal +0xB3",
+        "squish timer +0xB4",
+        "face pitch +0x2C",
+        "surface/action/position/velocity/counter"
+      ],
+      "timerSampled": false
+    },
+    {
+      "id": "issue44-water-pitch-03",
+      "rows": 3000,
+      "counterEqualPairs": 2739,
+      "counterUnequalPairs": 261,
+      "healthMin": "0x819",
+      "healthMax": "0x880",
+      "result": "Submerged health loss and resurfacing +0x1A updater recovery to cap",
+      "rawTraceLocalOnly": {
+        "path": "tools/issue11-local/pj64-portable/issue44-water-pitch-03.jsonl",
+        "lengthBytes": 4873092,
+        "sha256": "A2D79256515F6A7B0BC52724FE830AB8B1D0CEE331317B1A73236D7668C175A1"
+      },
+      "metadataLocalOnly": {
+        "path": "tools/issue11-local/pj64-portable/issue44-water-pitch-03.metadata.json",
+        "sha256": "F8A5259138604AB7B7BB04F6D4DF213692A673E71553A87FCD73821AD038E736"
+      },
+      "sampler": {
+        "path": "tools/issue11-local/issue44-health-pitch-capture.ps1",
+        "sha256": "1871D8B606A7C2207E601EF41B1F691307E8B535E8998BE0811B1B624C17C38C"
+      },
+      "inputEdges": [
+        {
+          "keys": [
+            "A",
+            "AnalogUp"
+          ],
+          "keyDownUtc": "2026-10-25T16:44:09.8991262Z",
+          "keyUpUtc": "2026-10-25T16:44:10.9414114Z",
+          "holdMsRequested": 1000,
+          "outcome": "completed"
+        },
+        {
+          "keys": [
+            "A",
+            "AnalogDown"
+          ],
+          "keyDownUtc": "2026-10-25T16:44:16.4864199Z",
+          "keyUpUtc": "2026-10-25T16:44:17.5232243Z",
+          "holdMsRequested": 1000,
+          "outcome": "completed"
+        }
+      ],
+      "seedProvenance": "Exact state load not recorded in capture metadata; courtyard/lake replay reference seed is listed separately.",
+      "limitations": [
+        "Final sampled net rise was +25 at cap.",
+        "No controlled timer re-hit test."
+      ],
+      "processId": 21000,
+      "windowHandle": "0xA650E20",
+      "fieldsRead": [
+        "health +0xAE",
+        "hurt +0xB2",
+        "heal +0xB3",
+        "squish timer +0xB4",
+        "face pitch +0x2C",
+        "surface/action/position/velocity/counter"
+      ],
+      "timerSampled": false
+    },
+    {
+      "id": "issue44-water-drowning-04",
+      "rows": 7200,
+      "counterEqualPairs": 6511,
+      "counterUnequalPairs": 689,
+      "healthMin": "0xFF",
+      "healthMax": "0x880",
+      "result": "Deep-water loss, drowning/death/warp/respawn and +30 heal ticks to cap",
+      "rawTraceLocalOnly": {
+        "path": "tools/issue11-local/pj64-portable/issue44-water-drowning-04.jsonl",
+        "lengthBytes": 12239393,
+        "sha256": "532EF1BCDCAC9A1579BD20EFC1E9D847F97837AEC607DC21DA045885F3723BAB"
+      },
+      "metadataLocalOnly": {
+        "path": "tools/issue11-local/pj64-portable/issue44-water-drowning-04.metadata.json",
+        "sha256": "34FBC2244BFFDC8161EF14123CFEDE3BA2069DF1C565F9CAA7494F581949B97D"
+      },
+      "sampler": {
+        "path": "tools/issue11-local/issue44-health-pitch-fall-capture.ps1",
+        "sha256": "5A76558ACBF086212A9D463D053C6BEF6E70D948A2BE784826BBA6F1B5934B7F"
+      },
+      "inputEdges": [
+        {
+          "keys": [
+            "A",
+            "AnalogUp"
+          ],
+          "keyDownUtc": "2026-10-25T16:47:52.715856Z",
+          "keyUpUtc": "2026-10-25T16:47:55.7352651Z",
+          "holdMsRequested": 3000,
+          "outcome": "completed"
+        }
+      ],
+      "seedProvenance": "Exact state load not recorded; capture begins swimming at x=2940.6,y=-161,z=3526.8.",
+      "limitations": [
+        "Loop counter is not a universal physics clock.",
+        "Capture reached 7200-row bound after full recovery."
+      ],
+      "processId": 21000,
+      "windowHandle": "0xA650E20",
+      "fieldsRead": [
+        "health +0xAE",
+        "hurt +0xB2",
+        "heal +0xB3",
+        "squish timer +0xB4",
+        "face pitch +0x2C",
+        "signed invulnerability timer +0x26",
+        "peak height +0xBC",
+        "surface/action/position/velocity/counter"
+      ],
+      "timerSampled": true,
+      "timerObservedValues": [
+        -1,
+        0
+      ]
+    }
+  ],
+  "staticRomEnvelopes": [
+    {
+      "name": "health-updater",
+      "pc": "0x80254060",
+      "romOffset": "0xF060",
+      "lengthBytes": 596,
+      "sha256": "B9FC701F7D6DDAA3C17DB552F11135D9D987B4A6ECD56D439EA96B8795700277",
+      "mappingCheck": true
+    },
+    {
+      "name": "health-hud-export",
+      "pc": "0x8024B13C",
+      "romOffset": "0x613C",
+      "lengthBytes": 596,
+      "sha256": "A26167824FD90A00522EF7007A94DC8EBC75DAE4995FA15B5EE17DD5D96AAA4E",
+      "mappingCheck": true
+    },
+    {
+      "name": "lava-floor-helper",
+      "pc": "0x8025065C",
+      "romOffset": "0xB65C",
+      "lengthBytes": 200,
+      "sha256": "0994CF3AF657AE36A7FE11D917A877B2006211C9A8D02075A2A9B4A6DB1F0226",
+      "mappingCheck": true
+    },
+    {
+      "name": "fall-helper",
+      "pc": "0x8026A224",
+      "romOffset": "0x25224",
+      "lengthBytes": 476,
+      "sha256": "84DA1620584B97C66CD0CB2DC658EB6922D6A38B22674016DEA2A8A36D731AC4",
+      "mappingCheck": true
+    },
+    {
+      "name": "wall-burn-helper",
+      "pc": "0x8026A12C",
+      "romOffset": "0x2512C",
+      "lengthBytes": 248,
+      "sha256": "AB4BB8C97723AB4DC56E92F117035625A3ED5EE57F3B3AF6F1C7ED455454303A",
+      "mappingCheck": true
+    },
+    {
+      "name": "direct-health-minus-10-A",
+      "pc": "0x8026CD0C",
+      "romOffset": "0x27D0C",
+      "lengthBytes": 324,
+      "sha256": "E417F0A5EB998B34CD4A0F69C0205D7C233B7CA73E34649B33A3D57A08431D1F",
+      "mappingCheck": true
+    },
+    {
+      "name": "direct-health-minus-10-B",
+      "pc": "0x8026CE50",
+      "romOffset": "0x27E50",
+      "lengthBytes": 216,
+      "sha256": "B3DB2FF4A0E98BA616786B3ED5F2E88A8FC2837495180F615384AC482F60514E",
+      "mappingCheck": true
+    },
+    {
+      "name": "coin-pickup",
+      "pc": "0x8024DB2C",
+      "romOffset": "0x8B2C",
+      "lengthBytes": 196,
+      "sha256": "041831FACB0E0BC8E6555CF58AEA3716064741954FE9D3D509CA508D5BA343A3",
+      "mappingCheck": true
+    },
+    {
+      "name": "cutscene-heal-A",
+      "pc": "0x802597AC",
+      "romOffset": "0x147AC",
+      "lengthBytes": 168,
+      "sha256": "2D278957D61A8D1C1935E4447A9B56C3A9B31DCC8CB67AACF6546EA8988E8524",
+      "mappingCheck": true
+    },
+    {
+      "name": "cutscene-heal-B",
+      "pc": "0x80259854",
+      "romOffset": "0x14854",
+      "lengthBytes": 124,
+      "sha256": "D5A2F1A71DF6447890009EE280416F5C56EC1C091B2F95507196385EB8B1E5F8",
+      "mappingCheck": true
+    },
+    {
+      "name": "recovery-heart-heal",
+      "pc": "0x80309B64",
+      "romOffset": "0xC4B64",
+      "lengthBytes": 392,
+      "sha256": "A4740E7EDA529087A858F7B0512991EBB46472E5EE4659CBA6FE26F934CC0ECE",
+      "mappingCheck": true
+    },
+    {
+      "name": "object-damage-counter",
+      "pc": "0x8024D8B0",
+      "romOffset": "0x88B0",
+      "lengthBytes": 232,
+      "sha256": "529BB68C45041C4B5607B925BF811C1E3356600C4A574B9227E9A730161E062A",
+      "mappingCheck": true
+    },
+    {
+      "name": "object-contact-caller",
+      "pc": "0x8024D998",
+      "romOffset": "0x8998",
+      "lengthBytes": 276,
+      "sha256": "A745945B80CF565B87732E8D789ECE3A9259E2B23092672D21198AD5D9EC290E",
+      "mappingCheck": true
+    },
+    {
+      "name": "fall-constant-compare-quirk",
+      "pc": "0x8026A250",
+      "romOffset": "0x25250",
+      "lengthBytes": 16,
+      "sha256": "892452CE212AEDD35B904B7501858DFC696E024260B457C1E0407BAE5309A16F",
+      "mappingCheck": true
+    },
+    {
+      "name": "transition-invuln-setter",
+      "pc": "0x8024A9CC",
+      "romOffset": "0x59CC",
+      "lengthBytes": 1296,
+      "sha256": "A8A82A5B22A72617C795E199A0007E5F9D7D54F6F4C8C87E29881105167FF77A",
+      "mappingCheck": true
+    },
+    {
+      "name": "contact-timer-and-collision-gate",
+      "pc": "0x802503F0",
+      "romOffset": "0xB3F0",
+      "lengthBytes": 472,
+      "sha256": "4847C064A9AE28BC90155BB30A206C10F45EF5C222C8D3CC99BBC200FDEE8B49",
+      "mappingCheck": true
+    },
+    {
+      "name": "transition-counter-reset",
+      "pc": "0x8024DC28",
+      "romOffset": "0x8C28",
+      "lengthBytes": 548,
+      "sha256": "2C281A7A2AB3A23F8A0A2A5D4DD70F3B200D15244106F6583E7F5B1E369A53E7",
+      "mappingCheck": true
+    },
+    {
+      "name": "death-sentinel-writer",
+      "pc": "0x80258A7C",
+      "romOffset": "0x13A7C",
+      "lengthBytes": 168,
+      "sha256": "CD6085FC98A7B26A01E7C311FE5B0F97F093C0272F79AA6D4DCF9A378C864D89",
+      "mappingCheck": true
+    },
+    {
+      "name": "crush-contact",
+      "pc": "0x8025A9AC",
+      "romOffset": "0x159AC",
+      "lengthBytes": 1120,
+      "sha256": "B572A7E3A23491228F711BC6B1A92E0958AD7B1E24E65A23C11E0D202863AA35",
+      "mappingCheck": true
+    },
+    {
+      "name": "hurt-counter-action-A",
+      "pc": "0x8025F6C0",
+      "romOffset": "0x1A6C0",
+      "lengthBytes": 688,
+      "sha256": "38437F7C4D7E7A23BAD03B260B5F129135FF56736919D4843A81132570228B5A",
+      "mappingCheck": true
+    },
+    {
+      "name": "burning-ground-minus-10",
+      "pc": "0x8026795C",
+      "romOffset": "0x2295C",
+      "lengthBytes": 712,
+      "sha256": "6F95124646349F2FEA7338A41983BC383FA57A5A8BCF42F127974079E245AC2C",
+      "mappingCheck": true
+    },
+    {
+      "name": "lava-contact-rebound-handler",
+      "pc": "0x8026E2B4",
+      "romOffset": "0x292B4",
+      "lengthBytes": 744,
+      "sha256": "84AD8F1F366E535220F25F67B108846881522BDE1149231AC34065BA086D8B7C",
+      "mappingCheck": true
+    },
+    {
+      "name": "water-swim-velocity",
+      "pc": "0x80270C94",
+      "romOffset": "0x2BC94",
+      "lengthBytes": 428,
+      "sha256": "5A92318D29A11A9B09B3964654EE60AB809F286BB577268D1B20659991A4A797",
+      "mappingCheck": true
+    },
+    {
+      "name": "water-pitch",
+      "pc": "0x80270FD8",
+      "romOffset": "0x2BFD8",
+      "lengthBytes": 236,
+      "sha256": "330687243C6AD6C1083104C7F9915178A7BB19DC89BE8CA6A3E7B317474A8AE2",
+      "mappingCheck": true
+    },
+    {
+      "name": "water-interaction",
+      "pc": "0x80271704",
+      "romOffset": "0x2C704",
+      "lengthBytes": 532,
+      "sha256": "DE791B05E9DBA4615A96BEB46EB48C8C8F0CBEC3DF23935EEA10EEBF8D4552B9",
+      "mappingCheck": true
+    },
+    {
+      "name": "invuln-contact-setter-A",
+      "pc": "0x8024EE44",
+      "romOffset": "0x9E44",
+      "lengthBytes": 436,
+      "sha256": "5F377F1F029CF7A5ED8F28719ACC39531C5ABD13CD6C87634E72827A3195C383",
+      "mappingCheck": true
+    },
+    {
+      "name": "mario-init-timer-clear",
+      "pc": "0x80254B20",
+      "romOffset": "0xFB20",
+      "lengthBytes": 1060,
+      "sha256": "603C04C608F57E8CA3C36CC4EB90A2D822F7746646C935FE47C2747DCB97C4E5",
+      "mappingCheck": true
+    },
+    {
+      "name": "invuln-contact-setter-B",
+      "pc": "0x8025A858",
+      "romOffset": "0x15858",
+      "lengthBytes": 340,
+      "sha256": "4C399414EB823BA3ECA0C8DB70136028703A489418A2FF2E1C2B28A846A16AD8",
+      "mappingCheck": true
+    },
+    {
+      "name": "invuln-contact-setter-C",
+      "pc": "0x802687B8",
+      "romOffset": "0x237B8",
+      "lengthBytes": 576,
+      "sha256": "C5EFE0A92447446E248CF5820D571826A827CA796EA74A9A180BC25D2F51D69A",
+      "mappingCheck": true
+    },
+    {
+      "name": "water-contact-setter-A",
+      "pc": "0x80272A60",
+      "romOffset": "0x2DA60",
+      "lengthBytes": 188,
+      "sha256": "0FE9EB27D9EC01C2388F5112887DFE775726F15AA599D67D7369FD8D015DA100",
+      "mappingCheck": true
+    },
+    {
+      "name": "water-contact-setter-B",
+      "pc": "0x80272BAC",
+      "romOffset": "0x2DBAC",
+      "lengthBytes": 272,
+      "sha256": "1801903D4A43B5307A0CA10D5E157EEC998FEE59C344B02B7ADC54D416B31F23",
+      "mappingCheck": true
+    },
+    {
+      "name": "fall-lesser-branch-zero-gate",
+      "pc": "0x80251BD4",
+      "romOffset": "0xCBD4",
+      "lengthBytes": 296,
+      "sha256": "FABC0B8568ADDAB5CD902EA19C7B5F3780F6BB17A417ABB0392ABC2F82036B83",
+      "mappingCheck": true
+    },
+    {
+      "name": "floor-type-dispatcher",
+      "pc": "0x802507FC",
+      "romOffset": "0xB7FC",
+      "lengthBytes": 320,
+      "sha256": "FADDFD232507344B53E1F18B414C0C14F4D77DF89AAC71407A28E1F587058795",
+      "mappingCheck": true
+    },
+    {
+      "name": "death-barrier-helper",
+      "pc": "0x802505C8",
+      "romOffset": "0xB5C8",
+      "lengthBytes": 148,
+      "sha256": "D1BF2A2C9E260369FC27E583294BFD74AAE7F82B664CD28369F05E56ACF86BE0",
+      "mappingCheck": true
+    }
+  ],
+  "publishedFiles": [
+    {
+      "path": "docs/research/MARIO64-ISSUE44-HEALTH-AND-HAZARDS.md",
+      "lengthBytes": 22777,
+      "sha256": "EA098E5AEE255B421619C12B86A9D4117CAEB11B580F2362021FAE8386AC94D8"
+    },
+    {
+      "path": "docs/research/MARIO64-ISSUE44-HEALTH-EVENTS.jsonl",
+      "lengthBytes": 1121245,
+      "sha256": "F944263A8A2D5A84A31F2ED4CCCFEF2681DF374CC8DC77DEB2407915A90C1AC0"
+    },
+    {
+      "path": "docs/research/mario64-issue44-external-capture.ps1",
+      "lengthBytes": 12966,
+      "sha256": "5A76558ACBF086212A9D463D053C6BEF6E70D948A2BE784826BBA6F1B5934B7F"
+    },
+    {
+      "path": "docs/research/mario64-issue44-project64-input.ps1",
+      "lengthBytes": 13186,
+      "sha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249"
+    },
+    {
+      "path": "docs/research/mario64-issue44-select-events.ps1",
+      "lengthBytes": 2906,
+      "sha256": "87897CF74EB2281FAB9A1C13F959A8718E4561E4FE546EFB8CBCC207134C3431"
+    }
+  ],
+  "limitations": [
+    "Damaging fall, controlled invulnerability re-hit, coin/recovery-heart pickup, gas, cap effects, crush/enemy family examples, snow water and individual course death barriers are not dynamically isolated.",
+    "Static target gates and writer paths are documented separately from runtime-confirmed outcomes.",
+    "Local raw traces, state files, ROM data and executable bytes are not included."
+  ],
+  "crossover": {
+    "surfaceClassification": "Issue #43",
+    "issue45": "Surface consumer census",
+    "lifePolicy": "Issue #28"
+  },
+  "acceptanceAudit": {
+    "eightSectionHealthRepresentation": true,
+    "healthAndQueuedCountersTargetCorroborated": true,
+    "representativeDamageAndHealingCaptured": true,
+    "deathAndRespawnRecoveryCaptured": true,
+    "waterLossAndRecoveryCaptured": true,
+    "boundedNoDamageFallCaptured": true,
+    "invulnerabilityAndDamagingFallRuntimeLimitExplicit": true,
+    "allPublishedRomRangesVerifiedAgainstLocalRom": true,
+    "allPublishedRomRangesVerified": true,
+    "thresholdConstantsResolvedWithIndependentEvidence": true
+  },
+  "inputLogLocalOnly": {
+    "path": "tools/issue11-local/issue40-project64-input-log.jsonl",
+    "sha256": "346743D67154442881D760A3DC94E5DB133F96A01057804122501938FEDB1199",
+    "helperPath": "docs/research/mario64-issue44-project64-input.ps1",
+    "helperSha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249"
+  },
+  "replaySeedsLocalOnly": [
+    {
+      "use": "lower-platform fall replay reference",
+      "path": "tools/issue11-local/seeds/issue41-lower-platform-y803-z2670.pj.zip",
+      "lengthBytes": 1434741,
+      "sha256": "E3AF591D10EE312438A88F57351ADA6CB35D1B0A8BE80128B38D7242429DE616",
+      "note": "Exact state load not recorded in trial metadata."
+    },
+    {
+      "use": "courtyard/lake replay reference",
+      "path": "tools/issue11-local/issue35-mario-gameplay-baseline.pj.zip",
+      "lengthBytes": 1387126,
+      "sha256": "6E2C8265A8A9A19761BCC6CE29FA20694FAD5444B325B1F22CA987776A2D6DFE",
+      "note": "Exact state load not recorded in trial metadata."
+    }
+  ],
+  "executionVersions": {
+    "healthSampler": {
+      "path": "tools/issue11-local/issue44-health-capture.ps1",
+      "sha256": "9FA44BDD3786EA6CEB57BD6653F10C09C3B182FDF2A93332B13AE69B640EC84A",
+      "trials": [
+        "issue44-lava-route-10"
+      ]
+    },
+    "pitchSampler": {
+      "path": "tools/issue11-local/issue44-health-pitch-capture.ps1",
+      "sha256": "1871D8B606A7C2207E601EF41B1F691307E8B535E8998BE0811B1B624C17C38C",
+      "trials": [
+        "issue44-fall-route-06",
+        "issue44-water-pitch-03"
+      ]
+    },
+    "extendedSampler": {
+      "path": "tools/issue11-local/issue44-health-pitch-fall-capture.ps1",
+      "sha256": "5A76558ACBF086212A9D463D053C6BEF6E70D948A2BE784826BBA6F1B5934B7F",
+      "trials": [
+        "issue44-water-drowning-04"
+      ]
+    },
+    "publishedReadOnlySampler": {
+      "path": "docs/research/mario64-issue44-external-capture.ps1",
+      "sha256": "5A76558ACBF086212A9D463D053C6BEF6E70D948A2BE784826BBA6F1B5934B7F"
+    },
+    "inputHelper": {
+      "path": "docs/research/mario64-issue44-project64-input.ps1",
+      "sha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249"
+    },
+    "eventSelector": {
+      "path": "docs/research/mario64-issue44-select-events.ps1",
+      "sha256": "87897CF74EB2281FAB9A1C13F959A8718E4561E4FE546EFB8CBCC207134C3431"
+    }
+  },
+  "analysisCorpusLocalOnly": {
+    "path": "tools/issue11-local/issue45-ram-indirect-all.txt",
+    "lengthBytes": 2378402,
+    "sha256": "3C3DAB7AF2ABBD922F17CA3E4B6DEF3534A86A1DCCF47116D774C09DA34C2B6D",
+    "note": "Local exact-target RAM-indirect decomp corpus used for bounded writer/caller scan; not published."
+  },
+  "healthMechanisms": {
+    "lavaFloor": {
+      "dispatcher": "FUN_802507FC",
+      "dispatchGates": "action bits 0x800 and 0x2000 clear",
+      "helper": "FUN_8025065C",
+      "helperGates": "floor type 1; action bit 0x10000 clear; Y<floor+10; Mario flag bit 0x4 clear to hurt",
+      "hurtTicksFlag10Clear": 18,
+      "hurtTicksFlag10Set": 12
+    },
+    "gas": {
+      "path": "FUN_80254060",
+      "effect": "direct health -4 per updater iteration",
+      "gates": "gas state/action/global/counter gates; Mario flag bit 0x4 clear"
+    },
+    "fall": {
+      "helper": "FUN_8026A224",
+      "lesserGate": "delta>1150 and FUN_80251BD4(m)==0",
+      "highGate": "delta>3000",
+      "lowTicksFlag10Set": 8,
+      "lowTicksFlag10Clear": 12,
+      "highTicksFlag10Set": 16,
+      "highTicksFlag10Clear": 24,
+      "additionalGates": "vY<-55; action!=0x108008A4; floor type !=1",
+      "constantDataBlock": "ROM 0xF1BF0, length64 unique match"
+    },
+    "coin": {
+      "coins": "signed halfword +0xA8",
+      "healing": "B3 += signed object value<<2",
+      "hundredCoinHandler": "FUN_802AB558(6)",
+      "lives": "signed byte +0xAD"
+    },
+    "crush": {
+      "path": "FUN_8025A9AC",
+      "gapThreshold": "DAT_803366E8 (symbolic)",
+      "gates": "ceiling-floor gap; 160-unit height release; 30-unit release gate; flags 0x4 clear; invulnerability timer +0x26=0",
+      "effect": "sets +0xB4=0xFF; queues 12/18 hurt ticks; action argument pre-increment >300 sets health 0xFF, clears +0xB2, warps action 0x12"
+    },
+    "lavaRebound": {
+      "path": "FUN_8026E2B4",
+      "gates": "type-1 landing; vertical speed 84",
+      "effect": "requeues 12/18 hurt ticks; static candidate explanation for repeated lava bursts, not captured callsite proof"
+    }
+  }
+}

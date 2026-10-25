@@ -27,7 +27,11 @@
     "exactRomConsumerVerified": 99,
     "geoAsmRendererVerifiedPerIdMappingUnresolved": 45,
     "boundedSourceOnly": 3,
-    "sourceOnlyIds": ["0x0D", "0x16", "0x68"],
+    "sourceOnlyIds": [
+      "0x0D",
+      "0x16",
+      "0x68"
+    ],
     "currentCsvBlobSha": "2dd49bbc9aa5a30b0c821dc3b9581e90cc4d2ebf",
     "currentCsvSha256": "4D2700D77390F497CE2C6B7662AE61B9F148B2992307D52C913C85176965767F",
     "obsoleteCounts": "The earlier 26/101/19/1 breakdown is superseded by the census statuses above."
@@ -84,16 +88,38 @@
   },
   "runtimeConclusions": {
     "water": "#46 observed one bounded below-threshold entry and water actions, plus one A-stroke sequence. Water level -81 is distinct from floor type. Runtime Y=-161 (waterLevel-80) is observed; exact-ROM clamp mechanism is unproved. Action 0x300024D2 appears as previousAction on a sampled 0x300024D1 row; no current-action D2 row or D2 exit predicate is established.",
-    "lava": "#46 observed floor type 1 contact followed by numeric action 0x010208B7, corroborated by exact ROM ranges [0xB7FC,0xB93C) and [0xB65C,0xB724). 274 observations span 5.932 host seconds with repeated loop counters; they are not 274 simulation frames. HUD lives changed 4 to 3 after respawn. No health field/decrement was measured; MarioState+0xB2 is not labeled health.",
-    "unobservedRuntimeFamilies": ["quicksand", "wind/current force", "moving-platform force", "hanging/climbing contact", "death plane", "painting/camera/course-only behavior"],
+    "lava": "#46 observed floor type 1 contact followed by numeric action 0x010208B7, corroborated by exact ROM ranges [0xB7FC,0xB93C) and [0xB65C,0xB724). Sequence 3785 is at Y=0 with velocityY=-40.0 and action 0x04000471; sequence 3786 is at Y=84 with velocityY=80.8 and action 0x010208B7, directly recording an upward launch. 274 observations span 5.932 host seconds with repeated loop counters; they are not 274 simulation frames. HUD lives changed 4 to 3 after respawn. No health field/decrement was measured; MarioState+0xB2 is not labeled health.",
+    "unobservedRuntimeFamilies": [
+      "quicksand",
+      "wind/current force",
+      "moving-platform force",
+      "hanging/climbing contact",
+      "death plane",
+      "systematic per-ID painting, camera, and course-only behavior (the lava route entered the LLL painting and course 7)"
+    ],
     "scope": "Finite representative trials and bounded static target search, not all placements, parameter values, frames, or reachable consumers."
   },
   "publishedFiles": [
-    {"path": "docs/research/MARIO64-ISSUE43-SPECIAL-SURFACES.md", "role": "Integrated #43 acceptance audit and cross-followup dossier."},
-    {"path": "docs/research/mario64-issue43-evidence-manifest.json", "role": "Integrated provenance and artifact manifest."},
-    {"path": "docs/research/mario64-issue43-surface-inventory.csv", "role": "147-ID current census crosswalk; published with #45."},
-    {"path": "docs/research/MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md", "role": "Full static consumer census."},
-    {"path": "docs/research/MARIO64-ISSUE46-WATER-LAVA-RUNTIME.md", "role": "Bounded runtime observations and recipes."}
+    {
+      "path": "docs/research/MARIO64-ISSUE43-SPECIAL-SURFACES.md",
+      "role": "Integrated #43 acceptance audit and cross-followup dossier."
+    },
+    {
+      "path": "docs/research/mario64-issue43-evidence-manifest.json",
+      "role": "Integrated provenance and artifact manifest."
+    },
+    {
+      "path": "docs/research/mario64-issue43-surface-inventory.csv",
+      "role": "147-ID current census crosswalk; published with #45."
+    },
+    {
+      "path": "docs/research/MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md",
+      "role": "Full static consumer census."
+    },
+    {
+      "path": "docs/research/MARIO64-ISSUE46-WATER-LAVA-RUNTIME.md",
+      "role": "Bounded runtime observations and recipes."
+    }
   ],
   "privacyAndCaptureLimits": [
     "ROM, copyrighted assets, save states, and full raw traces remain local.",

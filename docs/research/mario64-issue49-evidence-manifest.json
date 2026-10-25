@@ -1,0 +1,570 @@
+{
+  "issue": "BrantTanner/MarioCraft#49",
+  "target": {
+    "rom": "Super Mario 64 USA rev 0, 8 MiB big-endian",
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "project64": "3.0.1.5664-2df3434 portable",
+    "project64Sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8"
+  },
+  "mapping": {
+    "mainPcMap": "PC=0x80245000+ROM offset only for offsets [0x1000,0xE855F]",
+    "functionHashes": "SHA-256 covers each listed range exactly. Ordinary rows are contiguous Ghidra body spans [entry,maxBody+1); entries labeled full span/envelope include the full function interval and internal gaps. Byte count and range are explicit per row.",
+    "rdramTitleFixture": "#10 title-screen RDRAM snapshot: 4 MiB canonical big-endian, SHA-256 3B94D5FDC08C1F53D9BC54A5DA9F3A0E0B8C41269404421C109D9429E03ED1A5; raw snapshot omitted. The separate live SELECT FILE graph read is from 2026-10-25T21:05:28.9668779Z and camera scalar read from 21:06:29.3768081Z; no raw RAM or screenshot included.",
+    "titleCustomView": "Title fixture callback802764B0 param2\u21928019C9F8 case2\u2192801A52A8 view at 801BB258\u21928017B764. View object 80104738 uses type-0x200 camera 800F7090, FOV45, eye(0,200,2000), focus(0,200,0), roll0. 801799AC performs eye/focus camera setup and calls matrix/modelview path 8019F458. Eight complete unique ROM matches are listed in titleCustomViewBlocks. This is a scene-local custom-model camera path, not global title/menu ownership.",
+    "titleCustomViewBlocks": [
+      {
+        "pc": "[0x8017B730,0x8017B75C)",
+        "rom": "[0x22BBF0,0x22BC1C)",
+        "bytes": 44,
+        "sha256": "603447644A889E34876855B1C6ACD8B18DD035884D841B6AF4876C39E319DBE6"
+      },
+      {
+        "pc": "[0x801A52A8,0x801A534C)",
+        "rom": "[0x255768,0x25580C)",
+        "bytes": 164,
+        "sha256": "4A641EF530D8CCEF573CBE659595ABC4D8170C7FF6F08D527EFE734F4A07B5A6"
+      },
+      {
+        "pc": "[0x8017B764,0x8017BDD4)",
+        "rom": "[0x22BC24,0x22C294)",
+        "bytes": 1648,
+        "sha256": "987CC8329DAC7E3A6C1A34A045A2D9142FDEC85DB6D15772E2AABCD1B49E69F9"
+      },
+      {
+        "pc": "[0x8017A010,0x8017A344)",
+        "rom": "[0x22A4D0,0x22A804)",
+        "bytes": 820,
+        "sha256": "81BCDE066ABCC386573C1FBDF2098028EA379BCE23520B5B0CA3E1607DD16E07"
+      },
+      {
+        "pc": "[0x801799AC,0x80179C0C)",
+        "rom": "[0x229E6C,0x22A0CC)",
+        "bytes": 608,
+        "sha256": "56BC2ACBFEF48254C06CBF41B59DB78F5B8F4FF1B73FC00BC1667E8B901A6093"
+      },
+      {
+        "pc": "[0x8019F458,0x8019FB18)",
+        "rom": "[0x24F918,0x24FFD8)",
+        "bytes": 1728,
+        "sha256": "2D40A81246C65FBA7179421376369D8A52D9E7BCF03A126AF0F845C52C6FFF1F"
+      },
+      {
+        "pc": "[0x801A3DCC,0x801A3F9C)",
+        "rom": "[0x25428C,0x25445C)",
+        "bytes": 464,
+        "sha256": "54E99E81D691627A51D711A664532D514F7C1CB3B0CEE7F56430D5A84D8375C2"
+      },
+      {
+        "pc": "[0x80193CA8,0x8019429C)",
+        "rom": "[0x244168,0x24475C)",
+        "bytes": 1524,
+        "sha256": "3469003DF1A226DFA12D979FD055D0BC4DF8D0E8DFF2D905A22637DA5D72FC1E"
+      }
+    ],
+    "uiPaths": {
+      "dialog": "Area/menu dispatcher 0x802DDCA4 checks dialog ID at 0x80331484 when menu mode 0x803314F8 is -1. ID 0x14 calls 0x802DAD54; other nonnegative IDs call 0x802DA1AC. Both use message resource table 0x02010A68. Ordinary path lays out record text through 0x802D8E2C, 0x802D9800, and 0x802D982C. ID 0x14 reads record string pointer at +0x0C and calls 0x802D77DC at (0x26,0x8E). 0x802D77DC consumes string bytes, handles newline cursor movement, selects glyphs, and emits display-list commands. No runtime dialog was observed.",
+      "cannonReticle": "HUD dispatcher 0x802E3D2C reads Area+0x24 camera mode. Numeric mode 10 (cannon mode corroborated by issue #47) calls 0x802DB08C, which draws four rotated copies of display list 0x02011DC0 centered near (160,120).",
+      "pauseResume": "Normal pause flow: 0x8024B3E4 enters mode 2 through 0x80249764; 0x802DCA88 handles ordinary A/Start and returns result 1; 0x8027B3B4 stores it at 0x8033BACE; paused update 0x8024B5D4 returns play mode to 0. 0x8024B6CC is a separate debug Start/D-down frame-advance path.",
+      "creditsStyleText": "Renderer 0x80256E88 consumes the queued record at 0x8032DB40 (+0x0C), emits commands through 0x802DAA34 after setup, and uses 0x80256E00 as a string-width metric (+4 for ASCII space, +7 for other bytes). Producer 0x8025D1D4 assigns 0x8032DDD0 to 0x8032DB40 after timer >0x59. This is credits-style queued text; ordinary dialog dispatch is separate.",
+      "screenTextRecords": "0x802D6C88 iterates screen-text records in 0x80361320 using count 0x80331360 and helpers 0x802D6858/69F8/6B3C. The callers and broader record lifecycle remain outside this bounded inventory."
+    }
+  },
+  "tools": [
+    {
+      "name": "mario64-issue49-external-capture.ps1",
+      "sha256": "52D18AAEDA9FD8321F33CA2560E3F349EFFB710E38CA4411D1D9E6E7D72D5CA6",
+      "purpose": "read-only aligned HUD scalar capture; live ROM prefix guard"
+    },
+    {
+      "name": "mario64-issue49-external-capture-v2.ps1",
+      "sha256": "3E69CA5257711541B3A104D4BBE5D2EE4C8BC393E8D550AECDB483F41A7DC790",
+      "purpose": "v1 HUD fields plus signed play-mode S16 and adjacent pause-timer candidate S16"
+    },
+    {
+      "name": "mario64-issue47-project64-input.ps1",
+      "sha256": "2E78A7B6685C010C8FD2DDAD9D92815A77E9FB87202EAE6DA640A8579B0F9463",
+      "purpose": "scoped Project64 keyboard input helper; Start pause/resume input"
+    },
+    {
+      "name": "Ghidra 12.1.4 PUBLIC headless read-only extraction on pinned local analysis copy; Java 21.0.12.1+1",
+      "purpose": "target function decompilation and references; no program analysis or project mutation"
+    }
+  ],
+  "runtime": {
+    "samplerVersion": "issue49-aligned-hud-pause-v2",
+    "liveRomPrefixGuard": "16 bytes read from guest 0x80246000, canonicalized by 4-byte words, matched pinned ROM[0x1000..0x1010)",
+    "processAccess": "OpenProcess query+read rights; ReadProcessMemory only; no emulator memory writes",
+    "pauseTrial": {
+      "id": "issue49-pause-e",
+      "traceSha256": "019840FD444882DBB244D786789599E4A6ED039EECF28D51CEA553E82D37FAE2",
+      "rows": 325,
+      "pausedMode2Rows": 261,
+      "resumedMode0Rows": 64,
+      "counterEqualBrackets": 307,
+      "hudFlagsU16": 61,
+      "pausedScalars": {
+        "playModeS16": 2,
+        "pauseTimerCandidateS16": 0,
+        "action": "0x0C000203",
+        "actionState": 2,
+        "healthS16": 2176,
+        "pendingHurtTicks": 0,
+        "pendingHealTicks": 0,
+        "livesExportS16": 4,
+        "coinDisplayS16": 0,
+        "starsExportS16": 0,
+        "healthSegmentsExportS16": 8,
+        "keysExportS16": 0
+      },
+      "mode0PlayScalars": {
+        "rows": 64,
+        "boundaryRows": [
+          0,
+          324
+        ],
+        "livesExportS16": 4,
+        "coinDisplayS16": 0,
+        "starsExportS16": 0,
+        "healthSegmentsExportS16": 8,
+        "keysExportS16": 0,
+        "hudFlagsU16": 61,
+        "visualPairing": "Direct play-mode scalar evidence only; no synchronized normal-play screenshot was retained."
+      },
+      "visualObservation": "During mode 2, Project64 showed the pause overlay with PAUSE, CASTLE SECRET STARS, and star x0; screenshot remains local-only",
+      "limits": "main-loop counter advances during mode 2; counter equality is not atomicity; HUD values under menus can remain live or stale"
+    },
+    "fileSelectObservation": "Loaded the preserved pre-file-select state (sm64-title-state-before-file-select.pj.zip, 1,374,703 bytes, SHA-256 68EB47233F30DFE14C15116C2D937FA165585A3A78F0107D) in guarded portable Project64 PID 21000/HWND 0xA650E20; reviewed input helper Start scan 0x1C pulse 120 ms (down 2026-10-25T21:04:44.8156951Z, up 2026-10-25T21:04:44.9494461Z). Fresh live visual at about 21:04:48Z showed SELECT FILE, slots A-D marked NEW, SCORE, COPY, ERASE, STEREO. No slot/control selected. No screenshot stored or published.",
+    "fileSelectGraph": {
+      "utc": "2026-10-25T21:05:28.9668779Z",
+      "activeArea": "0x8033B90C",
+      "root": "0x80092760",
+      "traversal": "All 10 reachable child(+0x10)/sibling(+0x08) nodes traversed with visited-set and pointer/bounds checks; area and root stable before/after; loop counter 3523\u21923526, so pointers are non-atomic samples.",
+      "nodes": [
+        {
+          "address": "0x80092894",
+          "type": "0x103",
+          "role": "perspective"
+        },
+        {
+          "address": "0x800928B8",
+          "type": "0x114",
+          "role": "camera"
+        },
+        {
+          "address": "0x800928F4",
+          "type": "0x29",
+          "role": "objects"
+        },
+        {
+          "address": "0x80092960",
+          "type": "0x12A",
+          "role": "generated overlay node",
+          "callback": "0x80176688"
+        }
+      ],
+      "cameraProbeUtc": "2026-10-25T21:06:29.3768081Z",
+      "camera": {
+        "callback": "NULL",
+        "eye": [
+          0,
+          0,
+          1000
+        ],
+        "focus": [
+          0,
+          0,
+          0
+        ],
+        "roll": 0,
+        "projectionCallback": "NULL",
+        "fov": 45,
+        "near": 100,
+        "far": 25000,
+        "loopCounterBracket": [
+          5333,
+          5334
+        ]
+      },
+      "consumer": "Generic GeoLayout type-0x114 handler 0x8027BF58 consumes the fixed camera/projection fields.",
+      "overlayCallbackCode": {
+        "liveReadUtc": "2026-10-25T21:10:37.6830927Z",
+        "range": "[0x80176688,0x80176788)",
+        "bytes": 256,
+        "liveEqualsTitleFixture": true,
+        "uniqueRomMatch": "[0x226B48,0x226C48)",
+        "sha256": "86B601F8CAD1F49E58D8E7D7E673E75527F85AA3EA765ED448D217ACBE173C18",
+        "counterBracket": [
+          12767,
+          12767
+        ],
+        "nonAtomic": true
+      },
+      "overlayFunctions": [
+        {
+          "range": "[0x80176688,0x801766DC)",
+          "rom": "[0x226B48,0x226B9C)",
+          "bytes": 84,
+          "sha256": "5D93C09CBB665AAAA769B64CD6910443594E62465993E26BE2BF4CAA586ED6E3",
+          "role": "calls 801764E0 state dispatcher and 80173AE0 cursor/update draw"
+        },
+        {
+          "range": "[0x801764E0,0x80176688)",
+          "rom": "[0x2269A0,0x226B48)",
+          "bytes": 424,
+          "sha256": "324E7D88A3F4839C8504D69578BF39442D9A115F066748749519A6626A1DF75E",
+          "role": "orthographic UI state dispatcher and four indexed slot predicates"
+        },
+        {
+          "range": "[0x80173AE0,0x80173C6C)",
+          "rom": "[0x223FA0,0x22412C)",
+          "bytes": 396,
+          "sha256": "6295DBDBE078086936250E798EBA6F92559AD5DFE6FFFA67D51B3A13A540AE07",
+          "role": "calls cursor update and emits UI draw-list commands"
+        }
+      ],
+      "controllerFunctions": [
+        {
+          "range": "[0x80173900,0x80173AE0)",
+          "rom": "[0x223DC0,0x223FA0)",
+          "bytes": 480,
+          "sha256": "974BE4B076A125F7085FD7A06B1828903B9588E84E21FB879E56EF9FD4D86E18",
+          "liveEqualsTitleFixture": true,
+          "uniqueRomMatch": true,
+          "role": "reads signed S16 analog X/Y at +0/+2 and updates cursor coordinates"
+        },
+        {
+          "range": "[0x80173780,0x80173900)",
+          "rom": "[0x223C40,0x223DC0)",
+          "bytes": 384,
+          "sha256": "9E7DA41DCCFDA2E7764432319BB61F8172FA7017C336992B2583C6093CB9274E",
+          "liveEqualsTitleFixture": true,
+          "uniqueRomMatch": true,
+          "role": "state-gated U16 buttonPressed read at +0x12; masks 0x5000, 0x8000, 0xD000"
+        },
+        {
+          "range": "[0x80248638,0x80248824)",
+          "rom": "[0x3638,0x3824)",
+          "bytes": 492,
+          "sha256": "7181A76AD986E0D8B561D08CCAFC131D23E375A24499C1CE9F8CDDD7F34DFCB5",
+          "role": "controller updater derives pressed-edge word at +0x12 from new and previous-held buttons; held word is +0x10"
+        }
+      ],
+      "limits": "The callback and controller function code identities were verified against live RAM and unique pinned-ROM matches. The graph traversal and code read counter brackets are not an atomic snapshot. The title fixture remains a distinct saved RDRAM source. Static code establishes polling and branches; the only runtime navigation observed was the separate single Start transition from the preserved pre-file-select state to SELECT FILE. No file-select cursor/button activation was tested."
+    },
+    "notObserved": [
+      "power-meter activation or depletion visible transition",
+      "runtime dialogue/text message",
+      "course-clear/result screen",
+      "file-select cursor movement, button activation, slot choice, copy/erase action, and other interactive outcome",
+      "title attract sequence, credits, and settings"
+    ]
+  },
+  "staticEvidence": [
+    {
+      "pc": "0x8024B13C",
+      "romRange": "[0x613C,0x6390)",
+      "sha256": "A26167824FD90A00522EF7007A94DC8EBC75DAE4995FA15B5EE17DD5D96AAA4E",
+      "role": "HUD scalar export to 0x8033B260",
+      "hashSpanBytes": 596,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x8024B3E4",
+      "romRange": "[0x63E4,0x65D4)",
+      "sha256": "0276A5D68A779A50E4869A5B7313BE09C2346C0160DA383698083182FE1387BD",
+      "role": "normal gameplay update / pause eligibility",
+      "hashSpanBytes": 496,
+      "hashSpan": "full span [0x63E4,0x65D4)",
+      "bodyBytes": 488
+    },
+    {
+      "pc": "0x8024B5D4",
+      "romRange": "[0x65D4,0x66CC)",
+      "sha256": "95798FA5DBE2798FD990EC938C7D4A6C2206E8D1C96A5436DFDB26B96A17398B",
+      "role": "paused update; ordinary menu result resumes mode0",
+      "hashSpanBytes": 248,
+      "hashSpan": "full span [0x65D4,0x66CC)",
+      "bodyBytes": 240
+    },
+    {
+      "pc": "0x8024B6CC",
+      "romRange": "[0x66CC,0x6798)",
+      "sha256": "9DEE5AB7C84FC41A045FFCA209EF5F6AB58BAD0B4631FEB0ADC0000339C66514",
+      "role": "separate debug pause/frame-advance path",
+      "hashSpanBytes": 204,
+      "hashSpan": "full span [0x66CC,0x6798)",
+      "bodyBytes": 196
+    },
+    {
+      "pc": "0x80249764",
+      "romRange": "[0x4764,0x4784)",
+      "sha256": "AADEB1BE26C8102FC9658B2D562EA5CC9D3F72551BCBBC2699BED9726E3DD48D",
+      "role": "S16 play-mode setter",
+      "hashSpanBytes": 32,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x8027B3B4",
+      "romRange": "[0x363B4,0x366C0)",
+      "sha256": "5CFE00C8F840816FE598497DAB037AC1D24B38E49A076C349E35DC30AB21B9EA",
+      "role": "area graph renderer and HUD call site",
+      "hashSpanBytes": 780,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x8027BF58",
+      "romRange": "[0x36F58,0x37114)",
+      "sha256": "507BA7234A29F688775EF207AD057B2E5A88630C08623F0883ADDE6CF7F72810",
+      "role": "generic GeoLayout camera node handler reads fixed camera fields",
+      "hashSpanBytes": 444,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E3D2C",
+      "romRange": "[0x9ED2C,0x9EE50)",
+      "sha256": "BCCB724BF03F3396B3DCCF996F767270C50404B32BA5CDCE6513D5CCABBF2207",
+      "role": "HUD orthographic pass dispatch",
+      "hashSpanBytes": 292,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E3744",
+      "romRange": "[0x9E744,0x9E7A8)",
+      "sha256": "3EBFF3143AE32A68513653FD7FBD89D31F4089D270694BB1F82B533F3273C350",
+      "role": "lives draw",
+      "hashSpanBytes": 100,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E37A8",
+      "romRange": "[0x9E7A8,0x9E80C)",
+      "sha256": "778D29E5DD6F773B3BF6A80CDE3696411E8DBDE1ED8F045B3C6AA8A3D6C1D424",
+      "role": "coin-count draw",
+      "hashSpanBytes": 100,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E380C",
+      "romRange": "[0x9E80C,0x9E8E4)",
+      "sha256": "FACEBD414F635DDEE504C7828DAFD1FE36220356C26AE4C325BAEBD8998DFF83",
+      "role": "star draw",
+      "hashSpanBytes": 216,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E38E4",
+      "romRange": "[0x9E8E4,0x9E95C)",
+      "sha256": "9B6E32A35BF911A2E30A2711FD8B1107EA94FD26639D4F253547A5A39A94EE1E",
+      "role": "key draw",
+      "hashSpanBytes": 120,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E3654",
+      "romRange": "[0x9E654,0x9E744)",
+      "sha256": "D9975F1BB296C0A9B346230975B679AD8E38D3A9764F718DBC5D342EE8572D7E",
+      "role": "health/power meter update and draw selection",
+      "hashSpanBytes": 240,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E352C",
+      "romRange": "[0x9E52C,0x9E64C)",
+      "sha256": "D244852F27188460E9D2D223700254F73EA8FB034BC00E125977BEA0E81E6DBC",
+      "role": "meter state logic; raw 0x2000 gate meaning unresolved",
+      "hashSpanBytes": 288,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E3214",
+      "romRange": "[0x9E214,0x9E3B8)",
+      "sha256": "AF50C3CA2FAC4951762B3FAF0A7550CECBB60225CA9BB096664F6A0E99F7C2AB",
+      "role": "meter display-list emission",
+      "hashSpanBytes": 420,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E3B3C",
+      "romRange": "[0x9EB3C,0x9ED2C)",
+      "sha256": "F22407511DAAB64430D70032915E01CF330EFECE11E9F3A0C5935BC23A6DDB0B",
+      "role": "icon/list path; exact icon semantic unresolved",
+      "hashSpanBytes": 496,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802E395C",
+      "romRange": "[0x9E95C,0x9EB1C)",
+      "sha256": "9633AAF55E7E92D91C879556017AC864800BE05624D1213E9F46EBFE074F6CBD",
+      "role": "time-derived display",
+      "hashSpanBytes": 448,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802D7384",
+      "romRange": "[0x92384,0x92480)",
+      "sha256": "8BE8C0CC692E7092748C380DCB90E801E89899EA524B5B96747F9C57DBCDE233",
+      "role": "orthographic overlay setup",
+      "hashSpanBytes": 252,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x80256E88",
+      "romRange": "[0x11E88,0x12060)",
+      "sha256": "51D39E5EE54FE6666410077253AC5552D5A127D3D2FE41D988C1DEFD8EBFA5A0",
+      "role": "credits-style queued text renderer consuming 0x8032DB40",
+      "hashSpanBytes": 472,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802DCA88",
+      "romRange": "[0x97A88,0x97D04)",
+      "sha256": "CC71F6710D2965863E142A0EB63763AC223CC56448FD1ABD07BFAAC9BE852D77",
+      "role": "pause-menu mode handler; ordinary A/Start resume result",
+      "hashSpanBytes": 636,
+      "hashSpan": "full span [0x97A88,0x97D04)",
+      "bodyBytes": 628
+    },
+    {
+      "pc": "0x802DDAE0",
+      "romRange": "[0x98AE0,0x98CA4)",
+      "sha256": "B6A54E9FA552BC6861C83ECC5DC14E30E2AA80C25B012F2493574F92D800967A",
+      "role": "course/result mode handler",
+      "hashSpanBytes": 452,
+      "hashSpan": "full span [0x98AE0,0x98CA4)",
+      "bodyBytes": 444
+    },
+    {
+      "pc": "0x802DDCA4",
+      "romRange": "[0x98CA4,0x98DEC)",
+      "sha256": "F4D9038ECDC2ACF69A93647CBD401605A4C8442B10DC11139307068D65AED796",
+      "role": "pause/course-result mode dispatch and dialog dispatch",
+      "hashSpanBytes": 328,
+      "hashSpan": "full span [0x98CA4,0x98DEC)",
+      "bodyBytes": 320
+    },
+    {
+      "pc": "0x802764B0",
+      "romRange": "[0x314B0,0x3157C)",
+      "sha256": "9026AEBA90738338739381E59DD398C4D52BA66E44F45B625C947F547FE53478",
+      "role": "title-screen fixture callback selects custom model/list path and its custom view owner",
+      "hashSpanBytes": 204,
+      "bodyBytes": 196,
+      "hashSpan": "full envelope [0x802764B0,0x8027657C)"
+    },
+    {
+      "pc": "0x8019C9F8",
+      "romRange": "[0x24CEB8,0x24D248)",
+      "sha256": "549F57741DE5A6345989666F464C492B28854753E3A1D487017D60F54D70E335",
+      "role": "callback-selected custom model/list path",
+      "hashSpanBytes": 912,
+      "bodyBytes": 904,
+      "hashSpan": "full envelope [0x8019C9F8,0x8019CD88)"
+    },
+    {
+      "pc": "0x802DAB58",
+      "romRange": "[0x95B58,0x95D54)",
+      "hashSpanBytes": 508,
+      "sha256": "7E2E2647142C5D8B5881AF032F71A382AD3914A7643F21D01826912B889CA18D",
+      "role": "queued notification text gate/render",
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802D6C88",
+      "romRange": "[0x91C88,0x91F18)",
+      "hashSpanBytes": 656,
+      "sha256": "43B106D5190FE2FECCF9B89C429B2203F15D147970DD10D1BC819338CBAC86A0",
+      "role": "screen-text record list renderer",
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802D6858",
+      "romRange": "[0x91858,0x919E8)",
+      "hashSpanBytes": 400,
+      "sha256": "9C3A2F38CDB70305FDE2C64A0990C3BED65F7913A144799D510DA5C5A25B4582",
+      "role": "screen-text entry selector",
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802D69F8",
+      "romRange": "[0x919F8,0x91ACC)",
+      "hashSpanBytes": 212,
+      "sha256": "62D417B58DCD87B7EE610B6A5A43722EFE494C6D56334C1AFA78A9CB1D217617",
+      "role": "screen-text rendering helper",
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802D6B3C",
+      "romRange": "[0x91B3C,0x91C88)",
+      "hashSpanBytes": 332,
+      "sha256": "13DD75F15159506C737EA05B9D74CB6084F5549A86B45406A3A781C2F6989C7E",
+      "role": "screen-text record draw helper",
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802DB08C",
+      "romRange": "[0x9608C,0x96350)",
+      "hashSpanBytes": 708,
+      "sha256": "790EF7D4D40436C6237AEEC671739A540322412404B47E21BAA2D761FBF416CB",
+      "role": "cannon-mode reticle; four rotated display-list copies centered at (160,120)",
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802DA85C",
+      "romRange": "[0x9585C,0x958E4)",
+      "hashSpanBytes": 136,
+      "sha256": "67CE1398F5875716B80AEAFD3DB36078B0B0C9FE327825F650F55DC677F73A53",
+      "role": "text renderer setup",
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802DAA34",
+      "romRange": "[0x95A34,0x95AE4)",
+      "hashSpanBytes": 176,
+      "sha256": "740EAFEBF8F850365A495779662214D9A38AA4A8257747192AE796F986908478",
+      "role": "string/glyph command helper",
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x80256E00",
+      "romRange": "[0x11E00,0x11E88)",
+      "hashSpanBytes": 136,
+      "sha256": "443ECA1622D68419BD46DD6A313A320F7A5B3EC886139196E53C2E63BC163124",
+      "role": "string-width metric: ASCII space +4; other bytes +7",
+      "hashSpan": "full span [0x11E00,0x11E88)",
+      "bodyBytes": 128
+    },
+    {
+      "pc": "0x802DA1AC",
+      "romRange": "[0x951AC,0x95810)",
+      "sha256": "AA846692D18972F20BE0D48E62FA29141F9E4D2449EE3201F4D3083C13DA2A16",
+      "role": "ordinary dialog record/layout path",
+      "hashSpanBytes": 1636,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802DAD54",
+      "romRange": "[0x95D54,0x9608C)",
+      "sha256": "7A9F5E2FE067DF0CE6F9C54D0039AA2CC6F8998D7A7FA4C8C08544DF08DF03D5",
+      "role": "special dialog ID 0x14 string path",
+      "hashSpanBytes": 824,
+      "hashSpan": "body [entry,maxBody+1)"
+    },
+    {
+      "pc": "0x802D77DC",
+      "romRange": "[0x927DC,0x92B84)",
+      "sha256": "8420B03927C6007D64A806EE633EA68584AFB03208A11F153E5335C5BAFB0239",
+      "role": "string-byte display-list/glyph helper",
+      "hashSpanBytes": 936,
+      "hashSpan": "body [entry,maxBody+1)"
+    }
+  ],
+  "knownLimits": [
+    "#10 title-screen fixture graph traversal is bounded to the graph rooted at 0x80165640 in the verified 4 MiB snapshot; the complete child/sibling traversal contains no type-0x114 camera node. This does not prove all title or menu scenes lack camera state.",
+    "The live file-select UI is tied to a specific preserved save-state load and Start event. Its graph camera, overlay callback, controller polling, and pressed-edge/held distinction are traced. Cursor movement/button activation, slot choice, and control outcomes were not exercised.",
+    "Title fixture callback view ownership is resolved through the custom model-view path and type-0x200 camera; file-select type-0x114 fixed fields are resolved through the generic graph handler. The file-select callback code is separately verified against live memory and pinned ROM.",
+    "Static HUD paths do not prove runtime exposure for every mode; runtime HUD/pause/file-select observation does not cover dialogue, power-meter change, course-result, or title attract states.",
+    "Use the health exporter and encoding documented by #44; no parallel health model is introduced here.",
+    "HUD bit 0x08 reaches health/power-meter code; bit 0x2000 in 0x8033C520 triggers a meter-state branch, but its meaning is not identified."
+  ],
+  "publicationBoundary": "No ROM bytes, raw RAM traces, RDRAM snapshots, screenshots, emulator states, save data, EEPROMs, decoded assets, or local analysis tooling are included."
+}

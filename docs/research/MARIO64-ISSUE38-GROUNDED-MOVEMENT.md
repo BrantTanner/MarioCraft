@@ -26,7 +26,7 @@ The acceleration body `[0x20244,0x20458)` and slope/velocity helper `[0x1FB54,0x
 
 For independent word-level inspection, use the USA ROM identified above and `python MarioCraft/tools/issue11-local/disasm_range.py 20244 20458` and `python MarioCraft/tools/issue11-local/disasm_range.py 1FB54 1FD80`. Arguments are half-open ROM byte offsets; the decoder prints each big-endian MIPS word. The ROM identity, script behavior, and verified linear mapping are documented in [issue #36](MARIO64-USA-ACTION-DISPATCH-AND-GAMEPLAY-TIMING-ISSUE36.md).
 
-## Runtime findings so far
+## Runtime findings
 
 - With N-Rage range 100%, cardinal Up reached raw Y 127, processed Y 64 and input magnitude 64; Mario's intended magnitude was 32.0. The grounded speed routine's 32.0 target is therefore applicable at full cardinal input on the tested floor.
 - In an awake, isolated 3-second Range-100 Up hold, flat-ground speed reached 31.5959 before the route left flat ground; the later maximum 32.353 was on a sloped floor and is excluded from flat maximum claims. This is consistent with a 32.0 target and stepwise correction; the trace did not establish a long flat steady plateau.

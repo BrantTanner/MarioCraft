@@ -595,8 +595,8 @@
   "publishedFiles": [
     {
       "path": "docs/research/MARIO64-ISSUE44-HEALTH-AND-HAZARDS.md",
-      "lengthBytes": 22777,
-      "sha256": "EA098E5AEE255B421619C12B86A9D4117CAEB11B580F2362021FAE8386AC94D8"
+      "lengthBytes": 22861,
+      "sha256": "7B4414DAFC7E9497364F52249FA743390FFE8281D405F910274C0DD40C928C1C"
     },
     {
       "path": "docs/research/MARIO64-ISSUE44-HEALTH-EVENTS.jsonl",

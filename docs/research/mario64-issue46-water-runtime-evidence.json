@@ -1,0 +1,329 @@
+{
+  "schema": "mariocraft-issue46-water-observation-v1",
+  "identity": {
+    "game": "Super Mario 64 USA rev0",
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "project64": "3.0.1.5664-2df3434",
+    "project64Sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "seed": "tools/issue11-local/issue35-mario-gameplay-baseline.pj.zip",
+    "seedSha256": "6E2C8265A8A9A19761BCC6CE29FA20694FAD5444B325B1F22CA987776A2D6DFE",
+    "stickRange": 100,
+    "padDeadZone": 5,
+    "sourceNavigationReference": "n64decomp/sm64@9921382a68bb0c865e5e45eb594d9c64db59b1af"
+  },
+  "recipe": {
+    "load": "Load the verified issue35 baseline save into the isolated Project64 clone; confirm Mario at (-1328,260,4354), 4 lives/0 stars",
+    "routeDriver": "tools/issue11-local/issue46-water-route-driver.ps1",
+    "routeDriverSha256": "0D0C30DE827BEF1EE22FA7C4173030C5512D254F41519D6AF21A73F818306C1F",
+    "waypoints": [
+      {
+        "x": -1328,
+        "z": 3300
+      },
+      {
+        "x": -185,
+        "z": 3300
+      },
+      {
+        "x": 0,
+        "z": 3300
+      },
+      {
+        "x": 800,
+        "z": 3300
+      },
+      {
+        "x": 1600,
+        "z": 3300
+      },
+      {
+        "x": 2200,
+        "z": 3300
+      },
+      {
+        "x": 2450,
+        "z": 3300
+      }
+    ],
+    "pulseLimit": 36,
+    "pulseHoldMaxMs": 300,
+    "keyEdges": "All helper keyDown/keyUp edges were timestamped in the local issue40-project64-input-log.jsonl; each key released in finally",
+    "runId": "issue46-water-entry-02",
+    "settleCapture": "issue46-settle-01",
+    "fullTracePath": "tools/issue11-local/pj64-portable/issue46-water-entry-02.jsonl",
+    "settleTracePath": "tools/issue11-local/pj64-portable/issue46-settle-01.jsonl",
+    "routeInputs": {
+      "helper": "docs/research/mario64-issue40-project64-input.ps1",
+      "helperSha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249",
+      "eventCount": 28,
+      "completed": 28,
+      "firstStartedUtc": "2026-10-25T12:46:15.1581693Z",
+      "firstKeyDownUtc": "2026-10-25T12:46:15.1957733Z",
+      "firstKeyUpUtc": "2026-10-25T12:46:15.3562436Z",
+      "lastStartedUtc": "2026-10-25T12:46:27.2261484Z",
+      "lastKeyDownUtc": "2026-10-25T12:46:27.2285035Z",
+      "lastKeyUpUtc": "2026-10-25T12:46:27.3894257Z",
+      "pulseCounts": {
+        "AnalogUp+AnalogLeft 150ms": 2,
+        "AnalogUp 150ms": 1,
+        "AnalogUp 300ms": 16,
+        "AnalogUp+AnalogRight 300ms": 6,
+        "AnalogUp+AnalogLeft 300ms": 1,
+        "AnalogRight 300ms": 2
+      },
+      "fullEdgeLogLocal": "tools/issue11-local/issue40-project64-input-log.jsonl",
+      "driverNote": "Input helper calls all completed and correlated; bounded route ended early after 28 calls (wake plus route pulses), but full trace includes threshold crossing and water action progression.",
+      "driverExitStatus": "Final driver stdout/exit code was not captured by the shell tool; 28/28 helper events completed and the sampler stop marker produced all 426 trace rows. Interpret the trace directly.",
+      "traceRows": 426,
+      "firstWaterThresholdSequence": 406,
+      "thresholdSampleCount": 1
+    }
+  },
+  "runtimeRows": [
+    {
+      "sequence": 406,
+      "hostReadStartUnixMs": 1792932386855,
+      "loopCounter": 6179,
+      "counterPairEqual": true,
+      "xyz": [
+        2325.351,
+        -185.50542,
+        3411.4746
+      ],
+      "waterLevelS16": -81,
+      "floorHeightCandidate": -185.50542,
+      "floorType": 21,
+      "velocityY": 0.0,
+      "forwardSpeed": 36.436592,
+      "previousAction": "0x04000440",
+      "action": "0x00840452"
+    },
+    {
+      "sequence": 407,
+      "hostReadStartUnixMs": 1792932386886,
+      "loopCounter": 6180,
+      "counterPairEqual": true,
+      "xyz": [
+        2333.1797,
+        -179.75,
+        3413.5894
+      ],
+      "waterLevelS16": -81,
+      "floorHeightCandidate": -190.8343,
+      "floorType": 21,
+      "velocityY": 1.25,
+      "forwardSpeed": 8.109148,
+      "previousAction": "0x300022E2",
+      "action": "0x300022C2"
+    },
+    {
+      "sequence": 408,
+      "hostReadStartUnixMs": 1792932386918,
+      "loopCounter": 6181,
+      "counterPairEqual": true,
+      "xyz": [
+        2339.0703,
+        -178.79976,
+        3415.1807
+      ],
+      "waterLevelS16": -81,
+      "floorHeightCandidate": -195.07918,
+      "floorType": 21,
+      "velocityY": 0.95023835,
+      "forwardSpeed": 6.109148,
+      "previousAction": "0x300022E2",
+      "action": "0x300022C2"
+    }
+  ],
+  "settle": {
+    "tracePath": "tools/issue11-local/pj64-portable/issue46-settle-01.jsonl",
+    "rows": 240,
+    "firstAction": "0x380022C0",
+    "firstXYZ": [
+      2345.1577,
+      -161.0,
+      3416.825
+    ],
+    "waterLevelS16": -81,
+    "floorType": 21,
+    "floorHeightCandidate": -198.82808,
+    "verticalVelocity": 0,
+    "stableEndpointAction": "0x380022C0",
+    "stableEndpointTraceSha256": "18A137C5C9E30FF62D72A957352511DC88B092C32643D9663D458D94A60065A1"
+  },
+  "interpretation": "One bounded water-entry trial: sequence 406 reads y=-185.50542 at waterLevel=-81, strictly below waterLevel-100; exact USA rev0 FUN_80269830 compares Mario Y < (waterLevelS16-100) and calls FUN_80253488, which sets numeric action 0x300022E2. The next row has previousAction 0x300022E2 and action 0x300022C2. The read-only follow-up settles in 0x380022C0 at y=waterLevel-80. A single A pulse from water idle enters numeric action 0x300024D0 and produces measured horizontal velocity/forward speed, then samples 0x300024D1 with previousAction 0x300024D2, followed by 0x300022C2 and return to 0x380022C0. This is one bounded trial, not repeated entry or stroke trials. Exact-ROM action dispatch confirms 0x300024D0, 0x300024D1, 0x300024D2, 0x300022C2, and 0x380022C0 handler mapping; no stable current-action 0x300024D2 row was sampled, and the exact D2-to-D1 exit predicate and waterLevel-80 clamp mechanism were not established.",
+  "limits": [
+    "Telemetry is external read-only scalar sampling; loop-counter equal pairs reduce but do not eliminate non-atomic sample risk.",
+    "Raw input-edge log, full traces, ROM, and save remain local. Publish only these selected scalar rows and metadata.",
+    "Entry threshold correlation is exact-ROM evidence from FUN_80269830/ FUN_80253488; only one below-threshold runtime sample was captured. The -80 vertical surface offset was observed after settling, but the static clamp mechanism was not proved.",
+    "No stable current-action 0x300024D2 sample exists; the stroke trace shows it as previousAction before 0x300024D1. The exact D2-to-D1 exit predicate is not established.",
+    "Do not infer a water floor type from waterLevelS16: observed floor type is 21.",
+    "No health or memory writes; no drowning/healing/damage claim.",
+    "The input log is local; only the single A key-down/up timestamps, button bit and selected scalar rows are included here.",
+    "The action identifiers and numeric water level are runtime observations from the identified USA rev0 image. Their symbolic labels are pinned-source navigation labels, not ROM symbols."
+  ],
+  "stroke": {
+    "trialId": "issue46-water-stroke-02",
+    "tracePath": "tools/issue11-local/pj64-portable/issue46-water-stroke-02.jsonl",
+    "metadataPath": "tools/issue11-local/pj64-portable/issue46-water-stroke-02.metadata.json",
+    "key": "A",
+    "keyDownUtc": "2026-10-25T12:49:43.5217884Z",
+    "keyUpUtc": "2026-10-25T12:49:43.8373856Z",
+    "holdMsRequested": 300,
+    "rows": [
+      {
+        "sequence": 19,
+        "hostReadStartUnixMs": 1792932583566,
+        "loopCounter": 12068,
+        "counterPairEqual": true,
+        "xyz": [
+          2345.6526,
+          -161.0,
+          3416.8967
+        ],
+        "waterLevelS16": -81,
+        "floorType": 21,
+        "velocity": [
+          0.494811,
+          0.0,
+          0.07184751
+        ],
+        "forwardSpeed": 0.5,
+        "buttonsDown": 32768,
+        "buttonsPressed": 32768,
+        "previousAction": "0x380022C0",
+        "action": "0x300024D0"
+      },
+      {
+        "sequence": 20,
+        "hostReadStartUnixMs": 1792932583597,
+        "loopCounter": 12069,
+        "counterPairEqual": true,
+        "xyz": [
+          2346.642,
+          -161.0,
+          3417.0405
+        ],
+        "waterLevelS16": -81,
+        "floorType": 21,
+        "velocity": [
+          0.989622,
+          0.0,
+          0.14369503
+        ],
+        "forwardSpeed": 1.0,
+        "buttonsDown": 32768,
+        "buttonsPressed": 0,
+        "previousAction": "0x380022C0",
+        "action": "0x300024D0"
+      },
+      {
+        "sequence": 30,
+        "hostReadStartUnixMs": 1792932583960,
+        "loopCounter": 12080,
+        "counterPairEqual": true,
+        "xyz": [
+          2394.639,
+          -161.0,
+          3424.0093
+        ],
+        "waterLevelS16": -81,
+        "floorType": 21,
+        "velocity": [
+          9.89622,
+          0.0,
+          1.4369502
+        ],
+        "forwardSpeed": 10.0,
+        "buttonsDown": 0,
+        "buttonsPressed": 0,
+        "previousAction": "0x380022C0",
+        "action": "0x300024D0"
+      },
+      {
+        "sequence": 40,
+        "hostReadStartUnixMs": 1792932584402,
+        "loopCounter": 12093,
+        "counterPairEqual": true,
+        "xyz": [
+          2500.776,
+          -161.0,
+          3439.4204
+        ],
+        "waterLevelS16": -81,
+        "floorType": 21,
+        "velocity": [
+          6.6799483,
+          0.0,
+          0.96994144
+        ],
+        "forwardSpeed": 6.75,
+        "buttonsDown": 0,
+        "buttonsPressed": 0,
+        "previousAction": "0x300024D2",
+        "action": "0x300024D1"
+      },
+      {
+        "sequence": 47,
+        "hostReadStartUnixMs": 1792932584617,
+        "loopCounter": 12099,
+        "counterPairEqual": true,
+        "xyz": [
+          2520.0732,
+          -161.0,
+          3442.2224
+        ],
+        "waterLevelS16": -81,
+        "floorType": 21,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "forwardSpeed": 0.0,
+        "buttonsDown": 0,
+        "buttonsPressed": 0,
+        "previousAction": "0x300024D1",
+        "action": "0x300022C2"
+      },
+      {
+        "sequence": 102,
+        "hostReadStartUnixMs": 1792932586408,
+        "loopCounter": 12153,
+        "counterPairEqual": true,
+        "xyz": [
+          2520.0732,
+          -161.0,
+          3442.2224
+        ],
+        "waterLevelS16": -81,
+        "floorType": 21,
+        "velocity": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "forwardSpeed": 0.0,
+        "buttonsDown": 0,
+        "buttonsPressed": 0,
+        "previousAction": "0x300022C2",
+        "action": "0x380022C0"
+      }
+    ],
+    "sourceNavigationActionLabels": {
+      "0x300024D1": "ACT_SWIMMING_END",
+      "0x300024D0": "ACT_BREASTSTROKE",
+      "0x300022C2": "ACT_WATER_ACTION_END",
+      "0x300024D2": "ACT_FLUTTER_KICK",
+      "0x380022C0": "ACT_WATER_IDLE"
+    },
+    "sourceLabelLimit": "Names are from the pinned source-navigation reference only; numeric actions above are the exact runtime observations. Confirm exact-ROM dispatch before attributing these names to the shipped ROM.",
+    "traceSha256": "4B737CC0A2926798A5356CEC32189D5D40EAF99FA6939FFB34221172CF111454",
+    "metadataSha256": "864CCFF5267CB81072FE6A0F6FDF510AABD90AC9B61C0A0609008B66B9A5C6AC"
+  },
+  "localTraceSha256": {
+    "route": "6029EEF1BEDF4811253E4B5ACC03AE7909E9E8C79EA22F3D2C00D925E0D44D6A",
+    "stroke": "4B737CC0A2926798A5356CEC32189D5D40EAF99FA6939FFB34221172CF111454",
+    "settle": "18A137C5C9E30FF62D72A957352511DC88B092C32643D9663D458D94A60065A1"
+  }
+}

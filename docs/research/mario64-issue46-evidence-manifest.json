@@ -1,0 +1,177 @@
+{
+  "schema": "mariocraft-issue46-evidence-manifest-v1",
+  "target": {
+    "game": "Super Mario 64 USA rev0",
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "project64": "3.0.1.5664-2df3434",
+    "project64Sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8"
+  },
+  "publishedArtifacts": [
+    {
+      "path": "docs/research/MARIO64-ISSUE46-WATER-LAVA-RUNTIME.md",
+      "sha256": "C31AF0FBF31755E537850649CCE79D26F8C63FE35FABA34EEAA8CD1285A6569E"
+    },
+    {
+      "path": "docs/research/mario64-issue46-water-runtime-evidence.json",
+      "sha256": "21D6997C8FF2BFA88967436E4F72B1F3306F123A12173B2FE5EACF88A38D0D9B"
+    },
+    {
+      "path": "docs/research/mario64-issue46-lava-runtime-evidence.json",
+      "sha256": "ADE1681944291455E6D13B7D5C58BE8CD61C46D4170B1D0B33B6F779A3BE68D9"
+    },
+    {
+      "path": "docs/research/mario64-issue46-basement-door-entry-capture.ps1",
+      "sha256": "34D93E10D372E1F65B68BD148122A27259D6F5093EF73D7EDAB89E027A4834C8",
+      "description": "Exact-byte publication copy of the executed capture script; the docs/research/mario64-issue46-external-capture.ps1 file is a separate unexecuted template."
+    }
+  ],
+  "runtimeTraceProvenance": {
+    "waterEntry": {
+      "localTrace": "tools/issue11-local/pj64-portable/issue46-water-entry-02.jsonl",
+      "sha256": "6029EEF1BEDF4811253E4B5ACC03AE7909E9E8C79EA22F3D2C00D925E0D44D6A",
+      "rows": 426,
+      "entryObservation": "One below-threshold observation at y=-185.50542, waterLevelS16=-81, strict y < -181."
+    },
+    "waterSettle": {
+      "localTrace": "tools/issue11-local/pj64-portable/issue46-settle-01.jsonl",
+      "sha256": "18A137C5C9E30FF62D72A957352511DC88B092C32643D9663D458D94A60065A1",
+      "rows": 240,
+      "observation": "Settled y=-161 at waterLevelS16=-81, action 0x380022C0, floor type 21. The -80 offset is runtime-only evidence; the static clamp mechanism is unproved."
+    },
+    "waterStroke": {
+      "localTrace": "tools/issue11-local/pj64-portable/issue46-water-stroke-02.jsonl",
+      "sha256": "4B737CC0A2926798A5356CEC32189D5D40EAF99FA6939FFB34221172CF111454",
+      "rows": 103,
+      "observation": "One A press; current action 0x300024D0, previousAction 0x300024D2 at sampled transition into 0x300024D1, then 0x300022C2 and 0x380022C0. No current-action 0x300024D2 row and no proven D2 exit predicate."
+    },
+    "lavaContact": {
+      "localTrace": "tools/issue11-local/pj64-portable/issue46-lava-contact-12.jsonl",
+      "sha256": "5C9A9181995C0D0BF8B7EA886411A8461A524718C9C504FE91B32F9D3533721A",
+      "rows": 4671,
+      "executedSampler": "tools/issue11-local/pj64-portable/issue46-basement-door-entry-capture.ps1",
+      "executedSamplerSha256": "34D93E10D372E1F65B68BD148122A27259D6F5093EF73D7EDAB89E027A4834C8",
+      "relatedTemplateNotExecuted": "docs/research/mario64-issue46-external-capture.ps1",
+      "relatedTemplateSha256": "89C992D17E6740D8B407EAA11F885BEDE85A48809D5252390B92B8E6C58BC645",
+      "sampleLimits": "At contact, floor pointer 0x801A2420, area pointer 0x8033B90C, index byte 1. Burn numeric action appears in 274 observations over 5.932 seconds, with counter values 112725..112891 and 20 repeated final reads at 112891; this is not a simulation-frame or burn-duration claim. Area index 3 is observed after the castle transition."
+    }
+  },
+  "exactRomStaticRanges": [
+    {
+      "pc": "[0x80253A60,0x80253D58)",
+      "rom": "[0xEA60,0xED58)",
+      "length": 760,
+      "sha256": "E28C7EEB3F67537316FB4DF2BF2CEDDDB75660EB317B7493218BE9510E60A37F",
+      "predicate": "Reads the water-level value into MarioState+0x76; exact branch sets Mario input flag 0x0200 when Y < waterLevel-10. This is not the entry condition."
+    },
+    {
+      "pc": "[0x80253D58,0x80253EC0)",
+      "rom": "[0xED58,0xEEC0)",
+      "length": 360,
+      "sha256": "7DD86E27C7C6C8A5F2BF042D4EF0614F8E331DC740F0B6FD3A22E83BB9E2B757",
+      "predicate": "Resets player input/state bits before invoking the collision/water field query and floor-surface consumer."
+    },
+    {
+      "pc": "[0x80254830,0x80254B20)",
+      "rom": "[0xF830,0xFB20)",
+      "length": 752,
+      "sha256": "8881CEDD4B56C6E555C21208D5BDC83C768E6955BBA75DB02A0175C5903FD790",
+      "predicate": "Player update calls the surface dispatcher and the water action dispatcher."
+    },
+    {
+      "pc": "[0x80253488,0x80253588)",
+      "rom": "[0xE488,0xE588)",
+      "length": 256,
+      "sha256": "30891BA2478BD282F06D9E29E472E8C09E3FDAA44FD82A369EF4654DD37EE750",
+      "predicate": "Sets the water-entry vertical comparison value to waterLevel-100, clears selected movement state, and sets action 0x300022E2."
+    },
+    {
+      "pc": "[0x80269830,0x80269954)",
+      "rom": "[0x24830,0x24954)",
+      "length": 292,
+      "sha256": "DD715AF4EB762BCB21414E1981F8D38DBB92CB2D8C76FF33E97DE360528F773F",
+      "predicate": "Strict comparison Y < (s16 waterLevel at MarioState+0x76 - 100); true branch calls 0x80253488."
+    },
+    {
+      "pc": "[0x80269954,0x80269F38)",
+      "rom": "[0x24954,0x24F38)",
+      "length": 1508,
+      "sha256": "C1D642C1480B449CE9B2F09F4B57924A85B043ACB04492A7D6487FFF00EF3C0E",
+      "predicate": "The player update's 0x40 moving-action handler calls the water-entry/action gate at 0x80269830. This function is a movement dispatcher, not itself the water-surface clamp."
+    },
+    {
+      "pc": "[0x8027499C,0x80274EAC)",
+      "rom": "[0x2F99C,0x2FEAC)",
+      "length": 1296,
+      "sha256": "B734E149D01E7C9F7AF482B51F8D48D681C6A5B18C9E326439505E9029442A73",
+      "predicate": "Dispatches the observed numeric water actions to their corresponding handlers."
+    },
+    {
+      "pc": "[0x802711D4,0x802712C0)",
+      "rom": "[0x2C1D4,0x2C2C0)",
+      "length": 236,
+      "sha256": "B65A843F630A7128F5FEEC980BEA8540B65C4B572753AA235833B01F3797D835",
+      "predicate": "Water-idle handler checks the corresponding Mario flags/input: A input bit 0x2 sets action 0x300024D0; otherwise applies a vertical adjustment through helper 0x802710C4. This function alone does not prove the observed -80 surface clamp."
+    },
+    {
+      "pc": "[0x80271AA0,0x80271D04)",
+      "rom": "[0x2CAA0,0x2CD04)",
+      "length": 612,
+      "sha256": "737CAAC9C4C17ADC9015FD40DE54D112F85656B0637A5A94D631EF877312FBC2",
+      "predicate": "For clear Mario flag 0x4 and input bit 0x2000, increments timer; timer==14 selects action 0x300024D2. A-latch during timer 2..5 can reset at timer 9. This does not establish the D2 exit predicate."
+    },
+    {
+      "pc": "[0x802713BC,0x802714A8)",
+      "rom": "[0x2C3BC,0x2C4A8)",
+      "length": 236,
+      "sha256": "A62240D64015DC5E2F9DBA9F37BCBF36E744D6DDF9D2452F2255341964BE6FFF",
+      "predicate": "Water-action-end handler can select the numeric breaststroke action 0x300024D0 when input bit 0x2 is set; otherwise it checks water-surface state before returning to 0x380022C0."
+    },
+    {
+      "pc": "[0x80272E3C,0x80273160)",
+      "rom": "[0x2DE3C,0x2E160)",
+      "length": 804,
+      "sha256": "C4F6446BD884A3B4347E550452F9AE6491C2B3A080FC8E5F19C7FC987F6A532D",
+      "predicate": "Water-plunge handler evaluates timer, velocity, surface and state gates; numeric actions include 0x300022C2 and 0x300024D2. It is not the D2 handler, and no D2-to-D1 exit predicate is claimed."
+    },
+    {
+      "pc": "[0x802737F4,0x80273A2C)",
+      "rom": "[0x2E7F4,0x2EA2C)",
+      "length": 568,
+      "sha256": "A399E340F13D2FD6B4ED9904DD7488FFE5B42AF4CD7B2D31D65315705C650679",
+      "predicate": "Water movement handler gates on vertical speed and Y <= waterLevel-100; no -80 idle clamp is derived from this function."
+    },
+    {
+      "pc": "[0x8027A0A8,0x8027A0EC)",
+      "rom": "[0x350A8,0x350EC)",
+      "length": 68,
+      "sha256": "1FFF1B0A7000CA526D87D911928E92B176D8323AD28CD5B5EB916B22EDF8EEDB",
+      "predicate": "Save-file flags setter: applies the supplied flags with the file-present bit and marks the save data modified; not a water routine."
+    },
+    {
+      "pc": "[0x8027A16C,0x8027A1B8)",
+      "rom": "[0x3516C,0x351B8)",
+      "length": 76,
+      "sha256": "332C317244227C7DB8CAA5758383EF204293DF90BCA0EF1AA4F31BF795198D2D",
+      "predicate": "Guarded save-file flags getter used to read the current save slot's flags; not a water routine."
+    },
+    {
+      "pc": "[0x802507FC,0x8025093C)",
+      "rom": "[0xB7FC,0xB93C)",
+      "length": 320,
+      "sha256": "FADDFD232507344B53E1F18B414C0C14F4D77DF89AAC71407A28E1F587058795",
+      "predicate": "Floor-type-1 dispatcher invokes the burn helper when action bits 0x800 and 0x2000 are clear."
+    },
+    {
+      "pc": "[0x8025065C,0x80250724)",
+      "rom": "[0xB65C,0xB724)",
+      "length": 200,
+      "sha256": "0994CF3AF657AE36A7FE11D917A877B2006211C9A8D02075A2A9B4A6DB1F0226",
+      "predicate": "Floor-type-1 helper additionally requires action bit 0x10000 clear and Y < floorY+10, then passes numeric action 0x010208B7 to the action setter under flag gates."
+    }
+  ],
+  "limits": [
+    "All PC and ROM ranges are half-open. The USA rev0 PC mapping PC 0x80245000 + ROM offset is used only for ROM offsets 0x1000 through 0xE855F; do not extrapolate it outside that identified main-code span.",
+    "Every listed static range and SHA-256 was independently checked against the identified ROM; the local bounded decompilation used for these notes has SHA-256 335B102C976DBDC681274B61F49DDC65F3E1D94D530D766930BDAE95DDB8EB94.",
+    "Raw traces, input logs, screenshots, ROM, game assets, save states and EEPROM remain local; only selected scalar observations and hashes are listed."
+  ]
+}

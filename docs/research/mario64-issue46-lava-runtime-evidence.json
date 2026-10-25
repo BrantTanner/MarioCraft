@@ -1,0 +1,256 @@
+{
+  "schema": "mariocraft-issue46-lava-observation-v1",
+  "identity": {
+    "game": "Super Mario 64 USA rev0",
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "project64": "3.0.1.5664-2df3434",
+    "project64Sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "captureExecutable": "tools/issue11-local/pj64-portable/Project64.exe",
+    "captureExecutableSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "controller": "NRage; stick range 100; pad dead zone 5; real N64 range enabled",
+    "measurement": "External read-only ReadProcessMemory scalar sampler; no RAM writes during capture"
+  },
+  "preparation": {
+    "route": "Loaded the verified issue35 courtyard baseline in the isolated Project64 clone, navigated the basement to the Lethal Lava Land painting, and entered course 7 through normal gameplay.",
+    "fixture": "At the basement key door only, a one-byte Project64 access code wrote 0x40 to save-buffer byte 0x8020770B after the current save flags word was read as zero. This was temporary door-access preparation, not natural progression. Project64 restored the byte to zero when all cheats were disabled. Every cheat was off before the LLL capture; no code was active during measurement.",
+    "baseline": "Issue35 baseline state; 4 lives at course entry. The post-contact castle respawn HUD showed 3 lives.",
+    "captureWindowUtc": {
+      "start": "2026-10-25T14:22:51.786Z",
+      "end": "2026-10-25T14:24:43.104Z",
+      "traceRows": 4671,
+      "burnActionFirstSequence": 3786,
+      "burnActionLastSequence": 4059,
+      "areaTransitionSequence": 4060
+    }
+  },
+  "trace": {
+    "localPath": "tools/issue11-local/pj64-portable/issue46-lava-contact-12.jsonl",
+    "sha256": "5C9A9181995C0D0BF8B7EA886411A8461A524718C9C504FE91B32F9D3533721A",
+    "rows": 4671,
+    "executedCaptureScript": "tools/issue11-local/pj64-portable/issue46-basement-door-entry-capture.ps1",
+    "executedCaptureScriptSha256": "34D93E10D372E1F65B68BD148122A27259D6F5093EF73D7EDAB89E027A4834C8",
+    "relatedTemplateNotExecuted": "docs/research/mario64-issue46-external-capture.ps1",
+    "relatedTemplateSha256": "89C992D17E6740D8B407EAA11F885BEDE85A48809D5252390B92B8E6C58BC645",
+    "inputHelper": "tools/issue11-local/issue40-project64-input-reviewed-three-phase-20261025.ps1",
+    "inputHelperSha256": "C922F6CE5CCCFFA3648EC8586E8E2069040CE998935908C3FD1DC305F6B21249",
+    "inputLogLocal": "tools/issue11-local/issue40-project64-input-log.jsonl",
+    "inputLogSha256": "65F4B7C67583DE88B4D8815D714AF2D5C1B4EB2D397EDB6F8E375CE5C2B93D5D"
+  },
+  "inputs": [
+    {
+      "keys": ["AnalogLeft"],
+      "holdMsRequested": 150,
+      "keyDownUtc": "2026-10-25T14:23:08.4120079Z",
+      "keyUpUtc": "2026-10-25T14:23:08.5783998Z",
+      "outcome": "completed",
+      "note": "Sign modal was visible; no movement asserted."
+    },
+    {
+      "keys": ["A"],
+      "holdMsRequested": 150,
+      "keyDownUtc": "2026-10-25T14:23:21.5129204Z",
+      "keyUpUtc": "2026-10-25T14:23:21.6865597Z",
+      "outcome": "completed",
+      "note": "Dismissed the sign message."
+    },
+    {
+      "keys": ["AnalogLeft"],
+      "holdMsRequested": 150,
+      "keyDownUtc": "2026-10-25T14:23:36.0833502Z",
+      "keyUpUtc": "2026-10-25T14:23:36.2448112Z",
+      "outcome": "completed"
+    },
+    {
+      "keys": ["AnalogLeft"],
+      "holdMsRequested": 400,
+      "keyDownUtc": "2026-10-25T14:23:45.4105973Z",
+      "keyUpUtc": "2026-10-25T14:23:45.8221417Z",
+      "outcome": "completed"
+    },
+    {
+      "keys": ["AnalogLeft"],
+      "holdMsRequested": 250,
+      "keyDownUtc": "2026-10-25T14:24:00.7736695Z",
+      "keyUpUtc": "2026-10-25T14:24:01.0364748Z",
+      "outcome": "completed"
+    },
+    {
+      "keys": ["AnalogLeft"],
+      "holdMsRequested": 250,
+      "keyDownUtc": "2026-10-25T14:24:19.1646854Z",
+      "keyUpUtc": "2026-10-25T14:24:19.4476275Z",
+      "outcome": "completed",
+      "note": "Last movement pulse before the lava-contact transition."
+    }
+  ],
+  "runtimeRows": [
+    {
+      "sequence": 0,
+      "hostReadStartUnixMs": 1792938171786,
+      "loopCounterBefore": 110091,
+      "loopCounterAfter": 110093,
+      "counterPairEqual": false,
+      "floorPointer": "0x8019F3C0",
+      "areaPointer": "0x8033B90C",
+      "xyz": [-3792.5, 154.0, 6272.0],
+      "action": "0x0C400201",
+      "floorHeightCandidate": 154.0,
+      "floorType": 0,
+      "velocityY": 0.0,
+      "forwardSpeed": 0.0,
+      "waterLevelS16": -11000,
+      "areaIndexU8": 1
+    },
+    {
+      "sequence": 3783,
+      "hostReadStartUnixMs": 1792938259678,
+      "loopCounterBefore": 112722,
+      "loopCounterAfter": 112722,
+      "counterPairEqual": true,
+      "floorPointer": "0x801A2420",
+      "areaPointer": "0x8033B90C",
+      "xyz": [-4176.04, 42.0, 6186.4736],
+      "action": "0x0100088C",
+      "previousAction": "0x04000440",
+      "floorHeight": 0.0,
+      "floorType": 1,
+      "velocityY": -32.0,
+      "forwardSpeed": 8.566156,
+      "waterLevelS16": -11000,
+      "areaIndexU8": 1
+    },
+    {
+      "sequence": 3784,
+      "hostReadStartUnixMs": 1792938259709,
+      "loopCounterBefore": 112723,
+      "loopCounterAfter": 112723,
+      "counterPairEqual": true,
+      "floorPointer": "0x801A2420",
+      "areaPointer": "0x8033B90C",
+      "xyz": [-4184.122, 10.0, 6184.995],
+      "action": "0x0100088C",
+      "previousAction": "0x04000440",
+      "floorHeight": 0.0,
+      "floorType": 1,
+      "velocityY": -36.0,
+      "forwardSpeed": 8.216156,
+      "waterLevelS16": -11000,
+      "areaIndexU8": 1
+    },
+    {
+      "sequence": 3785,
+      "hostReadStartUnixMs": 1792938259740,
+      "loopCounterBefore": 112724,
+      "loopCounterAfter": 112724,
+      "counterPairEqual": true,
+      "floorPointer": "0x801A2420",
+      "areaPointer": "0x8033B90C",
+      "xyz": [-4187.991, 0.0, 6184.287],
+      "action": "0x04000471",
+      "previousAction": "0x0100088C",
+      "floorHeight": 0.0,
+      "floorType": 1,
+      "velocityY": -40.0,
+      "forwardSpeed": 7.866156,
+      "waterLevelS16": -11000,
+      "areaIndexU8": 1
+    },
+    {
+      "sequence": 3786,
+      "hostReadStartUnixMs": 1792938259771,
+      "loopCounterBefore": 112725,
+      "loopCounterAfter": 112725,
+      "counterPairEqual": true,
+      "floorPointer": "0x801A2420",
+      "areaPointer": "0x8033B90C",
+      "xyz": [-4187.991, 84.0, 6184.287],
+      "action": "0x010208B7",
+      "previousAction": "0x04000471",
+      "floorHeight": 0.0,
+      "floorType": 1,
+      "velocityY": 80.8,
+      "forwardSpeed": 0.0,
+      "waterLevelS16": -11000,
+      "areaIndexU8": 1
+    },
+    {
+      "sequence": 4059,
+      "hostReadStartUnixMs": 1792938265703,
+      "loopCounterBefore": 112891,
+      "loopCounterAfter": 112891,
+      "counterPairEqual": true,
+      "floorPointer": "0x801A2420",
+      "areaPointer": "0x8033B90C",
+      "xyz": [-4187.991, 33.800293, 6184.287],
+      "action": "0x010208B7",
+      "previousAction": "0x04000471",
+      "floorHeight": 0.0,
+      "floorType": 0,
+      "velocityY": -65.0,
+      "forwardSpeed": 0.0,
+      "waterLevelS16": -11000,
+      "areaIndexU8": 1
+    },
+    {
+      "sequence": 4060,
+      "hostReadStartUnixMs": 1792938265734,
+      "loopCounterBefore": 112891,
+      "loopCounterAfter": 112891,
+      "counterPairEqual": true,
+      "floorPointer": "0x801B0760",
+      "areaPointer": "0x8033B984",
+      "xyz": [-1382.0, -819.0, -4150.0],
+      "action": "0x00001928",
+      "previousAction": "0x0C400201",
+      "floorHeight": -1177.0,
+      "floorType": 224,
+      "velocityY": 0.0,
+      "forwardSpeed": 0.0,
+      "waterLevelS16": -11000,
+      "areaIndexU8": 3,
+      "note": "Transition to the castle painting return position after the course-contact/death interval; do not treat as a burn-action row."
+    }
+  ],
+  "burnInterval": {
+    "numericAction": "0x010208B7",
+    "firstSequence": 3786,
+    "lastSequence": 4059,
+    "sampledObservations": 274,
+    "loopCounterFirst": 112725,
+    "loopCounterLast": 112891,
+    "counterPairsRepeated": true,
+    "lastLoopCounterRepeatedRows": 20,
+    "firstHostReadUtc": "2026-10-25T14:24:19.771Z",
+    "lastHostReadUtc": "2026-10-25T14:24:25.703Z",
+    "yRange": [0.0, 1144.8],
+    "verticalVelocityRange": [-65.0, 84.0],
+    "forwardSpeed": "0.0 in the sampled interval",
+    "waterLevelS16": -11000,
+    "floorPointer": "0x801A2420 for contact and all sampled action rows through sequence 4059; area pointer 0x8033B90C, area index 1. Candidate floor-type reads later include 23151 and 0 at the same floor pointer; the cause is unknown and these late reads are not used to characterize the surface.",
+    "counterInterpretation": "The 274 samples span 5.932 seconds of host time, not 274 simulation frames. Loop-counter pairs are equal on the trigger sample and span 112725..112891 over the interval, but repeat; the final 20 rows share 112891. The action value remained sampled during repeated counter values and the area transition, so this record does not establish a burn-action duration or 274 physics updates.",
+    "outcome": "Course contact was followed by the numeric action above and then a castle-area respawn. HUD screenshots showed 4 lives at course entry and 3 after the respawn. No health field or health decrement was measured."
+  },
+  "exactRomCorrelation": {
+    "census": "docs/research/MARIO64-ISSUE45-SPECIAL-SURFACE-CENSUS.md, floor type 0x01 row",
+    "dispatcher": {
+      "pcRange": "[0x802507FC,0x8025093C)",
+      "romRange": "[0xB7FC,0xB93C)",
+      "sha256": "FADDFD232507344B53E1F18B414C0C14F4D77DF89AAC71407A28E1F587058795",
+      "predicate": "For floor type 1, the dispatcher calls the helper when Mario action bits 0x800 and 0x2000 are clear."
+    },
+    "burnHelper": {
+      "pcRange": "[0x8025065C,0x80250724)",
+      "romRange": "[0xB65C,0xB724)",
+      "sha256": "0994CF3AF657AE36A7FE11D917A877B2006211C9A8D02075A2A9B4A6DB1F0226",
+      "predicateAndEffects": "Requires Mario action bit 0x10000 clear and Y < floorY + 10. If Mario flag bit 0x4 is clear, increments signed byte MarioState+0xB2 by 18 when bit 0x10 is clear, otherwise by 12; then calls FUN_802521a0 and FUN_80253178(m, 0x010208B7, 0)."
+    },
+    "interpretation": "The captured contact has floorType 1, Y at the floor, and the exact numeric action argument used by the USA rev0 type-1 helper. The target counter at MarioState+0xB2 is not identified as health; no damage amount is claimed."
+  },
+  "limits": [
+    "This is one bounded runtime trial with external scalar sampling; counter reads bracket fields but equal pairs do not make a sample atomic.",
+    "No health field or health decrement was instrumented. The HUD life decrease is a separate observed outcome and does not establish a health value.",
+    "No symbolic action name is inferred from 0x010208B7; the exact-ROM evidence shows the helper passes that numeric action to the action setter.",
+    "Several temporary isolated save-flag fixture attempts during courtyard and basement preparation were reverted by Project64. The final successful basement-door crossing used only the reviewed one-byte 0x40 write, then all cheats were disabled before entering LLL and sampling. This is not natural progression evidence.",
+    "Raw traces, screenshots, input log, ROM, save states, and EEPROM remain local. Only selected scalar rows and hashes are included here."
+  ]
+}

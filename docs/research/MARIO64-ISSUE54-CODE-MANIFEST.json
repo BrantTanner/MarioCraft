@@ -1,0 +1,718 @@
+{
+  "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "hashMethod": "SHA-256 over exact canonical big-endian ROM bytes in each listed envelope; lengths include gaps only where the envelope is explicitly described as such",
+  "entries": [
+    {
+      "pcStart": "0x802FF408",
+      "pcEndExclusive": "0x802ff518",
+      "romOffset": "0xba408",
+      "byteLength": 272,
+      "sha256": "A4314A98927B0B360FB3D38D930E96822B4136502FFAF24065FE80F1BD89F294"
+    },
+    {
+      "pcStart": "0x802FF96C",
+      "pcEndExclusive": "0x802ffb38",
+      "romOffset": "0xba96c",
+      "byteLength": 460,
+      "sha256": "8F3719516F2D34B4E8E5E8AD137BF98547D6E7FD1DA964E5C3A5671C1D963CB4"
+    },
+    {
+      "pcStart": "0x8030A11C",
+      "pcEndExclusive": "0x8030a1c0",
+      "romOffset": "0xc511c",
+      "byteLength": 164,
+      "sha256": "5F134E3352EFF256E16F5272525C4BFC8FDDEA6E151C3A8708DBDAA8123EDCA7"
+    },
+    {
+      "pcStart": "0x8030A1C0",
+      "pcEndExclusive": "0x8030a2a8",
+      "romOffset": "0xc51c0",
+      "byteLength": 232,
+      "sha256": "652AA863C4376F3FBF536E53D6A01318A3E95DDC4FCC6E3252B7D88583FFC166"
+    },
+    {
+      "pcStart": "0x8030A93C",
+      "pcEndExclusive": "0x8030aabc",
+      "romOffset": "0xc593c",
+      "byteLength": 384,
+      "sha256": "2DB6F94C266655A389C9D7A9EFD6D4EDAB1CDB4E4F8881998B5CA91123740905"
+    },
+    {
+      "pcStart": "0x8030AABC",
+      "pcEndExclusive": "0x8030ad04",
+      "romOffset": "0xc5abc",
+      "byteLength": 584,
+      "sha256": "96542DF1C3EF9F6D4208DC2ACE5A86FA751F4D49601BD7D5A333E7B083C95C0C"
+    },
+    {
+      "pcStart": "0x802FF600",
+      "pcEndExclusive": "0x802ff868",
+      "romOffset": "0xba600",
+      "byteLength": 616,
+      "sha256": "890913FF78070C0FF3A4EAC983C7EDE8404695AA9C27767B50B3644E213FC97C"
+    },
+    {
+      "pcStart": "0x802FF868",
+      "pcEndExclusive": "0x802ff8e8",
+      "romOffset": "0xba868",
+      "byteLength": 128,
+      "sha256": "7DBC353E098CF80512DD110BA8EF0905E381CEF4C6389CDC574D5DF8E1CC72CE"
+    },
+    {
+      "pcStart": "0x802FF8E8",
+      "pcEndExclusive": "0x802ff94c",
+      "romOffset": "0xba8e8",
+      "byteLength": 100,
+      "sha256": "0431C12D06C990261B4D99655EA4CE7B7C03820E6E30CFA719205792FF7961AE"
+    },
+    {
+      "pcStart": "0x802FF584",
+      "pcEndExclusive": "0x802ff600",
+      "romOffset": "0xba584",
+      "byteLength": 124,
+      "sha256": "8A677BDD211F7BA70B11E438F05D0A7728A49C29A282848E26827F1F80A07E6B"
+    },
+    {
+      "pcStart": "0x802FB518",
+      "pcEndExclusive": "0x802fb6e8",
+      "romOffset": "0xb6518",
+      "byteLength": 464,
+      "sha256": "4EAA972AE342E52A5F8FFBBA36405BC1FB8D6E399FA70D35A7AF0A612505DC0F"
+    },
+    {
+      "pcStart": "0x802FB87C",
+      "pcEndExclusive": "0x802fb938",
+      "romOffset": "0xb687c",
+      "byteLength": 188,
+      "sha256": "D5DBBAAA780E5787982C2DD6062E46B92536F46975CE3FF801F604EF94560B67"
+    },
+    {
+      "pcStart": "0x80309ED4",
+      "pcEndExclusive": "0x80309f68",
+      "romOffset": "0xc4ed4",
+      "byteLength": 148,
+      "sha256": "D2D68D0A45C3DB727EEF2208AF7AF5C905FB058845FA3636161E752AEB3E5636"
+    },
+    {
+      "pcStart": "0x80309F68",
+      "pcEndExclusive": "0x8030a0e8",
+      "romOffset": "0xc4f68",
+      "byteLength": 384,
+      "sha256": "B0A244E868F34BCEF93B97D0B2243AD442B0B02196E19613F075EF2A29810AB8"
+    },
+    {
+      "pcStart": "0x8030A0E8",
+      "pcEndExclusive": "0x8030a11c",
+      "romOffset": "0xc50e8",
+      "byteLength": 52,
+      "sha256": "502AEA45AF0796B81C0D8CE54F4270C61FF88751819CB1B50048520F24158FAA"
+    },
+    {
+      "pcStart": "0x803067E8",
+      "pcEndExclusive": "0x803068c0",
+      "romOffset": "0xc17e8",
+      "byteLength": 216,
+      "sha256": "D13CA7DFD875BA3EF4795257489E8E75B063EBCD444609894455B2367160CFEC"
+    },
+    {
+      "pcStart": "0x802FF040",
+      "pcEndExclusive": "0x802ff214",
+      "romOffset": "0xba040",
+      "byteLength": 468,
+      "sha256": "46B85D20866AB59D91C42952C553D1DA73DB9BD75FBAF1A31B6650785FFC6B7F"
+    },
+    {
+      "pcStart": "0x8030A2A8",
+      "pcEndExclusive": "0x8030a388",
+      "romOffset": "0xc52a8",
+      "byteLength": 224,
+      "sha256": "DAA03215442AE6F506BC3E68079EDD426981867E901D3D25744DC41F547C67C0"
+    },
+    {
+      "pcStart": "0x8030A390",
+      "pcEndExclusive": "0x8030a514",
+      "romOffset": "0xc5390",
+      "byteLength": 388,
+      "sha256": "D8EACBEC411E092159DE1033FE33692658A53164CE92D5C02DF6F8EBBCDFCF4B"
+    },
+    {
+      "pcStart": "0x8030A514",
+      "pcEndExclusive": "0x8030a614",
+      "romOffset": "0xc5514",
+      "byteLength": 256,
+      "sha256": "1C2397E9ADE8EF4A989F2470DF9042C250746929A667EF1431A723F91B7CA267"
+    },
+    {
+      "pcStart": "0x8030A614",
+      "pcEndExclusive": "0x8030a93c",
+      "romOffset": "0xc5614",
+      "byteLength": 808,
+      "sha256": "83B157FA10BAA08631B18186C033AF354C34DAE0F0A2611EC2662C159A447D32"
+    },
+    {
+      "pcStart": "0x80309CEC",
+      "pcEndExclusive": "0x80309ed4",
+      "romOffset": "0xc4cec",
+      "byteLength": 488,
+      "sha256": "19E339D700440193BC432554415859339FB9C0958067FA815D7A0935CC039E41"
+    },
+    {
+      "pcStart": "0x80306304",
+      "pcEndExclusive": "0x80306364",
+      "romOffset": "0xc1304",
+      "byteLength": 96,
+      "sha256": "3C99400E148E31848AB0A3D86FA7066509EB0DA061434A6A5A278CA5EC03E449"
+    },
+    {
+      "pcStart": "0x80306364",
+      "pcEndExclusive": "0x8030668c",
+      "romOffset": "0xc1364",
+      "byteLength": 808,
+      "sha256": "28C34D3D9E797DDAA740076E08FD453D231A6C0BDEAD79523FAC10573E5D9386"
+    },
+    {
+      "pcStart": "0x8030668C",
+      "pcEndExclusive": "0x803066d8",
+      "romOffset": "0xc168c",
+      "byteLength": 76,
+      "sha256": "8B8321A14582F28F544493983097CC505BC4FF5C3B2279FD92FB45BBBD403F62"
+    },
+    {
+      "pcStart": "0x803066D8",
+      "pcEndExclusive": "0x803067e8",
+      "romOffset": "0xc16d8",
+      "byteLength": 272,
+      "sha256": "89B0FCE0C5852F03CF6B971ACB89B5D34B9DB2545A961517F307E0C74B38014F"
+    },
+    {
+      "pcStart": "0x802FB128",
+      "pcEndExclusive": "0x802fb254",
+      "romOffset": "0xb6128",
+      "byteLength": 300,
+      "sha256": "0C9059076460F012424D33E597DB639842218BCD91FAD2F5A05DAAAA3066AF18"
+    },
+    {
+      "pcStart": "0x802FB288",
+      "pcEndExclusive": "0x802fb3a0",
+      "romOffset": "0xb6288",
+      "byteLength": 280,
+      "sha256": "033FDD07CED9086E0ACF099989C3F3B8397B648604D470392D0FBA0F69E35B6E"
+    },
+    {
+      "pcStart": "0x802FB3A0",
+      "pcEndExclusive": "0x802fb3dc",
+      "romOffset": "0xb63a0",
+      "byteLength": 60,
+      "sha256": "D43356196053FFF05788C45D55683E9CB8C2A4D5F2E43F87D358DAD4F2743BE9"
+    },
+    {
+      "pcStart": "0x802FB6E8",
+      "pcEndExclusive": "0x802fb778",
+      "romOffset": "0xb66e8",
+      "byteLength": 144,
+      "sha256": "E52B5DCA51DD5CD70E2C4F3377A4F5F912EF23356C2FB36DAF315971597597E0"
+    },
+    {
+      "pcStart": "0x802FB778",
+      "pcEndExclusive": "0x802fb87c",
+      "romOffset": "0xb6778",
+      "byteLength": 260,
+      "sha256": "CC9F731C82058876C1783AA5564494C8B4E5151EF74834AC22C8FFAA42F641BE"
+    },
+    {
+      "pcStart": "0x8024F354",
+      "pcEndExclusive": "0x8024f4ac",
+      "romOffset": "0xa354",
+      "byteLength": 344,
+      "sha256": "90F0C94A1DBFB19D4240A720563A9ECB97A7E36E5FEEE36DB3EF16DE4B1D7B7F"
+    },
+    {
+      "pcStart": "0x8024D998",
+      "pcEndExclusive": "0x8024daac",
+      "romOffset": "0x8998",
+      "byteLength": 276,
+      "sha256": "A745945B80CF565B87732E8D789ECE3A9259E2B23092672D21198AD5D9EC290E"
+    },
+    {
+      "pcStart": "0x802FE988",
+      "pcEndExclusive": "0x802feb00",
+      "romOffset": "0xb9988",
+      "byteLength": 376,
+      "sha256": "045F8B5D78723B2D3A3DDA07546EE9F091506940097612029F0643E116E11D4A"
+    },
+    {
+      "pcStart": "0x802FEB00",
+      "pcEndExclusive": "0x802fed50",
+      "romOffset": "0xb9b00",
+      "byteLength": 592,
+      "sha256": "DAE152239A20A9D800840CA5E91F0B4D367264252E83FE549F8B599D05A2BA3A"
+    },
+    {
+      "pcStart": "0x802FED50",
+      "pcEndExclusive": "0x802fef18",
+      "romOffset": "0xb9d50",
+      "byteLength": 456,
+      "sha256": "CFFAC38192CBA76015E69642E9476725E3AD11F30812DEA299A128509B1070AA"
+    },
+    {
+      "pcStart": "0x802FEF18",
+      "pcEndExclusive": "0x802ff040",
+      "romOffset": "0xb9f18",
+      "byteLength": 296,
+      "sha256": "152461AF0C6F9A60234CBA270EC8347D43AF209CBCED2D37F1D8E8DDA6730BFB"
+    },
+    {
+      "pcStart": "0x802FB938",
+      "pcEndExclusive": "0x802fba40",
+      "romOffset": "0xb6938",
+      "byteLength": 264,
+      "sha256": "4CC05803B65EC60E523D474576925B02DA768C4D9B3C04348CF0E7C2410B63B9"
+    },
+    {
+      "pcStart": "0x802FF518",
+      "pcEndExclusive": "0x802ff584",
+      "romOffset": "0xba518",
+      "byteLength": 108,
+      "sha256": "582A827647F78FD194A3CC5F52C7D654712E0758FA6D7C430B600B93E11DD234"
+    },
+    {
+      "pcStart": "0x802FF94C",
+      "pcEndExclusive": "0x802ff964",
+      "romOffset": "0xba94c",
+      "byteLength": 24,
+      "sha256": "33BC95C7AA71650CDD80354542F0B9B66592FFC300DAC7F29F07F0BA9F7AFE71"
+    },
+    {
+      "pcStart": "0x80306084",
+      "pcEndExclusive": "0x803062a8",
+      "romOffset": "0xc1084",
+      "byteLength": 548,
+      "sha256": "D550AA66525A5AF62937597FACBE0007C4C87DD5566DA8CC7F98EA6473866B46"
+    },
+    {
+      "pcStart": "0x802A34A4",
+      "pcEndExclusive": "0x802a3604",
+      "romOffset": "0x5e4a4",
+      "byteLength": 352,
+      "sha256": "A22CE0CC719D74C848DB4794F571B68DA708B35455658A785CD22E68AA0F6B88"
+    },
+    {
+      "pcStart": "0x8024D2BC",
+      "pcEndExclusive": "0x8024d578",
+      "romOffset": "0x82bc",
+      "byteLength": 700,
+      "sha256": "A77157DF347358F5A233BF66D42AF40C030089475B8396B207A8F3708D5E481F"
+    },
+    {
+      "pcStart": "0x8024D8B0",
+      "pcEndExclusive": "0x8024d998",
+      "romOffset": "0x88b0",
+      "byteLength": 232,
+      "sha256": "529BB68C45041C4B5607B925BF811C1E3356600C4A574B9227E9A730161E062A"
+    },
+    {
+      "pcStart": "0x8024F170",
+      "pcEndExclusive": "0x8024f1e0",
+      "romOffset": "0xa170",
+      "byteLength": 112,
+      "sha256": "F0B2FAE8DD9E64800F23504DA5FB600C146A9EC3B61BCC1591BD59004A85136D"
+    }
+  ],
+  "candidateDiscovery": {
+    "source": "n64decomp/sm64 behavior_data.c at pinned commit 9921382a68bb0c865e5e45eb594d9c64db59b1af",
+    "sourceBehaviorArraysParsed": 534,
+    "selectedEnemyCandidates": 22,
+    "opcodePatternCategories": {
+      "unique": 16,
+      "ambiguous": 6
+    },
+    "interpretation": "Structural discovery only. The ROM offsets identify aligned candidate command-pattern matches; they do not establish script boundaries or runtime identity. Native candidates are leads, not semantic proof. Four families are semantically corroborated by the native envelopes listed above; the remaining candidates are inventory-only.",
+    "candidates": [
+      {
+        "name": "bhvMrI",
+        "sourceSize": 56,
+        "romCandidatePatternOffsets": [
+          "0x219e54"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_init_room",
+            "address": "0x802a4120"
+          },
+          {
+            "name": "bhv_mr_i_loop",
+            "address": "0x802a6b7c"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvKingBobomb",
+        "sourceSize": 96,
+        "romCandidatePatternOffsets": [
+          "0x219ff4"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_king_bobomb_loop",
+            "address": "0x802a8064"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvChuckya",
+        "sourceSize": 92,
+        "romCandidatePatternOffsets": [
+          "0x21a328"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_chuckya_loop",
+            "address": "0x802aa0ac"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvThwomp",
+        "sourceSize": 60,
+        "romCandidatePatternOffsets": [
+          "0x21a98c"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_grindel_thwomp_loop",
+            "address": "0x802ad34c"
+          },
+          {
+            "name": "load_object_collision_model",
+            "address": "0x803839cc"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvSpindrift",
+        "sourceSize": 64,
+        "romCandidatePatternOffsets": [
+          "0x21b0b4",
+          "0x21f0d0"
+        ],
+        "nativeCandidates": [],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvBowser",
+        "sourceSize": 124,
+        "romCandidatePatternOffsets": [
+          "0x21b650"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_bowser_init",
+            "address": "0x802b7878"
+          },
+          {
+            "name": "bhv_bowser_loop",
+            "address": "0x802b75a4"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvPiranhaPlant",
+        "sourceSize": 92,
+        "romCandidatePatternOffsets": [
+          "0x21bdbc"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_piranha_plant_loop",
+            "address": "0x802be5a0"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvBub",
+        "sourceSize": 68,
+        "romCandidatePatternOffsets": [
+          "0x21c00c"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_bub_loop",
+            "address": "0x802c1204"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvBoo",
+        "sourceSize": 16,
+        "romCandidatePatternOffsets": [
+          "0x21a70c",
+          "0x21a8fc",
+          "0x21b268",
+          "0x21b2ac",
+          "0x21ba7c",
+          "0x21bf3c",
+          "0x21bf4c",
+          "0x21bfe4",
+          "0x21c358",
+          "0x21c5e4",
+          "0x21c5f4"
+        ],
+        "nativeCandidates": [],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvScuttlebug",
+        "sourceSize": 68,
+        "romCandidatePatternOffsets": [
+          "0x21c95c",
+          "0x21f110"
+        ],
+        "nativeCandidates": [],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvBobomb",
+        "sourceSize": 56,
+        "romCandidatePatternOffsets": [
+          "0x21cf74"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_bobomb_init",
+            "address": "0x802e6a2c"
+          },
+          {
+            "name": "bhv_bobomb_loop",
+            "address": "0x802e742c"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvKoopa",
+        "sourceSize": 80,
+        "romCandidatePatternOffsets": [
+          "0x21e380"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_koopa_init",
+            "address": "0x802fbc4c"
+          },
+          {
+            "name": "bhv_koopa_update",
+            "address": "0x802fd7f8"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvFlyGuy",
+        "sourceSize": 80,
+        "romCandidatePatternOffsets": [
+          "0x21e4dc"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_init_room",
+            "address": "0x802a4120"
+          },
+          {
+            "name": "bhv_fly_guy_update",
+            "address": "0x802ff040"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvGoomba",
+        "sourceSize": 68,
+        "romCandidatePatternOffsets": [
+          "0x21e52c"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_goomba_init",
+            "address": "0x802ff408"
+          },
+          {
+            "name": "bhv_goomba_update",
+            "address": "0x802ff96c"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvChainChomp",
+        "sourceSize": 88,
+        "romCandidatePatternOffsets": [
+          "0x21e58c"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_chain_chomp_update",
+            "address": "0x80300e40"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvMontyMole",
+        "sourceSize": 88,
+        "romCandidatePatternOffsets": [
+          "0x21e800"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_monty_mole_init",
+            "address": "0x803044c0"
+          },
+          {
+            "name": "bhv_monty_mole_update",
+            "address": "0x80304ba8"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvWaterBomb",
+        "sourceSize": 44,
+        "romCandidatePatternOffsets": [
+          "0x21b450",
+          "0x21bd3c",
+          "0x21e9a8"
+        ],
+        "nativeCandidates": [],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvWaterBombCannon",
+        "sourceSize": 24,
+        "romCandidatePatternOffsets": [
+          "0x219f94",
+          "0x21a508",
+          "0x21ac70",
+          "0x21b1c4",
+          "0x21c3e0",
+          "0x21c484",
+          "0x21c798",
+          "0x21c8f0",
+          "0x21c9a0",
+          "0x21d0c8",
+          "0x21d414",
+          "0x21d8c8",
+          "0x21db34",
+          "0x21dba0",
+          "0x21dce4",
+          "0x21dfa4",
+          "0x21ecf8",
+          "0x21ed10",
+          "0x21ed28",
+          "0x21ed78",
+          "0x21f1c4",
+          "0x21f1dc",
+          "0x21f2a0",
+          "0x21f2ec",
+          "0x21f4a4"
+        ],
+        "nativeCandidates": [],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvUnagi",
+        "sourceSize": 56,
+        "romCandidatePatternOffsets": [
+          "0x21ed40"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_unagi_init",
+            "address": "0x8030a1c0"
+          },
+          {
+            "name": "bhv_unagi_loop",
+            "address": "0x8030a93c"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvSnufit",
+        "sourceSize": 60,
+        "romCandidatePatternOffsets": [
+          "0x21efe0"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_init_room",
+            "address": "0x802a4120"
+          },
+          {
+            "name": "bhv_snufit_loop",
+            "address": "0x8030dc70"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvKlepto",
+        "sourceSize": 68,
+        "romCandidatePatternOffsets": [
+          "0x21c95c",
+          "0x21f110"
+        ],
+        "nativeCandidates": [],
+        "confidence": "structural-candidate-only"
+      },
+      {
+        "name": "bhvSkeeter",
+        "sourceSize": 56,
+        "romCandidatePatternOffsets": [
+          "0x21f268"
+        ],
+        "nativeCandidates": [
+          {
+            "name": "bhv_skeeter_update",
+            "address": "0x80313110"
+          }
+        ],
+        "confidence": "structural-candidate-only"
+      }
+    ],
+    "fourSemanticallyCorroboratedFamilyGroups": 4,
+    "selectedArraysInCorroboratedGroups": [
+      "bhvGoomba",
+      "bhvFlyGuy",
+      "bhvUnagi",
+      "bhvWaterBomb",
+      "bhvWaterBombCannon"
+    ],
+    "inventoryOnlySelectedArrays": 17,
+    "supportingScriptsOutsideInitialCandidateSet": [
+      {
+        "role": "Overhead waterbomb spawner",
+        "behaviorBase": "0x800EFD0C",
+        "romOffset": "0x21E98C",
+        "windowBytes": 128,
+        "sha256": "58FED2D62AB982BCC167C63F5CB0E46CA4C6664055B26B6941CC9EABF2C8D828",
+        "nativeAddress": "0x80306084"
+      },
+      {
+        "role": "Cannon-barrel bubble spawner",
+        "behaviorBase": "0x800F00A8",
+        "sourceBehaviorLabel": "bhv_bubble_cannon_barrel_loop",
+        "romOffset": "0x21ED28",
+        "windowBytes": 128,
+        "sha256": "ED1161BBFC77248D5AA2A6D1087EF4AD24B714EA020E7A269373B37F51BFA00C",
+        "nativeAddress": "0x80309CEC"
+      }
+    ]
+  }
+}

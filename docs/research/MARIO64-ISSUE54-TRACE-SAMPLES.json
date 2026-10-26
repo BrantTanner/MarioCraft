@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "scope": "Sanitized row index for issue #54. Raw RAM-derived JSONL traces and runtime files are private; values below are limited to sample identifiers, counters, stable field values, and SHA-256 integrity references.",
+  "runtimeProvenance": {
+    "target": "Super Mario 64 (USA revision 0)",
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "project64PortableExeSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "inputHelperSha256": "2E78A7B6685C010C8FD2DDAD9D92815A77E9FB87202EAE6DA640A8579B0F9463",
+    "canonicalGameplayFixtureSha256": "6E2C8265A8A9A19761BCC6CE29FA20694FAD5444B325B1F22CA987776A2D6DFE",
+    "inputMethod": "Foreground-checked Project64 input helper; ordinary controls only. Runtime memory sampling used read-only process-memory reads; no guest-memory writes, cheats, or forced actions.",
+    "rowAcceptance": "Each cited row has an equal main-loop counter bracket. Rich object-pool trials additionally validate active/free-list structure. The earlier target-focused Goomba captures bracket selected Mario/target reads but do not claim whole-pool structural validation. Reads are non-atomic; events are bounded between samples. Pool identity is slot plus generation plus behavior; active-exit lastObject fields are the sampler previous periodic accepted snapshot, not necessarily the immediately preceding actor row."
+  },
+  "sampler": {
+    "name": "issue54-enemy-object-sampler-rich-02.ps1",
+    "sha256": "80D377870D6587D5A4C01EB943AD006F57940518A99F55FB2068F7F24B1D9398",
+    "appliesTo": [
+      "issue54-bob-projectile-14"
+    ],
+    "details": "Selected enemy/emitter/payload actor fields are recorded on every valid row; full object event snapshots remain periodic. Configured PollMs was 30 ms, while actual row spacing varied with process-read duration. Limit was 3600 rows."
+  },
+  "samples": [
+    {
+      "trial": "issue54-bob-target-02",
+      "privateTrace": "issue54-bob-target-02.jsonl",
+      "sha256": "6338D71E94ACD2A47444CC79F8FB8F6808472AAAA1D41ECE8CB2518F31E71E38",
+      "rowCount": 130,
+      "stableRowsCited": [
+        73,
+        74,
+        75,
+        76,
+        77,
+        78
+      ],
+      "evidence": [
+        {
+          "rows": [
+            73,
+            74,
+            75
+          ],
+          "loops": [
+            174092,
+            174093,
+            174094
+          ],
+          "marioAction": "0x04000440",
+          "marioHealth": [
+            1408,
+            1408,
+            1408
+          ],
+          "marioInvulnerabilityTimer": 0,
+          "targetInMarioCollisionList": true,
+          "targetAction": "0x00000000",
+          "interpretation": "Body contact before response; target remains in walk action."
+        },
+        {
+          "rows": [
+            76,
+            77,
+            78
+          ],
+          "loops": [
+            174095,
+            174097,
+            174098
+          ],
+          "targetActions": [
+            "0x00000001",
+            "0x00000002",
+            "0x00000002"
+          ],
+          "marioHealth": [
+            1344,
+            1280,
+            1152
+          ],
+          "marioInvulnerabilityTimer": 0,
+          "targetInMarioCollisionList": true,
+          "interpretation": "Mario health falls as the Goomba transitions through action 1 to action 2; health updates are queued over samples, so do not count each decrement as a separate hit."
+        }
+      ],
+      "claim": "Representative body-contact damage with Goomba survival; not an attack by Mario.",
+      "sampler": {
+        "name": "issue54-bob-target-capture.ps1",
+        "sha256": "5893671DFA295D3185306552EF76F0271838AED299C63B5FF7546E1F0F39AC83",
+        "details": "Target-focused capture of Mario/controller fields and selected Goomba fields; loop counter read before and after; no whole-pool structural validation."
+      }
+    },
+    {
+      "trial": "issue54-bob-target-12",
+      "privateTrace": "issue54-bob-target-12.jsonl",
+      "sha256": "32267E8F6F9DC9D8A629528359F127B807D33924FA42D7655F9CF1F96D0B3FAA",
+      "rowCount": 146,
+      "stableRowsCited": [
+        106,
+        107,
+        124
+      ],
+      "evidence": [
+        {
+          "row": 106,
+          "loop": 49629,
+          "marioAction": "0x03000880",
+          "marioY": 193.56451,
+          "marioVelocityY": -37.898697,
+          "targetAction": "0x00000000",
+          "targetInMarioCollisionList": false
+        },
+        {
+          "row": 107,
+          "loop": 49630,
+          "marioAction": "0x03000880",
+          "marioY": 255.50684,
+          "marioVelocityY": 26.0,
+          "targetAction": "0x00000066",
+          "targetActionTimer": 0,
+          "targetInMarioCollisionList": true,
+          "interpretation": "Mario is already rising at this sample; infer contact between samples, do not call this a directly sampled descending instant."
+        },
+        {
+          "row": 124,
+          "loop": 49647,
+          "targetAction": "0x00000066",
+          "targetActionTimer": 17,
+          "targetActiveFlags": "0x0000",
+          "targetInMarioCollisionList": false,
+          "marioHealth": 2176
+        }
+      ],
+      "claim": "Normal jump/stomp result, Goomba squish action, then inactive target. Status 0xC003 was not sampled; the directly sampled collision list is Mario\u2019s and contains the Goomba, not the reciprocal list.",
+      "sampler": {
+        "name": "issue54-bob-target-capture.ps1",
+        "sha256": "5893671DFA295D3185306552EF76F0271838AED299C63B5FF7546E1F0F39AC83",
+        "details": "Target-focused capture of Mario/controller fields and selected Goomba fields; loop counter read before and after; no whole-pool structural validation."
+      }
+    },
+    {
+      "trial": "issue54-bob-projectile-11",
+      "privateTrace": "issue54-bob-projectile-11.scalar.jsonl",
+      "sha256": "A995E511BE9DACA116D4FE04796120AF048E773E607289E7AEFECDDECB5A985F",
+      "rowCount": 47,
+      "stableRowsCited": [
+        31,
+        32,
+        36,
+        40,
+        44
+      ],
+      "claim": "Preliminary overhead payload birth, parent linkage, descent, and ground flag only. Trial ended before valid removal evidence; not used to establish the complete lifecycle.",
+      "sampler": {
+        "name": "issue54-enemy-object-sampler-rich.ps1",
+        "details": "Preserved periodic actor sampler; selected actor rows and full event snapshots are periodic."
+      },
+      "qualification": "Preliminary overhead payload birth, parent linkage, descent, and ground flag only. Trial ended before valid removal evidence; not used to establish the complete lifecycle."
+    },
+    {
+      "trial": "issue54-bob-projectile-14",
+      "privateTrace": "issue54-bob-projectile-14.scalar.jsonl",
+      "sha256": "D300AE55343FF4D4623720CDC3CF9A0BF891EA76A19A6F722B2C1A33AD804309",
+      "rowCount": 313,
+      "stableRowCount": 312,
+      "invalidRows": [
+        {
+          "row": 5,
+          "loopBefore": 104083,
+          "loopSnapshot": 104083,
+          "loopAfter": 104084,
+          "reason": "Loop-counter bracket mismatch; excluded."
+        }
+      ],
+      "payloads": [
+        {
+          "slot": 148,
+          "generation": 2,
+          "behavior": "0x800EFD28",
+          "parentBehavior": "0x800EFD0C",
+          "spawn": {
+            "row": 17,
+            "loop": 104177,
+            "action": "0x00000002",
+            "positionXYZ": [
+              2942.1543,
+              2359.6,
+              4965.3506
+            ],
+            "velocityXYZ": [
+              0,
+              -76,
+              0
+            ]
+          },
+          "descent": {
+            "row": 18,
+            "loop": 104182,
+            "positionXYZ": [
+              2942.1543,
+              1969.6001,
+              4965.3506
+            ],
+            "velocityY": -78
+          },
+          "groundContact": {
+            "row": 21,
+            "loop": 104198,
+            "positionXYZ": [
+              2932.2986,
+              835.1818,
+              4966.2993
+            ],
+            "moveFlags": "0x00000002",
+            "interactionStatus": "0x00000000",
+            "action": "0x00000002"
+          },
+          "removal": {
+            "row": 22,
+            "loop": 104203,
+            "event": "active-exit",
+            "sameGeneration": true,
+            "freeListed": true
+          }
+        },
+        {
+          "slot": 147,
+          "generation": 3,
+          "behavior": "0x800EFD28",
+          "parentBehavior": "0x800EFD0C",
+          "spawn": {
+            "row": 29,
+            "loop": 104241,
+            "action": "0x00000002",
+            "positionXYZ": [
+              2795.541,
+              2699.6,
+              4979.5615
+            ],
+            "velocityY": -56
+          },
+          "groundContact": {
+            "row": 35,
+            "loop": 104268,
+            "positionXYZ": [
+              2775.926,
+              822.2727,
+              4981.4497
+            ],
+            "moveFlags": "0x00000002",
+            "interactionStatus": "0x00000000",
+            "action": "0x00000002"
+          },
+          "removal": {
+            "row": 36,
+            "loop": 104272,
+            "event": "active-exit",
+            "sameGeneration": true,
+            "freeListed": true
+          }
+        }
+      ],
+      "qualification": "The overhead payload had already entered action 2 before its first stable row; native code establishes the preceding action-1 initialization. Active-exit lastObject is a stale periodic snapshot, so position/action values above come from trackedActors rows 21 and 35, not the exit record. Actual poll/read spacing varied and did not sample the intermediate action-3 state. Mario health/action changed around these events, but no projectile contact is attributed because the payload interaction-status field stayed zero in cited rows.",
+      "sampler": {
+        "name": "issue54-enemy-object-sampler-rich-02.ps1",
+        "sha256": "80D377870D6587D5A4C01EB943AD006F57940518A99F55FB2068F7F24B1D9398"
+      }
+    }
+  ],
+  "reproduction": {
+    "scene": "BOB course 1 reached through ordinary gameplay from the private canonical courtyard fixture.",
+    "projectile": "Remain inside the selected east overhead spawner radius (950 units) and sample selected actor fields continuously. Its native gate checks distance and vertical difference. Trial 14 began outside the radius at Mario XYZ [2564.076, 798.09094, 4935.4907] (row 0); after capture started, the foreground-checked helper held A+AnalogUp+AnalogRight for 700 ms, and Mario was at [2842.6208, 826.90906, 4974.9995] by spawn row 17, inside the radius. Validate resulting coordinates in fresh rows; do not infer direction from the key chord alone.",
+    "goomba": "Use the same BOB scene and a fresh nearby live Goomba; begin the sampler before a normal jump, then follow target action, Mario-object collision list, and active/free state by stable row."
+  }
+}

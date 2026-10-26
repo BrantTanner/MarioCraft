@@ -24,7 +24,10 @@ The child issues link back to #15 and list their predecessor URLs. Use those rec
 
 Use the USA decomp navigation source only as a source map: [n64decomp/sm64 at 9921382a68bb0c865e5e45eb594d9c64db59b1af](https://github.com/n64decomp/sm64/tree/9921382a68bb0c865e5e45eb594d9c64db59b1af). Cartridge/runtime claims still require evidence from the canonical USA revision 0 ROM (8 MiB; SHA-256 `17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91`).
 
-## Starting handoff
+## Current results and outstanding work
 
-The dedicated #57 worker has a local-only source census handoff. This plan does not publish that intermediate inventory or treat it as a completion report.
+[#57](https://github.com/BrantTanner/MarioCraft/issues/57) is closed after review of its [report](MARIO64-ISSUE57-COURSE-LEVELS.md), [manifest](MARIO64-ISSUE57-COURSE-LEVEL-MANIFEST.json), and reproduction helper. [#58](https://github.com/BrantTanner/MarioCraft/issues/58) remains open: its [asset report](MARIO64-ISSUE58-COURSE-ASSET-LOADING.md) and [manifest](MARIO64-ISSUE58-ASSET-LOAD-MANIFEST.json) document static mappings and a passive BOB snapshot, but no load/unload transition. [#59](https://github.com/BrantTanner/MarioCraft/issues/59) remains open: its [objective and cap report](MARIO64-ISSUE59-OBJECTIVES-CAPS.md), [warp report](MARIO64-ISSUE59-WARPS-AND-STATE.md), and linked inventories distinguish source and cartridge evidence from unobserved execution. The [aggregate audit](MARIO64-ISSUE15-AGGREGATE-AUDIT.md) maps these results to each unchanged parent criterion and assigns the remaining work to the existing children.
+
+The latest #58 foreground guard was not met; runtime work remains deferred. The earlier helper failure's original stderr is unavailable. A separate parse-only check found Windows PowerShell 5.1 incompatibilities while PowerShell 7.6.5 parsed the pinned helper successfully. This does not establish the original failure's cause.
+
 

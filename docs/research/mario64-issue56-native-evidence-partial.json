@@ -1,0 +1,225 @@
+{
+  "status": "Reviewed partial native-reference evidence; pickup runtime outcomes remain unobserved",
+  "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "codeEnvelopes": [
+    {
+      "pcStart": "0x8024db2c",
+      "pcEndExclusive": "0x8024dbf0",
+      "romOffset": "0x8b2c",
+      "byteLength": 196,
+      "sha256": "041831FACB0E0BC8E6555CF58AEA3716064741954FE9D3D509CA508D5BA343A3"
+    },
+    {
+      "pcStart": "0x8024dbf0",
+      "pcEndExclusive": "0x8024dc28",
+      "romOffset": "0x8bf0",
+      "byteLength": 56,
+      "sha256": "EA07ECB293AF440EAA3A5FAA0E2BD4F2A2BD66E649F2F7F55D4FE1E5FA4B97D6"
+    },
+    {
+      "pcStart": "0x8024e420",
+      "pcEndExclusive": "0x8024e6ec",
+      "romOffset": "0x9420",
+      "byteLength": 716,
+      "sha256": "33B3AE179849FC3C0624AAF11CE1F2F7FCDE0AE967D5DB1F4C9BA431EF78D816"
+    },
+    {
+      "pcStart": "0x80254060",
+      "pcEndExclusive": "0x802542b4",
+      "romOffset": "0xf060",
+      "byteLength": 596,
+      "sha256": "B9FC701F7D6DDAA3C17DB552F11135D9D987B4A6ECD56D439EA96B8795700277"
+    },
+    {
+      "pcStart": "0x8024b13c",
+      "pcEndExclusive": "0x8024b390",
+      "romOffset": "0x613c",
+      "byteLength": 596,
+      "sha256": "A26167824FD90A00522EF7007A94DC8EBC75DAE4995FA15B5EE17DD5D96AAA4E"
+    },
+    {
+      "pcStart": "0x802f2e6c",
+      "pcEndExclusive": "0x802f2f2c",
+      "romOffset": "0xade6c",
+      "byteLength": 192,
+      "sha256": "677DC5BF10E1B35061D8CFD32EFEAD2B082F7B200E4A605E4EED01BF4928BBEF"
+    },
+    {
+      "pcStart": "0x802f2f2c",
+      "pcEndExclusive": "0x802f3014",
+      "romOffset": "0xadf2c",
+      "byteLength": 232,
+      "sha256": "63CEF02F5117930BB087E93854932B88A08236926833F48170B2A1B17D372014"
+    },
+    {
+      "pcStart": "0x802f3d30",
+      "pcEndExclusive": "0x802f3dd0",
+      "romOffset": "0xaed30",
+      "byteLength": 160,
+      "sha256": "D203AA9435C7DD4EDA695F2D0C09FF207799E50445E9EE95764A693781CD6BD5"
+    },
+    {
+      "pcStart": "0x802f45b8",
+      "pcEndExclusive": "0x802f45f0",
+      "romOffset": "0xaf5b8",
+      "byteLength": 56,
+      "sha256": "0D3060849C18254252962B7CA7E2ABAEA6C782D358C0EBFDC484DE66AF60B18D"
+    },
+    {
+      "pcStart": "0x802ab650",
+      "pcEndExclusive": "0x802ab70c",
+      "romOffset": "0x66650",
+      "byteLength": 188,
+      "sha256": "03DD59C52C747CD55D67183F85084F694015560F4AB4C4346063777BB0DED32D"
+    },
+    {
+      "pcStart": "0x802ab70c",
+      "pcEndExclusive": "0x802ab748",
+      "romOffset": "0x6670c",
+      "byteLength": 60,
+      "sha256": "3C0E48E32E7D6ACB1F0357FABAA06CBFE3C9AA1CC6B99057E6EDC32C5D6C6C9D"
+    },
+    {
+      "pcStart": "0x802acc3c",
+      "pcEndExclusive": "0x802ace80",
+      "romOffset": "0x67c3c",
+      "byteLength": 580,
+      "sha256": "EBF593F5218043A640343B4A108C81A3854161A90F7799244C2C9BC0BF7BE4A0"
+    },
+    {
+      "pcStart": "0x802acac8",
+      "pcEndExclusive": "0x802acc3c",
+      "romOffset": "0x67ac8",
+      "byteLength": 372,
+      "sha256": "76CD9AC37D1655FBA5D4CADE223744B431C71A4FFA19BC5AC6DE1D8A93A7C592"
+    },
+    {
+      "pcStart": "0x802f3c54",
+      "pcEndExclusive": "0x802f3cc8",
+      "romOffset": "0xaec54",
+      "byteLength": 116,
+      "sha256": "B024F26A53F303E52AF1F434F8033443D30A49EE9E834BA447DD5CB143954807"
+    },
+    {
+      "pcStart": "0x802e5ea4",
+      "pcEndExclusive": "0x802e5ee8",
+      "romOffset": "0xa0ea4",
+      "byteLength": 68,
+      "sha256": "C262D25371EBA5DDB1802845DA13008731BA75CF7E34E6E2E92B1D91DDEEE38A"
+    },
+    {
+      "pcStart": "0x802ab5c8",
+      "pcEndExclusive": "0x802ab650",
+      "romOffset": "0x665c8",
+      "byteLength": 136,
+      "sha256": "952B5D5C8F93C3BAC297963B71982ED126F74790BA73B49FB2CCFC63FFA24796"
+    },
+    {
+      "pcStart": "0x80259264",
+      "pcEndExclusive": "0x802593cc",
+      "romOffset": "0x14264",
+      "byteLength": 360,
+      "sha256": "56A6E6B5B674ADBE098731496E6E2F056AFDE4D5EC3CE546163F75042458BB6B"
+    },
+    {
+      "pcStart": "0x802ac958",
+      "pcEndExclusive": "0x802ac9d0",
+      "romOffset": "0x67958",
+      "byteLength": 120,
+      "sha256": "A31D374A8489FB79DCFE826CF7D6F9CC61675FC67B85B0EE7C908A729D590BC3"
+    },
+    {
+      "pcStart": "0x802ac9d0",
+      "pcEndExclusive": "0x802aca6c",
+      "romOffset": "0x679d0",
+      "byteLength": 156,
+      "sha256": "BB0419242E30E208CFAABC4E82956891C60BF555161975996B0C20C9EB8A602F"
+    },
+    {
+      "pcStart": "0x802aca6c",
+      "pcEndExclusive": "0x802acac8",
+      "romOffset": "0x67a6c",
+      "byteLength": 92,
+      "sha256": "CE85FC9B17389B3E38E71EFAE2727C33CCBE14F6F88AF84E14FEBF2EEBB1380A"
+    },
+    {
+      "pcStart": "0x802a0514",
+      "pcEndExclusive": "0x802a0558",
+      "romOffset": "0x5b514",
+      "byteLength": 68,
+      "sha256": "6FFD5855CF3CE55A6FFF652D4FC2C13160B571680ED44C024659971C815F17CF"
+    },
+    {
+      "pcStart": "0x802a1424",
+      "pcEndExclusive": "0x802a148c",
+      "romOffset": "0x5c424",
+      "byteLength": 104,
+      "sha256": "55EE6AEC5B139FD407009DAAA0812DB650D51E71864D719DD36A7A0656AE0511"
+    },
+    {
+      "pcStart": "0x802ac910",
+      "pcEndExclusive": "0x802ac958",
+      "romOffset": "0x67910",
+      "byteLength": 72,
+      "sha256": "81760CAAC4E9825F714919D09220889E2F186D25F53D9471D2103277FF20B6E3"
+    },
+    {
+      "pcStart": "0x8024d804",
+      "pcEndExclusive": "0x8024d8b0",
+      "romOffset": "0x8804",
+      "byteLength": 172,
+      "sha256": "2DDCAD7601C5924391F2CD25D58AD911ED81B6DA3E8CD4B0C3B21B85E700425F"
+    }
+  ],
+  "dataWindows": [
+    {
+      "pcAddress": "0x80330260",
+      "romOffsets": [
+        "0xeb260"
+      ],
+      "byteLength": 40,
+      "sha256": "03FB9A735D9DC2829BD632FD91161C8BBEE951F7669206743E9CC85540C419C2"
+    },
+    {
+      "pcAddress": "0x80332794",
+      "romOffsets": [
+        "0xed794"
+      ],
+      "byteLength": 16,
+      "sha256": "9F49A479893BE8D67652B16977127AC1640EC29B9C1FF0080A717D06B9DFED2D"
+    }
+  ],
+  "uniqueLiveBehaviorMatches": [
+    {
+      "name": "red-coin",
+      "guestAddress": "0x800EF02C",
+      "windowBytes": 128,
+      "canonicalSha256": "5499A9D7E7AFA5D4C940C685881D26FCFCFC83C4A004C0264392D3CE7A9E7DDF",
+      "uniqueMatchCount": 1,
+      "romOffsets": [
+        "0x21DCAC"
+      ]
+    },
+    {
+      "name": "one-up",
+      "guestAddress": "0x800EF1FC",
+      "windowBytes": 128,
+      "canonicalSha256": "A7854C6B99318B0316B4BF13D2860AB76ABA40E2C3818D252DDA46E2371260DF",
+      "uniqueMatchCount": 1,
+      "romOffsets": [
+        "0x21DE7C"
+      ]
+    },
+    {
+      "name": "zero-star-door",
+      "guestAddress": "0x800EBC8C",
+      "windowBytes": 128,
+      "canonicalSha256": "41D49C03D5E83FD9D342B50BDE242A03C89C0F2236C29157F7902D92628B9A0E",
+      "uniqueMatchCount": 1,
+      "romOffsets": [
+        "0x21A90C"
+      ]
+    }
+  ]
+}
+

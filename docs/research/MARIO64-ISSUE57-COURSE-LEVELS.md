@@ -1,5 +1,3 @@
-Warning: fs was declared with const; use let for reassignable variables.
-Warning: s was declared with const; use let for reassignable variables.
 # Issue #57: source-pinned course and level inventory
 
 **Status:** Reviewed research result; source census and representative BOB cartridge correspondence are complete. Issue #57 remains open pending root closure.

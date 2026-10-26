@@ -1,0 +1,141 @@
+{
+  "status": "reviewed partial evidence; generic door path observed; coin and one-up outcomes remain unobserved",
+  "rom": {
+    "revision": "USA revision 0",
+    "sizeBytes": 8388608,
+    "sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91"
+  },
+  "runtime": {
+    "sceneLevel": 6,
+    "saveFileNumber": 1,
+    "doorSelector": 4,
+    "requiredStars": 0,
+    "interactionSubtype": 0,
+    "traceRows": 256,
+    "acceptedRows": 255,
+    "traceSha256": "5AB67E85F0C2B9DC529411D18FF71DBE7F9B6952000F9778EEA6D62962124BA0",
+    "samplerSha256": "9E4566D55B1E8395F54D2CB176E1CDFF8CD7FFA0FAEE2A9620BD12A3B3554342",
+    "doorSamples": [
+      {
+        "sequence": 18,
+        "loop": 257301,
+        "marioAction": "0x04000440",
+        "position": [
+          -3012.6162,
+          205.0,
+          -788.1448
+        ],
+        "doorAction": 0,
+        "doorTimer": 8865,
+        "inMarioCollisionList": false,
+        "health": 2176,
+        "lives": 2,
+        "coins": 1
+      },
+      {
+        "sequence": 19,
+        "loop": 257307,
+        "marioAction": "0x00001321",
+        "position": [
+          -3052.0,
+          205.0,
+          -798.0
+        ],
+        "doorAction": 2,
+        "doorTimer": 6,
+        "inMarioCollisionList": true,
+        "health": 2176,
+        "lives": 2,
+        "coins": 1
+      },
+      {
+        "sequence": 26,
+        "loop": 257348,
+        "marioAction": "0x00001321",
+        "position": [
+          -3423.0,
+          205.0,
+          -794.0
+        ],
+        "doorAction": 2,
+        "doorTimer": 47,
+        "inMarioCollisionList": false,
+        "health": 2176,
+        "lives": 2,
+        "coins": 1
+      },
+      {
+        "sequence": 31,
+        "loop": 257377,
+        "marioAction": "0x0C400201",
+        "position": [
+          -3423.0,
+          205.0,
+          -793.0
+        ],
+        "doorAction": 2,
+        "doorTimer": 76,
+        "inMarioCollisionList": false,
+        "health": 2176,
+        "lives": 2,
+        "coins": 1
+      },
+      {
+        "sequence": 32,
+        "loop": 257381,
+        "marioAction": "0x0C400201",
+        "position": [
+          -3423.0,
+          205.0,
+          -793.0
+        ],
+        "doorAction": 0,
+        "doorTimer": 0,
+        "inMarioCollisionList": false,
+        "health": 2176,
+        "lives": 2,
+        "coins": 1
+      }
+    ]
+  },
+  "pickupAttempt": {
+    "status": "no collection observed; movement stopped by hard hazard guard",
+    "sceneLevel": 9,
+    "courseId": 1,
+    "playMode": 0,
+    "position": [
+      -2446.4414,
+      0.0,
+      2097.4053
+    ],
+    "health": 1152,
+    "hurtTicks": 0,
+    "healTicks": 0,
+    "lives": 2,
+    "coins": 0,
+    "redCoinStillActive": true,
+    "oneUpStillActive": true,
+    "redCoinPredictedValue": 2,
+    "redCoinPredictedHealTicks": 8,
+    "predictedHealthAfterQueuedHealingIfUnchanged": 1664,
+    "predictionIsUnverified": true,
+    "priorHealthLossCause": "unknown capture gap; no cause attributed"
+  },
+  "staticReferences": {
+    "coinCallback": "0x8024DB2C",
+    "coinConsumer": "0x802F2F2C",
+    "oneUpLoop": "0x802F45B8",
+    "oneUpCollisionHelper": "0x802A1424",
+    "genericDoorCallback": "0x8024E420",
+    "doorStatusData": "0x80330260",
+    "healthUpdate": "0x80254060",
+    "healthCap": 2176,
+    "coinValueField": "signed object +0x180",
+    "marioCoinField": "signed Mario +0xA8",
+    "marioLivesField": "signed Mario +0xAD",
+    "marioHealthField": "unsigned Mario +0xAE"
+  },
+  "outOfScopeHandoff": "Issue 15: stars, keys, caps, cannons, warps, thresholds, and progression/course catalog",
+  "nativeEvidenceFile": "mario64-issue56-native-evidence-partial.json"
+}
+

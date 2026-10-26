@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "sourcePin": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
+  "method": "Whole function-envelope hashes over canonical ROM bytes, inside the verified initial-copy mapping only. Source labels are semantic correspondence, not a complete source rebuild identity.",
+  "functionWindows": [
+    {
+      "pcStart": "0x802495e0",
+      "romOffset": "0x45e0",
+      "byteLength": 216,
+      "sha256": "15B00071F358F47304F90D5DB0B5C8B0B1001030F889965AFAFE1F8BE1CE4966",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "level_control_timer"
+    },
+    {
+      "pcStart": "0x802496b8",
+      "romOffset": "0x46b8",
+      "byteLength": 172,
+      "sha256": "970B8398CCF5E53CD93D25D81258E374E2FC1DCEE21A6200DAB0FD05E2AD876F",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "pressed_pause"
+    },
+    {
+      "pcStart": "0x80249764",
+      "romOffset": "0x4764",
+      "byteLength": 32,
+      "sha256": "AADEB1BE26C8102FC9658B2D562EA5CC9D3F72551BCBBC2699BED9726E3DD48D",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "set_play_mode"
+    },
+    {
+      "pcStart": "0x8024978c",
+      "romOffset": "0x478c",
+      "byteLength": 36,
+      "sha256": "B0329ADB474D71116497CA736AC8D73BF1C802579460646B5EB22FCB77ACDC4D",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "warp_special"
+    },
+    {
+      "pcStart": "0x802497b8",
+      "romOffset": "0x47b8",
+      "byteLength": 116,
+      "sha256": "0198001892A800FF517A4AC4D20944765C95B1F54C1AB90D985250DB56E1655A",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "fade_into_special_warp"
+    },
+    {
+      "pcStart": "0x8024983c",
+      "romOffset": "0x483c",
+      "byteLength": 288,
+      "sha256": "B4D8E111DD5AFD2024FC516F91647D92BD15B564B6CD5897ADF641A034E937E3",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "load_level_init_text"
+    },
+    {
+      "pcStart": "0x8024995c",
+      "romOffset": "0x495c",
+      "byteLength": 172,
+      "sha256": "73E4932816C24C4F09C349D3D2CA2573AF77D45A96BE5CDB7F0BB91763194542",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "init_door_warp"
+    },
+    {
+      "pcStart": "0x80249a10",
+      "romOffset": "0x4a10",
+      "byteLength": 164,
+      "sha256": "C3C3BD3A8EC6C2133D155E85944BCA68AD896EF30E13469BE90E4E4AFB815BB6",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "set_mario_initial_cap_powerup"
+    },
+    {
+      "pcStart": "0x80249ab4",
+      "romOffset": "0x4ab4",
+      "byteLength": 548,
+      "sha256": "267EB3DC2320F2C1FE0D3A67ABC14EC06223FB5407C5E9CA0C0A5CC304AFEF36",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "set_mario_initial_action"
+    },
+    {
+      "pcStart": "0x80249cd8",
+      "romOffset": "0x4cd8",
+      "byteLength": 1100,
+      "sha256": "93D30ECF3151174DF8A5E8E83FE22F9CDD89F06CB90923A797EB36E72E8E7A38",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "init_mario_after_warp"
+    },
+    {
+      "pcStart": "0x8024a124",
+      "romOffset": "0x5124",
+      "byteLength": 104,
+      "sha256": "F8578E5E241B22C3CF035A9199207AF7A4BC2538861A657B7DAA3068B3F7CF03",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "warp_area"
+    },
+    {
+      "pcStart": "0x8024a18c",
+      "romOffset": "0x518c",
+      "byteLength": 76,
+      "sha256": "212466FBF083E022192BE8BF26AE1A3FC9F9AD5830BA3DCCAE2B2B04A91D89CD",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "warp_level"
+    },
+    {
+      "pcStart": "0x8024a1d8",
+      "romOffset": "0x51d8",
+      "byteLength": 412,
+      "sha256": "841E95255B16DDBDA05C8BCA7795F9AC59FB40EB91F0B12DFA8558E5557FDAEB",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "warp_credits"
+    },
+    {
+      "pcStart": "0x8024a374",
+      "romOffset": "0x5374",
+      "byteLength": 528,
+      "sha256": "09858DFCFD271B4C6B0EC8204E8A27187F014A5CE09887CC9112A1B93D4C2B06",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "check_instant_warp"
+    },
+    {
+      "pcStart": "0x8024a584",
+      "romOffset": "0x5584",
+      "byteLength": 380,
+      "sha256": "291269D0EEB32957C53EA96961CEFCBDA51457DBF4F36EC99AF1F5387A90DB6E",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "music_changed_through_warp"
+    },
+    {
+      "pcStart": "0x8024a700",
+      "romOffset": "0x5700",
+      "byteLength": 172,
+      "sha256": "9CAA5E830D43485416DCDE1B2A8C721981478FDFA77FBF9099F64EFDAE859B03",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "initiate_warp"
+    },
+    {
+      "pcStart": "0x8024a7b4",
+      "romOffset": "0x57b4",
+      "byteLength": 168,
+      "sha256": "9B2F4D4D58C3706A438413D40D14C7E5A273BB7B157474C5A81A3B3C0E72165A",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "get_painting_warp_node"
+    },
+    {
+      "pcStart": "0x8024a85c",
+      "romOffset": "0x585c",
+      "byteLength": 368,
+      "sha256": "DB345BBF38F6FDE57A6E866FC4077E20D86AEC1F9F5D6B4EFCA9D0557DA93BC6",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "initiate_painting_warp"
+    },
+    {
+      "pcStart": "0x8024a9cc",
+      "romOffset": "0x59cc",
+      "byteLength": 1296,
+      "sha256": "A8A82A5B22A72617C795E199A0007E5F9D7D54F6F4C8C87E29881105167FF77A",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "level_trigger_warp"
+    },
+    {
+      "pcStart": "0x8024aedc",
+      "romOffset": "0x5edc",
+      "byteLength": 608,
+      "sha256": "59BB43F19D85A730B616B3B12FB59656358008859815FC5275A351489516D10E",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "initiate_delayed_warp"
+    },
+    {
+      "pcStart": "0x8024b13c",
+      "romOffset": "0x613c",
+      "byteLength": 596,
+      "sha256": "A26167824FD90A00522EF7007A94DC8EBC75DAE4995FA15B5EE17DD5D96AAA4E",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "update_hud_values"
+    },
+    {
+      "pcStart": "0x8024b390",
+      "romOffset": "0x6390",
+      "byteLength": 84,
+      "sha256": "8A40BB9D56E1785130005296B6B405809214EDA22241235F2C2A6258564BA15E",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "basic_update"
+    },
+    {
+      "pcStart": "0x8024b3e4",
+      "romOffset": "0x63e4",
+      "byteLength": 496,
+      "sha256": "0276A5D68A779A50E4869A5B7313BE09C2346C0160DA383698083182FE1387BD",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "play_mode_normal"
+    },
+    {
+      "pcStart": "0x8024b5d4",
+      "romOffset": "0x65d4",
+      "byteLength": 248,
+      "sha256": "95798FA5DBE2798FD990EC938C7D4A6C2206E8D1C96A5436DFDB26B96A17398B",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "play_mode_paused"
+    },
+    {
+      "pcStart": "0x8024b6cc",
+      "romOffset": "0x66cc",
+      "byteLength": 204,
+      "sha256": "9DEE5AB7C84FC41A045FFCA209EF5F6AB58BAD0B4631FEB0ADC0000339C66514",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "play_mode_frame_advance"
+    },
+    {
+      "pcStart": "0x8024b798",
+      "romOffset": "0x6798",
+      "byteLength": 32,
+      "sha256": "C320B852EC2B44951EAB5FC1A9B35FC2ECCB9863937225425459A77D949B1A18",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "level_set_transition"
+    },
+    {
+      "pcStart": "0x8024b7c0",
+      "romOffset": "0x67c0",
+      "byteLength": 192,
+      "sha256": "DAABD148B8A6F379DF0222E6BA6E36BF7406039F5A8189DB2390182A25BB4A7E",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "play_mode_change_area"
+    },
+    {
+      "pcStart": "0x8024b880",
+      "romOffset": "0x6880",
+      "byteLength": 192,
+      "sha256": "481FFF19CE14E1475AC7719EA205B48E5B90411596CD7FBFCE916CE3A2048463",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "play_mode_change_level"
+    },
+    {
+      "pcStart": "0x8024b9b8",
+      "romOffset": "0x69b8",
+      "byteLength": 212,
+      "sha256": "62519C2363A3C23F3B67CBB09FBBB1BD6A81AE4E116DC8E3D98EADF524E07D2A",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "update_level"
+    },
+    {
+      "pcStart": "0x8024ba8c",
+      "romOffset": "0x6a8c",
+      "byteLength": 588,
+      "sha256": "E40A3D1857B73F15FDF7062923A2B5354AEB5AA3FEAD2D4957237CA0D720B1FF",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "init_level"
+    },
+    {
+      "pcStart": "0x8024bcd8",
+      "romOffset": "0x6cd8",
+      "byteLength": 132,
+      "sha256": "64EE8B590E127306776ABB3027C246CE123ED0A06BF4C581281010BD9E05BA2E",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "lvl_init_or_update"
+    },
+    {
+      "pcStart": "0x8024bd5c",
+      "romOffset": "0x6d5c",
+      "byteLength": 184,
+      "sha256": "0ED58AD0902D91BC6EC49FCAFC78359EF56E813D12D665FB01E4B6D92EDF8559",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "lvl_init_from_save_file"
+    },
+    {
+      "pcStart": "0x8024be14",
+      "romOffset": "0x6e14",
+      "byteLength": 396,
+      "sha256": "2E50A3E893AD284F9B7D441FB9FA6B04BF6B65FB98A75B2DEC3595DFF12C0A5E",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "lvl_set_current_level"
+    },
+    {
+      "pcStart": "0x8024bfa0",
+      "romOffset": "0x6fa0",
+      "byteLength": 68,
+      "sha256": "2D99B4772C4615DE5172F45C25D3AC646A95BF5A80FDC88345A4DCD0015A4066",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "lvl_play_the_end_screen_sound"
+    },
+    {
+      "pcStart": "0x8024bff0",
+      "romOffset": "0x6ff0",
+      "byteLength": 200,
+      "sha256": "ADAE6424ACC62698CABC1EBD0A4340B5A6CC50B82D9606BB2A9534277133DAB4",
+      "correspondence": "verified-initial-copy-map",
+      "sourceCorrespondence": "get_mario_cap_flag"
+    }
+  ],
+  "limits": [
+    "All evidence is static; no #59 runtime execution is established.",
+    "Envelopes retain any gaps within the imported Ghidra function body bounds.",
+    "Addresses outside the verified initial-copy range are not translated by this mapping."
+  ]
+}

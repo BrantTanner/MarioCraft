@@ -70,4 +70,3 @@ For one instruction-level interpretation, the guide's `VMUDH` specification desc
 ## Remaining evidence
 
 Capture and verify an actual task descriptor at a documented moment, including pointers, lengths, selected buffers and code/data provenance, with emulator state distinguished from cartridge candidates. Confirm relevant overlay mappings and instruction behavior before asserting complete microcode coverage. No new capture, timing, or frame execution is claimed. The prior failed helper has no retained stdout/stderr, so its cause remains unknown. Keep #63 and #16 open; no implementation or prototype follows from this research alone.
-

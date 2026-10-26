@@ -1,5 +1,3 @@
-Warning: fs was declared with const; use let for reassignable variables.
-Warning: s was declared with const; use let for reassignable variables.
 import argparse, json, re, hashlib, subprocess
 from pathlib import Path
 COMMIT='9921382a68bb0c865e5e45eb594d9c64db59b1af'

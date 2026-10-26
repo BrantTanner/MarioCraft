@@ -1,6 +1,6 @@
 # Mario 64 objects, enemies, and interactions plan (#14)
 
-**Status:** parent issue #14 remains open and its original acceptance criteria remain unchanged and unchecked. The five bounded research children are created. Execute them sequentially, one Luna worker at a time: #52 → #53 → #54 → #55 → #56. After the children, perform the #14 acceptance audit. Continue with #15, #16, #17 audit, and #18 readiness review. No implementation or gameplay prototype begins during this sequence.
+**Status:** parent issue #14 remains open and its original acceptance criteria remain unchanged and unchecked. The first five bounded children ran in order: #52 → #53 → #54 → #55 → #56. #56 remains open because controlled coin/healing and one-up outcomes are unobserved. New bounded follow-up #60 expands the 17 inventory-only #54 candidate rows, selected family AI/contact observations, and Mario projectile-contact coverage where reachable. It depends only on completed #52/#53/#54, so it can proceed while #56's reachable pickup route remains unresolved. Complete #60 and #56 before treating this aggregate audit as acceptance-ready. Continue with #15, #16, #17 audit, and #18 readiness review. No implementation or gameplay prototype begins during this sequence.
 
 ## Sequence and dependency graph
 
@@ -11,6 +11,7 @@
 | 3 | [#54 Enemy families, AI, contact, defeat, and projectiles](https://github.com/BrantTanner/MarioCraft/issues/54) | Build a finite family/specimen inventory and trace representative AI, body contact, defeat/removal, and at least one projectile lifecycle where present. Cross-reference #53 instead of repeating its five-action matrix for every family. | #52, #53 |
 | 4 | [#55 Dynamic objects, moving platforms, and rider carry](https://github.com/BrantTanner/MarioCraft/issues/55) | Trace selected object transforms, geometry/floor handoff, carry and detachment with a controlled trial. Reuse #12 collision and surface results without duplicating them. | #52, #54 |
 | 5 | [#56 Pickup and generic interactive effects](https://github.com/BrantTanner/MarioCraft/issues/56) | Trace controlled coin, healing, one-up and one generic door/switch interaction to object and Mario state outcomes. Stars, keys, caps, cannons, warps, course placement and progression remain #15. | #52, #55 |
+| Follow-up | [#60 Enemy-family AI and projectile-contact coverage](https://github.com/BrantTanner/MarioCraft/issues/60) | Reconcile the 17 inventory-only #54 candidate rows against exact target evidence; select reachable family-specific AI/contact/defeat examples beyond #54; check Mario projectile contact where reachable. Preserve remaining families and unavailable cases as untested. | #52, #53, #54 |
 
 Each child links back to #14 and names its predecessors. The GitHub connector used for these issue updates does not expose a native sub-issue relationship operation, so reciprocal parent and dependency URLs plus this plan provide the relationship record.
 
@@ -27,5 +28,6 @@ Start runtime trials from legitimate reachable course entry with new private bac
 
 ## Parent acceptance audit
 
-After #52–#56, reconcile each original #14 criterion against the child dossiers: object/behavior inventory and lifecycle; all five attack/contact paths and Mario responses; representative Project64 scenarios corroborated by target code/data; dynamic geometry and action-specific vulnerability/immunity; and the subsystem map with explicit residual object/AI coverage. Keep finite inventory limits and untested families/actions visible. Do not mark the parent complete while required criteria or child work remains open.
+After #52–#56 and #60, reconcile each original #14 criterion against the child dossiers: object/behavior inventory and lifecycle; all five attack/contact paths and Mario responses; representative Project64 scenarios corroborated by target code/data; dynamic geometry and action-specific vulnerability/immunity; and the subsystem map with explicit residual object/AI coverage. Keep finite inventory limits and untested families/actions visible. Do not mark the parent complete while required criteria or child work remains open.
+
 

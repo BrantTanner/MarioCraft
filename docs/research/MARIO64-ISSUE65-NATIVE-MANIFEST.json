@@ -1,0 +1,178 @@
+{
+  "issue": 65,
+  "target": "USA rev 0",
+  "target_sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "source_revision": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
+  "evidence": "Static function envelopes matched to target ROM; no runtime execution inferred.",
+  "mapping": {
+    "pc_start": "0x80246000",
+    "pc_end_exclusive": "0x8032d560",
+    "rom_start": "0x1000",
+    "rom_end_exclusive": "0xe8560",
+    "formula": "rom_offset = pc - 0x80245000"
+  },
+  "windows": [
+    {
+      "name": "read wrapper",
+      "pc": "0x80279174",
+      "rom_offset": "0x34174",
+      "length": 164,
+      "sha256": "C1736A2B1C08A400B4B5C5786BEC3F80C21B6C41AB6CDF73D38272F7BA59F3B7"
+    },
+    {
+      "name": "write wrapper",
+      "pc": "0x80279218",
+      "rom_offset": "0x34218",
+      "length": 168,
+      "sha256": "C06D296AD38EB449DA45FB59D5D459FFD2CE590141F59497D9457750D3D1CCBA"
+    },
+    {
+      "name": "checksum",
+      "pc": "0x802792c0",
+      "rom_offset": "0x342c0",
+      "length": 84,
+      "sha256": "AF53C411CABA9152955640E6760D21D1D90588B0553A10CCF99943F1245B825E"
+    },
+    {
+      "name": "verify signature",
+      "pc": "0x80279314",
+      "rom_offset": "0x34314",
+      "length": 136,
+      "sha256": "095912362D6C62330C02F43D974EB8B6A0B8C4F9E910728CD81027684F58FDB0"
+    },
+    {
+      "name": "sign",
+      "pc": "0x8027939c",
+      "rom_offset": "0x3439c",
+      "length": 96,
+      "sha256": "37000D179D875F2F7F03967851930C16BDEA156FF3DA72FB6F76597C1EE6CA42"
+    },
+    {
+      "name": "restore menu",
+      "pc": "0x802793fc",
+      "rom_offset": "0x343fc",
+      "length": 164,
+      "sha256": "F55074E9DAB2CC7BB5686C431235D36979AE04526382990B3B5E561169DCCFD1"
+    },
+    {
+      "name": "save menu",
+      "pc": "0x802794a0",
+      "rom_offset": "0x344a0",
+      "length": 124,
+      "sha256": "C4B4191F897EF3909EC76CC220FE441468711BF56639B6C83CFBADBEE296B794"
+    },
+    {
+      "name": "wipe menu",
+      "pc": "0x8027951c",
+      "rom_offset": "0x3451c",
+      "length": 132,
+      "sha256": "9578C70CCF8173E4741CF6EB2287EDC6D217F71BD2A73401A812B07D031A6297"
+    },
+    {
+      "name": "restore file",
+      "pc": "0x80279748",
+      "rom_offset": "0x34748",
+      "length": 248,
+      "sha256": "A3721A30BE33B9E80DE4ECB7FF0DC5D6604DAC3D074672A917D8EB5E15F91F91"
+    },
+    {
+      "name": "save file",
+      "pc": "0x80279840",
+      "rom_offset": "0x34840",
+      "length": 188,
+      "sha256": "846BB2F92DC8558FF50CE146959175EEE11F744F19D4B1FE9B4B0BDEADBA73FE"
+    },
+    {
+      "name": "erase file",
+      "pc": "0x802798fc",
+      "rom_offset": "0x348fc",
+      "length": 100,
+      "sha256": "89DA7AE8CDA745DC257AA6D2218DF0EE294844755BF0C329F435BA2960064E56"
+    },
+    {
+      "name": "copy file",
+      "pc": "0x80279960",
+      "rom_offset": "0x34960",
+      "length": 124,
+      "sha256": "9DDF989AA5F5B530779D95D044FDB0BB722E481449C19EAA156B1040FCCFA780"
+    },
+    {
+      "name": "load all",
+      "pc": "0x802799dc",
+      "rom_offset": "0x349dc",
+      "length": 492,
+      "sha256": "BB3BCCB991B6BDBBDED0E82B4174A6ED7FFE38FC395B4169C46DF72BC814A62E"
+    },
+    {
+      "name": "reload cached",
+      "pc": "0x80279bc8",
+      "rom_offset": "0x34bc8",
+      "length": 124,
+      "sha256": "12138D761CDD72EE7B805F5CEEABDD394BC00A9CA11EB73861766AD0027EDBA6"
+    },
+    {
+      "name": "collect star or key",
+      "pc": "0x80279c44",
+      "rom_offset": "0x34c44",
+      "length": 512,
+      "sha256": "0E8F1E0AA6E5E3238126533DDECB0347770F7F3EC0C2F688A5FFD87BFF9DE509"
+    },
+    {
+      "name": "osEepromProbe",
+      "pc": "0x80324080",
+      "rom_offset": "0xdf080",
+      "length": 108,
+      "sha256": "D6E586D11E0DAC0F556F458F273EFAF9A8BFA530FC7D439AB8528C22C560D025"
+    },
+    {
+      "name": "osEepromLongWrite",
+      "pc": "0x803247d0",
+      "rom_offset": "0xdf7d0",
+      "length": 316,
+      "sha256": "D9A7565B2763F821D9048EC63E9D7428F521CCDB80DE7EC798CC613E95124CAC"
+    },
+    {
+      "name": "osEepromWrite",
+      "pc": "0x80328af0",
+      "rom_offset": "0xe3af0",
+      "length": 432,
+      "sha256": "AC230C8F6E4F1A13E61C64BF351B2A53E9A93E4777706D8FC85C1C2457AAF0C7"
+    },
+    {
+      "name": "__osPackEepWriteData",
+      "pc": "0x80328ca0",
+      "rom_offset": "0xe3ca0",
+      "length": 268,
+      "sha256": "A22447B056944DBEB95B6433411CE5A758AAF219050D5C0EE9EC15A01884E035"
+    },
+    {
+      "name": "__osEepStatus",
+      "pc": "0x80328dac",
+      "rom_offset": "0xe3dac",
+      "length": 548,
+      "sha256": "2451E84A2A68A3A1AAC284E04D09673FF74EE546106DF95143DF7FE77A3214F9"
+    },
+    {
+      "name": "osEepromRead",
+      "pc": "0x80329150",
+      "rom_offset": "0xe4150",
+      "length": 496,
+      "sha256": "00CADFFCE4BFA7F17395CE7B14047ADC26FCDAF10D9CE13781AB6DDFD8070E81"
+    },
+    {
+      "name": "__osPackEepReadData",
+      "pc": "0x80329340",
+      "rom_offset": "0xe4340",
+      "length": 260,
+      "sha256": "9FA293E54EB4B42131D8CE261D1E787AB0BFCE6474C5B44F58981EFB7DE8B4A2"
+    },
+    {
+      "name": "osEepromLongRead",
+      "pc": "0x80324690",
+      "rom_offset": "0xdf690",
+      "length": 316,
+      "sha256": "E0CA12083EA114CBF78C76CCCAD16AF6B1CA8FA2A807455A70179489AB17BAB9"
+    }
+  ]
+}
+

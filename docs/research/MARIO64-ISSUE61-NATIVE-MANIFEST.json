@@ -1,0 +1,171 @@
+[
+  {
+    "name": "entry",
+    "pc": "0x80246000",
+    "rom_offset": "0x1000",
+    "length": 56,
+    "sha256": "0E3F522A33D25B713D0C9E1AD39BE1EBD6C613AA3039EE967DA0239289977BB6"
+  },
+  {
+    "name": "queues",
+    "pc": "0x802461fc",
+    "rom_offset": "0x11fc",
+    "length": 228,
+    "sha256": "FAB914B2601DBF64CA9FE093CF20A5E6185CB0E9F645F7449EC811113184D0F9"
+  },
+  {
+    "name": "nmi",
+    "pc": "0x8024639c",
+    "rom_offset": "0x139c",
+    "length": 80,
+    "sha256": "D18207D206C0BAAA8570AB71966A6C6146C9B8B4A50665E2030235665755AA26"
+  },
+  {
+    "name": "receive",
+    "pc": "0x802463ec",
+    "rom_offset": "0x13ec",
+    "length": 304,
+    "sha256": "F1EDFE78ECA05B6E7527EA4A8E32D9CC0EE99C8600DA66E8259333BA1A5EA189"
+  },
+  {
+    "name": "start",
+    "pc": "0x8024651c",
+    "rom_offset": "0x151c",
+    "length": 128,
+    "sha256": "266626D154099588D54CF7C2C21B16F4D486868400189056FD0DF10C09C705FC"
+  },
+  {
+    "name": "vblank",
+    "pc": "0x8024669c",
+    "rom_offset": "0x169c",
+    "length": 352,
+    "sha256": "D5384DAFAF1F865DFCE57BEF44B87C8E246EF0F27AE9E73B5518DE3792D48186"
+  },
+  {
+    "name": "sp",
+    "pc": "0x802467fc",
+    "rom_offset": "0x17fc",
+    "length": 336,
+    "sha256": "EE7B6D33B81E150751C64FC4A82B6FB146F39F3A16588F961E5B3671EFE3882F"
+  },
+  {
+    "name": "dp",
+    "pc": "0x8024694c",
+    "rom_offset": "0x194c",
+    "length": 108,
+    "sha256": "BB581F84AB221A47074046FF9C78FCAD670957F6C32F13DF8BA7DD1A2D53627C"
+  },
+  {
+    "name": "thread3",
+    "pc": "0x802469b8",
+    "rom_offset": "0x19b8",
+    "length": 324,
+    "sha256": "F365F941DD19D539177F668748C177033693208C3E453C03EEE98A139C0BFB34"
+  },
+  {
+    "name": "submit_gfx",
+    "pc": "0x80246c10",
+    "rom_offset": "0x1c10",
+    "length": 140,
+    "sha256": "C685D107C50B20B0A8598D6351AB72E9535E5378D7B3B9C2CBDBBE11E91F746E"
+  },
+  {
+    "name": "idle",
+    "pc": "0x80246cf0",
+    "rom_offset": "0x1cf0",
+    "length": 240,
+    "sha256": "D2A617CF07E1C7742F6D5E65997406FDFB86F2A9FAED099758E1FF240F53F864"
+  },
+  {
+    "name": "main",
+    "pc": "0x80246df8",
+    "rom_offset": "0x1df8",
+    "length": 112,
+    "sha256": "2123B726A37A12C6A3A6EDA1557FE9721D6CB0930B5DFE2AB992A29083E27D6A"
+  },
+  {
+    "name": "display_and_vsync",
+    "pc": "0x80248090",
+    "rom_offset": "0x3090",
+    "length": 336,
+    "sha256": "E99EAE5C8E55A9D9EA6C448BCBB5CC3F2F7F8FBB18268FEB21EF03A2761821BF"
+  },
+  {
+    "name": "read_controller_inputs",
+    "pc": "0x80248638",
+    "rom_offset": "0x3638",
+    "length": 492,
+    "sha256": "7181A76AD986E0D8B561D08CCAFC131D23E375A24499C1CE9F8CDDD7F34DFCB5"
+  },
+  {
+    "name": "init_controllers",
+    "pc": "0x80248824",
+    "rom_offset": "0x3824",
+    "length": 320,
+    "sha256": "12778859D7212A13CDEB90B1E9E6792B18CB7086B2393B8AF8BDB61551BFBB62"
+  },
+  {
+    "name": "thread5_game_loop",
+    "pc": "0x80248af0",
+    "rom_offset": "0x3af0",
+    "length": 304,
+    "sha256": "3803A94B6382A0BCA4A800572CA6F9F46D7598B5599114F35B2BA602F4E292C4"
+  },
+  {
+    "name": "OS start read",
+    "pc": "0x80323a60",
+    "rom_offset": "0xdea60",
+    "length": 196,
+    "sha256": "0D15AF95E63F2ADBDAAD8044D893FA6DA77FC747A4951CA1215324EC19992EBF"
+  },
+  {
+    "name": "OS decode",
+    "pc": "0x80323b24",
+    "rom_offset": "0xdeb24",
+    "length": 168,
+    "sha256": "E44DF93AFA2350ADC39839436674B933E9E59413ED5CC2B5D618890EB79335BF"
+  },
+  {
+    "name": "OS controller init",
+    "pc": "0x80323cc0",
+    "rom_offset": "0xdecc0",
+    "length": 508,
+    "sha256": "B865C37C56D195F520CB12E642A1980FBF7B8F1907CB77103E63978ED6A1B633"
+  },
+  {
+    "name": "OS pack read",
+    "pc": "0x80323bcc",
+    "rom_offset": "0xdebcc",
+    "length": 236,
+    "sha256": "10895386F7CC0BAAC9FE160B02D6124FB95C6963963F01420FF54E9CE273D865"
+  },
+  {
+    "name": "SI raw DMA",
+    "pc": "0x80328960",
+    "rom_offset": "0xe3960",
+    "length": 172,
+    "sha256": "3B46D1251FF5C36D420F16463E627358411395F362CBB6E7F808101AEA2504D4"
+  },
+  {
+    "name": "SI acquire",
+    "pc": "0x803288f0",
+    "rom_offset": "0xe38f0",
+    "length": 68,
+    "sha256": "2BAF88D20BEB6416EC82E0A2864731195074E9B89FC601C873360FF24F655B39"
+  },
+  {
+    "name": "SI release",
+    "pc": "0x80328934",
+    "rom_offset": "0xe3934",
+    "length": 44,
+    "sha256": "D36DD3C6F6E7780BBC949D832E00B081FE7BFA187365D99FFB6D453C67CCAAC1"
+  },
+  {
+    "name": "SI access queue init",
+    "pc": "0x803288a0",
+    "rom_offset": "0xe38a0",
+    "length": 80,
+    "sha256": "0F19493978D42AE24F1E9288FE0196BFBAA5A05CD09DD85D575146648AF204CC"
+  }
+]
+

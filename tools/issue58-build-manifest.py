@@ -372,6 +372,127 @@ def main() -> None:
         "limits": "All 31 source enum IDs link through generated EXECUTE wrappers; source entry opcode/size patterns and encoded load operands match. This is not exact rebuilt-asset equivalence or runtime transition evidence.",
     }
 
+    # Corroborate the complete global dispatcher entry, its five conditional
+    # transition arrays, and the unique initial entry command sequence. These
+    # source-array links recover the intro/menu/ending ROM spans without
+    # treating source-order adjacency as a general ROM mapping rule.
+    dispatcher_arrays = course["shared_script_families"]["dispatcher_entry_arrays"]
+    main_key = "levels/scripts.c::level_main_scripts_entry"
+    ordered_global_keys = [
+        main_key,
+        "levels/scripts.c::script_L1",
+        "levels/scripts.c::script_L2",
+        "levels/scripts.c::goto_mario_head_regular",
+        "levels/scripts.c::goto_mario_head_dizzy",
+        "levels/scripts.c::script_L5",
+    ]
+    global_array_rows = []
+    global_array_locations = {}
+    dispatcher_load_operands = {}
+
+    def verify_source_array(key: str, start: int) -> dict:
+        cursor = start
+        command_rows = []
+        for cmd in dispatcher_arrays[key]["commands"]:
+            if cmd.get("usa_active") is False:
+                continue
+            if cmd.get("usa_active") is not True:
+                raise SystemExit(f"unknown conditional command in {key} line {cmd.get('line')}")
+            expected = command_opmap.get(cmd["macro"])
+            if expected is None:
+                raise SystemExit(f"no dispatcher opcode/size mapping for {cmd['macro']} in {key}")
+            opcode, size = expected
+            if rom[cursor:cursor + 2] != bytes((opcode, size)):
+                raise SystemExit(f"dispatcher command pattern mismatch for {key} line {cmd.get('line')} at 0x{cursor:X}")
+            item = {"macro": cmd["macro"], "sourceLine": cmd.get("line"),
+                    "commandRomOffset": cursor, "opcode": opcode, "commandSize": size}
+            if opcode in (0x00, 0x01, 0x17, 0x18, 0x1A):
+                segment = struct.unpack_from(">H", rom, cursor + 2)[0]
+                rom_start, rom_end = struct.unpack_from(">II", rom, cursor + 4)
+                if not (0 < rom_start < rom_end <= len(rom)):
+                    raise SystemExit(f"invalid dispatcher load interval at 0x{cursor:X}")
+                item.update({"segmentId": segment, "romStart": rom_start,
+                             "romEndExclusive": rom_end, "spanBytes": rom_end - rom_start,
+                             "encodedRomSpanSha256": sha256(rom[rom_start:rom_end])})
+                args_list = cmd.get("args", [])
+                if len(args_list) > 1:
+                    item["sourceStartSymbol"] = args_list[1].strip()
+                if len(args_list) > 2:
+                    item["sourceEndSymbol"] = args_list[2].strip()
+                if opcode in (0x00, 0x01):
+                    item["entrySegmentedPointer"] = struct.unpack_from(">I", rom, cursor + 12)[0]
+                    if len(args_list) > 3:
+                        item["sourceEntrySymbol"] = args_list[3].strip()
+                if item.get("sourceStartSymbol"):
+                    symbol = re.sub(r"SegmentRomStart$", "", item["sourceStartSymbol"].lstrip("_"))
+                    if symbol in ("intro", "menu"):
+                        raw_intervals[symbol] = {
+                            "romStart": rom_start, "romEndExclusive": rom_end,
+                            "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
+                            "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed",
+                        }
+                dispatcher_load_operands[(dispatcher_arrays[key]["source"], cmd.get("line"))] = item
+            elif opcode == 0x0C:
+                item["comparisonValue"] = struct.unpack_from(">i", rom, cursor + 4)[0]
+                item["jumpSegmentedPointer"] = struct.unpack_from(">I", rom, cursor + 8)[0]
+                item["sourceComparison"] = cmd.get("args", [None, None])[1]
+                item["sourceTargetArray"] = cmd.get("args", [None, None, None])[2]
+            command_rows.append(item)
+            cursor += size
+        return {"array": key, "romStart": start, "romEndExclusive": cursor,
+                "length": cursor - start, "sha256": sha256(rom[start:cursor]),
+                "commandCount": len(command_rows), "commandPatternMatched": True,
+                "commands": command_rows}
+
+    cursor = prefix_start
+    for key in ordered_global_keys:
+        global_array_locations[key.split("::", 1)[1]] = cursor
+        item = verify_source_array(key, cursor)
+        cursor = item["romEndExclusive"]
+        global_array_rows.append(item)
+    if cursor != jump_start:
+        raise SystemExit(f"global dispatcher arrays end at 0x{cursor:X}, expected enum table at 0x{jump_start:X}")
+    resolved_branches = []
+    for cmd in global_array_rows[0]["commands"]:
+        if cmd["opcode"] != 0x0C:
+            continue
+        target = cmd.get("sourceTargetArray")
+        pointer = cmd["jumpSegmentedPointer"]
+        if target not in global_array_locations or pointer >> 24 != 0x15:
+            raise SystemExit("unresolved global dispatcher branch target")
+        target_rom = prefix_start + (pointer & 0xFFFFFF)
+        if (target_rom != global_array_locations[target]
+                or cmd["comparisonValue"] != int(cmd["sourceComparison"], 0)):
+            raise SystemExit("global dispatcher branch operand does not match its source array")
+        resolved_branches.append({"sourceTargetArray": target,
+                                  "comparisonValue": cmd["comparisonValue"],
+                                  "resolvedRomOffset": target_rom})
+    if len(resolved_branches) != 5:
+        raise SystemExit(f"expected five verified negative dispatcher branches, got {len(resolved_branches)}")
+
+    initial_key = "levels/entry.c::level_script_entry"
+    initial_commands = dispatcher_arrays[initial_key]["commands"]
+    initial_pattern = [command_opmap[cmd["macro"]] for cmd in initial_commands if cmd.get("usa_active") is True]
+    initial_hits = []
+    for start in range(0, len(rom) - sum(size for _, size in initial_pattern), 4):
+        pos = start
+        for opcode, size in initial_pattern:
+            if rom[pos:pos + 2] != bytes((opcode, size)):
+                break
+            pos += size
+        else:
+            initial_hits.append(start)
+    if len(initial_hits) != 1:
+        raise SystemExit(f"initial entry command sequence is not unique: matches={len(initial_hits)}")
+    initial_entry = verify_source_array(initial_key, initial_hits[0])
+    dispatcher_evidence = {
+        "globalArrays": global_array_rows,
+        "verifiedNegativeBranchLinks": resolved_branches,
+        "initialEntryUniqueMatchCount": len(initial_hits),
+        "initialEntry": initial_entry,
+        "limits": "Full source command opcode/size patterns plus selected branch, EXECUTE, and load operands match canonical ROM; not rebuilt asset equivalence or observed transition execution.",
+    }
+
     loads = []
     for path, info in sorted(course["script_c_files"].items()):
         arrays = info.get("all_levelscript_arrays", {})
@@ -489,6 +610,18 @@ def main() -> None:
                     row.setdefault("sourceRomEvidence", "adjacent linker-section boundary candidate; exact source-build identity and runtime use unverified")
                 else:
                     row["sourceRomEvidence"] = "source transition declared; full raw script/geometry span unresolved"
+                linked_load = dispatcher_load_operands.get((relative, row["line"]))
+                if linked_load is not None:
+                    row["canonicalCommandOperands"] = {
+                        "commandRomOffset": linked_load["commandRomOffset"],
+                        "opcode": linked_load["opcode"], "segmentId": linked_load["segmentId"],
+                        "romStart": linked_load["romStart"], "romEndExclusive": linked_load["romEndExclusive"],
+                        "spanBytes": linked_load["spanBytes"],
+                        "encodedRomSpanSha256": linked_load["encodedRomSpanSha256"],
+                        "entrySegmentedPointer": linked_load.get("entrySegmentedPointer"),
+                        "sourceOpcodeLengthPatternMatched": True,
+                    }
+                    row["sourceRomEvidence"] = "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed"
                 loads.append(row)
 
     for level in course.get("level_rows", []):
@@ -563,13 +696,14 @@ def main() -> None:
         "rawLinkerIntervals": raw_intervals,
         "globalLoadPrefixEvidence": prefix_evidence,
         "sourceEnumCourseBankEvidence": bank_evidence,
+        "dispatcherArrayEvidence": dispatcher_evidence,
         "passiveSnapshotAdditionalSegments": passive_snapshot,
         "sourceLoadDirectives": loads,
         "limits": [
             "MIO0 structural validity does not identify the decoded data or show runtime use.",
             "Ordinal linker association assumes ROM asset order follows the pinned linker script; independent byte equality against built source assets is not claimed.",
-            "Raw segment full ROM boundaries are not established by this census.",
-            "Runtime segment bases and allocation lifetime are native-code properties; Project64 observations remain open.",
+            "Adjacent linker intervals remain candidates for shared raw assets not directly bounded by source-encoded commands; course banks and dispatcher transitions have the direct source-command bounds recorded above.",
+            "Runtime segment bases and allocation lifetime are native-code properties; a Project64 load/unload transition remains unobserved.",
             "No ROM bytes or decoded asset bytes are written to output.",
         ],
     }

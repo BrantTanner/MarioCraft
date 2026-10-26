@@ -203,6 +203,7 @@ def main() -> None:
             "opcode": opcode, "segmentId": segment,
             "romStart": rom_start, "romEndExclusive": rom_end,
             "spanBytes": rom_end - rom_start,
+            "encodedRomSpanSha256": sha256(rom[rom_start:rom_end]),
         }
         prefix_loads.append(row)
         if name in ("group0_geo", "common1_geo", "behavior"):
@@ -241,7 +242,136 @@ def main() -> None:
         ],
     }
 
+    # Link every defined course's generated EXECUTE wrapper to its source
+    # entry command sequence. This directly decodes source-encoded bank bounds
+    # and verifies opcode/length patterns; it does not claim rebuilt asset
+    # byte identity or that the command was executed in a runtime transition.
     course = json.loads(args.course_manifest.read_text(encoding="utf-8"))
+    levels = [(i + 1, row) for i, row in enumerate(course.get("level_rows", []))
+              if row.get("definition") == "defined" and row.get("folder")]
+    if len(levels) != 31:
+        raise SystemExit(f"unexpected defined-level count: {len(levels)}")
+    jump_len = 4 + len(levels) * 12 + 4
+    jump_hits = []
+    for start in range(0, len(rom) - jump_len, 4):
+        if rom[start:start + 4] != bytes((0x3C, 4, 1, 3)):
+            continue
+        cursor = start + 4
+        branch_rows = []
+        for level_id, level in levels:
+            if (rom[cursor:cursor + 4] != bytes((0x0C, 12, 2, 0))
+                    or struct.unpack_from(">I", rom, cursor + 4)[0] != level_id):
+                break
+            branch_rows.append((level_id, level, struct.unpack_from(">I", rom, cursor + 8)[0]))
+            cursor += 12
+        else:
+            if rom[cursor:cursor + 4] == bytes((0x02, 4, 0, 0)):
+                jump_hits.append((start, branch_rows))
+    if len(jump_hits) != 1:
+        raise SystemExit(f"source-enum level dispatch table is not unique: matches={len(jump_hits)}")
+    jump_start, branch_rows = jump_hits[0]
+    exec_start = jump_start + jump_len
+    command_header = (args.source_root / "include/level_commands.h").read_text(encoding="utf-8")
+    command_opmap = {}
+    header_lines = command_header.splitlines()
+    line_index = 0
+    while line_index < len(header_lines):
+        define = re.match(r"#define\s+(\w+)\s*\(", header_lines[line_index])
+        body = header_lines[line_index]
+        line_index += 1
+        if not define:
+            continue
+        while body.rstrip().endswith("\\") and line_index < len(header_lines):
+            body += "\n" + header_lines[line_index]
+            line_index += 1
+        encoded = re.search(r"CMD_(?:BBH|BBBB)\(\s*(0x[0-9A-Fa-f]+),\s*(0x[0-9A-Fa-f]+)", body)
+        if encoded:
+            command_opmap.setdefault(define.group(1), (int(encoded.group(1), 16), int(encoded.group(2), 16)))
+    command_opmap["OBJECT"] = (0x24, 0x18)
+    level_bank_rows = []
+    bank_load_operands = {}
+    bank_raw_intervals = {}
+    global_bases = []
+    for index, (level_id, level, jump_pointer) in enumerate(branch_rows):
+        folder = level["folder"]
+        wrapper = exec_start + index * 20
+        if rom[wrapper:wrapper + 4] != bytes((0x00, 0x10, 0x00, 0x0E)) or rom[wrapper + 16:wrapper + 20] != bytes((0x07, 0x04, 0, 0)):
+            raise SystemExit(f"invalid generated EXECUTE/RETURN wrapper for {folder}")
+        script_start_ptr, script_end_ptr, entry_ptr = struct.unpack_from(">III", rom, wrapper + 4)
+        if (jump_pointer >> 24 != 0x15 or entry_ptr >> 24 != 0x0E):
+            raise SystemExit(f"unexpected segmented pointer family for {folder}")
+        global_base = wrapper - (jump_pointer & 0xFFFFFF)
+        global_bases.append(global_base)
+        # EXECUTE carries numeric ROM start/end operands; only its entry
+        # pointer uses the loaded script segment.
+        bank_start = script_start_ptr
+        bank_end = script_end_ptr
+        entry_start = bank_start + (entry_ptr & 0xFFFFFF)
+        if not (0 <= bank_start < bank_end <= len(rom) and bank_start <= entry_start < bank_end):
+            raise SystemExit(f"invalid generated bank bounds for {folder}")
+        script_path = f"levels/{folder}/script.c"
+        source_info = course["script_c_files"][script_path]
+        commands = source_info["all_levelscript_arrays"][source_info["entry_array"]]["commands"]
+        commands = [cmd for cmd in commands if cmd.get("usa_active") is not False]
+        cursor = entry_start
+        entry_loads = []
+        for cmd in commands:
+            expected = command_opmap.get(cmd["macro"])
+            if expected is None:
+                raise SystemExit(f"no command opcode/size mapping for {cmd['macro']} in {script_path}")
+            opcode, size = expected
+            if rom[cursor:cursor + 2] != bytes((opcode, size)):
+                raise SystemExit(f"source command pattern mismatch for {folder} line {cmd.get('line')} at 0x{cursor:X}")
+            if opcode in (0x17, 0x18, 0x1A):
+                segment = struct.unpack_from(">H", rom, cursor + 2)[0]
+                rom_start, rom_end = struct.unpack_from(">II", rom, cursor + 4)
+                if not (0 <= rom_start < rom_end <= len(rom)):
+                    raise SystemExit(f"invalid encoded load bounds for {folder} line {cmd.get('line')}")
+                load = {"source": script_path, "line": cmd.get("line"), "commandRomOffset": cursor,
+                        "macro": cmd["macro"], "opcode": opcode, "commandSize": size, "segmentId": segment,
+                        "romStart": rom_start, "romEndExclusive": rom_end,
+                        "spanBytes": rom_end - rom_start,
+                        "encodedRomSpanSha256": sha256(rom[rom_start:rom_end])}
+                entry_loads.append(load)
+                bank_load_operands[(script_path, cmd.get("line"))] = load
+            cursor += size
+        if cursor > bank_end:
+            raise SystemExit(f"source entry pattern runs beyond bank for {folder}")
+        bank_raw_intervals[folder] = {
+            "romStart": bank_start, "romEndExclusive": bank_end,
+            "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
+            "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established",
+        }
+        level_bank_rows.append({
+            "folder": folder, "levelId": level_id,
+            "dispatcherCommandRomOffset": jump_start + 4 + index * 12,
+            "wrapperRomOffset": wrapper,
+            "bankRomStart": bank_start, "bankRomEndExclusive": bank_end,
+            "bankBytes": bank_end - bank_start,
+            "bankSha256": sha256(rom[bank_start:bank_end]),
+            "entryRomStart": entry_start, "entryBytesCompared": cursor - entry_start,
+            "entryCommandSha256": sha256(rom[entry_start:cursor]),
+            "entryCommandCount": len(commands),
+            "entryOpcodeLengthPatternMatches": True,
+            "loadOperands": entry_loads,
+        })
+    if len(set(global_bases)) != 1 or global_bases[0] != prefix_start:
+        raise SystemExit("generated EXECUTE wrappers do not agree on the global script base")
+    raw_intervals.update(bank_raw_intervals)
+    bank_evidence = {
+        "jumpTableRomStart": jump_start,
+        "jumpTableRomEndExclusive": jump_start + jump_len,
+        "jumpTableBytes": jump_len,
+        "jumpTableSha256": sha256(rom[jump_start:jump_start + jump_len]),
+        "jumpTableUniqueMatchCount": len(jump_hits),
+        "generatedExecTableRomStart": exec_start,
+        "generatedExecTableRomEndExclusive": exec_start + len(levels) * 20,
+        "generatedExecWrapperCount": len(levels),
+        "globalScriptSegment21Base": global_bases[0],
+        "courseBanks": level_bank_rows,
+        "limits": "All 31 source enum IDs link through generated EXECUTE wrappers; source entry opcode/size patterns and encoded load operands match. This is not exact rebuilt-asset equivalence or runtime transition evidence.",
+    }
+
     loads = []
     for path, info in sorted(course["script_c_files"].items()):
         arrays = info.get("all_levelscript_arrays", {})
@@ -286,6 +416,17 @@ def main() -> None:
                         row["sourceRomEvidence"] = "source load declared; full raw segment ROM bounds unresolved"
                 else:
                     row["sourceRomEvidence"] = "source symbol did not match a compressed linker slot"
+                linked_load = bank_load_operands.get((path, row["line"]))
+                if linked_load is not None:
+                    row["canonicalCommandOperands"] = {
+                        "commandRomOffset": linked_load["commandRomOffset"],
+                        "opcode": linked_load["opcode"], "segmentId": linked_load["segmentId"],
+                        "romStart": linked_load["romStart"], "romEndExclusive": linked_load["romEndExclusive"],
+                        "spanBytes": linked_load["spanBytes"],
+                        "encodedRomSpanSha256": linked_load["encodedRomSpanSha256"],
+                        "sourceOpcodeLengthPatternMatched": True,
+                    }
+                    row["sourceRomEvidence"] = "source entry command opcode/length and numeric ROM load operands match the linked canonical course bank; runtime execution and exact rebuilt asset identity unverified"
                 loads.append(row)
 
     scripts_source = args.source_root / "levels/scripts.c"
@@ -366,7 +507,7 @@ def main() -> None:
         }
         if folder in raw_intervals:
             row.update(raw_intervals[folder])
-            row["sourceRomEvidence"] = "adjacent STANDARD_LEVEL linker-section boundary candidate; exact source-build identity and runtime use unverified"
+            row.setdefault("sourceRomEvidence", "adjacent STANDARD_LEVEL linker-section boundary candidate; exact source-build identity and runtime use unverified")
         else:
             row["sourceRomEvidence"] = "source EXECUTE declared; full raw script/geometry span unresolved"
         loads.append(row)
@@ -421,6 +562,7 @@ def main() -> None:
         "mio0Slots": slot_rows,
         "rawLinkerIntervals": raw_intervals,
         "globalLoadPrefixEvidence": prefix_evidence,
+        "sourceEnumCourseBankEvidence": bank_evidence,
         "passiveSnapshotAdditionalSegments": passive_snapshot,
         "sourceLoadDirectives": loads,
         "limits": [

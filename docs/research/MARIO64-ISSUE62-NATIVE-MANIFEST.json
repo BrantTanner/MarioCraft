@@ -1,0 +1,110 @@
+{
+  "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "sourceRevision": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
+  "mainCodeWindows": [
+    {
+      "name": "main_pool_init",
+      "pc": "0x80278074",
+      "rom": "0x33074",
+      "length": 164,
+      "sha256": "DE7B86CDDD41BD0450FC156E5096115399126EAB6F7E538F2EFBBB2FE52729A4"
+    },
+    {
+      "name": "main_pool_alloc",
+      "pc": "0x80278120",
+      "rom": "0x33120",
+      "length": 280,
+      "sha256": "8BCDF7DF00E0E5E4A120D30E55476AC9A34B12F820AE9672B5DDAAC0A48FFD1C"
+    },
+    {
+      "name": "main_pool_free",
+      "pc": "0x80278238",
+      "rom": "0x33238",
+      "length": 288,
+      "sha256": "CB8913F6603D0C7614F4A17567B5170601A981D5C8047D3C6D38499735B8A162"
+    },
+    {
+      "name": "main_pool_push_state",
+      "pc": "0x802783e8",
+      "rom": "0x333E8",
+      "length": 176,
+      "sha256": "E738399455C1AD72DCF6639F32AFE37AAC359AD4EE799C5820139FAF48BD9E9F"
+    },
+    {
+      "name": "main_pool_pop_state",
+      "pc": "0x80278498",
+      "rom": "0x33498",
+      "length": 92,
+      "sha256": "79316E831340E5D6CDA5DA43E9C003539A1A0A0031D0020643A959D029D05249"
+    },
+    {
+      "name": "dynamic_dma_read",
+      "pc": "0x80278610",
+      "rom": "0x33610",
+      "length": 124,
+      "sha256": "8A0728CDF8A28206B20CBB7C84A67FF3BC9D5AF80D3B9B60A88B4081B86D4DD7"
+    },
+    {
+      "name": "load_to_fixed_pool_addr",
+      "pc": "0x802786f0",
+      "rom": "0x336F0",
+      "length": 232,
+      "sha256": "2D8B8171C0BE5E7D31CDCE6FEC9BCEBA21081F06CA9789B66276F8C6E81EC8A7"
+    },
+    {
+      "name": "load_engine_code_segment",
+      "pc": "0x80278974",
+      "rom": "0x33974",
+      "length": 160,
+      "sha256": "66F1E6C0B20DC464FADB2966E13DB69C2C949C866D960A054D6D79473A4C6965"
+    }
+  ],
+  "entryBss": {
+    "interpretation": "Entry immediate-pair decode; corroborated against native entry decompilation. Not a runtime BSS capture.",
+    "pc": "0x80246000",
+    "romOffset": "0x1000",
+    "envelopeLength": 56,
+    "envelopeSha256": "0E3F522A33D25B713D0C9E1AD39BE1EBD6C613AA3039EE967DA0239289977BB6",
+    "clearStart": "0x8033A580",
+    "clearLength": 184032,
+    "clearEndExclusive": "0x80367460",
+    "stepBytes": 8,
+    "iterations": 23004
+  },
+  "bootWindows": {
+    "status": "Bounded static IPL3 opcode-sequence correspondence to pinned asm/boot.s. No runtime boot trace, full IPL3 equivalence, PIF or CIC analysis.",
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "headerEntry": "0x80246000",
+    "source": "https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/asm/boot.s",
+    "windows": [
+      {
+        "name": "PI destination from header entry",
+        "romOffset": "0x4c0",
+        "sourceExecutionAddress": "0xa40004c0",
+        "length": 28,
+        "sha256": "69D55EA27BE5F2D2EE06599C47C807065EE8035861F342C8A2FEB300561F1B58",
+        "uniqueWithinBootRange": true,
+        "interpretation": "Read cartridge header entry at B0000008; mask to physical address and store PI_DRAM_ADDR at A4600000."
+      },
+      {
+        "name": "PI cartridge source and length",
+        "romOffset": "0x4f0",
+        "sourceExecutionAddress": "0xa40004f0",
+        "length": 36,
+        "sha256": "245CB970BD730D350A3B5FDCAEFE251721A8E6408FCA35621E3BE63634234C58",
+        "uniqueWithinBootRange": true,
+        "interpretation": "PI_CART_ADDR gets physical cartridge address 10001000; PI_WR_LEN gets 000FFFFF (length register value)."
+      },
+      {
+        "name": "Final cartridge-header entry jump",
+        "romOffset": "0x764",
+        "sourceExecutionAddress": "0xa4000764",
+        "length": 16,
+        "sha256": "3EE213A32745BEEA913181BCA0E3359B7B03A75FB5D4967F6E2D859D4D8C4ADF",
+        "uniqueWithinBootRange": true,
+        "interpretation": "Reload cartridge header entry at B0000008 and jump to it."
+      }
+    ]
+  }
+}
+

@@ -1,6 +1,6 @@
 # Mario USA memory, DMA and dynamic mappings (#62)
 
-Status: static investigation with two reused loaded-state observations; [#62](https://github.com/BrantTanner/MarioCraft/issues/62) and parent [#16](https://github.com/BrantTanner/MarioCraft/issues/16) remain open. No transition was captured. Source is [n64decomp/sm64 at 9921382a68bb0c865e5e45eb594d9c64db59b1af](https://github.com/n64decomp/sm64/tree/9921382a68bb0c865e5e45eb594d9c64db59b1af), US configuration without expansion RAM. Target is the 8 MiB big-endian USA revision 0 image, SHA-256 `17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91`. Source labels describe a reconstruction; selected native correspondences and runtime observations have separately bounded evidence. No new target execution or runtime access was performed.
+Status: the bounded acceptance for [#62](https://github.com/BrantTanner/MarioCraft/issues/62) is complete using static evidence and two reused loaded-state observations; parent [#16](https://github.com/BrantTanner/MarioCraft/issues/16) remains open. No transition was captured. Source is [n64decomp/sm64 at 9921382a68bb0c865e5e45eb594d9c64db59b1af](https://github.com/n64decomp/sm64/tree/9921382a68bb0c865e5e45eb594d9c64db59b1af), US configuration without expansion RAM. Target is the 8 MiB big-endian USA revision 0 image, SHA-256 `17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91`. Source labels describe a reconstruction; selected native correspondences and runtime observations have separately bounded evidence. No new target execution or runtime access was performed.
 
 ## Ranges and lifetime
 
@@ -57,7 +57,10 @@ Two previously recorded read-only Project64 samples, at `2026-10-26T05:24:53.897
 
 The sanitized [native manifest](MARIO64-ISSUE62-NATIVE-MANIFEST.json) records these selected windows and the BSS operands.
 
-## Remaining acceptance
+## Acceptance and remaining unknowns
 
-The documented source and selected native code cover the bounded loader paths, but observed initial transfer completion and the full pre-entry PIF/IPL3 sequence, complete native correspondence outside the selected function windows, and a controlled dynamic mapping transition remain unresolved. Existing moments compare the same loaded mapping and satisfy neither a load/unload demonstration nor a claim about intervening history. Runtime access remains deferred; do not infer success or failure of an earlier input attempt from an unchanged log. Keep #62 and #16 open and preserve their original criteria. No gameplay implementation or prototype is authorized before the #17 and #18 gates.
+The documented source, range and lifetime table, selected native correspondences, #58 reconciliation and two identified mapping observations satisfy the bounded #62 criteria. The comparison shows the same mapping and content at two moments; it does not claim a load/unload transition or uninterrupted retention. The issue permits existing snapshots and only permits a transition claim when one was recorded.
+
+Observed initial transfer completion, the full pre-entry PIF/IPL3 sequence, native correspondence outside the selected windows, and any intervening mapping changes remain unknown. Runtime access remains deferred; do not infer success or failure of an earlier input attempt from an unchanged log. Parent #16 remains open for its other work and original criteria. No gameplay implementation or prototype is authorized before the #17 and #18 gates.
+
 

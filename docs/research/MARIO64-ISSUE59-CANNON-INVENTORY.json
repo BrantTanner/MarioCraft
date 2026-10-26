@@ -1,0 +1,518 @@
+{
+  "source_commit": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
+  "scope": "active USA level-object placements expanded by issue57, plus referenced macro-table placements; activation/reachability not observed",
+  "rows": [
+    {
+      "kind": "level_object",
+      "source": "levels/bob/script.c:38",
+      "area": "1",
+      "macro": "OBJECT_WITH_ACTS",
+      "args": [
+        "MODEL_BOBOMB_BUDDY",
+        "-5723",
+        "140",
+        "6017",
+        "0",
+        "0",
+        "0",
+        "0",
+        "bhvBobombBuddyOpensCannon",
+        "ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6"
+      ],
+      "linked_via": [
+        "script_func_local_2"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "level_object",
+      "source": "levels/bob/script.c:41",
+      "area": "1",
+      "macro": "OBJECT_WITH_ACTS",
+      "args": [
+        "MODEL_DL_CANNON_LID",
+        "-5694",
+        "128",
+        "5600",
+        "0",
+        "180",
+        "0",
+        "BPARAM2(0x00)",
+        "bhvCannonClosed",
+        "ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6"
+      ],
+      "linked_via": [
+        "script_func_local_2"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/bob/areas/1/macro.inc.c:17",
+      "area": "1",
+      "level_script": "levels/bob/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "-5018",
+        "1332",
+        "-3533",
+        "0x00"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/bob/areas/1/macro.inc.c:18",
+      "area": "1",
+      "level_script": "levels/bob/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "6349",
+        "2080",
+        "-7066",
+        "0xC0"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/bob/areas/1/macro.inc.c:19",
+      "area": "1",
+      "level_script": "levels/bob/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "4243",
+        "3071",
+        "-2451",
+        "0xC0"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/bob/areas/1/macro.inc.c:20",
+      "area": "1",
+      "level_script": "levels/bob/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "4352",
+        "3072",
+        "1229",
+        "0x80"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/bob/areas/1/macro.inc.c:21",
+      "area": "1",
+      "level_script": "levels/bob/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "5376",
+        "1537",
+        "4610",
+        "0x40"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/castle_grounds/areas/1/macro.inc.c:17",
+      "area": "1",
+      "level_script": "levels/castle_grounds/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_open",
+        "0",
+        "2384",
+        "70",
+        "1961",
+        "0x40"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/ccm/areas/1/macro.inc.c:10",
+      "area": "1",
+      "level_script": "levels/ccm/script.c",
+      "macro": "MACRO_OBJECT",
+      "args": [
+        "macro_bobomb_buddy_opens_cannon_1",
+        "0",
+        "-1220",
+        "-3583",
+        "5969"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/ccm/areas/1/macro.inc.c:11",
+      "area": "1",
+      "level_script": "levels/ccm/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "-3615",
+        "-4607",
+        "4790",
+        "0x00"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/ccm/areas/1/macro.inc.c:12",
+      "area": "1",
+      "level_script": "levels/ccm/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "-5045",
+        "-1740",
+        "4615",
+        "0x00"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/ccm/areas/1/macro.inc.c:13",
+      "area": "1",
+      "level_script": "levels/ccm/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "1090",
+        "-4607",
+        "5729",
+        "0x80"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "level_object",
+      "source": "levels/jrb/script.c:36",
+      "area": "1",
+      "macro": "OBJECT_WITH_ACTS",
+      "args": [
+        "MODEL_BOBOMB_BUDDY",
+        "-1956",
+        "1331",
+        "6500",
+        "0",
+        "0",
+        "0",
+        "0",
+        "bhvBobombBuddyOpensCannon",
+        "ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6"
+      ],
+      "linked_via": [
+        "script_func_local_1"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/jrb/areas/1/macro.inc.c:52",
+      "area": "1",
+      "level_script": "levels/jrb/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "-4235",
+        "1247",
+        "2137",
+        "0x00"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/rr/areas/1/macro.inc.c:11",
+      "area": "1",
+      "level_script": "levels/rr/script.c",
+      "macro": "MACRO_OBJECT",
+      "args": [
+        "macro_bobomb_buddy_opens_cannon_1",
+        "0",
+        "-4200",
+        "1648",
+        "0"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/rr/areas/1/macro.inc.c:12",
+      "area": "1",
+      "level_script": "levels/rr/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "5545",
+        "3333",
+        "-2345",
+        "0xC0"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/sl/areas/1/macro.inc.c:10",
+      "area": "1",
+      "level_script": "levels/sl/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "4483",
+        "821",
+        "1168",
+        "0x80"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/sl/areas/2/macro.inc.c:10",
+      "area": "2",
+      "level_script": "levels/sl/script.c",
+      "macro": "MACRO_OBJECT",
+      "args": [
+        "macro_bobomb_buddy_opens_cannon_1",
+        "0",
+        "-1400",
+        "0",
+        "-1740"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/ssl/areas/1/macro.inc.c:12",
+      "area": "1",
+      "level_script": "levels/ssl/script.c",
+      "macro": "MACRO_OBJECT",
+      "args": [
+        "macro_bobomb_buddy_opens_cannon_1",
+        "0",
+        "-5990",
+        "0",
+        "-3871"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/ssl/areas/1/macro.inc.c:19",
+      "area": "1",
+      "level_script": "levels/ssl/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "6863",
+        "0",
+        "-6860",
+        "0xC0"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/thi/areas/1/macro.inc.c:3",
+      "area": "1",
+      "level_script": "levels/thi/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "6656",
+        "-2832",
+        "6964",
+        "0x80"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/thi/areas/2/macro.inc.c:3",
+      "area": "2",
+      "level_script": "levels/thi/script.c",
+      "macro": "MACRO_OBJECT",
+      "args": [
+        "macro_bobomb_buddy_opens_cannon_1",
+        "0",
+        "1902",
+        "-767",
+        "1318"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/ttm/areas/1/macro.inc.c:3",
+      "area": "1",
+      "level_script": "levels/ttm/script.c",
+      "macro": "MACRO_OBJECT",
+      "args": [
+        "macro_bobomb_buddy_opens_cannon_1",
+        "0",
+        "799",
+        "-2668",
+        "3320"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/ttm/areas/1/macro.inc.c:4",
+      "area": "1",
+      "level_script": "levels/ttm/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "45",
+        "5035",
+        "-3994",
+        "-3445",
+        "0xC0"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/wdw/areas/1/macro.inc.c:4",
+      "area": "1",
+      "level_script": "levels/wdw/script.c",
+      "macro": "MACRO_OBJECT",
+      "args": [
+        "macro_bobomb_buddy_opens_cannon_1",
+        "0",
+        "-2",
+        "2944",
+        "3583"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/wdw/areas/1/macro.inc.c:18",
+      "area": "1",
+      "level_script": "levels/wdw/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "-2688",
+        "3328",
+        "3198",
+        "0x40"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "level_object",
+      "source": "levels/wf/script.c:79",
+      "area": "1",
+      "macro": "OBJECT_WITH_ACTS",
+      "args": [
+        "MODEL_BOBOMB_BUDDY",
+        "-1700",
+        "1140",
+        "3500",
+        "0",
+        "0",
+        "0",
+        "0",
+        "bhvBobombBuddyOpensCannon",
+        "ACT_3 | ACT_4 | ACT_5 | ACT_6"
+      ],
+      "linked_via": [
+        "script_func_local_3"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/wf/areas/1/macro.inc.c:24",
+      "area": "1",
+      "level_script": "levels/wf/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "-1844",
+        "1026",
+        "3893",
+        "0x40"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/wmotr/areas/1/macro.inc.c:3",
+      "area": "1",
+      "level_script": "levels/wmotr/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "-4456",
+        "827",
+        "191",
+        "0x00"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/wmotr/areas/1/macro.inc.c:4",
+      "area": "1",
+      "level_script": "levels/wmotr/script.c",
+      "macro": "MACRO_OBJECT_WITH_BHV_PARAM",
+      "args": [
+        "macro_cannon_closed",
+        "0",
+        "3712",
+        "-2740",
+        "5200",
+        "0x80"
+      ],
+      "runtime": "unobserved"
+    },
+    {
+      "kind": "macro_object",
+      "source": "levels/wmotr/areas/1/macro.inc.c:5",
+      "area": "1",
+      "level_script": "levels/wmotr/script.c",
+      "macro": "MACRO_OBJECT",
+      "args": [
+        "macro_bobomb_buddy_opens_cannon_1",
+        "0",
+        "3684",
+        "-2712",
+        "4660"
+      ],
+      "runtime": "unobserved"
+    }
+  ]
+}

@@ -66,4 +66,3 @@ Reproduce privately: compile the pinned `tools/armips.cpp` and assemble `rsp/aud
 
 Capture an actual audio task at a documented moment, its descriptor and command/output/sample-buffer provenance, sample-DMA completion and SP/AI transitions, and distinguish request, voice selection and audible output. Runtime observation was deferred; the earlier helper's cause is unknown because stdout/stderr were not retained. Keep #64 and #16 open. No gameplay implementation or prototype follows from these findings.
 
-

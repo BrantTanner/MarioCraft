@@ -2,6 +2,8 @@
 
 **Status:** Static mapping is prepared; issue #58 remains open. Project64 transition observations are still required, and several source data ranges do not yet have exact content correspondence.
 
+Tracker links: [#15 parent issue](https://github.com/BrantTanner/MarioCraft/issues/15), [#57 source inventory](https://github.com/BrantTanner/MarioCraft/issues/57), and [#58 this loading map](https://github.com/BrantTanner/MarioCraft/issues/58).
+
 ## Target and evidence boundary
 
 The ROM target is the supplied 8 MiB big-endian USA revision 0 image, SHA-256 `17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91`. The source reference is [`n64decomp/sm64@9921382a68bb0c865e5e45eb594d9c64db59b1af`](https://github.com/n64decomp/sm64/tree/9921382a68bb0c865e5e45eb594d9c64db59b1af), with `VERSION_US` selected. The source files describe linker and script intent. Native-code details below come from the canonical ROM's independently hash-checked code blocks; they do not show that a course transition was executed.

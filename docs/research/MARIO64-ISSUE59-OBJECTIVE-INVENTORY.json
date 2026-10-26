@@ -1,0 +1,2529 @@
+{
+  "schema_version": 2,
+  "source_commit": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
+  "evidence_boundary": "source declarations only; names do not prove activation, placement linkage, exact trigger or runtime execution",
+  "objectives": [
+    {
+      "course": "COURSE_BOB",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "BIG BOB-OMB ON THE SUMMIT",
+      "title_source": "text/us/courses.h:1",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bob/script.c:48",
+          "area": "1",
+          "behavior": "bhvKingBobomb",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_1",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "defeat sequence reaches final dialog and completes it",
+          "behavior_source": "src/game/behaviors/king_bobomb.inc.c:199"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BOB",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "FOOTRACE WITH KOOPA THE QUICK",
+      "title_source": "text/us/courses.h:1",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bob/script.c:49",
+          "area": "1",
+          "behavior": "bhvKoopa",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_2",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "race endpoint registers eligible nonzero win and finishes dialog",
+          "behavior_source": "src/game/behaviors/koopa.inc.c:710"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BOB",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "SHOOT TO THE ISLAND IN THE SKY",
+      "title_source": "text/us/courses.h:1",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bob/areas/1/macro.inc.c:87",
+          "area": "1",
+          "behavior": "macro_box_star_act_3",
+          "evidence": "referenced macro-table same-index box declaration; reachability and objective linkage unproved",
+          "source_behavior_trigger": "break the configured box to spawn its content; verify its source parameter",
+          "behavior_source": "src/game/behaviors/exclamation_box.inc.c:23"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BOB",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "FIND THE 8 RED COINS",
+      "title_source": "text/us/courses.h:1",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bob/script.c:50",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BOB",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "MARIO WINGS TO THE SKY",
+      "title_source": "text/us/courses.h:1",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bob/script.c:51",
+          "area": "1",
+          "behavior": "bhvHiddenStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "five hidden triggers increment counter to 5 and controller spawns star",
+          "behavior_source": "src/game/behaviors/hidden_star.inc.c:3"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BOB",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "BEHIND CHAIN CHOMP'S GATE",
+      "title_source": "text/us/courses.h:1",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bob/script.c:52",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BOB",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WF",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "CHIP OFF WHOMP'S BLOCK",
+      "title_source": "text/us/courses.h:5",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wf/script.c:85",
+          "area": "1",
+          "behavior": "bhvWhompKingBoss",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_1",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "boss defeat action completes its dialog and spawns the star",
+          "behavior_source": "src/game/behaviors/whomp.inc.c:225"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WF",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "TO THE TOP OF THE FORTRESS",
+      "title_source": "text/us/courses.h:5",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wf/script.c:86",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WF",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "SHOOT INTO THE WILD BLUE",
+      "title_source": "text/us/courses.h:5",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wf/script.c:87",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WF",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "RED COINS ON THE FLOATING ISLE",
+      "title_source": "text/us/courses.h:5",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wf/script.c:88",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WF",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "FALL ONTO THE CAGED ISLAND",
+      "title_source": "text/us/courses.h:5",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wf/script.c:89",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WF",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "BLAST AWAY THE WALL",
+      "title_source": "text/us/courses.h:5",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wf/script.c:90",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WF",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_JRB",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "PLUNDER IN THE SUNKEN SHIP",
+      "title_source": "text/us/courses.h:9",
+      "matching_index_candidates": [
+        {
+          "source": "levels/jrb/areas/2/macro.inc.c:3",
+          "area": "2",
+          "behavior": "macro_box_star_act_1",
+          "evidence": "referenced macro-table same-index box declaration; reachability and objective linkage unproved",
+          "source_behavior_trigger": "break the configured box to spawn its content; verify its source parameter",
+          "behavior_source": "src/game/behaviors/exclamation_box.inc.c:23"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_JRB",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "CAN THE EEL COME OUT TO PLAY?",
+      "title_source": "text/us/courses.h:9",
+      "matching_index_candidates": [
+        {
+          "source": "levels/jrb/script.c:32",
+          "area": "1",
+          "behavior": "bhvUnagi",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_2",
+          "linked_via": [
+            "script_func_local_1"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "active star-bearing eel segment approaches Mario within 150 units",
+          "behavior_source": "src/game/behaviors/unagi.inc.c:170"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_JRB",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "TREASURE OF THE OCEAN CAVE",
+      "title_source": "text/us/courses.h:9",
+      "matching_index_candidates": [
+        {
+          "source": "levels/jrb/script.c:35",
+          "area": "1",
+          "behavior": "bhvTreasureChestsJRB",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_1"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "chest sequence counter reaches 5, then action timer reaches 60",
+          "behavior_source": "src/game/behaviors/treasure_chest.inc.c:156"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_JRB",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "RED COINS ON THE SHIP AFLOAT",
+      "title_source": "text/us/courses.h:9",
+      "matching_index_candidates": [
+        {
+          "source": "levels/jrb/script.c:96",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_JRB",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "BLAST TO THE STONE PILLAR",
+      "title_source": "text/us/courses.h:9",
+      "matching_index_candidates": [
+        {
+          "source": "levels/jrb/script.c:100",
+          "area": "1",
+          "behavior": "bhvExclamationBox",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "break the configured box to spawn its content; verify its source parameter",
+          "behavior_source": "src/game/behaviors/exclamation_box.inc.c:23"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_JRB",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "THROUGH THE JET STREAM",
+      "title_source": "text/us/courses.h:9",
+      "matching_index_candidates": [
+        {
+          "source": "levels/jrb/script.c:102",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_JRB",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_CCM",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "SLIP SLIDIN' AWAY",
+      "title_source": "text/us/courses.h:13",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ccm/script.c:34",
+          "area": "1",
+          "behavior": "bhvCCMTouchedStarSpawn",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "slide-entry flag is set when the exit spawner runs",
+          "behavior_source": "src/game/behaviors/spawn_star_exit.inc.c:3"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_CCM",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "LI'L PENGUIN LOST",
+      "title_source": "text/us/courses.h:13",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ccm/script.c:35",
+          "area": "1",
+          "behavior": "bhvTuxiesMother",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "mother interaction reaches the reward state after returning the baby",
+          "behavior_source": "src/game/behaviors/tuxie.inc.c:55"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_CCM",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "BIG PENGUIN RACE",
+      "title_source": "text/us/courses.h:13",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ccm/script.c:43",
+          "area": "2",
+          "behavior": "bhvRacingPenguin",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "winning flag remains set after final dialog",
+          "behavior_source": "src/game/behaviors/racing_penguin.inc.c:144"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_CCM",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "FROSTY SLIDE FOR 8 RED COINS",
+      "title_source": "text/us/courses.h:13",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ccm/script.c:36",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_CCM",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "SNOWMAN'S LOST HIS HEAD",
+      "title_source": "text/us/courses.h:13",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ccm/script.c:37",
+          "area": "1",
+          "behavior": "bhvSnowmansHead",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "head reward action finishes dialog",
+          "behavior_source": "src/game/behaviors/snowman.inc.c:218"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_CCM",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "WALL KICKS WILL WORK",
+      "title_source": "text/us/courses.h:13",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ccm/script.c:38",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_CCM",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BBH",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "GO ON A GHOST HUNT",
+      "title_source": "text/us/courses.h:17",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bbh/script.c:41",
+          "area": "1",
+          "behavior": "bhvGhostHuntBigBoo",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_1",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "ghost hunt Big Boo defeat reaches its star spawn",
+          "behavior_source": "src/game/behaviors/boo.inc.c:574"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BBH",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "RIDE BIG BOO'S MERRY-GO-ROUND",
+      "title_source": "text/us/courses.h:17",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bbh/script.c:56",
+          "area": "1",
+          "behavior": "bhvMerryGoRoundBooManager",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "merry-go-round Big Boo defeat reaches its star spawn",
+          "behavior_source": "src/game/behaviors/boo.inc.c:582"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BBH",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "SECRET OF THE HAUNTED BOOKS",
+      "title_source": "text/us/courses.h:17",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bbh/script.c:73",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BBH",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "SEEK THE 8 RED COINS",
+      "title_source": "text/us/courses.h:17",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bbh/script.c:74",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BBH",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "BIG BOO'S BALCONY",
+      "title_source": "text/us/courses.h:17",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bbh/script.c:57",
+          "area": "1",
+          "behavior": "bhvBalconyBigBoo",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "balcony Big Boo defeat reaches its star spawn",
+          "behavior_source": "src/game/behaviors/boo.inc.c:578"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BBH",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "EYE TO EYE IN THE SECRET ROOM",
+      "title_source": "text/us/courses.h:17",
+      "matching_index_candidates": [
+        {
+          "source": "levels/bbh/script.c:75",
+          "area": "1",
+          "behavior": "bhvMrI",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "qualifying Mr I death action reaches timer 104",
+          "behavior_source": "src/game/behaviors/mr_i.inc.c:130"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_BBH",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_HMC",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "SWIMMING BEAST IN THE CAVERN",
+      "title_source": "text/us/courses.h:21",
+      "matching_index_candidates": [
+        {
+          "source": "levels/hmc/script.c:62",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_HMC",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "ELEVATE FOR 8 RED COINS",
+      "title_source": "text/us/courses.h:21",
+      "matching_index_candidates": [
+        {
+          "source": "levels/hmc/script.c:63",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_HMC",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "METAL-HEAD MARIO CAN MOVE!",
+      "title_source": "text/us/courses.h:21",
+      "matching_index_candidates": [
+        {
+          "source": "levels/hmc/script.c:64",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_HMC",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "NAVIGATING THE TOXIC MAZE",
+      "title_source": "text/us/courses.h:21",
+      "matching_index_candidates": [
+        {
+          "source": "levels/hmc/script.c:65",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_HMC",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "A-MAZE-ING EMERGENCY EXIT",
+      "title_source": "text/us/courses.h:21",
+      "matching_index_candidates": [
+        {
+          "source": "levels/hmc/script.c:66",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_HMC",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "WATCH FOR ROLLING ROCKS",
+      "title_source": "text/us/courses.h:21",
+      "matching_index_candidates": [
+        {
+          "source": "levels/hmc/script.c:67",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_HMC",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_LLL",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "BOIL THE BIG BULLY",
+      "title_source": "text/us/courses.h:25",
+      "matching_index_candidates": [
+        {
+          "source": "levels/lll/script.c:70",
+          "area": "1",
+          "behavior": "bhvBigBully",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "large bully death path spawns a star",
+          "behavior_source": "src/game/behaviors/bully.inc.c:195"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_LLL",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "BULLY THE BULLIES",
+      "title_source": "text/us/courses.h:25",
+      "matching_index_candidates": [
+        {
+          "source": "levels/lll/script.c:71",
+          "area": "1",
+          "behavior": "bhvBigBullyWithMinions",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "big bully lava-death helper reports death",
+          "behavior_source": "src/game/behaviors/bully.inc.c:291"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_LLL",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "8-COIN PUZZLE WITH 15 PIECES",
+      "title_source": "text/us/courses.h:25",
+      "matching_index_candidates": [
+        {
+          "source": "levels/lll/script.c:90",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_5"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_LLL",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "RED-HOT LOG ROLLING",
+      "title_source": "text/us/courses.h:25",
+      "matching_index_candidates": [
+        {
+          "source": "levels/lll/script.c:91",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_5"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_LLL",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "HOT-FOOT-IT INTO THE VOLCANO",
+      "title_source": "text/us/courses.h:25",
+      "matching_index_candidates": [
+        {
+          "source": "levels/lll/script.c:114",
+          "area": "2",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_7"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_LLL",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "ELEVATOR TOUR IN THE VOLCANO",
+      "title_source": "text/us/courses.h:25",
+      "matching_index_candidates": [
+        {
+          "source": "levels/lll/script.c:115",
+          "area": "2",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_7"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_LLL",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SSL",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "IN THE TALONS OF THE BIG BIRD",
+      "title_source": "text/us/courses.h:29",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ssl/script.c:30",
+          "area": "1",
+          "behavior": "bhvKlepto",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_1",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "hit Klepto while holding a star",
+          "behavior_source": "src/game/behaviors/klepto.inc.c:360"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SSL",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "SHINING ATOP THE PYRAMID",
+      "title_source": "text/us/courses.h:29",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ssl/script.c:36",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SSL",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "INSIDE THE ANCIENT PYRAMID",
+      "title_source": "text/us/courses.h:29",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ssl/script.c:60",
+          "area": "2",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_5"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SSL",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "STAND TALL ON THE FOUR PILLARS",
+      "title_source": "text/us/courses.h:29",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ssl/script.c:66",
+          "area": "3",
+          "behavior": "bhvEyerokBoss",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_6"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "boss death action reaches timer 60 and completes dialog",
+          "behavior_source": "src/game/behaviors/eyerok.inc.c:119"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SSL",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "FREE FLYING FOR 8 RED COINS",
+      "title_source": "text/us/courses.h:29",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ssl/script.c:37",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SSL",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "PYRAMID PUZZLE",
+      "title_source": "text/us/courses.h:29",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ssl/script.c:61",
+          "area": "2",
+          "behavior": "bhvHiddenStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_5"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "five hidden triggers increment counter to 5 and controller spawns star",
+          "behavior_source": "src/game/behaviors/hidden_star.inc.c:3"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SSL",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_DDD",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "BOARD BOWSER'S SUB",
+      "title_source": "text/us/courses.h:33",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ddd/script.c:56",
+          "area": "2",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_5"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_DDD",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "CHESTS IN THE CURRENT",
+      "title_source": "text/us/courses.h:33",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ddd/script.c:30",
+          "area": "1",
+          "behavior": "bhvTreasureChestsDDD",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "chest sequence counter reaches 5, then action timer reaches 60",
+          "behavior_source": "src/game/behaviors/treasure_chest.inc.c:189"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_DDD",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "POLE-JUMPING FOR RED COINS",
+      "title_source": "text/us/courses.h:33",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ddd/script.c:57",
+          "area": "2",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_5"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_DDD",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "THROUGH THE JET STREAM",
+      "title_source": "text/us/courses.h:33",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ddd/script.c:58",
+          "area": "2",
+          "behavior": "bhvJetStreamRingSpawner",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_5"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "collect five jet-stream rings",
+          "behavior_source": "src/game/behaviors/water_ring.inc.c:178"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_DDD",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "THE MANTA RAY'S REWARD",
+      "title_source": "text/us/courses.h:33",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ddd/script.c:31",
+          "area": "1",
+          "behavior": "bhvMantaRay",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_2 | ACT_3 | ACT_4 | ACT_5 | ACT_6",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "collect five manta rings",
+          "behavior_source": "src/game/behaviors/manta_ray.inc.c:110"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_DDD",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "COLLECT THE CAPS...",
+      "title_source": "text/us/courses.h:33",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ddd/script.c:59",
+          "area": "2",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_5"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_DDD",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SL",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "SNOWMAN'S BIG HEAD",
+      "title_source": "text/us/courses.h:37",
+      "matching_index_candidates": [
+        {
+          "source": "levels/sl/script.c:20",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_1"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SL",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "CHILL WITH THE BULLY",
+      "title_source": "text/us/courses.h:37",
+      "matching_index_candidates": [
+        {
+          "source": "levels/sl/script.c:35",
+          "area": "1",
+          "behavior": "bhvBigChillBully",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "chill bully death path spawns a star",
+          "behavior_source": "src/game/behaviors/bully.inc.c:195"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SL",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "IN THE DEEP FREEZE",
+      "title_source": "text/us/courses.h:37",
+      "matching_index_candidates": [
+        {
+          "source": "levels/sl/script.c:21",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_1"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SL",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "WHIRL FROM THE FREEZING POND",
+      "title_source": "text/us/courses.h:37",
+      "matching_index_candidates": [
+        {
+          "source": "levels/sl/areas/1/macro.inc.c:46",
+          "area": "1",
+          "behavior": "macro_box_star_act_4",
+          "evidence": "referenced macro-table same-index box declaration; reachability and objective linkage unproved",
+          "source_behavior_trigger": "break the configured box to spawn its content; verify its source parameter",
+          "behavior_source": "src/game/behaviors/exclamation_box.inc.c:23"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SL",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "SHELL SHREDDIN' FOR RED COINS",
+      "title_source": "text/us/courses.h:37",
+      "matching_index_candidates": [
+        {
+          "source": "levels/sl/script.c:22",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_1"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SL",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "INTO THE IGLOO",
+      "title_source": "text/us/courses.h:37",
+      "matching_index_candidates": [
+        {
+          "source": "levels/sl/script.c:41",
+          "area": "2",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_SL",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WDW",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "SHOCKING ARROW LIFTS!",
+      "title_source": "text/us/courses.h:41",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wdw/areas/1/macro.inc.c:12",
+          "area": "1",
+          "behavior": "macro_box_star_act_1",
+          "evidence": "referenced macro-table same-index box declaration; reachability and objective linkage unproved",
+          "source_behavior_trigger": "break the configured box to spawn its content; verify its source parameter",
+          "behavior_source": "src/game/behaviors/exclamation_box.inc.c:23"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WDW",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "TOP O' THE TOWN",
+      "title_source": "text/us/courses.h:41",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wdw/areas/1/macro.inc.c:61",
+          "area": "1",
+          "behavior": "macro_box_star_act_2",
+          "evidence": "referenced macro-table same-index box declaration; reachability and objective linkage unproved",
+          "source_behavior_trigger": "break the configured box to spawn its content; verify its source parameter",
+          "behavior_source": "src/game/behaviors/exclamation_box.inc.c:23"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WDW",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "SECRETS IN THE SHALLOWS & SKY",
+      "title_source": "text/us/courses.h:41",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wdw/script.c:59",
+          "area": "1",
+          "behavior": "bhvHiddenStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "five hidden triggers increment counter to 5 and controller spawns star",
+          "behavior_source": "src/game/behaviors/hidden_star.inc.c:3"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WDW",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "EXPRESS ELEVATOR--HURRY UP!",
+      "title_source": "text/us/courses.h:41",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wdw/script.c:60",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WDW",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "GO TO TOWN FOR RED COINS",
+      "title_source": "text/us/courses.h:41",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wdw/script.c:65",
+          "area": "2",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WDW",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "QUICK RACE THROUGH DOWNTOWN!",
+      "title_source": "text/us/courses.h:41",
+      "matching_index_candidates": [
+        {
+          "source": "levels/wdw/script.c:66",
+          "area": "2",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_WDW",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTM",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "SCALE THE MOUNTAIN",
+      "title_source": "text/us/courses.h:45",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttm/script.c:45",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_1",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTM",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "MYSTERY OF THE MONKEY CAGE",
+      "title_source": "text/us/courses.h:45",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttm/script.c:46",
+          "area": "1",
+          "behavior": "bhvUkikiCage",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_2",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "cage star object reaches its spawn-star action",
+          "behavior_source": "src/game/behaviors/ukiki_cage.inc.c:36"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTM",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "SCARY 'SHROOMS, RED COINS",
+      "title_source": "text/us/courses.h:45",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttm/script.c:47",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTM",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "MYSTERIOUS MOUNTAINSIDE",
+      "title_source": "text/us/courses.h:45",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttm/script.c:48",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTM",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "BREATHTAKING VIEW FROM BRIDGE",
+      "title_source": "text/us/courses.h:45",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttm/script.c:49",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTM",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "BLAST TO THE LONELY MUSHROOM",
+      "title_source": "text/us/courses.h:45",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttm/script.c:50",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTM",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_THI",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "PLUCK THE PIRANHA FLOWER",
+      "title_source": "text/us/courses.h:49",
+      "matching_index_candidates": [
+        {
+          "source": "levels/thi/script.c:38",
+          "area": "1",
+          "behavior": "bhvFirePiranhaPlant",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "five qualifying fire piranha plants die, incrementing shared kill counter to 5",
+          "behavior_source": "src/game/behaviors/fire_piranha_plant.inc.c:51"
+        },
+        {
+          "source": "levels/thi/script.c:39",
+          "area": "1",
+          "behavior": "bhvFirePiranhaPlant",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "five qualifying fire piranha plants die, incrementing shared kill counter to 5",
+          "behavior_source": "src/game/behaviors/fire_piranha_plant.inc.c:51"
+        },
+        {
+          "source": "levels/thi/script.c:40",
+          "area": "1",
+          "behavior": "bhvFirePiranhaPlant",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "five qualifying fire piranha plants die, incrementing shared kill counter to 5",
+          "behavior_source": "src/game/behaviors/fire_piranha_plant.inc.c:51"
+        },
+        {
+          "source": "levels/thi/script.c:41",
+          "area": "1",
+          "behavior": "bhvFirePiranhaPlant",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "five qualifying fire piranha plants die, incrementing shared kill counter to 5",
+          "behavior_source": "src/game/behaviors/fire_piranha_plant.inc.c:51"
+        },
+        {
+          "source": "levels/thi/script.c:42",
+          "area": "1",
+          "behavior": "bhvFirePiranhaPlant",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "five qualifying fire piranha plants die, incrementing shared kill counter to 5",
+          "behavior_source": "src/game/behaviors/fire_piranha_plant.inc.c:51"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_THI",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "THE TIP TOP OF THE HUGE ISLAND",
+      "title_source": "text/us/courses.h:49",
+      "matching_index_candidates": [
+        {
+          "source": "levels/thi/areas/1/macro.inc.c:36",
+          "area": "1",
+          "behavior": "macro_box_star_act_2",
+          "evidence": "referenced macro-table same-index box declaration; reachability and objective linkage unproved",
+          "source_behavior_trigger": "break the configured box to spawn its content; verify its source parameter",
+          "behavior_source": "src/game/behaviors/exclamation_box.inc.c:23"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_THI",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "REMATCH WITH KOOPA THE QUICK",
+      "title_source": "text/us/courses.h:49",
+      "matching_index_candidates": [
+        {
+          "source": "levels/thi/script.c:34",
+          "area": "1",
+          "behavior": "bhvKoopa",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ACT_3",
+          "linked_via": [
+            "script_func_local_4"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "race endpoint registers eligible nonzero win and finishes dialog",
+          "behavior_source": "src/game/behaviors/koopa.inc.c:710"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_THI",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "FIVE ITTY BITTY SECRETS",
+      "title_source": "text/us/courses.h:49",
+      "matching_index_candidates": [
+        {
+          "source": "levels/thi/script.c:23",
+          "area": "2",
+          "behavior": "bhvHiddenStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "five hidden triggers increment counter to 5 and controller spawns star",
+          "behavior_source": "src/game/behaviors/hidden_star.inc.c:3"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_THI",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "WIGGLER'S RED COINS",
+      "title_source": "text/us/courses.h:49",
+      "matching_index_candidates": [
+        {
+          "source": "levels/thi/script.c:28",
+          "area": "3",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_THI",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "MAKE WIGGLER SQUIRM",
+      "title_source": "text/us/courses.h:49",
+      "matching_index_candidates": [
+        {
+          "source": "levels/thi/script.c:29",
+          "area": "3",
+          "behavior": "bhvWigglerHead",
+          "object_macro": "OBJECT",
+          "act_mask": "implicit all acts",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "defeat action reaches shrink threshold after timer 20",
+          "behavior_source": "src/game/behaviors/wiggler.inc.c:351"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_THI",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTC",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "ROLL INTO THE CAGE",
+      "title_source": "text/us/courses.h:53",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttc/script.c:25",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTC",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "THE PIT AND THE PENDULUMS",
+      "title_source": "text/us/courses.h:53",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttc/script.c:26",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTC",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "GET A HAND",
+      "title_source": "text/us/courses.h:53",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttc/script.c:27",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTC",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "STOMP ON THE THWOMP",
+      "title_source": "text/us/courses.h:53",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttc/script.c:28",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTC",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "TIMED JUMPS ON MOVING BARS",
+      "title_source": "text/us/courses.h:53",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttc/script.c:29",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTC",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "STOP TIME FOR RED COINS",
+      "title_source": "text/us/courses.h:53",
+      "matching_index_candidates": [
+        {
+          "source": "levels/ttc/script.c:30",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_2"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_TTC",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_RR",
+      "act_star_ordinal": 1,
+      "star_index": 0,
+      "act_selection": 1,
+      "title": "CRUISER CROSSING THE RAINBOW",
+      "title_source": "text/us/courses.h:57",
+      "matching_index_candidates": [
+        {
+          "source": "levels/rr/script.c:63",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_RR",
+      "act_star_ordinal": 2,
+      "star_index": 1,
+      "act_selection": 2,
+      "title": "THE BIG HOUSE IN THE SKY",
+      "title_source": "text/us/courses.h:57",
+      "matching_index_candidates": [
+        {
+          "source": "levels/rr/script.c:64",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_RR",
+      "act_star_ordinal": 3,
+      "star_index": 2,
+      "act_selection": 3,
+      "title": "COINS AMASSED IN A MAZE",
+      "title_source": "text/us/courses.h:57",
+      "matching_index_candidates": [
+        {
+          "source": "levels/rr/script.c:65",
+          "area": "1",
+          "behavior": "bhvHiddenRedCoinStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "red-coin counter reaches 8 and controller spawns star",
+          "behavior_source": "src/game/behaviors/spawn_star.inc.c:145"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_RR",
+      "act_star_ordinal": 4,
+      "star_index": 3,
+      "act_selection": 4,
+      "title": "SWINGIN' IN THE BREEZE",
+      "title_source": "text/us/courses.h:57",
+      "matching_index_candidates": [
+        {
+          "source": "levels/rr/script.c:66",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_RR",
+      "act_star_ordinal": 5,
+      "star_index": 4,
+      "act_selection": 5,
+      "title": "TRICKY TRIANGLES!",
+      "title_source": "text/us/courses.h:57",
+      "matching_index_candidates": [
+        {
+          "source": "levels/rr/script.c:67",
+          "area": "1",
+          "behavior": "bhvStar",
+          "object_macro": "OBJECT_WITH_ACTS",
+          "act_mask": "ALL_ACTS",
+          "linked_via": [
+            "script_func_local_3"
+          ],
+          "evidence": "active USA same-index declaration; objective linkage and reachability unproved",
+          "source_behavior_trigger": "touch the placed star; area and act mask govern declaration",
+          "behavior_source": "src/game/interaction.c:769"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_RR",
+      "act_star_ordinal": 6,
+      "star_index": 5,
+      "act_selection": 6,
+      "title": "SOMEWHERE OVER THE RAINBOW",
+      "title_source": "text/us/courses.h:57",
+      "matching_index_candidates": [
+        {
+          "source": "levels/rr/areas/1/macro.inc.c:62",
+          "area": "1",
+          "behavior": "macro_box_star_act_6",
+          "evidence": "referenced macro-table same-index box declaration; reachability and objective linkage unproved",
+          "source_behavior_trigger": "break the configured box to spawn its content; verify its source parameter",
+          "behavior_source": "src/game/behaviors/exclamation_box.inc.c:23"
+        }
+      ],
+      "trigger": "see named objective; exact trigger trace unresolved unless a linked behavior is independently traced",
+      "result": "star/key interaction can set corresponding course star flag; exit behavior depends on subtype/action",
+      "runtime": "unobserved"
+    },
+    {
+      "course": "COURSE_RR",
+      "act_star_ordinal": 7,
+      "star_index": 6,
+      "act_selection": null,
+      "title": "100 coins",
+      "trigger": "coin interaction crosses from below 100 to at least 100 in a main course",
+      "result": "spawn no-level-exit star with index 6; collection updates course star flag",
+      "source": "src/game/interaction.c:745-752",
+      "runtime": "unobserved"
+    }
+  ]
+}

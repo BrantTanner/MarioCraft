@@ -1,0 +1,113 @@
+{
+  "target_sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "source_commit": "9921382a68bb0c865e5e45eb594d9c64db59b1af",
+  "candidate_windows": [
+    {
+      "name": "boot",
+      "romOffset": "0xE6260",
+      "length": 208,
+      "sha256": "589D793EDA195C576C9D767E7A5E4B77352826F59669D20BDCC358A8EBC979A3"
+    },
+    {
+      "name": "graphics code",
+      "romOffset": "0xE6330",
+      "length": 4096,
+      "sha256": "FFD76B7092CE0C1B6DC2B1FB9992AB2B330F0D813577F49B3A1F32B2AF9AC618"
+    },
+    {
+      "name": "graphics data",
+      "romOffset": "0xF4AC0",
+      "length": 2048,
+      "sha256": "B842FB99D1899C2F0345FCD43BD9F61F38675C39E4EC7BAB5CB130518FBF0F3A"
+    },
+    {
+      "name": "resident decode window",
+      "romOffset": "0xE6330",
+      "length": 1768,
+      "sha256": "F1673394F9C7AB780B40B94BE338C96BFED9505F43D72DAB95A65F934E0A7A43"
+    }
+  ],
+  "native_cpu_windows": [
+    {
+      "name": "osSpTaskLoad",
+      "pc": "0x80322a5c",
+      "romOffset": "0xdda5c",
+      "length": 352,
+      "sha256": "4923078FCF45566BB483D684BA37DCBC962B5DFB81ACB7D7D6BF4326AFE8C801"
+    },
+    {
+      "name": "osSpTaskStartGo",
+      "pc": "0x80322bbc",
+      "romOffset": "0xddbbc",
+      "length": 64,
+      "sha256": "EB490D2FBAD867D74FE59A9FB99D66148FC8C724194961B5E699FD725AD0F1B6"
+    },
+    {
+      "name": "osSpTaskYield",
+      "pc": "0x80322c00",
+      "romOffset": "0xddc00",
+      "length": 32,
+      "sha256": "4171311CE4014D9D6F53A9E80EA83438CB5FEE8B14C1FFE963526C0186C343C1"
+    },
+    {
+      "name": "osSpTaskYielded",
+      "pc": "0x80322d70",
+      "romOffset": "0xddd70",
+      "length": 128,
+      "sha256": "A3FE2F19FFD11BBFA1BE4416A0EA3412501FDB93C71F8934D6F17D8EE7DBBEF9"
+    },
+    {
+      "name": "_VirtualToPhysicalTask",
+      "pc": "0x80322940",
+      "romOffset": "0xdd940",
+      "length": 284,
+      "sha256": "32BEB60161C3FB4C8F24B161B7B2C0B9B6AFE077E101745D22979E9CA6D0C38D"
+    },
+    {
+      "name": "__osSpSetStatus",
+      "pc": "0x80327f30",
+      "romOffset": "0xe2f30",
+      "length": 12,
+      "sha256": "330EEBE5BB4046809FE403996CD6DD002C11B2A46FC3CBA6AB4A6DD9611E273B"
+    },
+    {
+      "name": "__osSpSetPc",
+      "pc": "0x80327f40",
+      "romOffset": "0xe2f40",
+      "length": 52,
+      "sha256": "AF66ED65D77FDE1AAE49EEDB1374B1C64C2305B9DFB37653F1B09D17ADB34BDC"
+    },
+    {
+      "name": "__osSpRawStartDma",
+      "pc": "0x80327f80",
+      "romOffset": "0xe2f80",
+      "length": 140,
+      "sha256": "C0E868E07EE14D11F63677FCFCC9BBBB32B4C29A326AD19C8FC3119ADB355A88"
+    },
+    {
+      "name": "__osSpDeviceBusy",
+      "pc": "0x80328010",
+      "romOffset": "0xe3010",
+      "length": 44,
+      "sha256": "5B8A49766E2E41E50B893CB38C81DB6EBAAACF069CEFE96035B118B0D9F9C4F0"
+    },
+    {
+      "name": "__osSpGetStatus",
+      "pc": "0x80328040",
+      "romOffset": "0xe3040",
+      "length": 12,
+      "sha256": "CDFFEF6FD78FBD686568FEE0ACD532CCB940758F852CB83E15E44ABA19A741ED"
+    }
+  ],
+  "rsp_decoder": {
+    "name": "spimdisasm rspDisasm",
+    "version": "1.42.4",
+    "rabbitizer": "1.16.2",
+    "byte_order": "big",
+    "imem_origin": "0x04001080",
+    "rom_start": "0xE6330",
+    "rom_end_exclusive": "0xE6A18",
+    "coverage": "resident window only; overlays and runtime descriptor remain unverified"
+  }
+}
+

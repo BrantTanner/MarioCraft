@@ -1,0 +1,179 @@
+{
+  "issue": 55,
+  "title": "Dynamic objects, moving platforms, and rider carry",
+  "target": {
+    "rom": "Super Mario 64 USA rev 0",
+    "romSha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+    "project64": "3.0.1.5664-2df3434",
+    "project64ExecutableSha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "seed": {
+      "id": "issue35-mario-gameplay-baseline",
+      "archiveSha256": "6E2C8265A8A9A19761BCC6CE29FA20694FAD5444B325B1F22CA987776A2D6DFE",
+      "use": "Restored courtyard seed; reached BOB by ordinary gameplay. Save-state contents remain private."
+    }
+  },
+  "sampling": {
+    "method": "Read-only external Project64 process memory sampling with loop counter read before and after selected fields.",
+    "stableRow": "Counter pair equal; this is a consistency check, not an atomic snapshot.",
+    "counter": "Use for within-trial ordering only; not assumed to count physics frames.",
+    "rawCaptures": "Remain private; hashes bind the local captures. No process IDs, host addresses, guest pointers, RAM bytes, ROM bytes, screenshots, or state contents are included."
+  },
+  "trials": [
+    {
+      "id": "bob-platform-motion-no-input-r1",
+      "traceSha256": "DCB244FEB90882329FE0BFF88DB622B402522FD81B0502D907FD86A4849DB7AB",
+      "sampler": {
+        "file": "tools/issue11-local/issue55-external-capture.ps1",
+        "sha256": "2F96D14978CF695BCB7725D4FD97C00C128ED93DDB97AF535D0E5AD146508B71"
+      },
+      "observations": 200,
+      "stableCounterBrackets": 148,
+      "input": "All sampled raw/processed stick values and button fields remained zero.",
+      "marioStartAndEnd": { "x": 2549.3943, "y": 802.90906, "z": 5003.4214 },
+      "samples": [
+        {
+          "sequence": 1,
+          "loopCounter": 132536,
+          "stable": true,
+          "mario": { "x": 2549.3943, "y": 802.90906, "z": 5003.4214 },
+          "platformA": { "x": 1612.0, "y": 470.0, "z": 4756.0, "behaviorAction": 3 },
+          "platformB": { "x": 1612.0, "y": 530.0, "z": 4466.0, "behaviorAction": 1 }
+        },
+        {
+          "sequence": 199,
+          "loopCounter": 132794,
+          "stable": true,
+          "mario": { "x": 2549.3943, "y": 802.90906, "z": 5003.4214 },
+          "platformA": { "x": 1612.0, "y": 144.34814, "z": 4644.6733, "behaviorAction": 4 },
+          "platformB": { "x": 1612.0, "y": 855.6519, "z": 4577.3267, "behaviorAction": 2 }
+        }
+      ],
+      "interpretation": "The two moving boards changed position while Mario and all sampled controller inputs remained fixed. Some legacy angular fields in this capture were decoded incorrectly and are deliberately omitted; coordinates and controller fields only are used here."
+    },
+    {
+      "id": "bob-controlled-boarding-no-input-carry-and-detach-r27",
+      "traceSha256": "E1016878D25F7F1E0F2B1FD22E1FEDBE5A3686BA3427FD8B2515DF05059312E9",
+      "sampler": {
+        "file": "tools/issue11-local/issue55-external-capture-v3.ps1",
+        "sha256": "3ABA51AB75C2ED6A95163CA72B2310B3C968FB5024AB4B9A4D583EDB5A20B42D"
+      },
+      "observations": 46,
+      "stableCounterBrackets": 21,
+      "boardingInput": "A + AnalogLeft for 650 ms, then released.",
+      "preInputPhaseSample": {
+        "sequence": 7,
+        "loopCounter": 159771,
+        "stable": true,
+        "mario": { "x": 1841.0, "y": 768.0, "z": 4660.9404, "action": "0x0C400205" },
+        "input": { "rawX": 0, "rawY": 0, "buttonsDown": 0, "buttonsPressed": 0 },
+        "platformA": { "x": 1612.0, "y": 447.0, "z": 4470.8506, "behaviorAction": 1, "verticalVelocity": 10.0, "pitchUnits": 0 },
+        "cameraYawUnits": -9134
+      },
+      "samples": [
+        {
+          "sequence": 25,
+          "loopCounter": 159795,
+          "stable": true,
+          "action": "0x04000470",
+          "rawStick": { "x": -3, "y": 0 },
+          "buttonsDown": 0,
+          "mario": { "x": 1725.2163, "y": 726.0, "z": 4505.093 },
+          "floor": { "height": 726.0, "type": "0x28", "normalY": 1.0 },
+          "attachedToPlatformA": true,
+          "queriedFloorOwnedByPlatformA": true,
+          "marioObjectNamesPlatformA": true
+        },
+        {
+          "sequence": 30,
+          "loopCounter": 159801,
+          "stable": true,
+          "action": "0x0C000230",
+          "input": { "rawX": 0, "rawY": 0, "buttonsDown": 0, "buttonsPressed": 0 },
+          "mario": {
+            "position": { "x": 1712.5977, "y": 764.9337, "z": 4517.7295 },
+            "velocity": { "x": 0.0, "y": 0.0, "z": 0.0 },
+            "forwardSpeed": 0.0
+          },
+          "floor": { "height": 764.9337, "type": "0x28", "normalY": 0.980759 },
+          "attachedToPlatformA": true,
+          "queriedFloorOwnedByPlatformA": true,
+          "marioObjectNamesPlatformA": true,
+          "platformA": { "x": 1612.0, "y": 734.7476, "z": 4474.273, "pitchUnits": 2048 }
+        },
+        {
+          "sequence": 36,
+          "loopCounter": 159810,
+          "stable": true,
+          "action": "0x0C000230",
+          "input": { "rawX": 0, "rawY": 0, "buttonsDown": 0, "buttonsPressed": 0 },
+          "mario": {
+            "position": { "x": 1712.5977, "y": 802.65106, "z": 4550.9043 },
+            "velocity": { "x": 0.0, "y": 0.0, "z": 0.0 },
+            "forwardSpeed": 0.0
+          },
+          "floor": { "height": 802.65106, "type": "0x28", "normalY": 0.8022332 },
+          "attachedToPlatformA": true,
+          "queriedFloorOwnedByPlatformA": true,
+          "marioObjectNamesPlatformA": true,
+          "platformA": { "x": 1612.0, "y": 791.2427, "z": 4500.993, "pitchUnits": 6656 }
+        },
+        {
+          "sequence": 41,
+          "loopCounter": 159817,
+          "stable": true,
+          "action": "0x0300088E",
+          "input": { "rawX": 0, "rawY": 0, "buttonsDown": 0, "buttonsPressed": 0 },
+          "mario": {
+            "position": { "x": 1693.5874, "y": 755.99976, "z": 4642.776 },
+            "velocity": { "x": -19.010118, "y": -4.0, "z": 12.534119 },
+            "forwardSpeed": 22.770348
+          },
+          "floor": { "height": 213.0, "type": "0x28", "normalY": 1.0, "ownedByOtherPlatform": true },
+          "attachedToPlatformA": false,
+          "globalPlatformRefAbsent": true,
+          "marioObjectPlatformRefAbsent": true,
+          "queriedFloorOwnedByPlatformA": false,
+          "marioObjectNamesPlatformA": false,
+          "platformA": { "x": 1612.0, "y": 823.9907, "z": 4537.125, "pitchUnits": 10240 }
+        }
+      ],
+      "deltasRow30To36": {
+        "elapsedHostMilliseconds": 300,
+        "loopCounterIncrement": 9,
+        "mario": { "x": 0.0, "y": 37.71736, "z": 33.1748 },
+        "platformA": { "x": 0.0, "y": 56.4951, "z": 26.72, "pitchUnits": 4608 }
+      },
+      "interpretation": "Stable rows 30 and 36 are idle with zero Mario velocity, no stick input, no buttons, and matching floor/global/object attachment to the same moving platform. At row 41 Mario is airborne and unowned; the queried floor belongs to the other board 543 units below Mario. Rows 37–40 have mismatched counter brackets and are excluded, so neither the exact detach loop nor its cause is measured."
+    },
+    {
+      "id": "low-ground-backflip-boarding-attempt-r44",
+      "traceSha256": "DE151EBBF9A2A0A517789DF7998D4E527F4B1C62B27A003C316944F127C090D8",
+      "sampler": {
+        "file": "tools/issue11-local/issue55-external-capture-v4.ps1",
+        "sha256": "8BB4167661B1CFCD1E3338AF371C6469E793C812F6271ADE124B422EC64B747E"
+      },
+      "observations": 1485,
+      "stableCounterBrackets": 1170,
+      "input": "Z held 250 ms, then A held 750 ms with separate key releases; no direction input.",
+      "result": "Did not board. Backflip action 0x01000883 appeared in three accepted stable rows: sequence 576 / loop 173901 at Y=27, 577 / 173902 at Y=19, and 578 / 173903 at Y=7. All three were already descending; stable landing action followed at sequence 579 / loop 173904. Y=27 is the highest accepted sample, not a proven peak.",
+      "selectedNumericEvidence": {
+        "lastStablePreBackflip": { "sequence": 574, "loopCounter": 173899, "platformY": 252.25, "ceilingHeightCandidate": 213.0 },
+        "descendingSamples": [
+          { "sequence": 576, "loopCounter": 173901, "marioY": 27.0, "verticalVelocityY": -8.0, "ceilingHeightCandidate": 199.0, "health": 384 },
+          { "sequence": 577, "loopCounter": 173902, "marioY": 19.0, "verticalVelocityY": -12.0, "ceilingHeightCandidate": 193.0, "health": 384 },
+          { "sequence": 578, "loopCounter": 173903, "marioY": 7.0, "verticalVelocityY": -16.0, "ceilingHeightCandidate": 186.0, "health": 384 }
+        ],
+        "landing": { "sequence": 579, "loopCounter": 173904 },
+        "stableSampleHealth": 384
+      },
+      "interpretation": "A low overhead collision with the board or nearby geometry is plausible, but this capture does not uniquely identify the ceiling surface. This is a failed low-ground boarding attempt only; it does not test backflip reachability with a clear approach."
+    }
+  ],
+  "limits": [
+    "The input helper was docs/research/mario64-issue47-project64-input.ps1, SHA-256 2E78A7B6685C010C8FD2DDAD9D92815A77E9FB87202EAE6DA640A8579B0F9463. Rows with a mismatched counter bracket are not used as event boundaries. Matching counter reads are not atomic snapshots.",
+    "Only one controlled boarding and no-input ride/detach sequence succeeded. The later unowned airborne sample proves a detached state, not an input-caused departure or the exact cause.",
+    "Only the BOB checkerboard platform group is tied to live transforms, target behavior commands, and native handlers. HMC elevator and swing have static native corroboration only; remaining selected inventory rows are structural candidates.",
+    "Static target-ROM hashes are verified; the live RPM hash of the high native-code window was not verified."
+  ]
+}
+

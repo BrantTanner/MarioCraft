@@ -25,7 +25,7 @@
     "truncatedFinalBackReferences": 0,
     "sourceLoadDirectives": 290,
     "unreferencedCompressedSlots": 1,
-    "rawLoadsWithUnresolvedRomBounds": 6
+    "rawLoadsWithUnresolvedRomBounds": 0
   },
   "mio0Slots": [
     {
@@ -2782,6 +2782,18 @@
       "romEndExclusive": 5160960,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
       "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+    },
+    "menu": {
+      "romStart": 2777376,
+      "romEndExclusive": 2778544,
+      "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
+      "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed"
+    },
+    "intro": {
+      "romStart": 2530976,
+      "romEndExclusive": 2532256,
+      "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
+      "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed"
     }
   },
   "globalLoadPrefixEvidence": {
@@ -6438,6 +6450,766 @@
       }
     ],
     "limits": "All 31 source enum IDs link through generated EXECUTE wrappers; source entry opcode/size patterns and encoded load operands match. This is not exact rebuilt-asset equivalence or runtime transition evidence."
+  },
+  "dispatcherArrayEvidence": {
+    "globalArrays": [
+      {
+        "array": "levels/scripts.c::level_main_scripts_entry",
+        "romStart": 2800800,
+        "romEndExclusive": 2801352,
+        "length": 552,
+        "sha256": "7E2AE1C21DF2A4276EE5396E18952CA51584498CA12187A6B0B2D9A5226E4FEA",
+        "commandCount": 65,
+        "commandPatternMatched": true,
+        "commands": [
+          {
+            "macro": "LOAD_MIO0",
+            "sourceLine": 62,
+            "commandRomOffset": 2800800,
+            "opcode": 24,
+            "commandSize": 12,
+            "segmentId": 4,
+            "romStart": 1132368,
+            "romEndExclusive": 1210800,
+            "spanBytes": 78432,
+            "encodedRomSpanSha256": "EF621DBA1B29D022F4FE7E3A2FA9990F9935F79CB89A6C572DFE39523F9D1F45",
+            "sourceStartSymbol": "_group0_mio0SegmentRomStart",
+            "sourceEndSymbol": "_group0_mio0SegmentRomEnd"
+          },
+          {
+            "macro": "LOAD_MIO0",
+            "sourceLine": 63,
+            "commandRomOffset": 2800812,
+            "opcode": 24,
+            "commandSize": 12,
+            "segmentId": 3,
+            "romStart": 2102288,
+            "romEndExclusive": 2198944,
+            "spanBytes": 96656,
+            "encodedRomSpanSha256": "D0926FEFB67C4BBDBDFA66E257CFB46E8E72A8D6ECC44DEF5B94823CBBAD1558",
+            "sourceStartSymbol": "_common1_mio0SegmentRomStart",
+            "sourceEndSymbol": "_common1_mio0SegmentRomEnd"
+          },
+          {
+            "macro": "LOAD_RAW",
+            "sourceLine": 64,
+            "commandRomOffset": 2800824,
+            "opcode": 23,
+            "commandSize": 12,
+            "segmentId": 23,
+            "romStart": 1210800,
+            "romEndExclusive": 1222624,
+            "spanBytes": 11824,
+            "encodedRomSpanSha256": "00C0DD666AD42E3034762DE5440E0AC933787458DE9117C2049990BC3AABD3C3",
+            "sourceStartSymbol": "_group0_geoSegmentRomStart",
+            "sourceEndSymbol": "_group0_geoSegmentRomEnd"
+          },
+          {
+            "macro": "LOAD_RAW",
+            "sourceLine": 65,
+            "commandRomOffset": 2800836,
+            "opcode": 23,
+            "commandSize": 12,
+            "segmentId": 22,
+            "romStart": 2198944,
+            "romEndExclusive": 2203136,
+            "spanBytes": 4192,
+            "encodedRomSpanSha256": "67CC16706D8F8C8F4D681CB153E4858A76C4F6A49A605B0289086E055DDDF5D8",
+            "sourceStartSymbol": "_common1_geoSegmentRomStart",
+            "sourceEndSymbol": "_common1_geoSegmentRomEnd"
+          },
+          {
+            "macro": "LOAD_RAW",
+            "sourceLine": 66,
+            "commandRomOffset": 2800848,
+            "opcode": 23,
+            "commandSize": 12,
+            "segmentId": 19,
+            "romStart": 2203136,
+            "romEndExclusive": 2225344,
+            "spanBytes": 22208,
+            "encodedRomSpanSha256": "EAD9150A4EB2105623772A763229BA880374167D76BEDCAF5D6B510789704296",
+            "sourceStartSymbol": "_behaviorSegmentRomStart",
+            "sourceEndSymbol": "_behaviorSegmentRomEnd"
+          },
+          {
+            "macro": "ALLOC_LEVEL_POOL",
+            "sourceLine": 67,
+            "commandRomOffset": 2800860,
+            "opcode": 29,
+            "commandSize": 4
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 68,
+            "commandRomOffset": 2800864,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 69,
+            "commandRomOffset": 2800872,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 70,
+            "commandRomOffset": 2800880,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 71,
+            "commandRomOffset": 2800888,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 72,
+            "commandRomOffset": 2800896,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 73,
+            "commandRomOffset": 2800904,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 74,
+            "commandRomOffset": 2800912,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 75,
+            "commandRomOffset": 2800920,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 76,
+            "commandRomOffset": 2800928,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 77,
+            "commandRomOffset": 2800936,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 78,
+            "commandRomOffset": 2800944,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 79,
+            "commandRomOffset": 2800952,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_DL",
+            "sourceLine": 80,
+            "commandRomOffset": 2800960,
+            "opcode": 33,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 81,
+            "commandRomOffset": 2800968,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 82,
+            "commandRomOffset": 2800976,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 83,
+            "commandRomOffset": 2800984,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 84,
+            "commandRomOffset": 2800992,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 85,
+            "commandRomOffset": 2801000,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 86,
+            "commandRomOffset": 2801008,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 87,
+            "commandRomOffset": 2801016,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 88,
+            "commandRomOffset": 2801024,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_DL",
+            "sourceLine": 89,
+            "commandRomOffset": 2801032,
+            "opcode": 33,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 90,
+            "commandRomOffset": 2801040,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 91,
+            "commandRomOffset": 2801048,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_DL",
+            "sourceLine": 92,
+            "commandRomOffset": 2801056,
+            "opcode": 33,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 93,
+            "commandRomOffset": 2801064,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 94,
+            "commandRomOffset": 2801072,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_DL",
+            "sourceLine": 95,
+            "commandRomOffset": 2801080,
+            "opcode": 33,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 96,
+            "commandRomOffset": 2801088,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 97,
+            "commandRomOffset": 2801096,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 98,
+            "commandRomOffset": 2801104,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 99,
+            "commandRomOffset": 2801112,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 100,
+            "commandRomOffset": 2801120,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 101,
+            "commandRomOffset": 2801128,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 102,
+            "commandRomOffset": 2801136,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 103,
+            "commandRomOffset": 2801144,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 104,
+            "commandRomOffset": 2801152,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 105,
+            "commandRomOffset": 2801160,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 106,
+            "commandRomOffset": 2801168,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 107,
+            "commandRomOffset": 2801176,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 108,
+            "commandRomOffset": 2801184,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 109,
+            "commandRomOffset": 2801192,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 110,
+            "commandRomOffset": 2801200,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 111,
+            "commandRomOffset": 2801208,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 112,
+            "commandRomOffset": 2801216,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 113,
+            "commandRomOffset": 2801224,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOAD_MODEL_FROM_GEO",
+            "sourceLine": 114,
+            "commandRomOffset": 2801232,
+            "opcode": 34,
+            "commandSize": 8
+          },
+          {
+            "macro": "FREE_LEVEL_POOL",
+            "sourceLine": 115,
+            "commandRomOffset": 2801240,
+            "opcode": 30,
+            "commandSize": 4
+          },
+          {
+            "macro": "CALL",
+            "sourceLine": 116,
+            "commandRomOffset": 2801244,
+            "opcode": 17,
+            "commandSize": 8
+          },
+          {
+            "macro": "LOOP_BEGIN",
+            "sourceLine": 117,
+            "commandRomOffset": 2801252,
+            "opcode": 10,
+            "commandSize": 4
+          },
+          {
+            "macro": "EXECUTE",
+            "sourceLine": 118,
+            "commandRomOffset": 2801256,
+            "opcode": 0,
+            "commandSize": 16,
+            "segmentId": 20,
+            "romStart": 2777376,
+            "romEndExclusive": 2778544,
+            "spanBytes": 1168,
+            "encodedRomSpanSha256": "81D81FDDFD268206E5F173BF3FE520E949F89B3419779E3FA5FF0FEDAB466B02",
+            "sourceStartSymbol": "_menuSegmentRomStart",
+            "sourceEndSymbol": "_menuSegmentRomEnd",
+            "entrySegmentedPointer": 335544600,
+            "sourceEntrySymbol": "level_main_menu_entry_2"
+          },
+          {
+            "macro": "JUMP_LINK",
+            "sourceLine": 119,
+            "commandRomOffset": 2801272,
+            "opcode": 6,
+            "commandSize": 8
+          },
+          {
+            "macro": "SLEEP",
+            "sourceLine": 120,
+            "commandRomOffset": 2801280,
+            "opcode": 3,
+            "commandSize": 4
+          },
+          {
+            "macro": "LOOP_UNTIL",
+            "sourceLine": 121,
+            "commandRomOffset": 2801284,
+            "opcode": 11,
+            "commandSize": 8
+          },
+          {
+            "macro": "JUMP_IF",
+            "sourceLine": 122,
+            "commandRomOffset": 2801292,
+            "opcode": 12,
+            "commandSize": 12,
+            "comparisonValue": -1,
+            "jumpSegmentedPointer": 352322104,
+            "sourceComparison": "-1",
+            "sourceTargetArray": "script_L2"
+          },
+          {
+            "macro": "JUMP_IF",
+            "sourceLine": 123,
+            "commandRomOffset": 2801304,
+            "opcode": 12,
+            "commandSize": 12,
+            "comparisonValue": -2,
+            "jumpSegmentedPointer": 352322120,
+            "sourceComparison": "-2",
+            "sourceTargetArray": "goto_mario_head_regular"
+          },
+          {
+            "macro": "JUMP_IF",
+            "sourceLine": 124,
+            "commandRomOffset": 2801316,
+            "opcode": 12,
+            "commandSize": 12,
+            "comparisonValue": -3,
+            "jumpSegmentedPointer": 352322136,
+            "sourceComparison": "-3",
+            "sourceTargetArray": "goto_mario_head_dizzy"
+          },
+          {
+            "macro": "JUMP_IF",
+            "sourceLine": 125,
+            "commandRomOffset": 2801328,
+            "opcode": 12,
+            "commandSize": 12,
+            "comparisonValue": -8,
+            "jumpSegmentedPointer": 352322088,
+            "sourceComparison": "-8",
+            "sourceTargetArray": "script_L1"
+          },
+          {
+            "macro": "JUMP_IF",
+            "sourceLine": 126,
+            "commandRomOffset": 2801340,
+            "opcode": 12,
+            "commandSize": 12,
+            "comparisonValue": -9,
+            "jumpSegmentedPointer": 352322152,
+            "sourceComparison": "-9",
+            "sourceTargetArray": "script_L5"
+          }
+        ]
+      },
+      {
+        "array": "levels/scripts.c::script_L1",
+        "romStart": 2801352,
+        "romEndExclusive": 2801368,
+        "length": 16,
+        "sha256": "21D8975CD40336061273CBA8A2B550B4C6AE20AE4AF2FF39C2B102EE643AEEAF",
+        "commandCount": 1,
+        "commandPatternMatched": true,
+        "commands": [
+          {
+            "macro": "EXIT_AND_EXECUTE",
+            "sourceLine": 130,
+            "commandRomOffset": 2801352,
+            "opcode": 1,
+            "commandSize": 16,
+            "segmentId": 20,
+            "romStart": 2530976,
+            "romEndExclusive": 2532256,
+            "spanBytes": 1280,
+            "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+            "sourceStartSymbol": "_introSegmentRomStart",
+            "sourceEndSymbol": "_introSegmentRomEnd",
+            "entrySegmentedPointer": 335544320,
+            "sourceEntrySymbol": "level_intro_splash_screen"
+          }
+        ]
+      },
+      {
+        "array": "levels/scripts.c::script_L2",
+        "romStart": 2801368,
+        "romEndExclusive": 2801384,
+        "length": 16,
+        "sha256": "34A294D3255BEFEF1669A044E24EE703C2E009996CA025E7012AE61500C8F9B2",
+        "commandCount": 1,
+        "commandPatternMatched": true,
+        "commands": [
+          {
+            "macro": "EXIT_AND_EXECUTE",
+            "sourceLine": 134,
+            "commandRomOffset": 2801368,
+            "opcode": 1,
+            "commandSize": 16,
+            "segmentId": 14,
+            "romStart": 4900016,
+            "romEndExclusive": 4900208,
+            "spanBytes": 192,
+            "encodedRomSpanSha256": "CE946FF17F1845C489FA8CF607B348051ADEAE68E127032B48E543A99A59584D",
+            "sourceStartSymbol": "_endingSegmentRomStart",
+            "sourceEndSymbol": "_endingSegmentRomEnd",
+            "entrySegmentedPointer": 234881024,
+            "sourceEntrySymbol": "level_ending_entry"
+          }
+        ]
+      },
+      {
+        "array": "levels/scripts.c::goto_mario_head_regular",
+        "romStart": 2801384,
+        "romEndExclusive": 2801400,
+        "length": 16,
+        "sha256": "4CA65E349B6E52C4E0D14513C97EF4C0C257E1266EAC5E8DE7906032EAE21CFA",
+        "commandCount": 1,
+        "commandPatternMatched": true,
+        "commands": [
+          {
+            "macro": "EXIT_AND_EXECUTE",
+            "sourceLine": 138,
+            "commandRomOffset": 2801384,
+            "opcode": 1,
+            "commandSize": 16,
+            "segmentId": 20,
+            "romStart": 2530976,
+            "romEndExclusive": 2532256,
+            "spanBytes": 1280,
+            "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+            "sourceStartSymbol": "_introSegmentRomStart",
+            "sourceEndSymbol": "_introSegmentRomEnd",
+            "entrySegmentedPointer": 335544440,
+            "sourceEntrySymbol": "level_intro_mario_head_regular"
+          }
+        ]
+      },
+      {
+        "array": "levels/scripts.c::goto_mario_head_dizzy",
+        "romStart": 2801400,
+        "romEndExclusive": 2801416,
+        "length": 16,
+        "sha256": "8E6C705EF511B11C6B0DD8E95CDE0C6B6B7A81ACB4A892BB0BB036F1FCD855C7",
+        "commandCount": 1,
+        "commandPatternMatched": true,
+        "commands": [
+          {
+            "macro": "EXIT_AND_EXECUTE",
+            "sourceLine": 142,
+            "commandRomOffset": 2801400,
+            "opcode": 1,
+            "commandSize": 16,
+            "segmentId": 20,
+            "romStart": 2530976,
+            "romEndExclusive": 2532256,
+            "spanBytes": 1280,
+            "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+            "sourceStartSymbol": "_introSegmentRomStart",
+            "sourceEndSymbol": "_introSegmentRomEnd",
+            "entrySegmentedPointer": 335544580,
+            "sourceEntrySymbol": "level_intro_mario_head_dizzy"
+          }
+        ]
+      },
+      {
+        "array": "levels/scripts.c::script_L5",
+        "romStart": 2801416,
+        "romEndExclusive": 2801432,
+        "length": 16,
+        "sha256": "BAF0BFF257BB95CD52FCC711AD824B307532A418E3267A52CC3AE2E25F3AD799",
+        "commandCount": 1,
+        "commandPatternMatched": true,
+        "commands": [
+          {
+            "macro": "EXIT_AND_EXECUTE",
+            "sourceLine": 146,
+            "commandRomOffset": 2801416,
+            "opcode": 1,
+            "commandSize": 16,
+            "segmentId": 20,
+            "romStart": 2530976,
+            "romEndExclusive": 2532256,
+            "spanBytes": 1280,
+            "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+            "sourceStartSymbol": "_introSegmentRomStart",
+            "sourceEndSymbol": "_introSegmentRomEnd",
+            "entrySegmentedPointer": 335544720,
+            "sourceEntrySymbol": "level_intro_entry_4"
+          }
+        ]
+      }
+    ],
+    "verifiedNegativeBranchLinks": [
+      {
+        "sourceTargetArray": "script_L2",
+        "comparisonValue": -1,
+        "resolvedRomOffset": 2801368
+      },
+      {
+        "sourceTargetArray": "goto_mario_head_regular",
+        "comparisonValue": -2,
+        "resolvedRomOffset": 2801384
+      },
+      {
+        "sourceTargetArray": "goto_mario_head_dizzy",
+        "comparisonValue": -3,
+        "resolvedRomOffset": 2801400
+      },
+      {
+        "sourceTargetArray": "script_L1",
+        "comparisonValue": -8,
+        "resolvedRomOffset": 2801352
+      },
+      {
+        "sourceTargetArray": "script_L5",
+        "comparisonValue": -9,
+        "resolvedRomOffset": 2801416
+      }
+    ],
+    "initialEntryUniqueMatchCount": 1,
+    "initialEntry": {
+      "array": "levels/entry.c::level_script_entry",
+      "romStart": 1083920,
+      "romEndExclusive": 1083960,
+      "length": 40,
+      "sha256": "4623716E4B9021B9F634D7D4B858FD72499B8773F8257A9DE675995719509F5A",
+      "commandCount": 6,
+      "commandPatternMatched": true,
+      "commands": [
+        {
+          "macro": "INIT_LEVEL",
+          "sourceLine": 11,
+          "commandRomOffset": 1083920,
+          "opcode": 27,
+          "commandSize": 4
+        },
+        {
+          "macro": "SLEEP",
+          "sourceLine": 12,
+          "commandRomOffset": 1083924,
+          "opcode": 3,
+          "commandSize": 4
+        },
+        {
+          "macro": "BLACKOUT",
+          "sourceLine": 13,
+          "commandRomOffset": 1083928,
+          "opcode": 52,
+          "commandSize": 4
+        },
+        {
+          "macro": "SET_REG",
+          "sourceLine": 14,
+          "commandRomOffset": 1083932,
+          "opcode": 19,
+          "commandSize": 4
+        },
+        {
+          "macro": "EXECUTE",
+          "sourceLine": 15,
+          "commandRomOffset": 1083936,
+          "opcode": 0,
+          "commandSize": 16,
+          "segmentId": 20,
+          "romStart": 2530976,
+          "romEndExclusive": 2532256,
+          "spanBytes": 1280,
+          "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+          "sourceStartSymbol": "_introSegmentRomStart",
+          "sourceEndSymbol": "_introSegmentRomEnd",
+          "entrySegmentedPointer": 335544320,
+          "sourceEntrySymbol": "level_intro_splash_screen"
+        },
+        {
+          "macro": "JUMP",
+          "sourceLine": 16,
+          "commandRomOffset": 1083952,
+          "opcode": 5,
+          "commandSize": 8
+        }
+      ]
+    },
+    "limits": "Full source command opcode/size patterns plus selected branch, EXECUTE, and load operands match canonical ROM; not rebuilt asset equivalence or observed transition execution."
   },
   "passiveSnapshotAdditionalSegments": {
     "capturedUtc": "2026-10-26T05:24:53Z",
@@ -13330,7 +14102,21 @@
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
       "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
-      "sourceRomEvidence": "source transition declared; full raw script/geometry span unresolved"
+      "romStart": 2777376,
+      "romEndExclusive": 2778544,
+      "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
+      "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed",
+      "canonicalCommandOperands": {
+        "commandRomOffset": 2801256,
+        "opcode": 0,
+        "segmentId": 20,
+        "romStart": 2777376,
+        "romEndExclusive": 2778544,
+        "spanBytes": 1168,
+        "encodedRomSpanSha256": "81D81FDDFD268206E5F173BF3FE520E949F89B3419779E3FA5FF0FEDAB466B02",
+        "entrySegmentedPointer": 335544600,
+        "sourceOpcodeLengthPatternMatched": true
+      }
     },
     {
       "source": "levels/scripts.c",
@@ -13345,7 +14131,21 @@
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
       "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
-      "sourceRomEvidence": "source transition declared; full raw script/geometry span unresolved"
+      "romStart": 2530976,
+      "romEndExclusive": 2532256,
+      "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
+      "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed",
+      "canonicalCommandOperands": {
+        "commandRomOffset": 2801352,
+        "opcode": 1,
+        "segmentId": 20,
+        "romStart": 2530976,
+        "romEndExclusive": 2532256,
+        "spanBytes": 1280,
+        "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+        "entrySegmentedPointer": 335544320,
+        "sourceOpcodeLengthPatternMatched": true
+      }
     },
     {
       "source": "levels/scripts.c",
@@ -13363,7 +14163,18 @@
       "romStart": 4900016,
       "romEndExclusive": 4900208,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed",
+      "canonicalCommandOperands": {
+        "commandRomOffset": 2801368,
+        "opcode": 1,
+        "segmentId": 14,
+        "romStart": 4900016,
+        "romEndExclusive": 4900208,
+        "spanBytes": 192,
+        "encodedRomSpanSha256": "CE946FF17F1845C489FA8CF607B348051ADEAE68E127032B48E543A99A59584D",
+        "entrySegmentedPointer": 234881024,
+        "sourceOpcodeLengthPatternMatched": true
+      }
     },
     {
       "source": "levels/scripts.c",
@@ -13378,7 +14189,21 @@
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
       "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
-      "sourceRomEvidence": "source transition declared; full raw script/geometry span unresolved"
+      "romStart": 2530976,
+      "romEndExclusive": 2532256,
+      "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
+      "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed",
+      "canonicalCommandOperands": {
+        "commandRomOffset": 2801384,
+        "opcode": 1,
+        "segmentId": 20,
+        "romStart": 2530976,
+        "romEndExclusive": 2532256,
+        "spanBytes": 1280,
+        "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+        "entrySegmentedPointer": 335544440,
+        "sourceOpcodeLengthPatternMatched": true
+      }
     },
     {
       "source": "levels/scripts.c",
@@ -13393,7 +14218,21 @@
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
       "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
-      "sourceRomEvidence": "source transition declared; full raw script/geometry span unresolved"
+      "romStart": 2530976,
+      "romEndExclusive": 2532256,
+      "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
+      "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed",
+      "canonicalCommandOperands": {
+        "commandRomOffset": 2801400,
+        "opcode": 1,
+        "segmentId": 20,
+        "romStart": 2530976,
+        "romEndExclusive": 2532256,
+        "spanBytes": 1280,
+        "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+        "entrySegmentedPointer": 335544580,
+        "sourceOpcodeLengthPatternMatched": true
+      }
     },
     {
       "source": "levels/scripts.c",
@@ -13408,7 +14247,21 @@
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
       "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
-      "sourceRomEvidence": "source transition declared; full raw script/geometry span unresolved"
+      "romStart": 2530976,
+      "romEndExclusive": 2532256,
+      "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
+      "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed",
+      "canonicalCommandOperands": {
+        "commandRomOffset": 2801416,
+        "opcode": 1,
+        "segmentId": 20,
+        "romStart": 2530976,
+        "romEndExclusive": 2532256,
+        "spanBytes": 1280,
+        "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+        "entrySegmentedPointer": 335544720,
+        "sourceOpcodeLengthPatternMatched": true
+      }
     },
     {
       "source": "levels/entry.c",
@@ -13423,7 +14276,21 @@
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
       "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
-      "sourceRomEvidence": "source transition declared; full raw script/geometry span unresolved"
+      "romStart": 2530976,
+      "romEndExclusive": 2532256,
+      "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
+      "sourceRomEvidence": "source dispatcher command opcode/size and numeric ROM operands match the unique canonical array sequence; execution not observed",
+      "canonicalCommandOperands": {
+        "commandRomOffset": 1083936,
+        "opcode": 0,
+        "segmentId": 20,
+        "romStart": 2530976,
+        "romEndExclusive": 2532256,
+        "spanBytes": 1280,
+        "encodedRomSpanSha256": "C5B1C446B0EE77BB4189E00412847B9DE9D61DCBB25FC609F206DC7F5A855038",
+        "entrySegmentedPointer": 335544320,
+        "sourceOpcodeLengthPatternMatched": true
+      }
     },
     {
       "source": "levels/scripts.c",
@@ -14018,8 +14885,8 @@
   "limits": [
     "MIO0 structural validity does not identify the decoded data or show runtime use.",
     "Ordinal linker association assumes ROM asset order follows the pinned linker script; independent byte equality against built source assets is not claimed.",
-    "Raw segment full ROM boundaries are not established by this census.",
-    "Runtime segment bases and allocation lifetime are native-code properties; Project64 observations remain open.",
+    "Adjacent linker intervals remain candidates for shared raw assets not directly bounded by source-encoded commands; course banks and dispatcher transitions have the direct source-command bounds recorded above.",
+    "Runtime segment bases and allocation lifetime are native-code properties; a Project64 load/unload transition remains unobserved.",
     "No ROM bytes or decoded asset bytes are written to output."
   ]
 }

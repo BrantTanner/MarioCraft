@@ -9,7 +9,7 @@
       "sha256": "589D793EDA195C576C9D767E7A5E4B77352826F59669D20BDCC358A8EBC979A3"
     },
     {
-      "name": "graphics code",
+      "name": "graphics code prefix",
       "romOffset": "0xE6330",
       "length": 4096,
       "sha256": "FFD76B7092CE0C1B6DC2B1FB9992AB2B330F0D813577F49B3A1F32B2AF9AC618"
@@ -107,6 +107,146 @@
     "imem_origin": "0x04001080",
     "rom_start": "0xE6330",
     "rom_end_exclusive": "0xE6A18",
-    "coverage": "resident window only; overlays and runtime descriptor remain unverified"
+    "coverage": "all five declared overlay file ranges decoded separately at table IMEM origins; representative source correlations only; runtime task descriptor unobserved"
+  },
+  "assembled_variants": {
+    "old": {
+      "code": {
+        "length": 5128,
+        "sha256": "36B959E4DA70AEC0BEDA2222581041AF8EC1407478FA8B83AE3128FEC87D5BC0",
+        "matches": [
+          "0xe6330"
+        ]
+      },
+      "data": {
+        "length": 2048,
+        "sha256": "B842FB99D1899C2F0345FCD43BD9F61F38675C39E4EC7BAB5CB130518FBF0F3A",
+        "matches": [
+          "0xf4ac0"
+        ]
+      }
+    },
+    "new": {
+      "code": {
+        "length": 5112,
+        "sha256": "86B56C3C25B247D2A9B075D09AD48161C0997A9191F689E8B1B688D8FA9E7D3C",
+        "matches": []
+      },
+      "data": {
+        "length": 2048,
+        "sha256": "0DE652CA08506CAF0F11A35CC6189CDFC1890977B397EA6ECDD39EF945F51151",
+        "matches": []
+      }
+    },
+    "jp": {
+      "code": {
+        "length": 5128,
+        "sha256": "36B959E4DA70AEC0BEDA2222581041AF8EC1407478FA8B83AE3128FEC87D5BC0",
+        "matches": [
+          "0xe6330"
+        ]
+      },
+      "data": {
+        "length": 2048,
+        "sha256": "B842FB99D1899C2F0345FCD43BD9F61F38675C39E4EC7BAB5CB130518FBF0F3A",
+        "matches": [
+          "0xf4ac0"
+        ]
+      }
+    },
+    "eu": {
+      "code": {
+        "length": 5112,
+        "sha256": "86B56C3C25B247D2A9B075D09AD48161C0997A9191F689E8B1B688D8FA9E7D3C",
+        "matches": []
+      },
+      "data": {
+        "length": 2048,
+        "sha256": "DF9948FE69DC14AB4ECFB491C359F93512635D2DCA88EA46B70A4FD196339875",
+        "matches": []
+      }
+    },
+    "sh": {
+      "code": {
+        "length": 5112,
+        "sha256": "86B56C3C25B247D2A9B075D09AD48161C0997A9191F689E8B1B688D8FA9E7D3C",
+        "matches": []
+      },
+      "data": {
+        "length": 2048,
+        "sha256": "0DE652CA08506CAF0F11A35CC6189CDFC1890977B397EA6ECDD39EF945F51151",
+        "matches": []
+      }
+    },
+    "cn": {
+      "code": {
+        "length": 5112,
+        "sha256": "86B56C3C25B247D2A9B075D09AD48161C0997A9191F689E8B1B688D8FA9E7D3C",
+        "matches": []
+      },
+      "data": {
+        "length": 2048,
+        "sha256": "0DE652CA08506CAF0F11A35CC6189CDFC1890977B397EA6ECDD39EF945F51151",
+        "matches": []
+      }
+    }
+  },
+  "overlay_windows": [
+    {
+      "index": 0,
+      "rom_start": "0xe6330",
+      "rom_end": "0xe7290",
+      "length": 3936,
+      "imem": "0x4001080",
+      "sha256": "42A20FD40B6654FC511AC3CE11EEFC7FCC4AC58A7169B301C545AD7269D4991B"
+    },
+    {
+      "index": 1,
+      "rom_start": "0xe7290",
+      "rom_end": "0xe7318",
+      "length": 136,
+      "imem": "0x4001000",
+      "sha256": "CCC6D8200F2A145FCA4AF0B705016CEBDA571426A124C7F8113EF694EC4792E1"
+    },
+    {
+      "index": 2,
+      "rom_start": "0xe7318",
+      "rom_end": "0xe7538",
+      "length": 544,
+      "imem": "0x4001768",
+      "sha256": "CB3A659AEA19B5A5AF103A4B32F64783EE1CC2D9CBAD2FB32FBD3AE3ED50D36D"
+    },
+    {
+      "index": 3,
+      "rom_start": "0xe7538",
+      "rom_end": "0xe76d0",
+      "length": 408,
+      "imem": "0x4001768",
+      "sha256": "55F217EA0E0D55A3FB0FA5C01A8922010FBF621127641ED2ADBEC1DB3F3CEF7B"
+    },
+    {
+      "index": 4,
+      "rom_start": "0xe76d0",
+      "rom_end": "0xe7738",
+      "length": 104,
+      "imem": "0x4001768",
+      "sha256": "34B3D3082FD1088C653E90C3F72BF1392E99DF52A2F889E14A17C4A041D5F311"
+    }
+  ],
+  "boot_assembly": {
+    "version": "US",
+    "length": 208,
+    "sha256": "589D793EDA195C576C9D767E7A5E4B77352826F59669D20BDCC358A8EBC979A3",
+    "whole_rom_exact_matches": [
+      "0xE6260"
+    ],
+    "imem_origin": "0x04001000"
+  },
+  "cpu_mapping_scope": {
+    "pc_start": "0x80246000",
+    "pc_end_exclusive": "0x8032D560",
+    "rom_start": "0x1000",
+    "rom_end_exclusive": "0xE8560",
+    "formula": "ROM = PC - 0x80245000"
   }
 }

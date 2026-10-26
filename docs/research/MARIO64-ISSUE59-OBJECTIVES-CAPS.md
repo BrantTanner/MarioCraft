@@ -81,5 +81,5 @@ The independently reviewed [warp and state report](MARIO64-ISSUE59-WARPS-AND-STA
 
 ## Open work
 
-Resolve the remaining route-level prerequisites and ambiguous objective-to-placement associations; resolve deeper route prerequisites where needed and obtain reachable observations. The existing #57 inventory and #58 asset manifest provide declarations/asset context, not evidence of these transitions executing. The foreground Project64 transition blocker is deferred; no input, guest writes or new sampling occurred during this work. Keep #59 open.
+Resolve remaining route-level prerequisites and ambiguous objective-to-placement associations, and obtain reachable observations. The existing #57 inventory and #58 asset manifest provide declarations/asset context, not evidence of these transitions executing. The runtime input failure is deferred and its cause remains unresolved; no input, guest writes or new sampling occurred during this work. Keep #59 open.
 

@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "moved": true,
+  "jumped": true,
+  "landed": true,
+  "cameraClearance": 4.0,
+  "cameraControl": true,
+  "nativeAdmissions": 1,
+  "serverContacts": 1,
+  "serverPoseError": 0.0,
+  "serverTick": 334,
+  "ordinaryMobTicks": 334,
+  "poseSampleClientFrame": 340,
+  "pauseVerified": true,
+  "controllerAdapter": true,
+  "fixtureNoAI": true,
+  "travelled": 5.479945591031362,
+  "jumpRise": 3.0
+}

@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+    dependencies { classpath 'net.minecraftforge.gradle:ForgeGradle:3.0.197' }
+}
+apply plugin: 'net.minecraftforge.gradle'
+version = '0.1.0'
+group = 'dev.mariocraft'
+archivesBaseName = 'mariocraft'
+sourceCompatibility = targetCompatibility = '1.8'
+repositories { mavenCentral() }
+minecraft {
+    mappings channel: 'snapshot', version: '20171003-1.12'
+    runs {
+        client {
+            forceExit false
+            workingDirectory project.file('.local/run-client')
+            property 'mariocraft.native', project.file('.local/native/sm64.dll').absolutePath
+            property 'mariocraft.clientProbe', System.getProperty('mariocraft.clientProbe', 'false')
+            property 'mariocraft.gameplay', System.getProperty('mariocraft.gameplay', 'false')
+            property 'mariocraft.gameplayProbe', System.getProperty('mariocraft.gameplayProbe', 'false')
+        }
+        server {
+            forceExit false
+            workingDirectory project.file('.local/run-server')
+            args 'nogui'
+            property 'mariocraft.lifecycleProbe', System.getProperty('mariocraft.lifecycleProbe', 'false')
+        }
+    }
+}
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2864'
+    compile 'net.java.dev.jna:jna:4.4.0'
+    testCompile 'junit:junit:4.13.2'
+}
+jar.finalizedBy('reobfJar')
+task nativeSmoke(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath + sourceSets.test.runtimeClasspath
+    main = 'dev.mariocraft.nativebridge.NativeSmoke'
+    systemProperty 'mariocraft.native', file('.local/native/sm64.dll').absolutePath
+    if (System.getProperty('mariocraft.rom')) systemProperty 'mariocraft.rom', System.getProperty('mariocraft.rom')
+    dependsOn testClasses
+}

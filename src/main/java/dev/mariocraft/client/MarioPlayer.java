@@ -1,6 +1,7 @@
 package dev.mariocraft.client;
 
 import dev.mariocraft.PlayerBridge;
+import dev.mariocraft.combat.MarioCombat;
 import dev.mariocraft.nativebridge.*;
 import dev.mariocraft.simulation.FixedStepClock;
 import net.minecraft.client.Minecraft;
@@ -50,7 +51,8 @@ public final class MarioPlayer {
     private boolean collisionFrozen;
     private io.netty.channel.Channel movementChannel;
     private final GameplayProbe probe=Boolean.getBoolean("mariocraft.gameplayProbe")?new GameplayProbe():null;
-    private final Map<Integer,Integer> contacts=new HashMap<>();
+    private final MarioCombat.Ledger contacts=new MarioCombat.Ledger();
+    private volatile Object combatSession;
     MarioPlayer(Logger log) { this.log=log; }
     private final MarioBindings bindings=new MarioBindings();
     private final ControlState.Gate keyboardGate=new ControlState.Gate();
@@ -93,6 +95,7 @@ public final class MarioPlayer {
                 session=new MarioSession(Paths.get(System.getProperty("mariocraft.native")),MarioSession.discoverRom());
                 session.surfaces(initialSurfaces); submittedSurfaces=initialSurfaces;
                 session.create(terrain.x(mc.player.posX),terrain.y(mc.player.posY)+10,terrain.z(mc.player.posZ));
+                combatSession=new Object();
                 playerId=mc.player.getUniqueID(); yaw=probe==null?mc.player.rotationYaw:probe.initialYaw(mc.player.rotationYaw);
                 cameraModel.reset(mc.player.posX,mc.player.posY,mc.player.posZ,yaw);
                 cameraCollision=new VoxelCamera(world);
@@ -190,6 +193,14 @@ public final class MarioPlayer {
         frames++;
         Sm64Library.Surface[] visible=terrain.at(mc.player.posX,mc.player.posY,mc.player.posZ);
         if(visible!=submittedSurfaces) { session.surfaces(visible); submittedSurfaces=visible; }
+        // Resolve descending feet before the native floor step can erase the airborne action.
+        // Sweep only one native velocity step, and only toward a top contact; side attacks stay post-step.
+        if(poseReady && session.state.velocity[1]<0 && (session.state.action&0x800)!=0) {
+            double projectedY=currentY+Math.max(-.8,session.state.velocity[1]/100.0);
+            MarioCombat.Sample falling=new MarioCombat.Sample(session.state.action,session.state.flags,session.state.animID,session.state.animFrame,
+                currentX,projectedY,currentZ,currentY,session.state.faceAngle,session.state.velocity[1],session.state.forwardVelocity);
+            resolveCombat(mc,falling,true);
+        }
         session.tick(input);
         double x=terrain.ox+session.state.position[0]/100.0;
         double y=terrain.oy+session.state.position[1]/100.0;
@@ -208,32 +219,63 @@ public final class MarioPlayer {
             else probe.observe(frames,session.state,yaw,mc,log);
         }
         if(frames%30==0) log.info("MARIOCRAFT player-step frame={} action={} pos={},{},{}",frames,Integer.toHexString(session.state.action),x,y,z);
-        // First crossover path: nearby attackable living mobs. Native classifier decides action admission.
-        for(EntityLivingBase mob:world.getEntitiesWithinAABB(EntityLivingBase.class,mc.player.getEntityBoundingBox().grow(0.35))) {
-            if(mob==mc.player || !mob.isEntityAlive() || contacts.getOrDefault(mob.getEntityId(),-100)>frames-20) continue;
-            Vec3d target=new Vec3d(mob.posX,mob.posY+mob.height*0.5,mob.posZ);
-            boolean blocked=world.rayTraceBlocks(mc.player.getPositionEyes(1),target,false,true,false)!=null;
-            if(probe!=null && frames>=225 && frames<=280 && frames%5==0) log.info("MARIOCRAFT GAMEPLAY_PROBE candidate frame={} blocked={} action={} flags={} target={},{},{}",frames,blocked,Integer.toHexString(session.state.action),Integer.toHexString(session.state.flags),mob.posX,mob.posY,mob.posZ);
-            if(blocked) continue;
-            if(session.attack(terrain.x(mob.posX),terrain.y(mob.posY),terrain.z(mob.posZ),mob.height*100)) {
-                GameplayProbe.nativeAdmissions.incrementAndGet();
-                contacts.put(mob.getEntityId(),frames);
-                final int id=mob.getEntityId();
-                final UUID uuid=playerId;
-                mc.getIntegratedServer().addScheduledTask(()->{
-                    EntityPlayerMP player=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(uuid);
-                    if(player==null) return;
-                    net.minecraft.entity.Entity entity=player.world.getEntityByID(id);
-                    if(entity instanceof EntityLivingBase && entity.getDistanceSq(player)<9 && player.canEntityBeSeen(entity)) {
-                        float before=((EntityLivingBase)entity).getHealth();
-                        boolean accepted=entity.attackEntityFrom(DamageSource.causePlayerDamage(player),4);
-                        if(accepted) GameplayProbe.acceptedContacts.incrementAndGet();
-                        log.info("MARIOCRAFT mob-contact target={} accepted={} damage=4 healthBefore={} healthAfter={}",id,accepted,before,((EntityLivingBase)entity).getHealth());
-                    }
-                });
-            }
+        MarioCombat.Sample sample=new MarioCombat.Sample(session.state.action,session.state.flags,session.state.animID,session.state.animFrame,
+            x,y,z,previousY,session.state.faceAngle,session.state.velocity[1],session.state.forwardVelocity);
+        resolveCombat(mc,sample,false);
+    }
+    private void resolveCombat(Minecraft mc,MarioCombat.Sample sample,boolean topOnly) {
+        double x=sample.x,y=sample.y,z=sample.z;
+        long epoch=contacts.advance(sample);
+        for(EntityLivingBase mob:world.getEntitiesWithinAABB(EntityLivingBase.class,new AxisAlignedBB(x-.37,y-.25,z-.37,x+.37,Math.max(y+sample.height(),sample.previousY),z+.37))) {
+            if(mob==mc.player || mob instanceof net.minecraft.entity.player.EntityPlayer || !mob.isEntityAlive() || contacts.contains(mob.getUniqueID())) continue;
+            MarioCombat.Target target=combatTarget(mob);
+            MarioCombat.Attack attack=MarioCombat.classify(sample,target);
+            if(attack==null || topOnly && attack!=MarioCombat.Attack.STOMP && attack!=MarioCombat.Attack.GROUND_POUND || !clearContact(world,sample,target)) continue;
+            // The native helper applies recoil/bounce. All local admission gates precede it.
+            if(!session.attack(terrain.x(mob.posX),terrain.y(mob.posY),terrain.z(mob.posZ),mob.height*100)) continue;
+            contacts.consume(mob.getUniqueID());
+            GameplayProbe.nativeAdmissions.incrementAndGet();
+            if(probe!=null) log.info("MARIOCRAFT combat-admitted frame={} epoch={} attack={} x={} y={} z={} targetX={} targetY={} targetZ={}",frames,epoch,attack,sample.x,sample.y,sample.z,target.x,target.y,target.z);
+            final net.minecraft.server.integrated.IntegratedServer server=mc.getIntegratedServer();
+            final net.minecraft.world.WorldServer serverWorld=server==null?null:server.getWorld(world.provider.getDimension());
+            final Object token=combatSession;
+            final UUID uuid=playerId,targetId=mob.getUniqueID();
+            final PlayerBridge.Pose activePose=new PlayerBridge.Pose(sample.x,sample.y,sample.z,false);
+            if(server==null || serverWorld==null) continue;
+            server.addScheduledTask(()->{
+                if(combatSession!=token || !server.isServerRunning() || server.getWorld(serverWorld.provider.getDimension())!=serverWorld || !PlayerBridge.POSES.containsKey(uuid)) return;
+                EntityPlayerMP player=server.getPlayerList().getPlayerByUUID(uuid);
+                if(player==null || !player.isEntityAlive() || player.world!=serverWorld || player.getDistanceSq(activePose.x,activePose.y,activePose.z)>9) return;
+                net.minecraft.entity.Entity entity=serverWorld.getEntityFromUuid(targetId);
+                if(!(entity instanceof EntityLivingBase) || entity instanceof net.minecraft.entity.player.EntityPlayer || !entity.isEntityAlive()) return;
+                EntityLivingBase living=(EntityLivingBase)entity;
+                MarioCombat.Target actual=combatTarget(living);
+                if(MarioCombat.classify(sample,actual)!=attack || !clearContact(serverWorld,sample,actual)) { if(probe!=null) log.info("MARIOCRAFT combat-server-rejected attack={} targetX={} targetY={} targetZ={}",attack,actual.x,actual.y,actual.z);return; }
+                float before=living.getHealth();
+                // Direct attributed living damage, without the vanilla inventory/weapon click route.
+                boolean accepted=living.attackEntityFrom(new net.minecraft.util.EntityDamageSource("mario."+attack.name().toLowerCase(java.util.Locale.ROOT),player),attack.damage);
+                if(accepted) GameplayProbe.acceptedContacts.incrementAndGet();
+                log.info("MARIOCRAFT mob-contact target={} uuid={} attack={} accepted={} damage={} healthBefore={} healthAfter={} aiDisabled={}",entity.getEntityId(),targetId,attack,accepted,attack.damage,before,living.getHealth(),living instanceof net.minecraft.entity.EntityLiving && ((net.minecraft.entity.EntityLiving)living).isAIDisabled());
+                if(probe!=null) probe.combatContact(attack,living,accepted,before,living.getHealth());
+            });
         }
     }
+    private static MarioCombat.Target combatTarget(EntityLivingBase mob) {
+        AxisAlignedBB box=mob.getEntityBoundingBox();
+        return new MarioCombat.Target((box.minX+box.maxX)/2,box.minY,(box.minZ+box.maxZ)/2,Math.max(box.maxX-box.minX,box.maxZ-box.minZ)/2,box.maxY-box.minY);
+    }
+    private static boolean clearContact(net.minecraft.world.World world,MarioCombat.Sample sample,MarioCombat.Target target) {
+        // A narrow contact corridor uses real collision boxes, including partial blocks.
+        // Top attacks originate at the feet; side attacks at the shared body height.
+        MarioCombat.Attack attack=MarioCombat.classify(sample,target);
+        boolean top=attack==MarioCombat.Attack.STOMP || attack==MarioCombat.Attack.GROUND_POUND;
+        double height=top?Math.max(sample.previousY,sample.y):Math.max(sample.y+.1,Math.min(sample.y+.8,target.y+target.height*.5));
+        Vec3d from=new Vec3d(sample.x,height,sample.z),to=new Vec3d(target.x,Math.min(height,target.y+target.height-.01),target.z);
+        AxisAlignedBB corridor=new AxisAlignedBB(from.x,from.y,from.z,to.x,to.y,to.z).grow(.03);
+        if(!world.isAreaLoaded(new BlockPos(corridor.minX,corridor.minY,corridor.minZ),new BlockPos(corridor.maxX,corridor.maxY,corridor.maxZ))) return false;
+        return CombatGeometry.clear(world.getCollisionBoxes(null,corridor),from,to);
+    }
+
     @SubscribeEvent public void hide(RenderPlayerEvent.Pre event) {
         if(session!=null && event.getEntityPlayer().getUniqueID().equals(playerId)) event.setCanceled(true);
     }
@@ -294,6 +336,7 @@ public final class MarioPlayer {
         GlStateManager.color(1,1,1,1);
     }
     private void close() {
+        combatSession=null;
         if(world!=null) world.removeEventListener(terrainChanges);
         terrainChanges.dirty=true; collisionFrozen=false;
         if(playerId!=null) PlayerBridge.POSES.remove(playerId);

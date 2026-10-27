@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "backend": "libsm64 fd11813208272b4271d92bd92feb8f3fdbe61be5",
+  "kind": "synthetic native input regression, not normal-world gameplay",
+  "case": "active jump-kick facing miss retains descending top-contact stomp fallback",
+  "forcedActionOrVelocity": false,
+  "javaClassifiedStomp": true,
+  "nativeAdmitted": true,
+  "postBounceNextStepVelocity": 26.0,
+  "nativeSmokeAbiMovementAndRepeatedLifecyclePassed": true
+}

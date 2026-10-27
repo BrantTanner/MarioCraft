@@ -25,3 +25,6 @@ build/
 *.dylib
 *.so
 !gradle/wrapper/gradle-wrapper.jar
+
+# Minecraft utility classes initialize logging during asset-free tests.
+/logs/

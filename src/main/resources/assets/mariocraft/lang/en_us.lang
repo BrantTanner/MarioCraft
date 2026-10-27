@@ -15,3 +15,9 @@ key.mariocraft.c_down=C Down / Camera down
 key.mariocraft.l=L / Camera shoulder left
 key.mariocraft.r=R / Camera shoulder right
 key.mariocraft.start=Start / Pause
+
+death.attack.mario.punch=%1$s was punched by %2$s
+death.attack.mario.kick=%1$s was kicked by %2$s
+death.attack.mario.stomp=%1$s was stomped by %2$s
+death.attack.mario.dive=%1$s was hit by %2$s diving
+death.attack.mario.ground_pound=%1$s was ground pounded by %2$s

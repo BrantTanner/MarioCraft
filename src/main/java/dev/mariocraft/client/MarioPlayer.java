@@ -74,6 +74,7 @@ public final class MarioPlayer {
         if(controlledPlayer!=null && (mc.player!=controlledPlayer || !controlledPlayer.isEntityAlive())) { close(); failed=false; }
         if(mc.player==null || !mc.player.isEntityAlive() || mc.world==null || !mc.isSingleplayer() || failed) { clock.advance(System.nanoTime(),true); return; }
         if(session==null) {
+            if(probe!=null && !probe.prepare(mc,log)) return;
             if(mc.player.ticksExisted<20 || !world.isBlockLoaded(new BlockPos(mc.player.posX,mc.player.posY,mc.player.posZ))) return;
             try {
                 terrain=new TerrainMesh(mc.player.posX,mc.player.posY,mc.player.posZ);
@@ -135,6 +136,7 @@ public final class MarioPlayer {
         mc.player.setVelocity(0,0,0);
     }
     private void step(Minecraft mc) {
+        if(probe!=null) probe.setup(frames,session,terrain,mc);
         Sm64Library.Inputs input=new Sm64Library.Inputs();
         boolean controls=mc.currentScreen==null && mc.inGameHasFocus;
         ControlState keyboard=keyboardGate.filter(bindings.sample(),controls);

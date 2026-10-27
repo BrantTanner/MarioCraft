@@ -1,0 +1,159 @@
+{
+  "passed": true,
+  "nativeSteps": 1800,
+  "recipes": {
+    "crouch-crawl": {
+      "observedActions": [
+        "c400201",
+        "c008221",
+        "c008220",
+        "c008223",
+        "4008448",
+        "c008224",
+        "c008222"
+      ]
+    },
+    "backflip": {
+      "observedActions": [
+        "c400201",
+        "c008221",
+        "c008220",
+        "1000883",
+        "400047a",
+        "800022f"
+      ]
+    },
+    "ground-pound": {
+      "observedActions": [
+        "c400201",
+        "3000880",
+        "8008a9",
+        "80023c",
+        "c00023e"
+      ]
+    },
+    "long-jump": {
+      "observedActions": [
+        "c400201",
+        "4000440",
+        "4808459",
+        "3000888",
+        "479",
+        "800023b",
+        "c008220",
+        "c008222"
+      ]
+    },
+    "sideflip": {
+      "observedActions": [
+        "c400201",
+        "4000440",
+        "443",
+        "1000887",
+        "4000473",
+        "c000233"
+      ]
+    },
+    "jump-chain": {
+      "observedActions": [
+        "c400201",
+        "4000440",
+        "3000880",
+        "4000470",
+        "3000881",
+        "4000472",
+        "1000882",
+        "4000478",
+        "4000445",
+        "c00023d"
+      ]
+    },
+    "slide-kick": {
+      "observedActions": [
+        "c400201",
+        "4000440",
+        "4808459",
+        "18008aa",
+        "80045a",
+        "8000225",
+        "c008220",
+        "c008222"
+      ]
+    },
+    "ground-dive-rollout": {
+      "observedActions": [
+        "c400201",
+        "4000440",
+        "188088a",
+        "880456",
+        "10008a6",
+        "c000232"
+      ]
+    },
+    "air-kick": {
+      "observedActions": [
+        "c400201",
+        "3000880",
+        "18008ac",
+        "4000471",
+        "c000232"
+      ]
+    },
+    "air-dive": {
+      "observedActions": [
+        "c400201",
+        "4000440",
+        "3000880",
+        "188088a",
+        "880456",
+        "386"
+      ]
+    }
+  },
+  "postUpdateComparisons": [
+    {
+      "recipe": "backflip",
+      "frame": 230,
+      "action": "1000883",
+      "vy": 58.0,
+      "referenceVy": 58,
+      "forwardSpeed": -15.65,
+      "animation": 4
+    },
+    {
+      "recipe": "sideflip",
+      "frame": 797,
+      "action": "1000887",
+      "vy": 58.0,
+      "referenceVy": 58,
+      "forwardSpeed": 9.15,
+      "animation": 191
+    },
+    {
+      "recipe": "long-jump",
+      "frame": 608,
+      "action": "3000888",
+      "vy": 28.0,
+      "referenceVy": 28,
+      "forwardSpeed": 32.89125,
+      "animation": 19
+    },
+    {
+      "recipe": "jump-chain",
+      "frame": 1007,
+      "action": "1000882",
+      "vy": 65.0,
+      "referenceVy": 65,
+      "forwardSpeed": 28.354279,
+      "animation": 193
+    }
+  ],
+  "comparisonTolerance": 0.001,
+  "reference": "MARIO64-ISSUE39-JUMP-ARCS-AIR-CONTROL-AND-COMBINATIONS.md",
+  "jumpRelease": {
+    "frame": 970,
+    "beforeVy": 28.369263,
+    "afterVy": 7.0923157,
+    "rule": "quarter upward velocity"
+  }
+}

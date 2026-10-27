@@ -1,0 +1,82 @@
+{
+  "scope": "Castle grounds hidden pole one-up, partial observation",
+  "scene": {
+    "level": 16,
+    "course": 0
+  },
+  "baseline": {
+    "health": 2176,
+    "lives": 1
+  },
+  "sampledSequence": [
+    {
+      "loopCounter": 2709069,
+      "oneUpAction": 3,
+      "lives": 1,
+      "utc": "2026-10-27T02:58:47.665Z"
+    },
+    {
+      "loopCounter": 2709106,
+      "oneUpAction": 1,
+      "lives": 1,
+      "utc": "2026-10-27T02:58:48.900Z"
+    },
+    {
+      "loopCounter": 2709112,
+      "selectedOneUpPresent": false,
+      "lives": 2,
+      "utc": "2026-10-27T02:58:49.089Z"
+    }
+  ],
+  "after": {
+    "health": 2176,
+    "lives": 2,
+    "playMode": 2
+  },
+  "behaviorMatch": {
+    "address": "0x800EF2C8",
+    "romOffset": "0x21DF48",
+    "length": 56,
+    "sha256": "8EC6059AB4B87D5FFCB9C8A9B131FA8BC792043469C18D9D6C6D44BEB7F2EB91",
+    "unique": true,
+    "observedSeparately": true
+  },
+  "nativeFunctions": [
+    {
+      "address": "0x802F496C",
+      "romOffset": "0xAF96C",
+      "length": 404,
+      "sha256": "D01DB56F6E1A4C34510AEDEF946966C47E74178A771600251B1D60CA156735EF"
+    },
+    {
+      "address": "0x802F3EA8",
+      "romOffset": "0xAEEA8",
+      "length": 372,
+      "sha256": "A1A5CF967C0D4B44D3625D264E2F67D8D10327EABA69B0E4A689D5F1BFE95E54"
+    },
+    {
+      "address": "0x802F4B00",
+      "romOffset": "0xAFB00",
+      "length": 120,
+      "sha256": "E212F5672F0CF892B7D07D72CC5AB85FAEE8A324B820768D2B79DB1097AD4255"
+    },
+    {
+      "address": "0x802F4B78",
+      "romOffset": "0xAFB78",
+      "length": 240,
+      "sha256": "171DEF45EF8605DCEDF39051C625708390AF138A67A5FEE2181F1AA94CB823FB"
+    },
+    {
+      "address": "0x802F3C54",
+      "romOffset": "0xAEC54",
+      "length": 116,
+      "sha256": "B024F26A53F303E52AF1F434F8033443D30A49EE9E834BA447DD5CB143954807"
+    }
+  ],
+  "limitations": [
+    "Sampled non-atomic brackets; no exact collision frame.",
+    "Separate live behavior residency observation does not establish continuous lifetime.",
+    "Controlled coin and healing outcomes remain unobserved."
+  ]
+}
+

@@ -340,7 +340,7 @@ def main() -> None:
         bank_raw_intervals[folder] = {
             "romStart": bank_start, "romEndExclusive": bank_end,
             "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-            "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established",
+            "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution",
         }
         level_bank_rows.append({
             "folder": folder, "levelId": level_id,
@@ -520,7 +520,7 @@ def main() -> None:
                 }
                 row["lifetimeEvidence"] = {
                     "MIO0": "native helper allocates decoded output and installs the segment base; temporary compressed copy is freed on success; exact pool owner/replacement timing is not observed",
-                    "MIO0_TEXTURE": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+                    "MIO0_TEXTURE": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
                     "RAW": "native helper copies the declared interval and installs the segment base; per-course release timing is not observed",
                 }[row["loadClass"]]
                 if ordinal is not None and row["loadClass"] != "RAW":
@@ -571,7 +571,7 @@ def main() -> None:
             }
             row["lifetimeEvidence"] = {
                 "MIO0": "native helper allocates decoded output and installs the segment base; temporary compressed copy is freed on success; exact pool owner/replacement timing is not observed",
-                "MIO0_TEXTURE": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+                "MIO0_TEXTURE": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
                 "RAW": "native helper copies the declared interval and installs the segment base; per-course release timing is not observed",
             }[row["loadClass"]]
             ordinal = row["linkerMio0Ordinal"]
@@ -603,7 +603,7 @@ def main() -> None:
                     "segmentId": a[0], "romStartSymbol": a[1], "romEndSymbol": a[2],
                     "entrySymbol": a[3], "linkerSymbol": symbol,
                     "linkerMio0Ordinal": None, "loadClass": "RAW_SCRIPT_GEO",
-                    "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
+                    "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; transition timing is not captured by this generator",
                 }
                 if symbol in raw_intervals:
                     row.update(raw_intervals[symbol])
@@ -636,7 +636,7 @@ def main() -> None:
             "romEndSymbol": "_" + folder + "SegmentRomEnd",
             "entrySymbol": "level_" + folder + "_entry", "linkerSymbol": folder,
             "linkerMio0Ordinal": None, "loadClass": "RAW_SCRIPT_GEO",
-            "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+            "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
         }
         if folder in raw_intervals:
             row.update(raw_intervals[folder])
@@ -703,7 +703,7 @@ def main() -> None:
             "MIO0 structural validity does not identify the decoded data or show runtime use.",
             "Ordinal linker association assumes ROM asset order follows the pinned linker script; independent byte equality against built source assets is not claimed.",
             "Adjacent linker intervals remain candidates for shared raw assets not directly bounded by source-encoded commands; course banks and dispatcher transitions have the direct source-command bounds recorded above.",
-            "Runtime segment bases and allocation lifetime are native-code properties; a Project64 load/unload transition remains unobserved.",
+            "This generator does not capture runtime transitions; see the separate runtime evidence report for bounded observations.",
             "No ROM bytes or decoded asset bytes are written to output.",
         ],
     }

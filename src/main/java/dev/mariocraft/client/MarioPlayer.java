@@ -44,7 +44,29 @@ public final class MarioPlayer {
     private final GameplayProbe probe=Boolean.getBoolean("mariocraft.gameplayProbe")?new GameplayProbe():null;
     private final Map<Integer,Integer> contacts=new HashMap<>();
     MarioPlayer(Logger log) { this.log=log; }
-    private boolean key(int code) { return Keyboard.isKeyDown(code); }
+    private final MarioBindings bindings=new MarioBindings();
+    private final ControlState.Gate keyboardGate=new ControlState.Gate();
+    private net.minecraft.util.MouseHelper previousMouse;
+    private boolean startHeld,gameplayControls;
+    private final Map<net.minecraft.client.settings.KeyBinding,net.minecraftforge.client.settings.IKeyConflictContext> vanillaContexts=new HashMap<>();
+    private void ownVanillaBindings(Minecraft mc) {
+        net.minecraft.client.settings.GameSettings g=mc.gameSettings;
+        net.minecraft.client.settings.KeyBinding[] keys={g.keyBindForward,g.keyBindBack,g.keyBindLeft,g.keyBindRight,g.keyBindJump,g.keyBindSneak,g.keyBindSprint,g.keyBindAttack,g.keyBindUseItem,g.keyBindPickBlock,g.keyBindDrop,g.keyBindInventory,g.keyBindSwapHands};
+        for(net.minecraft.client.settings.KeyBinding key:keys) {
+            final net.minecraftforge.client.settings.IKeyConflictContext original=key.getKeyConflictContext();
+            vanillaContexts.put(key,original);
+            key.setKeyConflictContext(new net.minecraftforge.client.settings.IKeyConflictContext() {
+                public boolean isActive() { return mc.currentScreen!=null && original.isActive(); }
+                public boolean conflicts(net.minecraftforge.client.settings.IKeyConflictContext other) { return original.conflicts(other); }
+            });
+        }
+    }
+    @SubscribeEvent public void interact(net.minecraftforge.event.entity.player.PlayerInteractEvent event) {
+        if(session!=null && event.getEntityPlayer()==Minecraft.getMinecraft().player && event.isCancelable()) event.setCanceled(true);
+    }
+    @SubscribeEvent public void attack(net.minecraftforge.event.entity.player.AttackEntityEvent event) {
+        if(session!=null && event.getEntityPlayer()==Minecraft.getMinecraft().player) event.setCanceled(true);
+    }
     @SubscribeEvent public void update(TickEvent.RenderTickEvent event) {
         if(event.phase!=TickEvent.Phase.START) return;
         Minecraft mc=Minecraft.getMinecraft();
@@ -64,6 +86,8 @@ public final class MarioPlayer {
                 movementChannel=mc.getConnection().getNetworkManager().channel();
                 movementChannel.pipeline().addBefore("packet_handler","mariocraft_movement",new MovementPacketGate(playerId));
                 controlledPlayer=mc.player;
+                previousMouse=mc.mouseHelper; mc.mouseHelper=new MarioMouse();
+                ownVanillaBindings(mc);
                 previousPerspective=mc.gameSettings.thirdPersonView;
                 previousAutoJump=mc.gameSettings.autoJump;
                 previousStep=mc.player.stepHeight;
@@ -81,6 +105,18 @@ public final class MarioPlayer {
                 log.info("MARIOCRAFT native-player-created origin={},{},{}",terrain.ox,terrain.oy,terrain.oz);
             } catch(Exception|LinkageError error) { log.error("MARIOCRAFT native player initialization failed",error); close(); failed=true; if(probe!=null) GameplayProbe.fail("native initialization"); return; }
         }
+        boolean gameplay=mc.currentScreen==null && mc.inGameHasFocus;
+        if(!gameplay) keyboardGate.reset();
+        if(gameplayControls && !gameplay) controller.suspend();
+        gameplayControls=gameplay;
+        // Start must be sampled even while the fixed-step clock is paused.
+        boolean pauseScreen=mc.currentScreen instanceof net.minecraft.client.gui.GuiIngameMenu;
+        ControlState pausePad=controller.sample(mc.inGameHasFocus || (pauseScreen && org.lwjgl.opengl.Display.isActive()),log);
+        boolean start=(org.lwjgl.opengl.Display.isActive() && bindings.startDown()) || pausePad.start || (probe!=null && GameplayProbe.syntheticStart);
+        if(start && !startHeld && (mc.currentScreen==null || pauseScreen)) {
+            mc.displayGuiScreen(pauseScreen?null:new net.minecraft.client.gui.GuiIngameMenu());
+        }
+        startHeld=start;
         int count=clock.advance(System.nanoTime(),mc.isGamePaused());
         if(mc.isGamePaused()) { previousX=currentX; previousY=currentY; previousZ=currentZ; }
         try { for(int i=0;i<count;i++) step(mc); }
@@ -101,24 +137,18 @@ public final class MarioPlayer {
     private void step(Minecraft mc) {
         Sm64Library.Inputs input=new Sm64Library.Inputs();
         boolean controls=mc.currentScreen==null && mc.inGameHasFocus;
-        if(controls) {
-            if(key(Keyboard.KEY_LEFT)) yaw-=5;
-            if(key(Keyboard.KEY_RIGHT)) yaw+=5;
-            if(key(Keyboard.KEY_UP)) pitch=Math.max(-60,pitch-3);
-            if(key(Keyboard.KEY_DOWN)) pitch=Math.min(70,pitch+3);
-            float x=(key(Keyboard.KEY_D)?1:0)-(key(Keyboard.KEY_A)?1:0);
-            float y=(key(Keyboard.KEY_S)?1:0)-(key(Keyboard.KEY_W)?1:0);
-            float length=(float)Math.sqrt(x*x+y*y);
-            float speed=key(Keyboard.KEY_LCONTROL)?0.4f:key(Keyboard.KEY_LMENU)?0.7f:1;
-            if(length>0) { input.stickX=x/length*speed; input.stickY=y/length*speed; }
-            input.buttonA=(byte)(key(Keyboard.KEY_SPACE)?1:0);
-            input.buttonB=(byte)(key(Keyboard.KEY_J)?1:0);
-            input.buttonZ=(byte)(key(Keyboard.KEY_LSHIFT)?1:0);
-        }
-        controller.poll(input,controls,log);
+        ControlState keyboard=keyboardGate.filter(bindings.sample(),controls);
+        ControlState pad=controller.sample(controls,log);
+        ControlState state=pad.neutral()?keyboard:pad;
+        if(probe!=null) state=probe.controls(frames,bindings);
+        state.apply(input);
+        if(state.left) yaw-=5; if(state.right) yaw+=5;
+        if(state.up) pitch=Math.max(-60,pitch-3); if(state.down) pitch=Math.min(70,pitch+3);
+        // Semantic shoulders are intentionally exposed; full camera mode behavior belongs to #23.
+        if(state.l) yaw-=5; if(state.r) yaw+=5;
         input.camLookX=-(float)Math.sin(Math.toRadians(yaw));
         input.camLookZ=(float)Math.cos(Math.toRadians(yaw));
-        if(probe!=null) { input=new Sm64Library.Inputs(); yaw=probe.camera(frames,yaw,mc,log); probe.input(frames,input); input.camLookX=-(float)Math.sin(Math.toRadians(yaw)); input.camLookZ=(float)Math.cos(Math.toRadians(yaw)); }
+        if(probe!=null) { yaw=probe.camera(frames,yaw,mc,log); input.camLookX=-(float)Math.sin(Math.toRadians(yaw)); input.camLookZ=(float)Math.cos(Math.toRadians(yaw)); }
         if(Math.abs(terrain.x(mc.player.posX))>5000 || Math.abs(terrain.z(mc.player.posZ))>5000 || Math.abs(terrain.y(mc.player.posY))>5000) {
             poseReady=false;
             terrain=new TerrainMesh(mc.player.posX,mc.player.posY,mc.player.posZ);
@@ -241,6 +271,10 @@ public final class MarioPlayer {
             Minecraft.getMinecraft().gameSettings.autoJump=previousAutoJump;
             controlledPlayer=null;
         }
+        if(previousMouse!=null) { Minecraft.getMinecraft().mouseHelper=previousMouse; previousMouse=null; }
+        for(Map.Entry<net.minecraft.client.settings.KeyBinding,net.minecraftforge.client.settings.IKeyConflictContext> entry:vanillaContexts.entrySet()) entry.getKey().setKeyConflictContext(entry.getValue());
+        vanillaContexts.clear();
+        keyboardGate.reset(); controller.close(); startHeld=false; gameplayControls=false;
         playerId=null; contacts.clear(); frames=0; poseReady=false; clock.advance(System.nanoTime(),true);
     }
 }

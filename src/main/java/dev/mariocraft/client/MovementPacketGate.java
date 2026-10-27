@@ -2,7 +2,7 @@ package dev.mariocraft.client;
 
 import dev.mariocraft.PlayerBridge;
 import io.netty.channel.*;
-import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.client.*;
 import java.util.UUID;
 
 /** The integrated server samples native poses directly; vanilla movement packets must not resolve them a second time. */
@@ -10,7 +10,7 @@ final class MovementPacketGate extends ChannelOutboundHandlerAdapter {
     private final UUID player;
     MovementPacketGate(UUID player) { this.player=player; }
     @Override public void write(ChannelHandlerContext context,Object packet,ChannelPromise promise) throws Exception {
-        if(packet instanceof CPacketPlayer && PlayerBridge.POSES.containsKey(player)) { promise.setSuccess(); return; }
+        if((packet instanceof CPacketPlayer || packet instanceof CPacketUseEntity || packet instanceof CPacketPlayerDigging || packet instanceof CPacketPlayerTryUseItem || packet instanceof CPacketPlayerTryUseItemOnBlock) && PlayerBridge.POSES.containsKey(player)) { promise.setSuccess(); return; }
         context.write(packet,promise);
     }
 }

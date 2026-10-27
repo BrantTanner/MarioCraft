@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.*;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = MarioCraft.ID, name = "MarioCraft", version = "0.1.0", acceptedMinecraftVersions = "[1.12.2]")
+@Mod(modid = MarioCraft.ID, name = "MarioCraft", version = "0.1.0", acceptedMinecraftVersions = "[1.12.2]", guiFactory = "dev.mariocraft.client.ControlsGuiFactory")
 public final class MarioCraft {
     public static final String ID = "mariocraft";
     @SidedProxy(clientSide = "dev.mariocraft.client.ClientProxy", serverSide = "dev.mariocraft.CommonProxy")

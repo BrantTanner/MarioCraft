@@ -35,17 +35,19 @@ public final class ClientLifecycleProbe {
         if(Boolean.getBoolean("mariocraft.gameplayProbe") && mc.world!=null && GameplayProbe.currentFrame>=170 && !pauseDone) {
             if(pauseStarted==0) {
                 pauseStarted=System.nanoTime();
-                mc.displayGuiScreen(new net.minecraft.client.gui.GuiIngameMenu());
+                GameplayProbe.syntheticStart=true;
             }
             long elapsed=System.nanoTime()-pauseStarted;
+            if(elapsed>100000000L && elapsed<300000000L) GameplayProbe.syntheticStart=false;
             if(elapsed<300000000L) { pauseFrame=GameplayProbe.currentFrame; pauseWorldTick=mc.world.getTotalWorldTime(); }
             else if(elapsed>900000000L) {
                 GameplayProbe.pauseVerified=mc.isGamePaused() && pauseFrame==GameplayProbe.currentFrame && pauseWorldTick==mc.world.getTotalWorldTime();
                 log.info("MARIOCRAFT GAMEPLAY_PROBE pause verified={} frame={} worldTick={}",GameplayProbe.pauseVerified,pauseFrame,pauseWorldTick);
                 pauseDone=true;
-                mc.displayGuiScreen(null);
+                GameplayProbe.syntheticStart=true;
             }
         }
+        if(pauseDone && mc.currentScreen==null) GameplayProbe.syntheticStart=false;
         if (phase == 0 && mc.currentScreen instanceof GuiMainMenu && ++waits > 20) {
             log.info("MARIOCRAFT CLIENT_PROBE opening normal-world");
             phase = 1;

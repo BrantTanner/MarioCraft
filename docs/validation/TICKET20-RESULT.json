@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "moved": true,
+  "jumped": true,
+  "landed": true,
+  "cameraClearance": 4.0,
+  "cameraControl": true,
+  "nativeAdmissions": 3,
+  "serverContacts": 3,
+  "serverPoseError": 0.0,
+  "serverTick": 341,
+  "ordinaryMobTicks": 341,
+  "poseSampleClientFrame": 340,
+  "pauseVerified": true,
+  "vanillaSuppression": true,
+  "bindingPersistence": true,
+  "controlsVerified": true,
+  "keyboardControllerEquivalent": true,
+  "controllerAdapter": true,
+  "fixtureNoAI": true,
+  "travelled": 3.055000000000007,
+  "jumpRise": 2.585000000000008
+}

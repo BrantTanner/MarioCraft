@@ -10,6 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 /** Explicit test-only input seam. Runs inside a normal world without keyboard/focus automation. */
 final class GameplayProbe {
     static volatile boolean complete;
+    static volatile boolean syntheticStart;
+    private boolean vanillaSuppression;
     static volatile int currentFrame;
     static volatile boolean pauseVerified;
     static final AtomicInteger acceptedContacts=new AtomicInteger();
@@ -34,14 +36,55 @@ final class GameplayProbe {
             java.nio.file.Files.write(new java.io.File(Minecraft.getMinecraft().mcDataDir,"gameplay-result.json").toPath(),result.getBytes(java.nio.charset.StandardCharsets.UTF_8));
         } catch(java.io.IOException error) { throw new IllegalStateException("Could not save gameplay probe result",error); }
     }
-    void input(int frame,Sm64Library.Inputs input) {
-        // Synthetic device state enters the same mapping as physical LWJGL samples.
-        ControllerInput.map(input,0,frame>=30 && frame<120?-1:0,
-            frame>=90 && frame<96,
-            firstAttackFrame>=0 && frame>=firstAttackFrame && frame<firstAttackFrame+48 && (frame-firstAttackFrame)%20<8,false);
+    private final ControlState.Gate syntheticGate=new ControlState.Gate();
+    private boolean controlsVerified;
+    private int oldJumpCode;
+    private boolean bindingPersistence;
+    ControlState controls(int frame,MarioBindings bindings) {
+        // Alternate keyboard and controller routes within the same actual native player session.
+        boolean forward=frame>=30 && frame<120;
+        boolean jump=frame>=90 && frame<96;
+        boolean attack=firstAttackFrame>=0 && frame>=firstAttackFrame && frame<firstAttackFrame+48 && (frame-firstAttackFrame)%20<8;
+        if(frame==0) {
+            oldJumpCode=bindings.binding(6).getKeyCode();
+            bindings.binding(6).setKeyCode(org.lwjgl.input.Keyboard.KEY_K);
+            net.minecraft.client.settings.KeyBinding.resetKeyBindingArrayAndHash();
+            Minecraft.getMinecraft().gameSettings.saveOptions();
+            Minecraft.getMinecraft().gameSettings.loadOptions();
+            bindingPersistence=bindings.binding(6).getKeyCode()==org.lwjgl.input.Keyboard.KEY_K;
+        }
+        bindings.synthetic(forward,jump,attack);
+        boolean walk=frame>=30 && frame<50, intermediate=frame>=50 && frame<75;
+        net.minecraft.client.settings.KeyBinding.setKeyBindState(bindings.binding(4).getKeyCode(),walk);
+        net.minecraft.client.settings.KeyBinding.setKeyBindState(bindings.binding(5).getKeyCode(),intermediate);
+        net.minecraft.client.settings.KeyBinding.setKeyBindState(bindings.binding(10).getKeyCode(),frame>=180 && frame<195);
+        ControlState keyboard=bindings.sample();
+        if(frame==120) {
+            bindings.binding(6).setKeyCode(oldJumpCode);
+            net.minecraft.client.settings.KeyBinding.resetKeyBindingArrayAndHash();
+            Minecraft.getMinecraft().gameSettings.saveOptions();
+        }
+        float[] axes=new float[64]; boolean[] buttons=new boolean[128];
+        axes[ControllerProfile.y]=(forward?(walk?-.4f:intermediate?-.7f:-1):0)*(ControllerProfile.invertY?-1:1);
+        if(ControllerProfile.a>=0) buttons[ControllerProfile.a]=jump;
+        if(ControllerProfile.b>=0) buttons[ControllerProfile.b]=attack;
+        ControlState pad=ControllerInput.profile(axes,buttons);
+        if(keyboard.x!=pad.x || keyboard.y!=pad.y || keyboard.a!=pad.a || keyboard.b!=pad.b) throw new IllegalStateException("Keyboard/controller mismatch");
+        if(frame==0) {
+            ControlState held=ControlState.keyboard(true,false,true,false,true,false,true,true,true);
+            syntheticGate.filter(new ControlState(),true);
+            boolean combinations=syntheticGate.filter(held,true).a && held.b && held.z && Math.abs(Math.hypot(held.x,held.y)-.4)<.00001;
+            boolean lost=syntheticGate.filter(held,false).neutral();
+            boolean blocked=syntheticGate.filter(held,true).neutral();
+            syntheticGate.filter(new ControlState(),true);
+            boolean recovered=syntheticGate.filter(held,true).a;
+            ControlState released=ControlState.keyboard(true,false,false,false,false,false,false,false,false);
+            controlsVerified=combinations && lost && blocked && recovered && released.y==-1;
+        }
+        if(frame>=180 && frame<195) return keyboard;
+        return frame%2==0?keyboard:pad;
     }
     float camera(int frame,float yaw,Minecraft mc,Logger log) {
-        if(frame>=180 && frame<195) return yaw+3;
         if(frame==195) {
             cameraTurned=Math.abs(yaw-startYaw)>20;
             // A private visual QA view, separate from gameplay camera acceptance.
@@ -64,6 +107,9 @@ final class GameplayProbe {
         if(frame==90) { jumpBase=mc.player.posY; peak=jumpBase; }
         if(frame>=90 && frame<=160) { peak=Math.max(peak,mc.player.posY); airborne|=(state.action&0x800)!=0; }
         if(frame>=150 && frame<=200 && airborne && (state.action&(0x800|0x2000))==0) landed=true;
+        if(frame==200) {
+            vanillaSuppression=!mc.gameSettings.keyBindInventory.isActiveAndMatches(mc.gameSettings.keyBindInventory.getKeyCode()) && !mc.gameSettings.keyBindDrop.isActiveAndMatches(mc.gameSettings.keyBindDrop.getKeyCode()) && !mc.gameSettings.keyBindAttack.isActiveAndMatches(mc.gameSettings.keyBindAttack.getKeyCode()) && !mc.gameSettings.keyBindUseItem.isActiveAndMatches(mc.gameSettings.keyBindUseItem.getKeyCode()) && mc.mouseHelper instanceof MarioMouse;
+        }
         if(frame==200) cameraClearance=BaselineCamera.clearance(mc,yaw,20,1);
         if(frame==238) {
             final java.util.UUID uuid=mc.player.getUniqueID();
@@ -106,9 +152,9 @@ final class GameplayProbe {
             boolean moved=travelled>1;
             boolean jumped=airborne && peak>jumpBase+0.3;
             boolean camera=cameraTurned && cameraClearance>=1.5;
-            boolean passed=moved && jumped && landed && camera && acceptedContacts.get()>0 && serverPoseError<=0.05 && ordinaryMobTicks>20 && pauseVerified;
+            boolean passed=moved && jumped && landed && camera && acceptedContacts.get()>0 && serverPoseError<=0.05 && ordinaryMobTicks>20 && pauseVerified && controlsVerified && bindingPersistence && vanillaSuppression;
             log.info("MARIOCRAFT GAMEPLAY_PROBE result passed={} moved={} jump={} landed={} camera={} nativeAdmissions={} serverContacts={} travelled={} jumpRise={}",passed,moved,jumped,landed,camera,nativeAdmissions.get(),acceptedContacts.get(),travelled,peak-jumpBase);
-            writeResult("{\"passed\":"+passed+",\"moved\":"+moved+",\"jumped\":"+jumped+",\"landed\":"+landed+",\"cameraClearance\":"+cameraClearance+",\"cameraControl\":"+camera+",\"nativeAdmissions\":"+nativeAdmissions.get()+",\"serverContacts\":"+acceptedContacts.get()+",\"serverPoseError\":"+(Double.isFinite(serverPoseError)?serverPoseError:-1)+",\"serverTick\":"+serverTick+",\"ordinaryMobTicks\":"+ordinaryMobTicks+",\"poseSampleClientFrame\":340,\"pauseVerified\":"+pauseVerified+",\"controllerAdapter\":true,\"fixtureNoAI\":true,\"travelled\":"+travelled+",\"jumpRise\":"+(peak-jumpBase)+"}");
+            writeResult("{\"passed\":"+passed+",\"moved\":"+moved+",\"jumped\":"+jumped+",\"landed\":"+landed+",\"cameraClearance\":"+cameraClearance+",\"cameraControl\":"+camera+",\"nativeAdmissions\":"+nativeAdmissions.get()+",\"serverContacts\":"+acceptedContacts.get()+",\"serverPoseError\":"+(Double.isFinite(serverPoseError)?serverPoseError:-1)+",\"serverTick\":"+serverTick+",\"ordinaryMobTicks\":"+ordinaryMobTicks+",\"poseSampleClientFrame\":340,\"pauseVerified\":"+pauseVerified+",\"vanillaSuppression\":"+vanillaSuppression+",\"bindingPersistence\":"+bindingPersistence+",\"controlsVerified\":"+controlsVerified+",\"keyboardControllerEquivalent\":true,\"controllerAdapter\":true,\"fixtureNoAI\":true,\"travelled\":"+travelled+",\"jumpRise\":"+(peak-jumpBase)+"}");
             complete=true;
         }
     }

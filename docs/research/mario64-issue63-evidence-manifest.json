@@ -107,7 +107,7 @@
     "imem_origin": "0x04001080",
     "rom_start": "0xE6330",
     "rom_end_exclusive": "0xE6A18",
-    "coverage": "all five declared overlay file ranges decoded separately at table IMEM origins; representative source correlations only; runtime task descriptor unobserved"
+    "coverage": "Static scalar/vector overlays decoded; runtime descriptor observed separately; exact execution/timing unsampled"
   },
   "assembled_variants": {
     "old": {

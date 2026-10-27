@@ -1,6 +1,6 @@
 {
   "issue": 64,
-  "status": "open-runtime-descriptor-unobserved",
+  "status": "bounded-runtime-descriptor-observed",
   "target": {
     "region": "USA rev 0",
     "size": 8388608,
@@ -78,7 +78,7 @@
     "ucode_data_size": 704
   },
   "limitations": [
-    "No task moment or descriptor captured",
+    "A task descriptor was captured; exact SP-completion and AI-acceptance transitions remain unobserved",
     "No audio execution or audible output observed",
     "No absence claim beyond exact assembled variant windows"
   ],
@@ -132,5 +132,90 @@
       "length": 48,
       "sha256": "94D8674F022E85B272C7575B4A263FD32588717BB737E3A99536D3C589DB394F"
     }
-  ]
+  ],
+  "runtime_audio_task": {
+    "descriptor_observation_utc": "2026-10-27T02:26:34.6136508Z",
+    "emulator": "Project64 3.0.1.5664-2df3434",
+    "emulator_executable_sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "task": "0x80226BF0",
+    "type": 2,
+    "flags": 0,
+    "state": 0,
+    "boot": {
+      "address": "0x8032B260",
+      "descriptor_length": 208
+    },
+    "code": {
+      "address": "0x8032C740",
+      "descriptor_length": 2048
+    },
+    "data": {
+      "address": "0x8033A2C0",
+      "descriptor_length": 704
+    },
+    "stack_address": "0x00000000",
+    "stack_length": 0,
+    "output_start": "0x00000000",
+    "output_end": "0x00000000",
+    "command_list": "0x801D3700",
+    "command_length": 2744,
+    "yield_address": "0x00000000",
+    "yield_length": 0,
+    "completion_queue": "0x00000000",
+    "completion_message": "0x00000000",
+    "active_sp_before": "0x80226BF0",
+    "active_sp_after": "0x80226BF0",
+    "counter_before": 2651247,
+    "counter_after": 2651247,
+    "descriptor_double_read_equal": true,
+    "current_audio_pointer_equal": true,
+    "atomic": false,
+    "independent_live_hash_observation": {
+      "utc": "2026-10-27T02:29:02.8861307Z",
+      "counter_before": 2655685,
+      "counter_after": 2655686,
+      "each_block_double_read_hash_equal": true,
+      "boot_length": 208,
+      "boot_sha256": "589D793EDA195C576C9D767E7A5E4B77352826F59669D20BDCC358A8EBC979A3",
+      "code_hashed_length": 3616,
+      "code_sha256": "14E3B245E8CD4E0BDF4CBB864AF82D1CCBA6D3D3FF33F73CB52C5821A76F30FC",
+      "data_length": 704,
+      "data_sha256": "79BB2A3E8555019BC4B229F0C218F1E329CA5711BFA55C7C7F992FACF2E12C83"
+    },
+    "buffer_observation": {
+      "utc": "2026-10-27T02:29:25.8203441Z",
+      "counter_before": 2656373,
+      "counter_after": 2656373,
+      "audio_frame": 30284,
+      "task_index": 0,
+      "task": "0x80226BA0",
+      "task_state": 3,
+      "command_buffers": [
+        "0x801D0500",
+        "0x801D3700"
+      ],
+      "command_list": "0x801D0500",
+      "command_length": 848,
+      "ai_index": 2,
+      "current_ai": "0x801CF400",
+      "ai_buffers": [
+        "0x801CE000",
+        "0x801CEA00",
+        "0x801CF400"
+      ],
+      "ai_lengths_sample_frames": [
+        528,
+        528,
+        544
+      ],
+      "globals_double_read_equal": true,
+      "descriptor_double_read_equal": true,
+      "atomic": false
+    },
+    "limits": [
+      "Hash and scheduler descriptor are distinct samples; uninterrupted residency and one task lifetime are not proved.",
+      "The buffer snapshot is not an observed SP-completion transition or an AI acceptance.",
+      "No audio commands, samples, DMA completion, request attribution or audible output were captured."
+    ]
+  }
 }

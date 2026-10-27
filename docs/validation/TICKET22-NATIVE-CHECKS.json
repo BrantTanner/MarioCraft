@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "nativeOnly": true,
+  "minecraftIntegrationEvidence": false,
+  "scenarioCount": 13,
+  "scenarios": [
+    {
+      "name": "wall-kick",
+      "peak": 360.0703,
+      "end": [
+        8.208452,
+        -0.0,
+        350.0
+      ]
+    },
+    {
+      "name": "ledge",
+      "peak": 300.0,
+      "end": [
+        0.0,
+        300.0,
+        970.3562
+      ]
+    },
+    {
+      "name": "ceiling",
+      "peak": 89.843765,
+      "end": [
+        0.0,
+        -0.0,
+        1999.9595
+      ]
+    },
+    {
+      "name": "crawl",
+      "peak": 10.0,
+      "end": [
+        0.0,
+        -0.0,
+        246.35042
+      ]
+    },
+    {
+      "name": "seam",
+      "peak": 10.0,
+      "end": [
+        0.0,
+        -0.0,
+        2000.8881
+      ]
+    },
+    {
+      "name": "corner",
+      "peak": 10.0,
+      "end": [
+        0.0,
+        -0.0,
+        350.0
+      ]
+    },
+    {
+      "name": "partial",
+      "peak": 206.07033,
+      "end": [
+        0.0,
+        -0.0,
+        2000.6671
+      ]
+    },
+    {
+      "name": "drop",
+      "peak": 210.0,
+      "end": [
+        0.0,
+        -0.0,
+        2000.6959
+      ]
+    },
+    {
+      "name": "update",
+      "peak": 10.0,
+      "end": [
+        0.0,
+        -0.0,
+        823.30664
+      ]
+    },
+    {
+      "name": "insert",
+      "peak": 10.0,
+      "end": [
+        0.0,
+        -0.0,
+        354.0
+      ]
+    },
+    {
+      "name": "fast-wall-1",
+      "peak": 228.0,
+      "end": [
+        0.0,
+        -0.0,
+        627.6096
+      ]
+    },
+    {
+      "name": "fast-wall-13",
+      "peak": 228.0,
+      "end": [
+        0.0,
+        -0.0,
+        627.6096
+      ]
+    },
+    {
+      "name": "fast-wall-25",
+      "peak": 228.0,
+      "end": [
+        0.0,
+        -0.0,
+        627.6096
+      ]
+    }
+  ],
+  "optimizedMesher": true
+}

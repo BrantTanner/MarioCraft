@@ -20,6 +20,7 @@ minecraft {
             property 'mariocraft.native', project.file('.local/native/sm64.dll').absolutePath
             property 'mariocraft.clientProbe', System.getProperty('mariocraft.clientProbe', 'false')
             property 'mariocraft.gameplay', System.getProperty('mariocraft.gameplay', 'false')
+            property 'mariocraft.traversalProbe', System.getProperty('mariocraft.traversalProbe', 'false')
             property 'mariocraft.gameplayProbe', System.getProperty('mariocraft.gameplayProbe', 'false')
         }
         server {
@@ -41,5 +42,12 @@ task nativeSmoke(type: JavaExec) {
     main = 'dev.mariocraft.nativebridge.NativeSmoke'
     systemProperty 'mariocraft.native', file('.local/native/sm64.dll').absolutePath
     if (System.getProperty('mariocraft.rom')) systemProperty 'mariocraft.rom', System.getProperty('mariocraft.rom')
+    dependsOn testClasses
+}
+
+task traversalSmoke(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath + sourceSets.test.runtimeClasspath
+    main = 'dev.mariocraft.nativebridge.TraversalSmoke'
+    systemProperty 'mariocraft.native', file('.local/native/sm64.dll').absolutePath
     dependsOn testClasses
 }

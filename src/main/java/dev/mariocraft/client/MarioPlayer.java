@@ -29,6 +29,7 @@ public final class MarioPlayer {
     private boolean poseReady;
     private MarioSession session;
     private TerrainMesh terrain;
+    private final TerrainChanges terrainChanges=new TerrainChanges();
     private net.minecraft.client.multiplayer.WorldClient world;
     private ResourceLocation texture;
     private UUID playerId;
@@ -40,6 +41,9 @@ public final class MarioPlayer {
     private boolean previousAutoJump;
     private float previousStep;
     private double meshX,meshY,meshZ;
+    private long loadedMask;
+    private Sm64Library.Surface[] submittedSurfaces;
+    private boolean collisionFrozen;
     private io.netty.channel.Channel movementChannel;
     private final GameplayProbe probe=Boolean.getBoolean("mariocraft.gameplayProbe")?new GameplayProbe():null;
     private final Map<Integer,Integer> contacts=new HashMap<>();
@@ -80,8 +84,10 @@ public final class MarioPlayer {
                 terrain=new TerrainMesh(mc.player.posX,mc.player.posY,mc.player.posZ);
                 Sm64Library.Surface[] initialSurfaces=terrain.build(world,mc.player.posX,mc.player.posY,mc.player.posZ);
                 if(initialSurfaces.length==0) return;
+                terrainChanges.region(mc.player.posX,mc.player.posY,mc.player.posZ);
+                world.addEventListener(terrainChanges);
                 session=new MarioSession(Paths.get(System.getProperty("mariocraft.native")),MarioSession.discoverRom());
-                session.surfaces(initialSurfaces);
+                session.surfaces(initialSurfaces); submittedSurfaces=initialSurfaces;
                 session.create(terrain.x(mc.player.posX),terrain.y(mc.player.posY)+10,terrain.z(mc.player.posZ));
                 playerId=mc.player.getUniqueID(); yaw=mc.player.rotationYaw;
                 movementChannel=mc.getConnection().getNetworkManager().channel();
@@ -158,10 +164,29 @@ public final class MarioPlayer {
             meshX=Double.POSITIVE_INFINITY;
             log.info("MARIOCRAFT rebased origin={},{},{}",terrain.ox,terrain.oy,terrain.oz);
         }
-        if(frames++%10==0 || Math.abs(mc.player.posX-meshX)>=2 || Math.abs(mc.player.posY-meshY)>=2 || Math.abs(mc.player.posZ-meshZ)>=2) {
-            session.surfaces(terrain.build(world,mc.player.posX,mc.player.posY,mc.player.posZ));
+        long nextLoadedMask=TerrainMesh.loadedMask(world,mc.player.posX,mc.player.posZ);
+        if(nextLoadedMask!=loadedMask || terrainChanges.dirty || Math.abs(mc.player.posX-meshX)>=2 || Math.abs(mc.player.posY-meshY)>=2 || Math.abs(mc.player.posZ-meshZ)>=2) {
+            long meshStarted=System.nanoTime();
+            Sm64Library.Surface[] updated=terrain.build(world,mc.player.posX,mc.player.posY,mc.player.posZ);
+            float[] recovered=terrain.recovery(mc.player.posX,mc.player.posY,mc.player.posZ);
+            collisionFrozen=recovered==null;
+            if(recovered!=null && (Math.abs(recovered[0]-terrain.x(mc.player.posX))>.01 || Math.abs(recovered[1]-terrain.y(mc.player.posY))>.01 || Math.abs(recovered[2]-terrain.z(mc.player.posZ))>.01)) {
+                session.position(recovered[0],recovered[1],recovered[2]);
+                mc.player.setPosition(terrain.ox+recovered[0]/100.0,terrain.oy+recovered[1]/100.0,terrain.oz+recovered[2]/100.0);
+                poseReady=false;
+                log.info("MARIOCRAFT collision update depenetration");
+            }
+            session.surfaces(updated); submittedSurfaces=updated;
+            if(probe!=null) log.info("MARIOCRAFT collision-mesh frame={} triangles={} milliseconds={}",frames,updated.length,(System.nanoTime()-meshStarted)/1000000.0);
+            loadedMask=nextLoadedMask;
+            terrainChanges.region(mc.player.posX,mc.player.posY,mc.player.posZ);
             meshX=mc.player.posX; meshY=mc.player.posY; meshZ=mc.player.posZ;
+            terrainChanges.dirty=false;
         }
+        if(collisionFrozen) return;
+        frames++;
+        Sm64Library.Surface[] visible=terrain.at(mc.player.posX,mc.player.posY,mc.player.posZ);
+        if(visible!=submittedSurfaces) { session.surfaces(visible); submittedSurfaces=visible; }
         session.tick(input);
         double x=terrain.ox+session.state.position[0]/100.0;
         double y=terrain.oy+session.state.position[1]/100.0;
@@ -260,6 +285,8 @@ public final class MarioPlayer {
         GlStateManager.color(1,1,1,1);
     }
     private void close() {
+        if(world!=null) world.removeEventListener(terrainChanges);
+        terrainChanges.dirty=true; collisionFrozen=false;
         if(playerId!=null) PlayerBridge.POSES.remove(playerId);
         if(movementChannel!=null) {
             if(movementChannel.pipeline().get("mariocraft_movement")!=null) movementChannel.pipeline().remove("mariocraft_movement");

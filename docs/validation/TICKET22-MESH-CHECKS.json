@@ -1,0 +1,119 @@
+{
+  "sameWorldFinalRun": true,
+  "regionBlocks": {
+    "horizontalRadius": 9,
+    "below": 8,
+    "above": 12
+  },
+  "meshRebuilds": 6,
+  "samples": [
+    {
+      "beforeNativeFrame": 0,
+      "triangles": 516,
+      "milliseconds": 186.4709
+    },
+    {
+      "beforeNativeFrame": 54,
+      "triangles": 598,
+      "milliseconds": 154.665
+    },
+    {
+      "beforeNativeFrame": 62,
+      "triangles": 776,
+      "milliseconds": 139.2629
+    },
+    {
+      "beforeNativeFrame": 77,
+      "triangles": 640,
+      "milliseconds": 141.3677
+    },
+    {
+      "beforeNativeFrame": 232,
+      "triangles": 776,
+      "milliseconds": 133.4717
+    },
+    {
+      "beforeNativeFrame": 243,
+      "triangles": 712,
+      "milliseconds": 122.064
+    }
+  ],
+  "medianMilliseconds": 140.3153,
+  "maximumMilliseconds": 186.4709,
+  "limit": "Single representative run; includes collision gathering, meshing, sidedness selection and native surface load. Not a frame-time distribution or worst-case guarantee.",
+  "worldMeasurementsBeforeFinalUvIndex": true,
+  "optimizedSyntheticProfile": {
+    "minecraftIntegrationEvidence": false,
+    "voxelBoxes": 2892,
+    "identicalSortedOutwardTriangleVertices": true,
+    "triangleCount": 88,
+    "primedBeforeMeasuredIterations": true,
+    "samples": [
+      {
+        "iteration": 0,
+        "allTriangles": 88,
+        "selectedTriangles": 52,
+        "meshingMilliseconds": 29.3377,
+        "sidednessMilliseconds": 5.5117,
+        "nativeLoadMilliseconds": 0.8309
+      },
+      {
+        "iteration": 1,
+        "allTriangles": 88,
+        "selectedTriangles": 52,
+        "meshingMilliseconds": 25.6499,
+        "sidednessMilliseconds": 2.2674,
+        "nativeLoadMilliseconds": 0.5154
+      },
+      {
+        "iteration": 2,
+        "allTriangles": 88,
+        "selectedTriangles": 52,
+        "meshingMilliseconds": 21.5676,
+        "sidednessMilliseconds": 2.6858,
+        "nativeLoadMilliseconds": 0.8072
+      },
+      {
+        "iteration": 3,
+        "allTriangles": 88,
+        "selectedTriangles": 52,
+        "meshingMilliseconds": 19.8018,
+        "sidednessMilliseconds": 1.5008,
+        "nativeLoadMilliseconds": 0.2617
+      },
+      {
+        "iteration": 4,
+        "allTriangles": 88,
+        "selectedTriangles": 52,
+        "meshingMilliseconds": 19.3633,
+        "sidednessMilliseconds": 1.3884,
+        "nativeLoadMilliseconds": 0.2288
+      },
+      {
+        "iteration": 5,
+        "allTriangles": 88,
+        "selectedTriangles": 52,
+        "meshingMilliseconds": 18.2548,
+        "sidednessMilliseconds": 1.2418,
+        "nativeLoadMilliseconds": 0.204
+      },
+      {
+        "iteration": 6,
+        "allTriangles": 88,
+        "selectedTriangles": 52,
+        "meshingMilliseconds": 19.0675,
+        "sidednessMilliseconds": 0.85,
+        "nativeLoadMilliseconds": 0.1916
+      },
+      {
+        "iteration": 7,
+        "allTriangles": 88,
+        "selectedTriangles": 52,
+        "meshingMilliseconds": 17.5243,
+        "sidednessMilliseconds": 0.791,
+        "nativeLoadMilliseconds": 0.1937
+      }
+    ],
+    "coldLimit": "Separate pre-optimization profile observed large cold/JIT spikes, including geometry126.7404ms and JNA451.9446ms. Optimized cold/live-terrain frame-time bounds remain unmeasured."
+  }
+}

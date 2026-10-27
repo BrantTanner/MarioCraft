@@ -1,12 +1,13 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('build', 'client', 'server', 'nativeSmoke')][string]$Task = 'build',
+    [ValidateSet('build', 'client', 'server', 'nativeSmoke', 'traversalSmoke')][string]$Task = 'build',
     [string]$JavaHome = $env:JAVA_HOME,
     [string]$GradleHome = $env:GRADLE_USER_HOME,
     [switch]$LifecycleProbe,
     [switch]$ClientProbe,
     [switch]$Gameplay,
     [switch]$GameplayProbe,
+    [switch]$TraversalProbe,
     [switch]$Offline
 )
 $ErrorActionPreference = 'Stop'
@@ -33,6 +34,7 @@ try {
     if ($LifecycleProbe) { $options += '-Dmariocraft.lifecycleProbe=true' }
     if ($ClientProbe) { $options += '-Dmariocraft.clientProbe=true' }
     if ($Gameplay) { $options += '-Dmariocraft.gameplay=true' }
+    if ($TraversalProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.traversalProbe=true' }
     if ($GameplayProbe) { $options += @('-Dmariocraft.gameplay=true','-Dmariocraft.gameplayProbe=true','-Dmariocraft.clientProbe=true') }
     if ($GameplayProbe) {
         $resultPath=Join-Path $root '.local/run-client/gameplay-result.json'
@@ -41,7 +43,7 @@ try {
             $archive=Join-Path $root ('.local/probe-results/'+$runId)
             [IO.Directory]::CreateDirectory($archive) | Out-Null
             Copy-Item -LiteralPath $resultPath -Destination (Join-Path $archive 'gameplay-result.json')
-            foreach($evidence in @('movement-trace.jsonl','logs/latest.log')) {
+            foreach($evidence in @('movement-trace.jsonl','traversal-trace.jsonl','logs/latest.log')) {
                 $evidencePath=Join-Path $root ('.local/run-client/'+$evidence)
                 if(Test-Path -LiteralPath $evidencePath) { Copy-Item -LiteralPath $evidencePath -Destination (Join-Path $archive (Split-Path $evidence -Leaf)) }
             }

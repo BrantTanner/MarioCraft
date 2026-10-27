@@ -2589,181 +2589,181 @@
       "romStart": 3680448,
       "romEndExclusive": 3684688,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "ccm": {
       "romStart": 3759248,
       "romEndExclusive": 3760960,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "castle_inside": {
       "romStart": 3993808,
       "romEndExclusive": 4001216,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "hmc": {
       "romStart": 4090368,
       "romEndExclusive": 4093616,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "ssl": {
       "romStart": 4176272,
       "romEndExclusive": 4178608,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "bob": {
       "romStart": 4217440,
       "romEndExclusive": 4218800,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "sl": {
       "romStart": 4253760,
       "romEndExclusive": 4255088,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "wdw": {
       "romStart": 4300688,
       "romEndExclusive": 4302688,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "jrb": {
       "romStart": 4340512,
       "romEndExclusive": 4343504,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "thi": {
       "romStart": 4376288,
       "romEndExclusive": 4378400,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "ttc": {
       "romStart": 4420608,
       "romEndExclusive": 4421744,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "rr": {
       "romStart": 4497728,
       "romEndExclusive": 4500416,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "castle_grounds": {
       "romStart": 4539872,
       "romEndExclusive": 4541952,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "bitdw": {
       "romStart": 4570976,
       "romEndExclusive": 4572672,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "vcutm": {
       "romStart": 4592160,
       "romEndExclusive": 4592848,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "bitfs": {
       "romStart": 4630592,
       "romEndExclusive": 4632720,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "sa": {
       "romStart": 4637088,
       "romEndExclusive": 4637600,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "bits": {
       "romStart": 4685056,
       "romEndExclusive": 4687008,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "lll": {
       "romStart": 4770224,
       "romEndExclusive": 4774192,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "ddd": {
       "romStart": 4807264,
       "romEndExclusive": 4808848,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "wf": {
       "romStart": 4840016,
       "romEndExclusive": 4843280,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "ending": {
       "romStart": 4900016,
       "romEndExclusive": 4900208,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "castle_courtyard": {
       "romStart": 4912752,
       "romEndExclusive": 4913456,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "pss": {
       "romStart": 4947728,
       "romEndExclusive": 4948176,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "cotmc": {
       "romStart": 4975072,
       "romEndExclusive": 4975664,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "totwc": {
       "romStart": 4990720,
       "romEndExclusive": 4991264,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "bowser_1": {
       "romStart": 4997568,
       "romEndExclusive": 4997920,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "wmotr": {
       "romStart": 5036336,
       "romEndExclusive": 5037008,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "bowser_2": {
       "romStart": 5040624,
       "romEndExclusive": 5041152,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "bowser_3": {
       "romStart": 5051632,
       "romEndExclusive": 5052688,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "common1_geo": {
       "romStart": 2198944,
@@ -2781,7 +2781,7 @@
       "romStart": 5157360,
       "romEndExclusive": 5160960,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     "menu": {
       "romStart": 2777376,
@@ -7350,7 +7350,7 @@
       "linkerSymbol": "spooky_mio0",
       "linkerMio0Ordinal": 37,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3305024,
       "streamConsumedEndExclusive": 3330154,
       "decodedBytes": 51200,
@@ -7599,7 +7599,7 @@
       "linkerSymbol": "sky_mio0",
       "linkerMio0Ordinal": 40,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3397392,
       "streamConsumedEndExclusive": 3412275,
       "decodedBytes": 34816,
@@ -7820,7 +7820,7 @@
       "linkerSymbol": "sky_mio0",
       "linkerMio0Ordinal": 40,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3397392,
       "streamConsumedEndExclusive": 3412275,
       "decodedBytes": 34816,
@@ -8125,7 +8125,7 @@
       "linkerSymbol": "sky_mio0",
       "linkerMio0Ordinal": 40,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3397392,
       "streamConsumedEndExclusive": 3412275,
       "decodedBytes": 34816,
@@ -8291,7 +8291,7 @@
       "linkerSymbol": "generic_mio0",
       "linkerMio0Ordinal": 38,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3330160,
       "streamConsumedEndExclusive": 3361569,
       "decodedBytes": 47104,
@@ -8651,7 +8651,7 @@
       "linkerSymbol": "fire_mio0",
       "linkerMio0Ordinal": 36,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3269072,
       "streamConsumedEndExclusive": 3305010,
       "decodedBytes": 49152,
@@ -8957,7 +8957,7 @@
       "linkerSymbol": "outside_mio0",
       "linkerMio0Ordinal": 46,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3534096,
       "streamConsumedEndExclusive": 3561843,
       "decodedBytes": 50176,
@@ -9151,7 +9151,7 @@
       "linkerSymbol": "outside_mio0",
       "linkerMio0Ordinal": 46,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3534096,
       "streamConsumedEndExclusive": 3561843,
       "decodedBytes": 50176,
@@ -9372,7 +9372,7 @@
       "linkerSymbol": "inside_mio0",
       "linkerMio0Ordinal": 47,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3561856,
       "streamConsumedEndExclusive": 3601707,
       "decodedBytes": 51200,
@@ -9483,7 +9483,7 @@
       "linkerSymbol": "snow_mio0",
       "linkerMio0Ordinal": 41,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3412288,
       "streamConsumedEndExclusive": 3439176,
       "decodedBytes": 40960,
@@ -9760,7 +9760,7 @@
       "linkerSymbol": "cave_mio0",
       "linkerMio0Ordinal": 42,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3439184,
       "streamConsumedEndExclusive": 3467089,
       "decodedBytes": 51200,
@@ -9981,7 +9981,7 @@
       "linkerSymbol": "water_mio0",
       "linkerMio0Ordinal": 39,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3361584,
       "streamConsumedEndExclusive": 3397382,
       "decodedBytes": 51200,
@@ -10286,7 +10286,7 @@
       "linkerSymbol": "cave_mio0",
       "linkerMio0Ordinal": 42,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3439184,
       "streamConsumedEndExclusive": 3467089,
       "decodedBytes": 51200,
@@ -10531,7 +10531,7 @@
       "linkerSymbol": "title_screen_bg_mio0",
       "linkerMio0Ordinal": 24,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 2558144,
       "streamConsumedEndExclusive": 2570654,
       "decodedBytes": 26088,
@@ -10566,7 +10566,7 @@
       "linkerSymbol": "title_screen_bg_mio0",
       "linkerMio0Ordinal": 24,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 2558144,
       "streamConsumedEndExclusive": 2570654,
       "decodedBytes": 26088,
@@ -10601,7 +10601,7 @@
       "linkerSymbol": "title_screen_bg_mio0",
       "linkerMio0Ordinal": 24,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 2558144,
       "streamConsumedEndExclusive": 2570654,
       "decodedBytes": 26088,
@@ -10693,7 +10693,7 @@
       "linkerSymbol": "water_mio0",
       "linkerMio0Ordinal": 39,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3361584,
       "streamConsumedEndExclusive": 3397382,
       "decodedBytes": 51200,
@@ -10942,7 +10942,7 @@
       "linkerSymbol": "fire_mio0",
       "linkerMio0Ordinal": 36,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3269072,
       "streamConsumedEndExclusive": 3305010,
       "decodedBytes": 49152,
@@ -11272,7 +11272,7 @@
       "linkerSymbol": "mountain_mio0",
       "linkerMio0Ordinal": 44,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3479904,
       "streamConsumedEndExclusive": 3502917,
       "decodedBytes": 51200,
@@ -11438,7 +11438,7 @@
       "linkerSymbol": "sky_mio0",
       "linkerMio0Ordinal": 40,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3397392,
       "streamConsumedEndExclusive": 3412275,
       "decodedBytes": 34816,
@@ -11632,7 +11632,7 @@
       "linkerSymbol": "inside_mio0",
       "linkerMio0Ordinal": 47,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3561856,
       "streamConsumedEndExclusive": 3601707,
       "decodedBytes": 51200,
@@ -11854,7 +11854,7 @@
       "linkerSymbol": "snow_mio0",
       "linkerMio0Ordinal": 41,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3412288,
       "streamConsumedEndExclusive": 3439176,
       "decodedBytes": 40960,
@@ -12159,7 +12159,7 @@
       "linkerSymbol": "generic_mio0",
       "linkerMio0Ordinal": 38,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3330160,
       "streamConsumedEndExclusive": 3361569,
       "decodedBytes": 47104,
@@ -12325,7 +12325,7 @@
       "linkerSymbol": "grass_mio0",
       "linkerMio0Ordinal": 45,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3502928,
       "streamConsumedEndExclusive": 3534089,
       "decodedBytes": 49152,
@@ -12602,7 +12602,7 @@
       "linkerSymbol": "sky_mio0",
       "linkerMio0Ordinal": 40,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3397392,
       "streamConsumedEndExclusive": 3412275,
       "decodedBytes": 34816,
@@ -12768,7 +12768,7 @@
       "linkerSymbol": "machine_mio0",
       "linkerMio0Ordinal": 43,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3467104,
       "streamConsumedEndExclusive": 3479890,
       "decodedBytes": 35840,
@@ -12934,7 +12934,7 @@
       "linkerSymbol": "mountain_mio0",
       "linkerMio0Ordinal": 44,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3479904,
       "streamConsumedEndExclusive": 3502917,
       "decodedBytes": 51200,
@@ -13100,7 +13100,7 @@
       "linkerSymbol": "outside_mio0",
       "linkerMio0Ordinal": 46,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3534096,
       "streamConsumedEndExclusive": 3561843,
       "decodedBytes": 50176,
@@ -13294,7 +13294,7 @@
       "linkerSymbol": "grass_mio0",
       "linkerMio0Ordinal": 45,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3502928,
       "streamConsumedEndExclusive": 3534089,
       "decodedBytes": 49152,
@@ -13571,7 +13571,7 @@
       "linkerSymbol": "grass_mio0",
       "linkerMio0Ordinal": 45,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3502928,
       "streamConsumedEndExclusive": 3534089,
       "decodedBytes": 49152,
@@ -13820,7 +13820,7 @@
       "linkerSymbol": "sky_mio0",
       "linkerMio0Ordinal": 40,
       "loadClass": "MIO0_TEXTURE",
-      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; transition lifetime is not observed",
+      "lifetimeEvidence": "native helper decodes to fixed working memory, installs the segment base, and frees the temporary compressed copy; this generator does not capture transition lifetime",
       "romCandidateOffset": 3397392,
       "streamConsumedEndExclusive": 3412275,
       "decodedBytes": 34816,
@@ -14101,7 +14101,7 @@
       "linkerSymbol": "menu",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 2777376,
       "romEndExclusive": 2778544,
       "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
@@ -14130,7 +14130,7 @@
       "linkerSymbol": "intro",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 2530976,
       "romEndExclusive": 2532256,
       "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
@@ -14159,7 +14159,7 @@
       "linkerSymbol": "ending",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4900016,
       "romEndExclusive": 4900208,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
@@ -14188,7 +14188,7 @@
       "linkerSymbol": "intro",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 2530976,
       "romEndExclusive": 2532256,
       "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
@@ -14217,7 +14217,7 @@
       "linkerSymbol": "intro",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 2530976,
       "romEndExclusive": 2532256,
       "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
@@ -14246,7 +14246,7 @@
       "linkerSymbol": "intro",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 2530976,
       "romEndExclusive": 2532256,
       "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
@@ -14275,7 +14275,7 @@
       "linkerSymbol": "intro",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE or EXIT_AND_EXECUTE loads the script bank while changing VM/pool state; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 2530976,
       "romEndExclusive": 2532256,
       "boundaryEvidence": "numeric ROM operands recovered from source command matched in the unique dispatcher array sequence",
@@ -14305,11 +14305,11 @@
       "linkerSymbol": "bbh",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 3680448,
       "romEndExclusive": 3684688,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14324,11 +14324,11 @@
       "linkerSymbol": "ccm",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 3759248,
       "romEndExclusive": 3760960,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14343,11 +14343,11 @@
       "linkerSymbol": "castle_inside",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 3993808,
       "romEndExclusive": 4001216,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14362,11 +14362,11 @@
       "linkerSymbol": "hmc",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4090368,
       "romEndExclusive": 4093616,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14381,11 +14381,11 @@
       "linkerSymbol": "ssl",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4176272,
       "romEndExclusive": 4178608,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14400,11 +14400,11 @@
       "linkerSymbol": "bob",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4217440,
       "romEndExclusive": 4218800,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14419,11 +14419,11 @@
       "linkerSymbol": "sl",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4253760,
       "romEndExclusive": 4255088,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14438,11 +14438,11 @@
       "linkerSymbol": "wdw",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4300688,
       "romEndExclusive": 4302688,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14457,11 +14457,11 @@
       "linkerSymbol": "jrb",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4340512,
       "romEndExclusive": 4343504,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14476,11 +14476,11 @@
       "linkerSymbol": "thi",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4376288,
       "romEndExclusive": 4378400,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14495,11 +14495,11 @@
       "linkerSymbol": "ttc",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4420608,
       "romEndExclusive": 4421744,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14514,11 +14514,11 @@
       "linkerSymbol": "rr",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4497728,
       "romEndExclusive": 4500416,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14533,11 +14533,11 @@
       "linkerSymbol": "castle_grounds",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4539872,
       "romEndExclusive": 4541952,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14552,11 +14552,11 @@
       "linkerSymbol": "bitdw",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4570976,
       "romEndExclusive": 4572672,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14571,11 +14571,11 @@
       "linkerSymbol": "vcutm",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4592160,
       "romEndExclusive": 4592848,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14590,11 +14590,11 @@
       "linkerSymbol": "bitfs",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4630592,
       "romEndExclusive": 4632720,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14609,11 +14609,11 @@
       "linkerSymbol": "sa",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4637088,
       "romEndExclusive": 4637600,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14628,11 +14628,11 @@
       "linkerSymbol": "bits",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4685056,
       "romEndExclusive": 4687008,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14647,11 +14647,11 @@
       "linkerSymbol": "lll",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4770224,
       "romEndExclusive": 4774192,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14666,11 +14666,11 @@
       "linkerSymbol": "ddd",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4807264,
       "romEndExclusive": 4808848,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14685,11 +14685,11 @@
       "linkerSymbol": "wf",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4840016,
       "romEndExclusive": 4843280,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14704,11 +14704,11 @@
       "linkerSymbol": "ending",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4900016,
       "romEndExclusive": 4900208,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14723,11 +14723,11 @@
       "linkerSymbol": "castle_courtyard",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4912752,
       "romEndExclusive": 4913456,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14742,11 +14742,11 @@
       "linkerSymbol": "pss",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4947728,
       "romEndExclusive": 4948176,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14761,11 +14761,11 @@
       "linkerSymbol": "cotmc",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4975072,
       "romEndExclusive": 4975664,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14780,11 +14780,11 @@
       "linkerSymbol": "totwc",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4990720,
       "romEndExclusive": 4991264,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14799,11 +14799,11 @@
       "linkerSymbol": "bowser_1",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 4997568,
       "romEndExclusive": 4997920,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14818,11 +14818,11 @@
       "linkerSymbol": "wmotr",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 5036336,
       "romEndExclusive": 5037008,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14837,11 +14837,11 @@
       "linkerSymbol": "bowser_2",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 5040624,
       "romEndExclusive": 5041152,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14856,11 +14856,11 @@
       "linkerSymbol": "bowser_3",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 5051632,
       "romEndExclusive": 5052688,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     },
     {
       "source": "levels/scripts.c",
@@ -14875,18 +14875,18 @@
       "linkerSymbol": "ttm",
       "linkerMio0Ordinal": null,
       "loadClass": "RAW_SCRIPT_GEO",
-      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; real transition timing is not observed",
+      "lifetimeEvidence": "EXECUTE saves caller continuation and pushes pool state before loading the script bank; return/exit handlers restore state; transition timing is not captured by this generator",
       "romStart": 5157360,
       "romEndExclusive": 5160960,
       "boundaryEvidence": "generated EXECUTE wrapper encodes this exact bank interval; linked via the unique source-enum dispatcher table",
-      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes and runtime execution are not established"
+      "sourceRomEvidence": "direct source-enum EXECUTE linkage and source entry opcode/length pattern match; exact built asset bytes are not established; this generator does not establish runtime execution"
     }
   ],
   "limits": [
     "MIO0 structural validity does not identify the decoded data or show runtime use.",
     "Ordinal linker association assumes ROM asset order follows the pinned linker script; independent byte equality against built source assets is not claimed.",
     "Adjacent linker intervals remain candidates for shared raw assets not directly bounded by source-encoded commands; course banks and dispatcher transitions have the direct source-command bounds recorded above.",
-    "Runtime segment bases and allocation lifetime are native-code properties; a Project64 load/unload transition remains unobserved.",
+    "This generator does not capture runtime transitions; see the separate runtime evidence report for bounded observations.",
     "No ROM bytes or decoded asset bytes are written to output."
   ]
 }

@@ -10,7 +10,7 @@ final class MovementPacketGate extends ChannelOutboundHandlerAdapter {
     private final UUID player;
     MovementPacketGate(UUID player) { this.player=player; }
     @Override public void write(ChannelHandlerContext context,Object packet,ChannelPromise promise) throws Exception {
-        if((packet instanceof CPacketPlayer || packet instanceof CPacketUseEntity || packet instanceof CPacketPlayerDigging || packet instanceof CPacketPlayerTryUseItem || packet instanceof CPacketPlayerTryUseItemOnBlock) && (PlayerBridge.POSES.containsKey(player) || dev.mariocraft.health.RespawnBridge.PENDING.containsKey(player))) { promise.setSuccess(); return; }
+        if((packet instanceof CPacketPlayer || packet instanceof CPacketUseEntity || packet instanceof CPacketPlayerDigging || packet instanceof CPacketPlayerTryUseItem || packet instanceof CPacketPlayerTryUseItemOnBlock) && (dev.mariocraft.persistence.RestoreBridge.HOLDS.containsKey(player) || PlayerBridge.POSES.containsKey(player) || dev.mariocraft.health.RespawnBridge.PENDING.containsKey(player))) { promise.setSuccess(); return; }
         context.write(packet,promise);
     }
 }

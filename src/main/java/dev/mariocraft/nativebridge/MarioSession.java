@@ -13,6 +13,7 @@ public final class MarioSession implements AutoCloseable {
     private final Sm64Library lib;
     private boolean closed;
     private int mario = -1;
+    private boolean stepped;
     public final byte[] texture = new byte[704 * 64 * 4];
     public final Sm64Library.State state = new Sm64Library.State();
     public final Sm64Library.Geometry geometry = new Sm64Library.Geometry();
@@ -67,6 +68,7 @@ public final class MarioSession implements AutoCloseable {
         check();
         if (mario < 0) throw new IllegalStateException("Create Mario first");
         lib.sm64_mario_tick(mario, input, state, geometry);
+        stepped=true;
         int triangles = Short.toUnsignedInt(geometry.numTrianglesUsed);
         if (triangles > 1024) throw new IllegalStateException("Native geometry count exceeds capacity");
     }
@@ -77,13 +79,20 @@ public final class MarioSession implements AutoCloseable {
         if(sections<1 || sections>8) throw new IllegalArgumentException("Damage must be 1..8 sections");
         lib.sm64_mario_take_damage(mario,sections,0,x,y,z);
     }
+    /** Production semantic restoration is legal only on a fresh, unstepped native Mario. */
+    public void restoreHealth(int health) {
+        check();
+        if(mario<0 || stepped) throw new IllegalStateException("Restore health requires a fresh native Mario");
+        if(health<0x100 || health>0x880) throw new IllegalArgumentException("Invalid restored health");
+        lib.sm64_set_mario_health(mario,(short)health);
+    }
     /** Test setup only. No production healing or reset control is exposed. */
     public void resetHealthForProbe() {
         configureHealthForProbe(0x880);
     }
     public void configureHealthForProbe(int health) {
         check();
-        if(!Boolean.getBoolean("mariocraft.healthProbe") && !Boolean.getBoolean("mariocraft.combatProbe") && !Boolean.getBoolean("mariocraft.waterProbe") && !Boolean.getBoolean("mariocraft.hazardProbe") && !Boolean.getBoolean("mariocraft.respawnProbe")) throw new IllegalStateException("Health reset requires opt-in test probe");
+        if(!Boolean.getBoolean("mariocraft.persistenceProbe") && !Boolean.getBoolean("mariocraft.healthProbe") && !Boolean.getBoolean("mariocraft.combatProbe") && !Boolean.getBoolean("mariocraft.waterProbe") && !Boolean.getBoolean("mariocraft.hazardProbe") && !Boolean.getBoolean("mariocraft.respawnProbe")) throw new IllegalStateException("Health reset requires opt-in test probe");
         if(health<0x100 || health>0x880) throw new IllegalArgumentException("Test health setup range");
         lib.sm64_set_mario_health(mario,(short)health);
     }

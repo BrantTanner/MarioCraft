@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": "successful",
+  "unitTests": {
+    "tests": 51,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "persistenceContractTests": 6,
+  "nativeSmoke": true,
+  "healthSmoke": true,
+  "waterSmoke": true,
+  "hazardSmoke": true,
+  "syntheticSmokeIsSeparateFromActualWorldPersistence": true
+}

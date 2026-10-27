@@ -54,6 +54,12 @@ for current evidence and its limits.
 one normal world. Initial same-process teardown exposed queued packet errors;
 those are a probe limitation, not clean persistence acceptance.
 
+`-Task client -PersistenceProbe` is the issue-29 save/resume acceptance path. It
+uses the real pause-menu disconnect lifecycle across two normal disposable saves,
+with ground/water/action/death checkpoints and repeated world switching. Run
+`scripts/verify-persistence-trace.py` for independent lifecycle/error checks; see
+[the persistence policy and evidence](docs/TICKET29-PERSISTENCE.md).
+
 `-Task client -GameplayProbe` alternates synthetic controller profile samples and real
 Minecraft KeyBinding state without keyboard focus,
 measures run/jump/landing and camera controls, and spawns a test-only NoAI pig

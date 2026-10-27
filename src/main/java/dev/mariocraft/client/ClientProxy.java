@@ -6,7 +6,8 @@ public final class ClientProxy extends CommonProxy {
     @Override public void initialize(Logger log) {
         ControllerProfile.initialize();
         MinecraftForge.EVENT_BUS.register(new ControllerProfile());
-        if (Boolean.getBoolean("mariocraft.clientProbe")) MinecraftForge.EVENT_BUS.register(new ClientLifecycleProbe(log));
+        if(PersistenceProbe.INSTANCE!=null) MinecraftForge.EVENT_BUS.register(PersistenceProbe.INSTANCE);
+        if (PersistenceProbe.INSTANCE==null && Boolean.getBoolean("mariocraft.clientProbe")) MinecraftForge.EVENT_BUS.register(new ClientLifecycleProbe(log));
         if (Boolean.getBoolean("mariocraft.gameplay")) MinecraftForge.EVENT_BUS.register(new MarioPlayer(log));
     }
 }

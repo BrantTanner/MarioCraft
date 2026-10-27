@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "actualIntegratedLoads": 13,
+  "actualIntegratedUnloads": 13,
+  "nativeCreates": 13,
+  "nativeCloses": 13,
+  "groundDamagedHealthSaved": 1280,
+  "waterHealthSaved": 1896,
+  "swimResumes": 1,
+  "midairActionBeforeSave": "3000880",
+  "nearDeathHealthSaved": 256,
+  "pendingDeathLivesSaved": 3,
+  "pendingReloadLives": 3,
+  "pendingReloadHealth": 2176,
+  "worldARepeatedLives": [
+    3,
+    3,
+    3
+  ],
+  "worldBFreshAndRepeatedLives": [
+    4,
+    4
+  ],
+  "invalidOlderDecoderThenColdMissingFallbackLives": [
+    4,
+    4,
+    4
+  ],
+  "positionChecks": 13,
+  "cameraInputPacketOwnershipChecks": 13,
+  "vanillaPreservationChecks": 11,
+  "emptyRegistryAndClosedResourceChecks": 13,
+  "movementWarnings": 0,
+  "worldLifecycleErrorsOrFatals": 0,
+  "terrainEdits": 0,
+  "meshBuilds": 16,
+  "maximumMeshMilliseconds": 57.2561,
+  "meshBuildsOver33Milliseconds": 3,
+  "testOnlyFixtures": [
+    "native health",
+    "natural water/dry relocation",
+    "jump input",
+    "server attack after login immunity",
+    "tagged inventory and unrelated entity NBT",
+    "XP/food",
+    "passive marker entity and natural bedrock",
+    "malformed/older server decoder fixtures and cold missing-record reload"
+  ]
+}

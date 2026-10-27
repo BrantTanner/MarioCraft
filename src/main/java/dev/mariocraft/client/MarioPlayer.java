@@ -1,6 +1,7 @@
 package dev.mariocraft.client;
 
 import dev.mariocraft.PlayerBridge;
+import dev.mariocraft.persistence.*;
 import dev.mariocraft.combat.MarioCombat;
 import dev.mariocraft.health.*;
 import dev.mariocraft.nativebridge.*;
@@ -57,7 +58,52 @@ public final class MarioPlayer {
     private HealthBridge.Channel healthChannel;
     private long healthSequence;
     private String lastRequestedExternalSource;
-    private Object lifeServer;
+    private volatile Object lifeServer;
+    private MarioSaveData saveData;
+    private MarioSaveState resumeAnchor;
+    MarioSaveState resumeAnchor() { return resumeAnchor; }
+    private volatile MarioRestoration.Result restoration;
+    private volatile String restoreFailure;
+    private boolean restoreRequested,restoreApplied;
+    private RestoreBridge.Hold restoreHold;
+    private void releaseRestoreHold() {
+        if(restoreHold!=null) { restoreHold.active=false;RestoreBridge.HOLDS.remove(restoreHold.clientPlayer.getUniqueID(),restoreHold);restoreHold=null; }
+    }
+    private void publishSave(boolean pending) {
+        if(saveData==null || playerId==null || world==null) return;
+        double x=poseReady?currentX:controlledPlayer.posX,y=poseReady?currentY:controlledPlayer.posY,z=poseReady?currentZ:controlledPlayer.posZ;
+        int health=pending?0:healthChannel!=null && healthChannel.snapshot!=null?healthChannel.snapshot.health:MarioLives.FULL_HEALTH;
+        if(pending) { x=Math.max(-29999984,Math.min(29999984,x));z=Math.max(-29999984,Math.min(29999984,z));y=Math.max(0,Math.min(255,y)); }
+        try { saveData.publish(playerId,new MarioSaveState(world.provider.getDimension(),x,y,z,health,lives.snapshot())); }
+        catch(IllegalArgumentException invalid) { if(pending) throw invalid; }
+    }
+    private boolean prepareRestoration(Minecraft mc) {
+        if(restoreApplied) return true;
+        if(!restoreRequested) {
+            restoreRequested=true;
+            final net.minecraft.server.integrated.IntegratedServer server=mc.getIntegratedServer();
+            final UUID id=mc.player.getUniqueID();
+            final EntityPlayerMP original=server.getPlayerList().getPlayerByUUID(id);
+            if(original==null) { restoreRequested=false;return false; }
+            final RestoreBridge.Hold hold=new RestoreBridge.Hold(original,mc.player);restoreHold=hold;RestoreBridge.HOLDS.put(id,hold);
+            movementChannel=mc.getConnection().getNetworkManager().channel();
+            if(movementChannel.pipeline().get("mariocraft_movement")==null) movementChannel.pipeline().addBefore("packet_handler","mariocraft_movement",new MovementPacketGate(id));
+            server.addScheduledTask(()-> {
+                try { if(!hold.active || server.getPlayerList().getPlayerByUUID(id)!=original) return;
+                    MarioRestoration.Result result=MarioRestoration.prepare(original);
+                    if(hold.active && lifeServer==server) restoration=result;
+                } catch(RuntimeException error) { if(hold.active && lifeServer==server) restoreFailure=error.toString(); }
+            });
+        }
+        if(restoreFailure!=null) { if(!failed) { failed=true;log.error("MARIOCRAFT restore failed {}",restoreFailure);
+            mc.displayGuiScreen(new net.minecraft.client.gui.GuiErrorScreen("MarioCraft safe resume unavailable","No safe resume position was found. The world was not modified.")); } return false; }
+        MarioRestoration.Result result=restoration;
+        if(result==null || mc.player.dimension!=result.state.dimension || mc.player.getDistanceSq(result.state.x,result.state.y,result.state.z)>.25 || !mc.player.isEntityAlive()) return false;
+        saveData=result.data;resumeAnchor=result.state;lives=MarioLives.restore(result.state.lives);restoreApplied=true;
+        if(mc.currentScreen instanceof net.minecraft.client.gui.GuiGameOver) mc.displayGuiScreen(null);
+        log.info("MARIOCRAFT semantic-resume health={} lives={} deaths={}",result.state.health,result.state.lives.lives,result.state.lives.deaths);
+        return true;
+    }
     private MarioLives lives=new MarioLives();
     private RespawnBridge.Pending pendingRespawn;
     private net.minecraft.client.entity.EntityPlayerSP deadPlayer;
@@ -68,9 +114,14 @@ public final class MarioPlayer {
             && session.state.invincTimer==0 && session.state.action==0x0C400201
             && session.state.velocity[0]==0 && session.state.velocity[1]==0 && session.state.velocity[2]==0;
     }
+    boolean persistenceOwnership() { Minecraft mc=Minecraft.getMinecraft();return session!=null && cameraEntity!=null && mc.getRenderViewEntity()==cameraEntity && mc.mouseHelper instanceof MarioMouse && !vanillaContexts.isEmpty() && !mc.gameSettings.autoJump && mc.gameSettings.thirdPersonView==0 && movementChannel!=null && movementChannel.pipeline().get("mariocraft_movement")!=null && HealthBridge.OWNERS.get(playerId)==healthChannel && !RestoreBridge.HOLDS.containsKey(playerId); }
+    boolean persistenceClosed() { return session==null && texture==null && cameraEntity==null && healthChannel==null && controlledPlayer==null && vanillaContexts.isEmpty() && previousMouse==null && movementChannel==null; }
+    boolean cleanIdleResume() { return session!=null && healthChannel!=null && healthChannel.received.get()==0 && lastRequestedExternalSource==null && !cameraModel.inspecting() && session.state.invincTimer==0 && (session.state.action==0x0C400201 || session.state.action==0x0C400205) && session.state.velocity[0]==0 && session.state.velocity[1]==0 && session.state.velocity[2]==0; }
+    boolean cleanSwimResume() { return session!=null && healthChannel!=null && healthChannel.received.get()==0 && lastRequestedExternalSource==null && !cameraModel.inspecting() && cameraModel.mode==8 && session.state.invincTimer==0 && (session.state.action&0x2000)!=0 && session.state.velocity[0]==0 && session.state.velocity[2]==0; }
     String respawnDiagnostics() {
         return "channel="+(healthChannel!=null)+" received="+(healthChannel==null?-1:healthChannel.received.get())+" external="+lastRequestedExternalSource+" inspecting="+cameraModel.inspecting();
     }
+    MarioSaveState semanticSave() { UUID id=playerId!=null?playerId:pendingRespawn!=null?pendingRespawn.original.getUniqueID():null;return saveData==null||id==null?null:saveData.get(id); }
     MarioLives.Snapshot lifeState() { return lives.snapshot(); }
     private void die(Minecraft mc,String reason) {
         if(!lives.die()) return;
@@ -80,6 +131,7 @@ public final class MarioPlayer {
         pendingRespawn=new RespawnBridge.Pending(player,lives.snapshot());deadPlayer=mc.player;
         RespawnBridge.PENDING.put(playerId,pendingRespawn);
         final RespawnBridge.Pending pending=pendingRespawn;
+        publishSave(true);
         close();
         server.addScheduledTask(()-> { if(RespawnBridge.PENDING.get(player.getUniqueID())==pending) RespawnBridge.begin(pending); });
         log.info("MARIOCRAFT death sequence={} lives={} reason={}",lives.snapshot().deaths,lives.snapshot().lives,reason);
@@ -122,16 +174,18 @@ public final class MarioPlayer {
         Minecraft mc=Minecraft.getMinecraft();
         if(mc.world==null && lifeServer!=null && (mc.getIntegratedServer()==null || !mc.getIntegratedServer().isServerRunning())) {
             if(pendingRespawn!=null) RespawnBridge.PENDING.remove(pendingRespawn.original.getUniqueID(),pendingRespawn);
-            pendingRespawn=null;deadPlayer=null;lifeServer=null;lives=new MarioLives();close();
+            pendingRespawn=null;deadPlayer=null;lifeServer=null;lives=new MarioLives();close();saveData=null;restoration=null;restoreRequested=restoreApplied=false;restoreFailure=null;
         }
         if(mc.world!=world) {
             close();
             if(mc.world!=null && lifeServer!=mc.getIntegratedServer()) {
                 if(pendingRespawn!=null) RespawnBridge.PENDING.remove(pendingRespawn.original.getUniqueID(),pendingRespawn);
                 pendingRespawn=null;deadPlayer=null;lives=new MarioLives();lifeServer=mc.getIntegratedServer();
+                saveData=null;restoration=null;restoreRequested=restoreApplied=false;restoreFailure=null;
             }
             world=mc.world;failed=false;
         }
+        if(mc.player!=null && mc.world!=null && mc.isSingleplayer() && !prepareRestoration(mc)) return;
         if(respawnProbe!=null) respawnProbe.update(mc,this,log);
         if(pendingRespawn!=null) {
             if(pendingRespawn.failure!=null) {
@@ -147,7 +201,7 @@ public final class MarioPlayer {
         if(controlledPlayer!=null && (mc.player!=controlledPlayer || !controlledPlayer.isEntityAlive())) { close(); failed=false; }
         if(mc.player==null || !mc.player.isEntityAlive() || mc.world==null || !mc.isSingleplayer() || failed) { clock.advance(System.nanoTime(),true); return; }
         if(session==null) {
-            if(respawnProbe==null && probe!=null && !probe.prepare(mc,log)) return;
+            if(PersistenceProbe.INSTANCE==null && respawnProbe==null && probe!=null && !probe.prepare(mc,log)) return;
             if(mc.player.ticksExisted<20 || !world.isBlockLoaded(new BlockPos(mc.player.posX,mc.player.posY,mc.player.posZ))) return;
             try {
                 terrain=new TerrainMesh(mc.player.posX,mc.player.posY,mc.player.posZ);
@@ -158,6 +212,7 @@ public final class MarioPlayer {
                 session=new MarioSession(Paths.get(System.getProperty("mariocraft.native")),MarioSession.discoverRom());
                 session.surfaces(initialSurfaces); submittedSurfaces=initialSurfaces;
                 session.create(terrain.x(mc.player.posX),terrain.y(mc.player.posY)+10,terrain.z(mc.player.posZ));
+                if(restoration!=null) { session.restoreHealth(restoration.state.health);restoration=null; }
                 combatSession=new Object();
                 playerId=mc.player.getUniqueID(); yaw=probe==null?mc.player.rotationYaw:probe.initialYaw(mc.player.rotationYaw);
                 healthChannel=new HealthBridge.Channel(mc.getIntegratedServer().getWorld(world.provider.getDimension()),mc.getIntegratedServer(),world);
@@ -189,6 +244,7 @@ public final class MarioPlayer {
                 mc.gameSettings.thirdPersonView=0;
                 mc.setRenderViewEntity(cameraEntity);
                 mc.gameSettings.autoJump=false;
+                releaseRestoreHold();
                 log.info("MARIOCRAFT native-player-created origin={},{},{}",terrain.ox,terrain.oy,terrain.oz);
             } catch(Exception|LinkageError error) { log.error("MARIOCRAFT native player initialization failed",error); close(); failed=true; if(probe!=null) GameplayProbe.fail("native initialization"); return; }
         }
@@ -218,14 +274,16 @@ public final class MarioPlayer {
         mc.player.setVelocity(0,0,0);
     }
     private void step(Minecraft mc) {
-        if(respawnProbe!=null) respawnProbe.setup(frames,session,terrain,mc,this);
+        if(PersistenceProbe.INSTANCE!=null) PersistenceProbe.INSTANCE.setup(frames,session,terrain,mc,this);
+        else if(respawnProbe!=null) respawnProbe.setup(frames,session,terrain,mc,this);
         else if(probe!=null) probe.setup(frames,session,terrain,mc);
         Sm64Library.Inputs input=new Sm64Library.Inputs();
         boolean controls=mc.currentScreen==null && mc.inGameHasFocus;
         ControlState keyboard=keyboardGate.filter(bindings.sample(),controls);
         ControlState pad=controller.sample(controls,log);
         ControlState state=pad.neutral()?keyboard:pad;
-        if(respawnProbe!=null) state=new ControlState();
+        if(PersistenceProbe.INSTANCE!=null) state=PersistenceProbe.INSTANCE.controls(frames);
+        else if(respawnProbe!=null) state=new ControlState();
         else if(probe!=null) state=probe.controls(frames,bindings);
         state.apply(input);
         cameraModel.controls(state,session.state.action);
@@ -295,7 +353,7 @@ public final class MarioPlayer {
         healthChannel.publish(health);
         if(respawnProbe!=null) respawnProbe.observe(session.state,mc,this,log);
         if(health.dead) {
-            if(respawnProbe==null && probe!=null) probe.deathObserve(frames,session.state,mc,log);
+            if(PersistenceProbe.INSTANCE==null && respawnProbe==null && probe!=null) probe.deathObserve(frames,session.state,mc,log);
             die(mc,"native-health");return;
         }
         double x=terrain.ox+session.state.position[0]/100.0;
@@ -310,10 +368,12 @@ public final class MarioPlayer {
         currentX=x; currentY=y; currentZ=z;
         if(!poseReady) { previousX=x; previousY=y; previousZ=z; poseReady=true; }
         PlayerBridge.POSES.put(playerId,pose);
+        publishSave(false);
         mc.player.setPosition(x,y,z);
         PlayerBridge.body(mc.player,pose);
         cameraModel.follow(x,y,z,session.state.faceAngle,session.state.forwardVelocity,cameraCollision);
-        if(respawnProbe==null && probe!=null) {
+        if(PersistenceProbe.INSTANCE!=null) PersistenceProbe.INSTANCE.observe(frames,session.state,mc,this);
+        else if(respawnProbe==null && probe!=null) {
             if(probe.waterProbe()) probe.waterObserve(frames,session.state,cameraModel,mc,log);
             else if(probe.cameraProbe()) probe.cameraObserve(frames,session.state,cameraModel,mc,log);
             else probe.observe(frames,session.state,yaw,mc,log);
@@ -458,6 +518,8 @@ public final class MarioPlayer {
         GlStateManager.color(1,1,1,1);
     }
     private void close() {
+        resumeAnchor=null;
+        if(restoreHold!=null) { releaseRestoreHold();restoreRequested=restoreApplied=false;restoration=null;restoreFailure=null; }
         combatSession=null;
         if(healthChannel!=null) { healthChannel.clear();if(playerId!=null) HealthBridge.OWNERS.remove(playerId,healthChannel);healthChannel=null; }
         healthSequence=0;lastRequestedExternalSource=null;

@@ -1,0 +1,64 @@
+{
+  "target_sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "emulator": "Project64 3.0.1.5664-2df3434",
+  "emulator_executable_sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+  "cadence": [
+    {
+      "utc_start": "2026-10-27T02:32:22.2385983Z",
+      "utc_end": "2026-10-27T02:32:28.0158564Z",
+      "rows": 350,
+      "accepted_stable_rows": 343,
+      "elapsed_seconds": 5.7747001,
+      "vblank_start": 5324020,
+      "vblank_end": 5324367,
+      "loop_start": 2661654,
+      "loop_end": 2661827,
+      "vblank_per_host_second": 60.0897,
+      "loop_per_host_second": 29.9583
+    },
+    {
+      "utc_start": "2026-10-27T02:32:33.9156839Z",
+      "utc_end": "2026-10-27T02:32:39.6091596Z",
+      "rows": 350,
+      "accepted_stable_rows": 343,
+      "elapsed_seconds": 5.6910704,
+      "vblank_start": 5324719,
+      "vblank_end": 5325061,
+      "loop_start": 2662003,
+      "loop_end": 2662174,
+      "vblank_per_host_second": 60.0941,
+      "loop_per_host_second": 30.0471
+    }
+  ],
+  "input": {
+    "utc_date": "2026-10-27",
+    "scene": "castle level 6, pause mode 2",
+    "rows": 96,
+    "accepted_stable_rows": 95,
+    "logical_key": "Z",
+    "button_mask": "0x2000",
+    "trials": [
+      {
+        "key_down_utc": "2026-10-27T02:33:30.6524411Z",
+        "key_up_utc": "2026-10-27T02:33:30.9053891Z",
+        "pressed_loop": 2663704,
+        "held_without_pressed_loop": 2663705,
+        "release_loop": 2663711
+      },
+      {
+        "key_down_utc": "2026-10-27T02:33:31.0776514Z",
+        "key_up_utc": "2026-10-27T02:33:31.3415303Z",
+        "pressed_loop": 2663717,
+        "held_without_pressed_loop": 2663718,
+        "release_loop": 2663725
+      }
+    ],
+    "result": "each trial observed down and pressed together, then down without pressed, then neutral"
+  },
+  "guard": "process identity, foreground, executable and ROM hashes, live ROM prefix verified; read-only process access; bounded key helper for input",
+  "limits": [
+    "Counter brackets and repeated controller reads do not prove atomicity.",
+    "Rates describe this emulator and host observation only, not N64 hardware timing.",
+    "No SI completion, interrupt delivery, SP/DP completion, queue-pressure, NMI or reset event was observed."
+  ]
+}

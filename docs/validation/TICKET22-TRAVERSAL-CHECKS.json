@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "nativeSteps": 360,
+  "terrainEdits": 0,
+  "wallKickFirstPostUpdateVy": 58.0,
+  "wallKickReference": "existing Project64 issue41 early/late representatives: 58",
+  "wallKickFreshA": true,
+  "ledgeGrabSlowClimb1SlowClimb2": true,
+  "climbAnimationAdvanced": true,
+  "finiteTrajectory": true,
+  "finalGrounded": true,
+  "actionsByRecipe": [
+    [
+      "10208b6",
+      "1325",
+      "1924",
+      "3000880",
+      "3000886",
+      "4000440",
+      "400044a",
+      "4000470",
+      "8a7",
+      "c400201"
+    ],
+    [
+      "3000880",
+      "4000440",
+      "4000445",
+      "54c",
+      "54d",
+      "800034b",
+      "c00023d",
+      "c400201"
+    ]
+  ],
+  "referenceLimit": "No successful Project64 ledge-grab or isolated ceiling contact reference was captured in issue42; those gates are code-derived."
+}

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "traversal": true,
+  "wallKick": true,
+  "ledgeGrab": true,
+  "ledgeClimb": true,
+  "finite": true,
+  "clearCenter": true,
+  "serverPoseError": 0.0,
+  "stepHeight": 0.0,
+  "terrainEdits": 0,
+  "actions": "[6436, 4901, 205521409, 67109952, 50333824, 2215, 16910518, 50333830, 67110000, 67109962, 134218571, 1356, 1357, 67109957, 201327165]"
+}

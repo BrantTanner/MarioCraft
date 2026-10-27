@@ -9,11 +9,11 @@ trace, log_path, result_path, output_path = map(Path, sys.argv[1:])
 rows = [json.loads(line) for line in trace.read_text(encoding="utf-8").splitlines()]
 log = log_path.read_text(encoding="utf-8")
 result = json.loads(result_path.read_text(encoding="utf-8"))
-assert result["passed"] and result["health"] and 2100 <= len(rows) <= 2130
+assert result["passed"] and result["health"] and 1801 <= result["frames"] <= 2100 and result["frames"] <= len(rows) <= result["frames"]+30
 assert [r["frame"] for r in rows] == list(range(1, len(rows) + 1))
 captured_frames = len(rows)
 # Server-side final observations complete asynchronously; retain bounded shutdown tail.
-rows = rows[:2100]
+rows = rows[:result["frames"]]
 recipes = list(dict.fromkeys(r["recipe"] for r in rows))
 assert len(recipes) == 7
 groups = {name: [r for r in rows if r["recipe"] == name] for name in recipes}

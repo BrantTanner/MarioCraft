@@ -9,6 +9,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** Explicit test-only input seam. Runs inside a normal world without keyboard/focus automation. */
 final class GameplayProbe {
+    void deathObserve(int frame,Sm64Library.State state,Minecraft mc,Logger log) {
+        if(health!=null) health.observe(frame,state,mc,log);
+        if(hazard!=null) hazard.observe(frame,state,mc,log);
+    }
     private final HazardProbe hazard=Boolean.getBoolean("mariocraft.hazardProbe")?new HazardProbe():null;
     void hazardContact(int kind,boolean admitted) { if(hazard!=null) hazard.contact(kind,admitted); }
     private final WaterProbe water=Boolean.getBoolean("mariocraft.waterProbe")?new WaterProbe():null;

@@ -22,6 +22,7 @@ minecraft {
             property 'mariocraft.gameplay', System.getProperty('mariocraft.gameplay', 'false')
             property 'mariocraft.combatProbe', System.getProperty('mariocraft.combatProbe', 'false')
             property 'mariocraft.healthProbe', System.getProperty('mariocraft.healthProbe', 'false')
+            property 'mariocraft.respawnProbe', System.getProperty('mariocraft.respawnProbe', 'false')
             property 'mariocraft.hazardProbe', System.getProperty('mariocraft.hazardProbe', 'false')
             property 'mariocraft.waterProbe', System.getProperty('mariocraft.waterProbe', 'false')
             property 'mariocraft.cameraProbe', System.getProperty('mariocraft.cameraProbe', 'false')

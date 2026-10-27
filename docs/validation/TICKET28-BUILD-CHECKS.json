@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "build": "successful",
+  "unitTests": {
+    "tests": 45,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lifeContractTests": 3,
+  "nativeSmoke": true,
+  "healthSmoke": true,
+  "hazardSmoke": true,
+  "nativeLethalHealth": 255,
+  "syntheticSmokeIsSeparateFromActualWorldRespawn": true
+}

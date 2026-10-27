@@ -1,12 +1,12 @@
 # Mario 64 course asset loading map (#58)
 
-**Status:** Static mapping is prepared; issue #58 remains open. Project64 transition observations are still required, and several source data ranges do not yet have exact content correspondence.
+**Status:** The bounded #58 inventory and representative Project64 transition are complete. Several source data identities and unsampled allocation lifetimes remain explicitly unknown.
 
 Tracker links: [#15 parent issue](https://github.com/BrantTanner/MarioCraft/issues/15), [#57 source inventory](https://github.com/BrantTanner/MarioCraft/issues/57), and [#58 this loading map](https://github.com/BrantTanner/MarioCraft/issues/58).
 
 ## Target and evidence boundary
 
-The ROM target is the supplied 8 MiB big-endian USA revision 0 image, SHA-256 `17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91`. The source reference is [`n64decomp/sm64@9921382a68bb0c865e5e45eb594d9c64db59b1af`](https://github.com/n64decomp/sm64/tree/9921382a68bb0c865e5e45eb594d9c64db59b1af), with `VERSION_US` selected. The source files describe linker and script intent. Native-code details below come from the canonical ROM's independently hash-checked code blocks; they do not show that a course transition was executed.
+The ROM target is the supplied 8 MiB big-endian USA revision 0 image, SHA-256 `17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91`. The source reference is [`n64decomp/sm64@9921382a68bb0c865e5e45eb594d9c64db59b1af`](https://github.com/n64decomp/sm64/tree/9921382a68bb0c865e5e45eb594d9c64db59b1af), with `VERSION_US` selected. The source files describe linker and script intent. Native-code details below come from the canonical ROM's independently hash-checked code blocks; the Project64 observations below separately show a representative course transition.
 
 The finite manifest [MARIO64-ISSUE58-ASSET-LOAD-MANIFEST.json](MARIO64-ISSUE58-ASSET-LOAD-MANIFEST.json) contains ROM offsets, lengths, hashes, source paths and line numbers, linker-order candidates, and bounded unknowns. Its helper [issue58-build-manifest.py](../../tools/issue58-build-manifest.py) reads the ROM and pinned source checkout, decodes MIO0 to transient memory, and writes only numeric and hash metadata.
 
@@ -55,6 +55,23 @@ A read-only sample on 2026-10-26 at 05:24:53 UTC identified the foreground Proje
 | `0x13` | `0x800EB180` | `behavior` | `[0x219E00,0x21F4C0)` | 22,208 | Exact hash match |
 
 The BOB level-data block differs at decoded offset `0x11234`, which is byte `0x1104C + 48*10 + 8` in the macro-object table. Pinned source record 48 is `macro_bobomb` at `(-1400, 0, -950)`; this is a positional source-encoding association and does not establish what changed the live byte. The collision header and 570 vertices at offset `0xE958` match exactly across 3,424 bytes (SHA-256 `4B035BDA7254839FACFC4B3B9774A6C5250CCF130B5090FF9BB2F8B063667E0B`). Across the other 14 blocks, captured content hashes match the corresponding canonical ROM raw or decoded spans. The block checks corroborate current BOB segment contents and several source/linker mappings; they do not show allocation, replacement, retention, or release during a transition.
+
+## Project64 BOB-to-castle transition
+
+On 2026-10-27 UTC, the canonical USA revision 0 ROM was verified by SHA-256. In Project64, a guarded read-only sample found level 9/course 1/save 1; Start paused it (play mode 2). Mario action `0x0C000203` had the pause-exit flag. A brief down input changed the observed menu line from 1 to 2, and A selected it; a subsequent sample found level 6/course 0/save 1/play mode 0. Each of the three bounded inputs logged a successful key release. This is a course-exit transition; no allocator free instruction was traced.
+
+| Moment | Segment | Encoded ROM span, end exclusive | Physical base | Compared bytes | Canonical and live SHA-256 | Counter bracket |
+|---|---:|---|---|---:|---|---|
+| BOB paused | 9 | `0x32D070â€“0x334B30` | `0x001C1000` | 47104 decoded | `93D2F56838A24B534BBC5C0ACEB3FC496304408A77F77DCFD7E731CC59C0B744` | 2589574â€“2589574 |
+| Castle | 9 | `0x365980â€“0x36F530` | `0x001C1000` | 51200 decoded | `2FAAB3E9E51ABE64CFD98183CA2B0397E9AF5C580932A918B7081C4112D64764` | 2590646â€“2590646 |
+| BOB paused | 14 | `0x405A60â€“0x405FB0` | `0x000FA1F0` | 1360 raw | `F8CFF6DEEDEABA3998A8D9DB8173E0831E3D471640C8041A3E35979806DE8913` | 2589586â€“2589586 |
+| Castle | 14 | `0x3CF0D0â€“0x3D0DC0` | `0x000FA1F0` | 7408 raw | `CB7C87EFFAF0A3D1B0215F1E887C2FA5FA7BA69439BE8A65B5A7E1801A255E83` | 2590647â€“2590647 |
+
+For each row the live full-block digest matched the ROM-derived raw or independently validated MIO0 output digest, with target segment base unchanged across the read. The source-pinned level entry scripts and actual encoded load operands identify the BOB and castle banks; the raw segment 14 bank comes from the dispatcher. These results establish replacement at two observed moments, not the precise time of free or load. A retained segment-table value by itself does not establish allocation ownership. Equal main-loop counter brackets do not make reads atomic or imply physics frames.
+
+The castle segment 7 full digest also matched its canonical 495896-byte decode, but its counter changed during all 20 read attempts, so that comparison is explicitly non-atomic. In the BOB sample, segment 7 had bounded live differences, already documented in the prior passive investigation; do not claim a full exact match. Other sampled castle entry and shared blocks had equal counter brackets and exact matches. No conclusion is extended to unsampled transitions or unverified asset identities. Full bounded scalar metadata, timestamps and block checks are in [the runtime evidence](MARIO64-ISSUE58-RUNTIME-EVIDENCE.json). The BOB snapshot was recorded at `2026-10-27T01:52:13.5972182Z`; the castle snapshot at `2026-10-27T01:52:49.5029861Z`.
+
+Source: [castle entry script](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/levels/castle_inside/script.c), [pause screen](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/src/game/ingame_menu.c), [BOB entry script](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/levels/bob/script.c).
 
 ## Native loading and lifetime
 
@@ -105,7 +122,7 @@ Static native code establishes these behaviors:
 - `INIT_LEVEL` resets level/object/area state and pushes pool state. `ALLOC_LEVEL_POOL` allocates from currently free level-pool capacity. `FREE_LEVEL_POOL` calls the pool resize helper with the pool's used size, clears the active pool handle, scans eight areas, and calls `0x80383340` when an area has terrain. Its name does not prove that every course asset is immediately freed. `CLEAR_LEVEL` resets objects and areas and pops pool state.
 - `AREA` and `END_AREA` maintain the current area state; terrain and macro commands resolve pointers into the active area. `FREE_LEVEL_POOL` scans eight areas and calls `0x80383340` when any area has terrain; the callee's effect is not established here. These facts describe static code paths, not observed per-course transitions or retention.
 
-The main pool allocator aligns allocations to 16 bytes and uses a 16-byte header. The allocation-only pool helpers round requests and capacities to four bytes; the allocation helper advances the active pool's current pointer while ensuring usage stays within capacity. The free-level handler asks its resize helper to resize the reservation to the used size, then clears the global handle. No base movement is established. The exact content lifetime across a real course transition remains to be corroborated in Project64.
+The main pool allocator aligns allocations to 16 bytes and uses a 16-byte header. The allocation-only pool helpers round requests and capacities to four bytes; the allocation helper advances the active pool's current pointer while ensuring usage stays within capacity. The free-level handler asks its resize helper to resize the reservation to the used size, then clears the global handle. No base movement is established. The two Project64 moments corroborate replacement of selected content and matching shared blocks; allocation ownership and exact free timing remain unknown.
 
 ## Acceptance status
 
@@ -114,10 +131,10 @@ The main pool allocator aligns allocations to 16 bytes and uses a 16-byte header
 | Bounded ROM scan and source-declared load categories | Enumerated across the full 8 MiB target and pinned source families; all 79 compressed slots and 290 source uses are represented. All 31 generated course banks are linked to source enum IDs, and 235 in-entry load operands are recorded. |
 | Every candidate's compression, decoded size/hash, and consumed span | Complete for all 79 MIO0 candidates. All 31 course script-bank spans and the intro/menu/ending transition spans have direct numeric source-command bounds. Other raw spans are candidate or unresolved as marked. |
 | Shared/course-specific groups and geometry/collision/script relationships | Static source and native relationships mapped; exact asset identity is strongest for the bounded BOB examples and remains incomplete for other data. |
-| Project64 load-transition corroboration | Partially corroborated: a passive, stable BOB snapshot matched 14 of 15 full blocks and matched BOB collision data within the differing block. A transition observation remains open. |
-| Sanitized report and finite manifest | Prepared. Contains no ROM, decoded asset, RAM, or capture bytes. |
+| Project64 load-transition corroboration | Corroborated for a BOB-to-castle exit: segment 9 and 14 content changed at reused bases and five shared blocks matched at both moments. Exact free timing and unsampled transitions remain unknown. |
+| Sanitized report and finite manifest | Published as numeric/hash-only metadata and prose; contains no ROM, decoded asset, RAM, or capture bytes. |
 
-The source inventory's bounds and 79-candidate scan are finite, and every currently enumerated source load has a numeric ROM interval or an explicitly marked candidate. Ordinal MIO0 associations and most other raw source/data candidates still lack independent exact source-build byte correspondence. The passive sample does not show a course load/unload transition. Issue #58 and parent #15 should remain open until those gaps are addressed.
+The source inventory's bounds and 79-candidate scan are finite, and every currently enumerated source load has a numeric ROM interval or an explicitly marked candidate. Ordinal MIO0 associations and most other raw source/data candidates still lack independent exact source-build byte correspondence. The observed transition establishes selected replacements without tracing individual frees. These explicitly bounded unknowns remain for later work; parent #15 remains open for its other dependencies and broader coverage.
 
 ## Reproduction and references
 
@@ -131,4 +148,4 @@ python tools/issue58-build-manifest.py `
   --output docs/research/MARIO64-ISSUE58-ASSET-LOAD-MANIFEST.json
 ```
 
-The helper requires the exact ROM SHA-256 and source commit above, and requires the 79-to-79 census counts. Primary source anchors: [`sm64.ld`](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/sm64.ld), [`levels/scripts.c`](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/levels/scripts.c), [`levels/level_defines.h`](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/levels/level_defines.h), and [the #57 source-pinned level inventory](MARIO64-ISSUE57-COURSE-LEVELS.md). Native evidence metadata and decompiler logs remain private under `tools/issue11-local/`; no pseudocode or raw code dump is published.
+The helper requires the exact ROM SHA-256 and source commit above, and requires the 79-to-79 census counts. Primary source anchors: [`sm64.ld`](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/sm64.ld), [`levels/scripts.c`](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/levels/scripts.c), [`levels/level_defines.h`](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/levels/level_defines.h), and [the #57 source-pinned level inventory](MARIO64-ISSUE57-COURSE-LEVELS.md). Native evidence metadata and decompiler logs remain private; no pseudocode or raw code dump is published.

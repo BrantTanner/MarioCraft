@@ -54,11 +54,46 @@ public final class NativeSmoke {
                 System.out.println("NATIVE_SMOKE cycle=" + cycle + " peak=" + peak + " triangles=" + Short.toUnsignedInt(session.geometry.numTrianglesUsed) + " health=" + session.state.health);
             }
         }
+        attackFallback(dll);
         float shortPeak=jumpControl(dll,false,false);
         float heldPeak=jumpControl(dll,true,false);
         require(heldPeak>shortPeak+100,"Held A did not preserve the higher jump arc");
         jumpControl(dll,true,true);
         System.out.println("MOVEMENT_NATIVE heldPeak="+heldPeak+" releasedPeak="+shortPeak);
+    }
+
+    /** Synthetic native regression: active kick facing miss must retain descending top fallback. */
+    private static void attackFallback(Path dll) throws Exception {
+        try(MarioSession session=new MarioSession(dll,MarioSession.discoverRom())) {
+            Sm64Library.Surface[] floor=(Sm64Library.Surface[])new Sm64Library.Surface().toArray(2);
+            floor[0].vertices=new int[]{-6000,0,-6000,-6000,0,6000,6000,0,6000};
+            floor[1].vertices=new int[]{-6000,0,-6000,6000,0,6000,6000,0,-6000};
+            session.surfaces(floor);session.create(0,100,0);
+            Sm64Library.Inputs input=new Sm64Library.Inputs();input.camLookZ=-1;
+            for(int i=0;i<90;i++) session.tick(input);
+            boolean checked=false;
+            for(int frame=0;frame<50;frame++) {
+                input.buttonA=(byte)(frame<6?1:0);
+                input.buttonB=(byte)(frame>=9 && frame<13?1:0);
+                session.tick(input);
+                Sm64Library.State state=session.state;
+                if(state.action==0x18008ac && (state.flags&0x200000)!=0 && state.velocity[1]<0 && state.position[1]>35) {
+                    float tx=state.position[0]-(float)Math.sin(state.faceAngle)*30;
+                    float ty=state.position[1]-30;
+                    float tz=state.position[2]-(float)Math.cos(state.faceAngle)*30;
+                    dev.mariocraft.combat.MarioCombat.Sample sample=new dev.mariocraft.combat.MarioCombat.Sample(state.action,state.flags,state.animID,state.animFrame,
+                        state.position[0]/100.0,state.position[1]/100.0,state.position[2]/100.0,state.position[1]/100.0+.1,state.faceAngle,state.velocity[1],state.forwardVelocity);
+                    dev.mariocraft.combat.MarioCombat.Target target=new dev.mariocraft.combat.MarioCombat.Target(tx/100.0,ty/100.0,tz/100.0,.3,.3);
+                    require(dev.mariocraft.combat.MarioCombat.classify(sample,target)==dev.mariocraft.combat.MarioCombat.Attack.STOMP,"Java lost active-facing-miss aerial fallback");
+                    require(session.attack(tx,ty,tz,30),"Native rejected active-facing-miss aerial fallback");
+                    session.tick(new Sm64Library.Inputs());
+                    require(session.state.velocity[1]>0,"Native fallback did not bounce Mario");
+                    System.out.println("COMBAT_NATIVE activeFacingMissTopFallback=true bouncedVelocity="+session.state.velocity[1]);
+                    checked=true;break;
+                }
+            }
+            require(checked,"Input recipe did not reach descending active jump kick");
+        }
     }
 
     /** Native-only flat floor: these checks are not normal-world integration evidence. */

@@ -1,6 +1,6 @@
 # MarioCraft
 
-Current status (26 October 2026): implementation is underway for the user's
+Current status (27 October 2026): implementation is underway for the user's
 focused scope of Mario movement, camera and Minecraft mob interactions. The
 [current architecture contract](docs/FOCUSED-READINESS-AND-ARCHITECTURE.md)
 supersedes the historical full-research gates below. This is an early opt-in
@@ -73,10 +73,14 @@ geometry and repeated teardown. Translation-only render interpolation avoids
 blending changing native mesh topology. Asset-free tests check 30 Hz timing across
 refresh rates and pause/stall handling.
 
-Incoming damage is not yet converted to native Mario health/reactions. Camera
-following and mob crossover rules are provisional. Full combat coverage, water,
-hazards and final packaging remain incomplete; later gameplay tickets
-remain open.
+`-Task client -CombatProbe` exercises punch, kick, stomp, dive and ground pound
+fixtures plus ordinary AI-enabled zombie, bat and bow-skeleton contacts. See
+[outgoing combat rules, evidence and limits](docs/TICKET24-MOB-COMBAT.md) and the
+[Overworld camera implementation](docs/TICKET23-CAMERA.md).
+
+Incoming damage is not yet converted to native Mario health/reactions. Broader
+creature coverage, water, hazards and final packaging remain incomplete; later
+gameplay tickets remain open.
 
 ## Historical planning record
 

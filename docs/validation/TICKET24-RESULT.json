@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "combat": true,
+  "frames": 1620,
+  "hits": {
+    "air-kick-fixture:KICK": 1,
+    "airborne-bat-ai:PUNCH": 1,
+    "dive-fixture:DIVE": 1,
+    "ground-pound-fixture:GROUND_POUND": 1,
+    "ground-zombie-ai:PUNCH": 1,
+    "projectile-skeleton-ai:PUNCH": 1,
+    "punch-fixture:PUNCH": 1,
+    "stomp-fixture:STOMP": 1
+  },
+  "attempts": {
+    "air-kick-fixture:KICK": 1,
+    "airborne-bat-ai:PUNCH": 1,
+    "dive-fixture:DIVE": 1,
+    "ground-pound-fixture:GROUND_POUND": 1,
+    "ground-zombie-ai:PUNCH": 1,
+    "projectile-skeleton-ai:PUNCH": 1,
+    "punch-fixture:PUNCH": 1,
+    "stomp-fixture:STOMP": 1
+  },
+  "ordinaryAiEnabled": true,
+  "zombieTargetsRealPlayer": true,
+  "zombieNavigation": true,
+  "zombieVanillaAttack": true,
+  "skeletonNavigation": true,
+  "skeletonTargetsRealPlayer": true,
+  "skeletonProjectile": true,
+  "batAirborneMotion": true,
+  "zombieTicks": 90,
+  "batTicks": 90,
+  "skeletonTicks": 214,
+  "zombieTravel": 3.6749621341385623,
+  "batTravel": 10.50579775799731,
+  "skeletonTravel": 12.131924906454671,
+  "fixtureDeath": true,
+  "ordinaryItemDrops": true,
+  "terrainEdits": 0
+}

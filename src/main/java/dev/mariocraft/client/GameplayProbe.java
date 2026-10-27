@@ -9,8 +9,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** Explicit test-only input seam. Runs inside a normal world without keyboard/focus automation. */
 final class GameplayProbe {
+    private final CombatProbe combat=Boolean.getBoolean("mariocraft.combatProbe")?new CombatProbe():null;
     private final CameraProbe cameraProbe=Boolean.getBoolean("mariocraft.cameraProbe")?new CameraProbe():null;
-    float initialYaw(float yaw) { return cameraProbe!=null?cameraProbe.yaw():yaw; }
+    void combatContact(dev.mariocraft.combat.MarioCombat.Attack attack,net.minecraft.entity.EntityLivingBase target,boolean accepted,float before,float after) { if(combat!=null) combat.contact(attack,target,accepted,before,after); }
+    float initialYaw(float yaw) { return combat!=null?combat.yaw():cameraProbe!=null?cameraProbe.yaw():yaw; }
     boolean cameraProbe() { return cameraProbe!=null; }
     void cameraObserve(int frame,Sm64Library.State state,MarioCamera camera,Minecraft mc,Logger log) { cameraProbe.observe(frame,state,camera,mc,log); }
     private final TraversalProbe traversal=Boolean.getBoolean("mariocraft.traversalProbe")?new TraversalProbe():null;
@@ -23,6 +25,7 @@ final class GameplayProbe {
     private volatile MovementSite site;
     private boolean findingSite;
     boolean prepare(Minecraft mc,Logger log) {
+        if(combat!=null) return combat.prepare(mc,log);
         if(cameraProbe!=null) return cameraProbe.prepare(mc,log);
         if(traversal!=null) return traversal.prepare(mc,log);
         if(!findingSite) {
@@ -41,6 +44,7 @@ final class GameplayProbe {
         return site!=null && mc.player.getDistanceSq(site.x+.5,site.y,site.z+.5)<1;
     }
     void setup(int frame,dev.mariocraft.nativebridge.MarioSession session,TerrainMesh terrain,Minecraft mc) {
+        if(combat!=null) { combat.setup(frame,session,terrain,mc,org.apache.logging.log4j.LogManager.getLogger("MarioCraft"));return; }
         if(cameraProbe!=null) return;
         if(traversal!=null) { traversal.setup(frame,session,terrain,mc); return; }
         if(frame>=380 && (frame-380)%180==0) {
@@ -78,6 +82,7 @@ final class GameplayProbe {
     private int oldJumpCode;
     private boolean bindingPersistence;
     ControlState controls(int frame,MarioBindings bindings) {
+        if(combat!=null) return combat.controls(frame,bindings);
         if(cameraProbe!=null) return cameraProbe.controls(frame,bindings);
         if(traversal!=null) return traversal.controls(frame,bindings);
         if(frame>=380) { movementInput=movement.controls(frame-380,bindings); return movementInput; }
@@ -126,6 +131,7 @@ final class GameplayProbe {
     }
     void observe(int frame,Sm64Library.State state,float yaw,Minecraft mc,Logger log) {
         currentFrame=frame;
+        if(combat!=null) { combat.observe(frame,state,mc,log);return; }
         if(traversal!=null) { traversal.observe(frame,state,mc,log); return; }
         if(frame>380 && !movement.done(frame-381)) movement.observe(frame-381,state,movementInput);
         if(frame==2180) {

@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "checks": {
+    "continuousFrames": true,
+    "finitePoses": true,
+    "allRecipesActionsAndInputs": true,
+    "oneAcceptedHitPerRecipe": true,
+    "oneAttemptPerRecipe": true,
+    "serverContactsMatchEightDistinctCreatures": true,
+    "separateFixtureAndOrdinaryAiHits": true,
+    "requestedDamageMatchesRules": true,
+    "allContactHealthDecreased": true,
+    "noRejectedServerContact": true,
+    "ordinaryAiAndLifecycle": true,
+    "normalTeardown": true,
+    "noMovementWarnings": true,
+    "zeroTerrainEdits": true,
+    "freshIntegratedPass": true
+  },
+  "recordedFrames": 1620,
+  "serverContacts": 8,
+  "fixtureContacts": 5,
+  "ordinaryAiContacts": 3,
+  "healthChanges": [
+    {
+      "attack": "PUNCH",
+      "requestedDamage": 3.0,
+      "before": 10.0,
+      "after": 7.0,
+      "fixtureNoAI": true
+    },
+    {
+      "attack": "KICK",
+      "requestedDamage": 4.0,
+      "before": 20.0,
+      "after": 16.0,
+      "fixtureNoAI": true
+    },
+    {
+      "attack": "STOMP",
+      "requestedDamage": 5.0,
+      "before": 4.0,
+      "after": 0.0,
+      "fixtureNoAI": true
+    },
+    {
+      "attack": "DIVE",
+      "requestedDamage": 6.0,
+      "before": 10.0,
+      "after": 4.0,
+      "fixtureNoAI": true
+    },
+    {
+      "attack": "GROUND_POUND",
+      "requestedDamage": 8.0,
+      "before": 10.0,
+      "after": 2.0,
+      "fixtureNoAI": true
+    },
+    {
+      "attack": "PUNCH",
+      "requestedDamage": 3.0,
+      "before": 20.0,
+      "after": 17.06,
+      "fixtureNoAI": false
+    },
+    {
+      "attack": "PUNCH",
+      "requestedDamage": 3.0,
+      "before": 6.0,
+      "after": 3.0,
+      "fixtureNoAI": false
+    },
+    {
+      "attack": "PUNCH",
+      "requestedDamage": 3.0,
+      "before": 20.0,
+      "after": 17.0,
+      "fixtureNoAI": false
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "scope": "Selected value-one yellow coin and controlled health response; one observed run",
+  "scene": {
+    "level": 9,
+    "course": 1,
+    "saveFile": 1
+  },
+  "damageBaseline": {
+    "healthBefore": 2176,
+    "healthAfter": 1920,
+    "hurtCounterAfter": 0,
+    "lives": 2,
+    "selectedGoombaBehavior": "0x800EF8AC",
+    "goombaDamageValue": 1,
+    "notes": "Selected Goomba appeared in Mario collision list and interaction object; action 0 to 1 to 2. Health decrements drained one queued body-hit response."
+  },
+  "coinSeed": {
+    "position": [
+      -449,
+      0,
+      5668
+    ],
+    "value": 1,
+    "selector": "0x10",
+    "behavior": "0x800EBA9C",
+    "hitboxRadius": 100,
+    "hitboxHeight": 64
+  },
+  "sampledSequence": [
+    {
+      "utc": "2026-10-27T03:34:50.708Z",
+      "loopCounter": 2773792,
+      "health": 1920,
+      "hurt": 0,
+      "heal": 0,
+      "coins": 0,
+      "lives": 2,
+      "targetActiveFlags": 257,
+      "targetInteractionStatus": "0x00000000",
+      "playMode": 2
+    },
+    {
+      "utc": "2026-10-27T03:34:53.033Z",
+      "loopCounter": 2773861,
+      "health": 1984,
+      "hurt": 0,
+      "heal": 3,
+      "coins": 1,
+      "lives": 2,
+      "targetActiveFlags": 0,
+      "targetInteractionStatus": "0x00008000",
+      "targetInMarioCollisionList": true,
+      "playMode": 2
+    }
+  ],
+  "behaviorMatch": {
+    "address": "0x800EBA9C",
+    "romOffset": "0x21A71C",
+    "byteLength": 128,
+    "sha256": "220EEA4387B12BAC714EF319CCC4E7948D5D487574F1A87A69BC0A6E0192EC22",
+    "unique": true,
+    "doubleReadEqual": true,
+    "observedSeparately": true
+  },
+  "yellowHitbox": {
+    "address": "0x803301F4",
+    "romOffset": "0xEB1F4",
+    "byteLength": 16,
+    "sha256": "09CE900D2BE0ADB993C02A1C3E2D17AD283604DB16183AA210DD0CAF8F686B02",
+    "selector": 16,
+    "value": 1,
+    "radius": 100,
+    "height": 64
+  },
+  "samplerSha256": "99C7DF5E12E0EC416086676A8F58923E6303D451EBC438765A63CD6FAAFE9E5D",
+  "traceSha256": "44FFBE385D3F48B4E7083EAEF0054CC04497143B0C515B5FF927511D1BE8176F",
+  "limitations": [
+    "Counter-bracketed samples are non-atomic and do not identify the exact collision frame.",
+    "Three healing ticks remained queued at pause; subsequent health and full recovery were not observed.",
+    "One documented run; independent replay was not demonstrated.",
+    "The behavior residency match was captured separately."
+  ],
+  "baselineMarioPosition": [
+    -871,
+    0,
+    5868.5176
+  ],
+  "baselineGoombaPosition": [
+    -833.217,
+    0,
+    6010.408
+  ],
+  "inputPulses": {
+    "holdMsRequested": 100,
+    "keys": [
+      "AnalogUp+AnalogRight",
+      "AnalogRight",
+      "AnalogUp+AnalogRight",
+      "AnalogUp+AnalogRight",
+      "AnalogRight",
+      "AnalogRight",
+      "AnalogUp+AnalogRight"
+    ],
+    "keyReleaseConfirmed": true
+  }
+}
+

@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "unitTests": 42,
+  "unitFailures": 0,
+  "unitErrors": 0,
+  "buildAssemblyReobfuscation": true,
+  "smokeTasks": [
+    "nativeSmoke",
+    "hazardSmoke",
+    "healthSmoke",
+    "waterSmoke",
+    "traversalSmoke"
+  ],
+  "hazard": {
+    "fireFirstAction": "0x010208B4",
+    "fireFirstY": 31.5,
+    "fireFirstVerticalVelocity": 27.5,
+    "fireFirstHealth": 2166,
+    "fireFirstAnimation": 41,
+    "fireDamageSteps": 71,
+    "fireRecoveryStep": 72,
+    "reentry": true,
+    "shallowWaterInterruption": true,
+    "waterContactRejected": true,
+    "nativeProtectedFireRejected": true,
+    "lavaFirstAction": "0x010208B7",
+    "lavaFirstY": 84,
+    "lavaFirstVerticalVelocity": 80.8,
+    "lavaExactMinus64Steps": 30,
+    "lavaBounceSamples": 5,
+    "fullHealthLavaLethalStep": 116,
+    "lethalHealth": 255
+  },
+  "evidenceType": "Synthetic native geometry, not actual Minecraft or new Project64 runtime measurements"
+}

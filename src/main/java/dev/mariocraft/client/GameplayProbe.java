@@ -9,6 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** Explicit test-only input seam. Runs inside a normal world without keyboard/focus automation. */
 final class GameplayProbe {
+    private final HazardProbe hazard=Boolean.getBoolean("mariocraft.hazardProbe")?new HazardProbe():null;
+    void hazardContact(int kind,boolean admitted) { if(hazard!=null) hazard.contact(kind,admitted); }
     private final WaterProbe water=Boolean.getBoolean("mariocraft.waterProbe")?new WaterProbe():null;
     boolean waterProbe() { return water!=null; }
     void waterObserve(int frame,Sm64Library.State state,MarioCamera camera,Minecraft mc,Logger log) { water.observe(frame,state,camera,mc,log); }
@@ -29,6 +31,7 @@ final class GameplayProbe {
     private volatile MovementSite site;
     private boolean findingSite;
     boolean prepare(Minecraft mc,Logger log) {
+        if(hazard!=null) return hazard.prepare(mc,log);
         if(water!=null) return water.prepare(mc,log);
         if(health!=null) return health.prepare(mc,log);
         if(combat!=null) return combat.prepare(mc,log);
@@ -50,6 +53,7 @@ final class GameplayProbe {
         return site!=null && mc.player.getDistanceSq(site.x+.5,site.y,site.z+.5)<1;
     }
     void setup(int frame,dev.mariocraft.nativebridge.MarioSession session,TerrainMesh terrain,Minecraft mc) {
+        if(hazard!=null) { hazard.setup(frame,session,terrain,mc);return; }
         if(water!=null) { water.setup(frame,session,terrain,mc);return; }
         if(health!=null) { health.setup(frame,session,terrain,mc,org.apache.logging.log4j.LogManager.getLogger("MarioCraft"));return; }
         if(combat!=null) { combat.setup(frame,session,terrain,mc,org.apache.logging.log4j.LogManager.getLogger("MarioCraft"));return; }
@@ -90,6 +94,7 @@ final class GameplayProbe {
     private int oldJumpCode;
     private boolean bindingPersistence;
     ControlState controls(int frame,MarioBindings bindings) {
+        if(hazard!=null) return hazard.controls(frame);
         if(water!=null) return water.controls(frame,bindings);
         if(health!=null) return health.controls(frame,bindings);
         if(combat!=null) return combat.controls(frame,bindings);
@@ -141,6 +146,7 @@ final class GameplayProbe {
     }
     void observe(int frame,Sm64Library.State state,float yaw,Minecraft mc,Logger log) {
         currentFrame=frame;
+        if(hazard!=null) { hazard.observe(frame,state,mc,log);return; }
         if(health!=null) { health.observe(frame,state,mc,log);return; }
         if(combat!=null) { combat.observe(frame,state,mc,log);return; }
         if(traversal!=null) { traversal.observe(frame,state,mc,log); return; }

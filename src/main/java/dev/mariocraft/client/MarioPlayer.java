@@ -217,6 +217,9 @@ public final class MarioPlayer {
         }
         WaterVolume.Sample water=WaterVolume.sample(world,mc.player.posX,mc.player.posY,mc.player.posZ);
         session.waterLevel(water.nativeLevel(terrain));
+        HazardVolume.Contact hazard=HazardVolume.sample(world,mc.player.posX,mc.player.posY,mc.player.posZ,session.state.action);
+        boolean hazardAdmitted=hazard.kind!=0 && session.hazard(hazard.kind,hazard.nx,hazard.nz);
+        if(probe!=null) probe.hazardContact(hazard.kind,hazardAdmitted);
         session.tick(input);
         MarioHealth.Snapshot health=new MarioHealth.Snapshot(++healthSequence,Short.toUnsignedInt(session.state.health),session.state.action,session.state.invincTimer,healthChannel.snapshot,lastRequestedExternalSource);
         healthChannel.publish(health);
@@ -307,6 +310,9 @@ public final class MarioPlayer {
     @SubscribeEvent public void camera(EntityViewRenderEvent.CameraSetup event) {
         // orientCamera applies a 0.05 first-person offset before this event; cancel it.
         if(session!=null) GlStateManager.translate(0,0,-.05f);
+    }
+    @SubscribeEvent public void blockOverlay(RenderBlockOverlayEvent event) {
+        if(session!=null && event.getPlayer()==controlledPlayer && event.getOverlayType()==RenderBlockOverlayEvent.OverlayType.FIRE) event.setCanceled(true);
     }
     @SubscribeEvent public void hand(RenderHandEvent event) { if(session!=null) event.setCanceled(true); }
     @SubscribeEvent public void vanillaHud(RenderGameOverlayEvent.Pre event) {

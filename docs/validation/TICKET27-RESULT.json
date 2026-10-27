@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "hazards": true,
+  "frames": 1200,
+  "minimumHealth": [
+    1466,
+    1466,
+    640,
+    1408,
+    255
+  ],
+  "fireEntries": 2,
+  "lavaSideEntries": 1,
+  "minusTenSteps": 141,
+  "minus64Steps": 37,
+  "lavaRecovery": true,
+  "recovery": true,
+  "nativeDeath": true,
+  "vanillaHealthUnchanged": true,
+  "terrainEdits": 0,
+  "testOnlyHealthResets": 5,
+  "testOnlyRelocations": 7,
+  "naturalDimension": -1
+}

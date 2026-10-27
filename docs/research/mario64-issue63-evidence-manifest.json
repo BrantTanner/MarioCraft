@@ -248,5 +248,77 @@
     "rom_start": "0x1000",
     "rom_end_exclusive": "0xE8560",
     "formula": "ROM = PC - 0x80245000"
+  },
+  "runtime_graphics_descriptor": {
+    "observation_utc": "2026-10-27T02:23:17.7287016Z",
+    "emulator": "Project64 3.0.1.5664-2df3434",
+    "emulator_executable_sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+    "scene": "live game continuation; scene not independently sampled in this bracket",
+    "task": "0x80220D50",
+    "type": 1,
+    "flags": 0,
+    "state": 0,
+    "boot": {
+      "address": "0x8032B260",
+      "length": 208,
+      "sha256": "589D793EDA195C576C9D767E7A5E4B77352826F59669D20BDCC358A8EBC979A3",
+      "matched_rom_offset": "0xE6260"
+    },
+    "code": {
+      "address": "0x8032B330",
+      "length": 4096,
+      "sha256": "FFD76B7092CE0C1B6DC2B1FB9992AB2B330F0D813577F49B3A1F32B2AF9AC618",
+      "matched_rom_offset": "0xE6330"
+    },
+    "microcode_data": {
+      "address": "0x80339AC0",
+      "length": 2048,
+      "sha256": "B842FB99D1899C2F0345FCD43BD9F61F38675C39E4EC7BAB5CB130518FBF0F3A",
+      "matched_rom_offset": "0xF4AC0"
+    },
+    "dram_stack": {
+      "address": "0x80207900",
+      "length": 1024
+    },
+    "output": {
+      "start": "0x80227000",
+      "end": "0x80246000"
+    },
+    "display_list": {
+      "address": "0x80214550",
+      "length": 1432
+    },
+    "yield_buffer": {
+      "address": "0x80206E00",
+      "length": 2304
+    },
+    "completion_queue": "0x8033B028",
+    "completion_message": "0x00000002",
+    "guard": "verified process/window foreground and binary hashes; ROM-prefix match; read-only process access",
+    "bracket": {
+      "graphics_pointer_equal": true,
+      "descriptor_double_read_equal": true,
+      "counter_before": 2645353,
+      "counter_after": 2645353,
+      "atomic": false
+    },
+    "limits": [
+      "The pointer and descriptor bracket does not prove atomicity or identify a completed frame.",
+      "Boot/code/data were canonical word-swizzled before hashing; buffer contents and individual graphics commands are not published.",
+      "SP/DP completion and exact timing of this task were not observed."
+    ],
+    "terminal_opcode_sample": {
+      "observation_utc": "2026-10-27T02:24:10.6409027Z",
+      "task": "0x80220D50",
+      "display_list": "0x80214550",
+      "display_list_length": 1432,
+      "penultimate_opcode": "0xE9",
+      "final_opcode": "0xB8",
+      "counter_before": 2646937,
+      "counter_after": 2646937,
+      "descriptor_double_read_equal": true,
+      "graphics_pointer_equal": true,
+      "atomic": false
+    }
   }
 }

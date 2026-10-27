@@ -83,7 +83,7 @@ public final class MarioSession implements AutoCloseable {
     }
     public void configureHealthForProbe(int health) {
         check();
-        if(!Boolean.getBoolean("mariocraft.healthProbe") && !Boolean.getBoolean("mariocraft.combatProbe") && !Boolean.getBoolean("mariocraft.waterProbe") && !Boolean.getBoolean("mariocraft.hazardProbe")) throw new IllegalStateException("Health reset requires opt-in test probe");
+        if(!Boolean.getBoolean("mariocraft.healthProbe") && !Boolean.getBoolean("mariocraft.combatProbe") && !Boolean.getBoolean("mariocraft.waterProbe") && !Boolean.getBoolean("mariocraft.hazardProbe") && !Boolean.getBoolean("mariocraft.respawnProbe")) throw new IllegalStateException("Health reset requires opt-in test probe");
         if(health<0x100 || health>0x880) throw new IllegalArgumentException("Test health setup range");
         lib.sm64_set_mario_health(mario,(short)health);
     }

@@ -110,6 +110,7 @@ final class HealthProbe {
         receipts[p]=channel.received.get()-receivedBase;
         String row="{\"frame\":"+frame+",\"recipe\":\""+RECIPES[p]+"\",\"health\":"+Short.toUnsignedInt(state.health)+",\"sections\":"+MarioHealth.sections(Short.toUnsignedInt(state.health))+",\"action\":\""+Integer.toHexString(state.action)+"\",\"invinc\":"+state.invincTimer+",\"x\":"+mc.player.posX+",\"y\":"+mc.player.posY+",\"z\":"+mc.player.posZ+",\"vy\":"+state.velocity[1]+",\"a\":"+input.a+",\"stickY\":"+input.y+",\"receipts\":"+receipts[p]+"}\n";
         write(mc,"health-trace.jsonl",row,frame==1);
+        if(p==6 && Short.toUnsignedInt(state.health)<0x100) { finish(mc,log,frame);return; }
         if(frame%5==0) {
             UUID id=mc.player.getUniqueID(),mobId=target;int observedPhase=phase;
             mc.getIntegratedServer().addScheduledTask(()->{
@@ -126,16 +127,16 @@ final class HealthProbe {
                     if(channel.snapshot!=null && channel.snapshot.health<=0x480) mob.setDead();
                 }
                 for(Entity e:player.world.loadedEntityList) if(e instanceof EntityArrow && ((EntityArrow)e).shootingEntity!=null && ((EntityArrow)e).shootingEntity.getUniqueID().equals(mobId)) arrowSeen=true;
-                if(frame==TOTAL) finish(mc,log);
+                if(frame==TOTAL) finish(mc,log,frame);
             });
         }
     }
-    private void finish(Minecraft mc,Logger log) {
+    private void finish(Minecraft mc,Logger log,int terminalFrame) {
         boolean passed=minHealth[0]<0x880 && receipts[0]>=2 && maxTimer[0]>0 && zombieTarget && zombieTicks>20
             && minHealth[1]<0x880 && skeletonTarget && skeletonTicks>20 && arrowSeen && minHealth[2]<0x880
             && minHealth[3]==0x880 && minHealth[4]==0x680 && minHealth[5]==0x480
             && landed[3] && landed[4] && landed[5] && minHealth[6]==0xFF && vanillaHealth;
-        String result="{\"passed\":"+passed+",\"health\":true,\"frames\":"+TOTAL+",\"minimumNativeHealth\":"+Arrays.toString(minHealth)+",\"maximumInvincibility\":"+Arrays.toString(maxTimer)+",\"serverDamageReceipts\":"+Arrays.toString(receipts)+",\"nativeHurtActions\":"+Arrays.toString(hurtAction)+",\"landed\":"+Arrays.toString(landed)+",\"zombieTargetsRealPlayer\":"+zombieTarget+",\"skeletonTargetsRealPlayer\":"+skeletonTarget+",\"skeletonArrow\":"+arrowSeen+",\"zombieTicks\":"+zombieTicks+",\"skeletonTicks\":"+skeletonTicks+",\"vanillaHealthUnchanged\":"+vanillaHealth+",\"maximumObservedServerMotion\":"+serverMotion+",\"terrainEdits\":0,\"testOnlyHealthResets\":7,\"respawnImplemented\":false}";
+        String result="{\"passed\":"+passed+",\"health\":true,\"frames\":"+terminalFrame+",\"minimumNativeHealth\":"+Arrays.toString(minHealth)+",\"maximumInvincibility\":"+Arrays.toString(maxTimer)+",\"serverDamageReceipts\":"+Arrays.toString(receipts)+",\"nativeHurtActions\":"+Arrays.toString(hurtAction)+",\"landed\":"+Arrays.toString(landed)+",\"zombieTargetsRealPlayer\":"+zombieTarget+",\"skeletonTargetsRealPlayer\":"+skeletonTarget+",\"skeletonArrow\":"+arrowSeen+",\"zombieTicks\":"+zombieTicks+",\"skeletonTicks\":"+skeletonTicks+",\"vanillaHealthUnchanged\":"+vanillaHealth+",\"maximumObservedServerMotion\":"+serverMotion+",\"terrainEdits\":0,\"testOnlyHealthResets\":7,\"nativeDeathEndpoint\":true,\"respawnClaimed\":false}";
         write(mc,"gameplay-result.json",result,true);log.info("MARIOCRAFT HEALTH result={}",result);GameplayProbe.complete=true;
     }
     private static void write(Minecraft mc,String name,String text,boolean replace) {

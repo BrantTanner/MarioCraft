@@ -1,0 +1,52 @@
+{
+  "passed": true,
+  "respawn": true,
+  "deaths": 6,
+  "minecraftGameOverScreens": 6,
+  "completedRespawns": 6,
+  "zeroLifeReset": true,
+  "worldPreserved": true,
+  "inventoryXpFoodPreserved": true,
+  "nativeLavaDeathAction": "10208b7",
+  "terrainEdits": 0,
+  "vanillaHudElementsSuppressed": 4,
+  "inventoryDrops": 0,
+  "transientStateClean": true,
+  "dimensionRespawnPreservedLives": true,
+  "testOnlyExternalDamageRequests": 5,
+  "testOnlyHealthSetups": 1,
+  "testOnlyRelocations": 2,
+  "nativeContextsCreatedAndClosed": 8,
+  "ambientWorldItemsAtSetup": 7,
+  "dropScope": "tagged inventory stacks and new XP orbs within three blocks of recorded death positions",
+  "evidence": "actual generated Minecraft world and real GuiGameOver/respawn requests",
+  "screenLives": [
+    3,
+    2,
+    1,
+    0,
+    3,
+    2
+  ],
+  "respawnLives": [
+    3,
+    2,
+    1,
+    4,
+    3,
+    2
+  ],
+  "nativeHealthAfterEveryRespawn": 2176,
+  "settledNativeAction": "c400201",
+  "settledVelocity": [
+    0,
+    0,
+    0
+  ],
+  "invincibility": 0,
+  "damageChannelReceiptsAtRespawn": 0,
+  "externalSourceAtRespawn": null,
+  "cameraInspectingAtRespawn": false,
+  "movementWarnings": 0,
+  "worldEntityAndBlockMarkersPreserved": true
+}

@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "nativeSteps": 964,
+  "naturalSameSaveDimension": -1,
+  "phaseChecks": {
+    "0": {
+      "minimumHealth": 1466,
+      "actions": [
+        "10208b4",
+        "1325",
+        "1924",
+        "20449",
+        "4000445",
+        "c00023d",
+        "c400201"
+      ],
+      "fireContactSteps": 22,
+      "lavaBodyContactSteps": 0
+    },
+    "1": {
+      "minimumHealth": 1466,
+      "actions": [
+        "10208b4",
+        "20449",
+        "4000445",
+        "c00023d",
+        "c400201"
+      ],
+      "fireContactSteps": 4,
+      "lavaBodyContactSteps": 0
+    },
+    "2": {
+      "minimumHealth": 640,
+      "actions": [
+        "10208b7",
+        "8000239",
+        "c400201",
+        "c400205"
+      ],
+      "fireContactSteps": 0,
+      "lavaBodyContactSteps": 0,
+      "lateAliveRecovery": true
+    },
+    "3": {
+      "minimumHealth": 1408,
+      "actions": [
+        "10208b7",
+        "8000239",
+        "c400201"
+      ],
+      "fireContactSteps": 0,
+      "lavaBodyContactSteps": 1,
+      "lateAliveRecovery": true
+    },
+    "4": {
+      "minimumHealth": 255,
+      "actions": [
+        "10208b7",
+        "c400205"
+      ],
+      "fireContactSteps": 0,
+      "lavaBodyContactSteps": 0
+    }
+  },
+  "meshSamples": 32,
+  "meshMaximumMilliseconds": 83.7485,
+  "meshAbove33ms": 3,
+  "blockedBurningRunPairs": 74,
+  "actualFirstLavaRiseUnits": 84.00000000000034,
+  "actualFirstLavaVerticalVelocity": 80.8,
+  "terrainEdits": 0,
+  "limits": [
+    "Natural Nether generation and setup-only relocations; no terrain edits or forced actions/velocities.",
+    "Existing Project64 references reused; no new emulator capture.",
+    "Synthetic smoke separately verifies exact first bounce and water/protection gates."
+  ]
+}

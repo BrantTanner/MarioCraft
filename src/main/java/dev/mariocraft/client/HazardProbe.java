@@ -99,17 +99,21 @@ final class HazardProbe {
         if((phase==2 || phase==3) && frame%LENGTH>170 && s.action!=0x010208B7 && h>0xFF) lavaRecovered=true;
         death|=phase==4 && h==0xFF;
         write(mc,"hazard-trace.jsonl","{\"frame\":"+frame+",\"phase\":"+phase+",\"contactBeforeStep\":"+contact+",\"health\":"+h+",\"action\":\""+Integer.toHexString(s.action)+"\",\"animation\":"+s.animID+",\"animFrame\":"+s.animFrame+",\"invinc\":"+s.invincTimer+",\"x\":"+mc.player.posX+",\"y\":"+mc.player.posY+",\"z\":"+mc.player.posZ+",\"vx\":"+s.velocity[0]+",\"vy\":"+s.velocity[1]+",\"vz\":"+s.velocity[2]+",\"speed\":"+s.forwardVelocity+"}\n",frame==1);
+        if(death) { finish(mc,log,frame);return; }
         if(frame%10==0) {
             UUID id=mc.player.getUniqueID();mc.getIntegratedServer().addScheduledTask(()->{
                 EntityPlayerMP p=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(id);
                 vanilla &= p!=null && p.getHealth()==p.getMaxHealth();
                 if(frame==TOTAL) {
-                    boolean pass=fireEntries>=2 && minus10>20 && recovered && minus64>10 && minimum[2]<0x880 && minimum[2]>0xFF && minimum[3]>0xFF && lavaEntries>=1 && lavaRecovered && death && vanilla;
-                    String result="{\"passed\":"+pass+",\"hazards\":true,\"frames\":"+TOTAL+",\"minimumHealth\":"+Arrays.toString(minimum)+",\"fireEntries\":"+fireEntries+",\"lavaSideEntries\":"+lavaEntries+",\"minusTenSteps\":"+minus10+",\"minus64Steps\":"+minus64+",\"lavaRecovery\":"+lavaRecovered+",\"recovery\":"+recovered+",\"nativeDeath\":"+death+",\"vanillaHealthUnchanged\":"+vanilla+",\"terrainEdits\":0,\"testOnlyHealthResets\":5,\"testOnlyRelocations\":7,\"naturalDimension\":-1}";
-                    write(mc,"gameplay-result.json",result,true);log.info("MARIOCRAFT HAZARD result={}",result);GameplayProbe.complete=true;
+                    finish(mc,log,frame);
                 }
             });
         }
+    }
+    private void finish(Minecraft mc,Logger log,int terminalFrame) {
+        boolean pass=fireEntries>=2 && minus10>20 && recovered && minus64>10 && minimum[2]<0x880 && minimum[2]>0xFF && minimum[3]>0xFF && lavaEntries>=1 && lavaRecovered && death && vanilla;
+        String result="{\"passed\":"+pass+",\"hazards\":true,\"frames\":"+terminalFrame+",\"minimumHealth\":"+Arrays.toString(minimum)+",\"fireEntries\":"+fireEntries+",\"lavaSideEntries\":"+lavaEntries+",\"minusTenSteps\":"+minus10+",\"minus64Steps\":"+minus64+",\"lavaRecovery\":"+lavaRecovered+",\"recovery\":"+recovered+",\"nativeDeath\":"+death+",\"vanillaHealthUnchanged\":"+vanilla+",\"terrainEdits\":0,\"testOnlyHealthResets\":5,\"testOnlyRelocations\":7,\"nativeDeathEndpoint\":true,\"naturalDimension\":-1}";
+        write(mc,"gameplay-result.json",result,true);log.info("MARIOCRAFT HAZARD result={}",result);GameplayProbe.complete=true;
     }
     private static void write(Minecraft mc,String file,String value,boolean replace) {
         try { Files.write(new java.io.File(mc.mcDataDir,file).toPath(),value.getBytes(StandardCharsets.UTF_8),StandardOpenOption.CREATE,replace?StandardOpenOption.TRUNCATE_EXISTING:StandardOpenOption.APPEND); }

@@ -13,6 +13,7 @@ param(
     [switch]$HealthProbe,
     [switch]$WaterProbe,
     [switch]$HazardProbe,
+    [switch]$RespawnProbe,
     [switch]$Offline
 )
 $ErrorActionPreference = 'Stop'
@@ -43,6 +44,7 @@ try {
     if ($Gameplay) { $options += '-Dmariocraft.gameplay=true' }
     if ($CombatProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.combatProbe=true' }
     if ($HealthProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.healthProbe=true' }
+    if ($RespawnProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.respawnProbe=true' }
     if ($HazardProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.hazardProbe=true' }
     if ($WaterProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.waterProbe=true' }
     if ($CameraProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.cameraProbe=true' }
@@ -55,7 +57,7 @@ try {
             $archive=Join-Path $root ('.local/probe-results/'+$runId)
             [IO.Directory]::CreateDirectory($archive) | Out-Null
             Copy-Item -LiteralPath $resultPath -Destination (Join-Path $archive 'gameplay-result.json')
-            foreach($evidence in @('movement-trace.jsonl','traversal-trace.jsonl','camera-trace.jsonl','combat-trace.jsonl','health-trace.jsonl','water-trace.jsonl','hazard-trace.jsonl','logs/latest.log')) {
+            foreach($evidence in @('movement-trace.jsonl','traversal-trace.jsonl','camera-trace.jsonl','combat-trace.jsonl','health-trace.jsonl','water-trace.jsonl','hazard-trace.jsonl','respawn-trace.jsonl','logs/latest.log')) {
                 $evidencePath=Join-Path $root ('.local/run-client/'+$evidence)
                 if(Test-Path -LiteralPath $evidencePath) { Copy-Item -LiteralPath $evidencePath -Destination (Join-Path $archive (Split-Path $evidence -Leaf)) }
             }

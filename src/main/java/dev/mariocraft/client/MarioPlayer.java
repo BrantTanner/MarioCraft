@@ -20,7 +20,7 @@ import org.lwjgl.opengl.GL11;
 import java.nio.file.Paths;
 import java.util.*;
 
-/** First integrated slice; camera remains a baseline pending mode-specific fidelity work. */
+/** Owns native Mario simulation and the separate client camera lifecycle. */
 public final class MarioPlayer {
     private final Logger log;
     private final FixedStepClock clock=new FixedStepClock();
@@ -33,12 +33,16 @@ public final class MarioPlayer {
     private net.minecraft.client.multiplayer.WorldClient world;
     private ResourceLocation texture;
     private UUID playerId;
-    private float yaw, pitch=20;
+    private float yaw;
+    private final MarioCamera cameraModel=new MarioCamera();
+    private CameraEntity cameraEntity;
+    private net.minecraft.entity.Entity previousView;
+    private VoxelCamera cameraCollision;
     private int frames;
     private boolean failed;
     private net.minecraft.client.entity.EntityPlayerSP controlledPlayer;
     private int previousPerspective;
-    private boolean previousAutoJump;
+    private boolean previousAutoJump,previousDebugCamera;
     private float previousStep;
     private double meshX,meshY,meshZ;
     private long loadedMask;
@@ -89,7 +93,10 @@ public final class MarioPlayer {
                 session=new MarioSession(Paths.get(System.getProperty("mariocraft.native")),MarioSession.discoverRom());
                 session.surfaces(initialSurfaces); submittedSurfaces=initialSurfaces;
                 session.create(terrain.x(mc.player.posX),terrain.y(mc.player.posY)+10,terrain.z(mc.player.posZ));
-                playerId=mc.player.getUniqueID(); yaw=mc.player.rotationYaw;
+                playerId=mc.player.getUniqueID(); yaw=probe==null?mc.player.rotationYaw:probe.initialYaw(mc.player.rotationYaw);
+                cameraModel.reset(mc.player.posX,mc.player.posY,mc.player.posZ,yaw);
+                cameraCollision=new VoxelCamera(world);
+                previousView=mc.getRenderViewEntity(); cameraEntity=new CameraEntity(world);
                 movementChannel=mc.getConnection().getNetworkManager().channel();
                 movementChannel.pipeline().addBefore("packet_handler","mariocraft_movement",new MovementPacketGate(playerId));
                 controlledPlayer=mc.player;
@@ -97,6 +104,8 @@ public final class MarioPlayer {
                 ownVanillaBindings(mc);
                 previousPerspective=mc.gameSettings.thirdPersonView;
                 previousAutoJump=mc.gameSettings.autoJump;
+                previousDebugCamera=mc.gameSettings.debugCamEnable;
+                mc.gameSettings.debugCamEnable=false;
                 previousStep=mc.player.stepHeight;
                 meshX=mc.player.posX; meshY=mc.player.posY; meshZ=mc.player.posZ;
                 DynamicTexture image=new DynamicTexture(704,64);
@@ -107,7 +116,8 @@ public final class MarioPlayer {
                 }
                 image.updateDynamicTexture();
                 texture=mc.getTextureManager().getDynamicTextureLocation("mariocraft",image);
-                mc.gameSettings.thirdPersonView=1;
+                mc.gameSettings.thirdPersonView=0;
+                mc.setRenderViewEntity(cameraEntity);
                 mc.gameSettings.autoJump=false;
                 log.info("MARIOCRAFT native-player-created origin={},{},{}",terrain.ox,terrain.oy,terrain.oz);
             } catch(Exception|LinkageError error) { log.error("MARIOCRAFT native player initialization failed",error); close(); failed=true; if(probe!=null) GameplayProbe.fail("native initialization"); return; }
@@ -125,20 +135,15 @@ public final class MarioPlayer {
         }
         startHeld=start;
         int count=clock.advance(System.nanoTime(),mc.isGamePaused());
-        if(mc.isGamePaused()) { previousX=currentX; previousY=currentY; previousZ=currentZ; }
+        if(mc.isGamePaused()) { previousX=currentX; previousY=currentY; previousZ=currentZ; cameraModel.pause(); }
         try { for(int i=0;i<count;i++) step(mc); }
         catch(RuntimeException|LinkageError error) { log.error("MARIOCRAFT native step failed; releasing player control",error); close(); failed=true; if(probe!=null) GameplayProbe.fail("native step"); return; }
-        // Keep a usable baseline when terrain would collapse vanilla's camera into the cap.
-        if(!mc.isGamePaused() && BaselineCamera.clearance(mc,yaw,pitch,event.renderTickTime)<1.5) {
-            float selected=yaw; double best=0;
-            for(int offset=-180;offset<=180;offset+=30) {
-                double distance=BaselineCamera.clearance(mc,yaw+offset,pitch,event.renderTickTime);
-                if(distance>best) { best=distance; selected=yaw+offset; }
-            }
-            if(best>=1.5) yaw=selected;
-        }
+        MarioCamera.View view=cameraModel.view(clock.renderFraction(mc.isGamePaused()),cameraCollision);
+        cameraEntity.place(view);
+        mc.setRenderViewEntity(cameraEntity); mc.gameSettings.thirdPersonView=0;
+        // Real player orientation is the control basis, independent of the rendered view.
         mc.player.rotationYaw=mc.player.prevRotationYaw=yaw;
-        mc.player.rotationPitch=mc.player.prevRotationPitch=pitch;
+        mc.player.rotationPitch=mc.player.prevRotationPitch=0;
         mc.player.setVelocity(0,0,0);
     }
     private void step(Minecraft mc) {
@@ -150,13 +155,11 @@ public final class MarioPlayer {
         ControlState state=pad.neutral()?keyboard:pad;
         if(probe!=null) state=probe.controls(frames,bindings);
         state.apply(input);
-        if(state.left) yaw-=5; if(state.right) yaw+=5;
-        if(state.up) pitch=Math.max(-60,pitch-3); if(state.down) pitch=Math.min(70,pitch+3);
-        // Semantic shoulders are intentionally exposed; full camera mode behavior belongs to #23.
-        if(state.l) yaw-=5; if(state.r) yaw+=5;
+        cameraModel.controls(state,session.state.action);
+        yaw=cameraModel.controlYaw;
+        if(cameraModel.inspecting()) { input.stickX=0;input.stickY=0; }
         input.camLookX=-(float)Math.sin(Math.toRadians(yaw));
         input.camLookZ=(float)Math.cos(Math.toRadians(yaw));
-        if(probe!=null) { yaw=probe.camera(frames,yaw,mc,log); input.camLookX=-(float)Math.sin(Math.toRadians(yaw)); input.camLookZ=(float)Math.cos(Math.toRadians(yaw)); }
         if(Math.abs(terrain.x(mc.player.posX))>5000 || Math.abs(terrain.z(mc.player.posZ))>5000 || Math.abs(terrain.y(mc.player.posY))>5000) {
             poseReady=false;
             terrain=new TerrainMesh(mc.player.posX,mc.player.posY,mc.player.posZ);
@@ -199,7 +202,11 @@ public final class MarioPlayer {
         if(!poseReady) { previousX=x; previousY=y; previousZ=z; poseReady=true; }
         PlayerBridge.POSES.put(playerId,pose);
         mc.player.setPosition(x,y,z);
-        if(probe!=null) probe.observe(frames,session.state,yaw,mc,log);
+        cameraModel.follow(x,y,z,session.state.faceAngle,session.state.forwardVelocity,cameraCollision);
+        if(probe!=null) {
+            if(probe.cameraProbe()) probe.cameraObserve(frames,session.state,cameraModel,mc,log);
+            else probe.observe(frames,session.state,yaw,mc,log);
+        }
         if(frames%30==0) log.info("MARIOCRAFT player-step frame={} action={} pos={},{},{}",frames,Integer.toHexString(session.state.action),x,y,z);
         // First crossover path: nearby attackable living mobs. Native classifier decides action admission.
         for(EntityLivingBase mob:world.getEntitiesWithinAABB(EntityLivingBase.class,mc.player.getEntityBoundingBox().grow(0.35))) {
@@ -234,10 +241,12 @@ public final class MarioPlayer {
         if(event.getWorld().isRemote && event.getWorld()==world) { close(); world=null; }
     }
     @SubscribeEvent public void camera(EntityViewRenderEvent.CameraSetup event) {
-        if(session!=null) { event.setYaw(yaw+180); event.setPitch(pitch); }
+        // orientCamera applies a 0.05 first-person offset before this event; cancel it.
+        if(session!=null) GlStateManager.translate(0,0,-.05f);
     }
+    @SubscribeEvent public void hand(RenderHandEvent event) { if(session!=null) event.setCanceled(true); }
     @SubscribeEvent public void render(RenderWorldLastEvent event) {
-        if(session==null) return;
+        if(session==null || cameraModel.inspecting()) return;
         Minecraft mc=Minecraft.getMinecraft();
         net.minecraft.entity.Entity view=mc.getRenderViewEntity();
         double px=view.lastTickPosX+(view.posX-view.lastTickPosX)*event.getPartialTicks();
@@ -294,10 +303,16 @@ public final class MarioPlayer {
         }
         if(session!=null) { session.close(); session=null; log.info("MARIOCRAFT native-player-closed"); }
         if(texture!=null) { Minecraft.getMinecraft().getTextureManager().deleteTexture(texture); texture=null; }
+        if(cameraEntity!=null) {
+            Minecraft mc=Minecraft.getMinecraft();
+            if(mc.getRenderViewEntity()==cameraEntity) mc.setRenderViewEntity(previousView==null?mc.player:previousView);
+            cameraEntity=null;previousView=null;cameraCollision=null;
+        }
         if(controlledPlayer!=null) {
             controlledPlayer.stepHeight=previousStep;
             Minecraft.getMinecraft().gameSettings.thirdPersonView=previousPerspective;
             Minecraft.getMinecraft().gameSettings.autoJump=previousAutoJump;
+            Minecraft.getMinecraft().gameSettings.debugCamEnable=previousDebugCamera;
             controlledPlayer=null;
         }
         if(previousMouse!=null) { Minecraft.getMinecraft().mouseHelper=previousMouse; previousMouse=null; }

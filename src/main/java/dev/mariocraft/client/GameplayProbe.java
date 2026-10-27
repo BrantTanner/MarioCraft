@@ -9,6 +9,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** Explicit test-only input seam. Runs inside a normal world without keyboard/focus automation. */
 final class GameplayProbe {
+    private final CameraProbe cameraProbe=Boolean.getBoolean("mariocraft.cameraProbe")?new CameraProbe():null;
+    float initialYaw(float yaw) { return cameraProbe!=null?cameraProbe.yaw():yaw; }
+    boolean cameraProbe() { return cameraProbe!=null; }
+    void cameraObserve(int frame,Sm64Library.State state,MarioCamera camera,Minecraft mc,Logger log) { cameraProbe.observe(frame,state,camera,mc,log); }
     private final TraversalProbe traversal=Boolean.getBoolean("mariocraft.traversalProbe")?new TraversalProbe():null;
     static volatile boolean complete;
     static volatile boolean syntheticStart;
@@ -19,6 +23,7 @@ final class GameplayProbe {
     private volatile MovementSite site;
     private boolean findingSite;
     boolean prepare(Minecraft mc,Logger log) {
+        if(cameraProbe!=null) return cameraProbe.prepare(mc,log);
         if(traversal!=null) return traversal.prepare(mc,log);
         if(!findingSite) {
             findingSite=true;
@@ -36,6 +41,7 @@ final class GameplayProbe {
         return site!=null && mc.player.getDistanceSq(site.x+.5,site.y,site.z+.5)<1;
     }
     void setup(int frame,dev.mariocraft.nativebridge.MarioSession session,TerrainMesh terrain,Minecraft mc) {
+        if(cameraProbe!=null) return;
         if(traversal!=null) { traversal.setup(frame,session,terrain,mc); return; }
         if(frame>=380 && (frame-380)%180==0) {
             // Setup relocation precedes 40 neutral frames; no action/velocity is written.
@@ -72,6 +78,7 @@ final class GameplayProbe {
     private int oldJumpCode;
     private boolean bindingPersistence;
     ControlState controls(int frame,MarioBindings bindings) {
+        if(cameraProbe!=null) return cameraProbe.controls(frame,bindings);
         if(traversal!=null) return traversal.controls(frame,bindings);
         if(frame>=380) { movementInput=movement.controls(frame-380,bindings); return movementInput; }
         // Alternate keyboard and controller routes within the same actual native player session.
@@ -117,23 +124,6 @@ final class GameplayProbe {
         if(frame>=180 && frame<195) return keyboard;
         return frame%2==0?keyboard:pad;
     }
-    float camera(int frame,float yaw,Minecraft mc,Logger log) {
-        if(traversal!=null) return traversal.camera();
-        if(frame==195) {
-            cameraTurned=Math.abs(yaw-startYaw)>20;
-            // A private visual QA view, separate from gameplay camera acceptance.
-            // Select an unobstructed angle in the existing terrain; do not alter the world.
-            double best=-1;
-            float selected=yaw;
-            for(int angle=0;angle<360;angle+=30) {
-                double distance=BaselineCamera.clearance(mc,angle,20,1);
-                if(distance>best) { best=distance; selected=angle; }
-            }
-            log.info("MARIOCRAFT GAMEPLAY_PROBE visual-QA-view yaw={} clearance={}",selected,best);
-            return selected;
-        }
-        return yaw;
-    }
     void observe(int frame,Sm64Library.State state,float yaw,Minecraft mc,Logger log) {
         currentFrame=frame;
         if(traversal!=null) { traversal.observe(frame,state,mc,log); return; }
@@ -156,6 +146,7 @@ final class GameplayProbe {
         if(frame==200) {
             vanillaSuppression=!mc.gameSettings.keyBindInventory.isActiveAndMatches(mc.gameSettings.keyBindInventory.getKeyCode()) && !mc.gameSettings.keyBindDrop.isActiveAndMatches(mc.gameSettings.keyBindDrop.getKeyCode()) && !mc.gameSettings.keyBindAttack.isActiveAndMatches(mc.gameSettings.keyBindAttack.getKeyCode()) && !mc.gameSettings.keyBindUseItem.isActiveAndMatches(mc.gameSettings.keyBindUseItem.getKeyCode()) && mc.mouseHelper instanceof MarioMouse;
         }
+        if(frame==195) cameraTurned=Math.abs(yaw-startYaw)>20;
         if(frame==200) cameraClearance=BaselineCamera.clearance(mc,yaw,20,1);
         if(frame==238) {
             final java.util.UUID uuid=mc.player.getUniqueID();

@@ -16,6 +16,7 @@ public final class MarioCraft {
         log = event.getModLog();
         MinecraftForge.EVENT_BUS.register(new LifecycleProbe(log));
         MinecraftForge.EVENT_BUS.register(new PlayerBridge());
+        MinecraftForge.EVENT_BUS.register(new ScopeRules());
         MinecraftForge.EVENT_BUS.register(new dev.mariocraft.persistence.RestoreBridge());
         MinecraftForge.EVENT_BUS.register(new dev.mariocraft.health.RespawnBridge());
         MinecraftForge.EVENT_BUS.register(new dev.mariocraft.health.HealthBridge());

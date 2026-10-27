@@ -55,7 +55,11 @@ public final class PlayerBridge {
         // Apply native authority after that network tick, so it survives into the next world tick.
         POSES.forEach((id,pose)->{
             net.minecraft.entity.player.EntityPlayerMP player=server.getPlayerList().getPlayerByUUID(id);
-            if(player!=null && player.isEntityAlive()) { player.setPosition(pose.x,pose.y,pose.z);body(player,pose); player.onGround=pose.ground; }
+            if(player!=null && player.isEntityAlive()) {
+                player.setPosition(pose.x,pose.y,pose.z);body(player,pose); player.onGround=pose.ground;
+                // Native poses replace the vanilla movement packet's chunk-tracking path too.
+                server.getPlayerList().serverUpdateMovingPlayer(player);
+            }
         });
     }
 }

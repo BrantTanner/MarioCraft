@@ -31,6 +31,7 @@ public final class MarioPlayer {
     private double previousX,previousY,previousZ,currentX,currentY,currentZ;
     private boolean poseReady;
     private MarioSession session;
+    private MarioAudio audio;
     private TerrainMesh terrain;
     private final TerrainChanges terrainChanges=new TerrainChanges();
     private net.minecraft.client.multiplayer.WorldClient world;
@@ -52,7 +53,7 @@ public final class MarioPlayer {
     private Sm64Library.Surface[] submittedSurfaces;
     private boolean collisionFrozen;
     private io.netty.channel.Channel movementChannel;
-    private final GameplayProbe probe=Boolean.getBoolean("mariocraft.gameplayProbe")?new GameplayProbe():null;
+    private final GameplayProbe probe=PresentationProbe.INSTANCE==null && Boolean.getBoolean("mariocraft.gameplayProbe")?new GameplayProbe():null;
     private final MarioCombat.Ledger contacts=new MarioCombat.Ledger();
     private volatile Object combatSession;
     private HealthBridge.Channel healthChannel;
@@ -90,11 +91,13 @@ public final class MarioPlayer {
             if(movementChannel.pipeline().get("mariocraft_movement")==null) movementChannel.pipeline().addBefore("packet_handler","mariocraft_movement",new MovementPacketGate(id));
             server.addScheduledTask(()-> {
                 try { if(!hold.active || server.getPlayerList().getPlayerByUUID(id)!=original) return;
+                    if(original.interactionManager.getGameType()!=net.minecraft.world.GameType.SURVIVAL || original.world.getWorldInfo().isHardcoreModeEnabled()) { restoreFailure="unsupported-world-mode";return; }
                     MarioRestoration.Result result=MarioRestoration.prepare(original);
                     if(hold.active && lifeServer==server) restoration=result;
                 } catch(RuntimeException error) { if(hold.active && lifeServer==server) restoreFailure=error.toString(); }
             });
         }
+        if("unsupported-world-mode".equals(restoreFailure)) { if(!failed) { failed=true;mc.displayGuiScreen(new Presentation.UnsupportedWorld()); }return false; }
         if(restoreFailure!=null) { if(!failed) { failed=true;log.error("MARIOCRAFT restore failed {}",restoreFailure);
             mc.displayGuiScreen(new net.minecraft.client.gui.GuiErrorScreen("MarioCraft safe resume unavailable","No safe resume position was found. The world was not modified.")); } return false; }
         MarioRestoration.Result result=restoration;
@@ -201,17 +204,22 @@ public final class MarioPlayer {
         if(controlledPlayer!=null && (mc.player!=controlledPlayer || !controlledPlayer.isEntityAlive())) { close(); failed=false; }
         if(mc.player==null || !mc.player.isEntityAlive() || mc.world==null || !mc.isSingleplayer() || failed) { clock.advance(System.nanoTime(),true); return; }
         if(session==null) {
-            if(PersistenceProbe.INSTANCE==null && respawnProbe==null && probe!=null && !probe.prepare(mc,log)) return;
+            if(PresentationProbe.INSTANCE!=null) PresentationProbe.INSTANCE.admission("natural-site");
+            if(PresentationProbe.INSTANCE!=null && !PresentationProbe.INSTANCE.prepare(mc)) return;
+            if(PresentationProbe.INSTANCE!=null) PresentationProbe.INSTANCE.admission("ticks="+mc.player.ticksExisted+" loaded="+world.isBlockLoaded(new BlockPos(mc.player.posX,mc.player.posY,mc.player.posZ)));
+            if(PresentationProbe.INSTANCE==null && PersistenceProbe.INSTANCE==null && respawnProbe==null && probe!=null && !probe.prepare(mc,log)) return;
             if(mc.player.ticksExisted<20 || !world.isBlockLoaded(new BlockPos(mc.player.posX,mc.player.posY,mc.player.posZ))) return;
             try {
                 terrain=new TerrainMesh(mc.player.posX,mc.player.posY,mc.player.posZ);
                 Sm64Library.Surface[] initialSurfaces=terrain.build(world,mc.player.posX,mc.player.posY,mc.player.posZ);
+                if(PresentationProbe.INSTANCE!=null) PresentationProbe.INSTANCE.admission("initial-surfaces="+initialSurfaces.length);
                 if(initialSurfaces.length==0) return;
                 terrainChanges.region(mc.player.posX,mc.player.posY,mc.player.posZ);
                 world.addEventListener(terrainChanges);
                 session=new MarioSession(Paths.get(System.getProperty("mariocraft.native")),MarioSession.discoverRom());
                 session.surfaces(initialSurfaces); submittedSurfaces=initialSurfaces;
                 session.create(terrain.x(mc.player.posX),terrain.y(mc.player.posY)+10,terrain.z(mc.player.posZ));
+                session.startAudio();audio=new MarioAudio();
                 if(restoration!=null) { session.restoreHealth(restoration.state.health);restoration=null; }
                 combatSession=new Object();
                 playerId=mc.player.getUniqueID(); yaw=probe==null?mc.player.rotationYaw:probe.initialYaw(mc.player.rotationYaw);
@@ -249,6 +257,7 @@ public final class MarioPlayer {
             } catch(Exception|LinkageError error) { log.error("MARIOCRAFT native player initialization failed",error); close(); failed=true; if(probe!=null) GameplayProbe.fail("native initialization"); return; }
         }
         boolean gameplay=mc.currentScreen==null && mc.inGameHasFocus;
+        audio.state(session,mc.isGamePaused() || !gameplay);
         if(!gameplay) keyboardGate.reset();
         if(gameplayControls && !gameplay) controller.suspend();
         gameplayControls=gameplay;
@@ -285,6 +294,7 @@ public final class MarioPlayer {
         if(PersistenceProbe.INSTANCE!=null) state=PersistenceProbe.INSTANCE.controls(frames);
         else if(respawnProbe!=null) state=new ControlState();
         else if(probe!=null) state=probe.controls(frames,bindings);
+        if(PresentationProbe.INSTANCE!=null) state=PresentationProbe.INSTANCE.controls();
         state.apply(input);
         cameraModel.controls(state,session.state.action);
         yaw=cameraModel.controlYaw;
@@ -349,6 +359,8 @@ public final class MarioPlayer {
         boolean hazardAdmitted=hazard.kind!=0 && session.hazard(hazard.kind,hazard.nx,hazard.nz);
         if(probe!=null) probe.hazardContact(hazard.kind,hazardAdmitted);
         session.tick(input);
+        audio.tick(session);
+        if(PresentationProbe.INSTANCE!=null) PresentationProbe.INSTANCE.step(this,session,audio);
         MarioHealth.Snapshot health=new MarioHealth.Snapshot(++healthSequence,Short.toUnsignedInt(session.state.health),session.state.action,session.state.invincTimer,healthChannel.snapshot,lastRequestedExternalSource);
         healthChannel.publish(health);
         if(respawnProbe!=null) respawnProbe.observe(session.state,mc,this,log);
@@ -453,7 +465,7 @@ public final class MarioPlayer {
     @SubscribeEvent public void vanillaHud(RenderGameOverlayEvent.Pre event) {
         if(session==null && pendingRespawn==null) return;
         switch(event.getType()) {
-            case HEALTH: case ARMOR: case FOOD: case AIR: event.setCanceled(true);if(respawnProbe!=null) respawnProbe.hud(event.getType());break;
+            case HOTBAR: case EXPERIENCE: case HEALTH: case ARMOR: case FOOD: case AIR: event.setCanceled(true);if(respawnProbe!=null) respawnProbe.hud(event.getType());break;
             default: break;
         }
     }
@@ -530,6 +542,7 @@ public final class MarioPlayer {
             if(movementChannel.pipeline().get("mariocraft_movement")!=null) movementChannel.pipeline().remove("mariocraft_movement");
             movementChannel=null;
         }
+        if(audio!=null) { audio.close();if(PresentationProbe.INSTANCE!=null) PresentationProbe.INSTANCE.closed(audio);audio=null; }
         if(session!=null) { session.close(); session=null; log.info("MARIOCRAFT native-player-closed"); }
         if(texture!=null) { Minecraft.getMinecraft().getTextureManager().deleteTexture(texture); texture=null; }
         if(cameraEntity!=null) {

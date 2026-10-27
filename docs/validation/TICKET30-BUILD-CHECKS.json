@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "buildPassed": true,
+  "unit": {
+    "tests": 51,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "nativeSmokePassed": true,
+  "nativeCycles": 2,
+  "abiChecks": 8,
+  "variableJumpAndSteering": true,
+  "activeAttackFallback": true,
+  "finalPerPoseChunkHandoff": "build-and-native-smoke-checked; long-distance runtime validation in issue31"
+}

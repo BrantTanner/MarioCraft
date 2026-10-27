@@ -82,6 +82,7 @@ public final class RespawnBridge {
             player.motionX=player.motionY=player.motionZ=0;player.fallDistance=0;player.extinguish();
             player.setHealth(player.getMaxHealth());
             player.connection.setPlayerLocation(spawn.getX()+.5,spawn.getY()+.1,spawn.getZ()+.5,0,0);
+            player.getServer().getPlayerList().serverUpdateMovingPlayer(player);
             pending.spawn=spawn;pending.replacement=player;
         } catch(RuntimeException e) { pending.failure=e.toString(); }
     }

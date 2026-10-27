@@ -15,6 +15,7 @@ param(
     [switch]$HazardProbe,
     [switch]$RespawnProbe,
     [switch]$PersistenceProbe,
+    [switch]$PresentationProbe,
     [switch]$Offline
 )
 $ErrorActionPreference = 'Stop'
@@ -43,6 +44,7 @@ try {
     if ($LifecycleProbe) { $options += '-Dmariocraft.lifecycleProbe=true' }
     if ($ClientProbe) { $options += '-Dmariocraft.clientProbe=true' }
     if ($Gameplay) { $options += '-Dmariocraft.gameplay=true' }
+    if ($PresentationProbe) { $options += '-Dmariocraft.presentationProbe=true' }
     if ($CombatProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.combatProbe=true' }
     if ($HealthProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.healthProbe=true' }
     if ($PersistenceProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.persistenceProbe=true' }
@@ -52,7 +54,7 @@ try {
     if ($CameraProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.cameraProbe=true' }
     if ($TraversalProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.traversalProbe=true' }
     if ($GameplayProbe) { $options += @('-Dmariocraft.gameplay=true','-Dmariocraft.gameplayProbe=true','-Dmariocraft.clientProbe=true') }
-    if ($GameplayProbe) {
+    if ($GameplayProbe -or $PresentationProbe) {
         $resultPath=Join-Path $root '.local/run-client/gameplay-result.json'
         if(Test-Path -LiteralPath $resultPath) {
             $runId=[DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffZ')+'-'+[Guid]::NewGuid().ToString('N')
@@ -74,7 +76,7 @@ try {
     }
     & ./gradlew.bat @options $gradleTask
     if ($LASTEXITCODE -ne 0) { throw ('Gradle task failed: ' + $gradleTask) }
-    if ($GameplayProbe) {
+    if ($GameplayProbe -or $PresentationProbe) {
         $result = Get-Content -LiteralPath './.local/run-client/gameplay-result.json' -Raw | ConvertFrom-Json
         if (-not $result.passed) { throw 'Integrated gameplay probe failed; inspect .local/run-client/gameplay-result.json and runtime log.' }
     }

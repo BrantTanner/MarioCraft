@@ -58,9 +58,9 @@ final class HazardProbe {
                     }
                     if(f==null || l==null) throw new IllegalStateException("Bounded natural Nether fire/lava search failed fire="+(f!=null)+" lava="+(l!=null));
                     final double[] start=f;
-                    mc.getIntegratedServer().getPlayerList().transferPlayerToDimension(player,-1,new Teleporter(w) {
+                    dev.mariocraft.ScopeRules.fixtureTransfer(player,-1,new Teleporter(w) {
                         @Override public void placeInPortal(Entity entity,float yaw) { entity.setLocationAndAngles(start[0],start[1],start[2],0,0); }
-                    });
+                    },"hazard");
                     player.connection.setPlayerLocation(f[0],f[1],f[2],0,0);
                     fire=f;lava=l;
                     log.info("MARIOCRAFT HAZARD natural-same-save-Nether fire={},{},{} lava={},{},{} terrainEdits=0",f[0],f[1],f[2],l[0],l[1],l[2]);

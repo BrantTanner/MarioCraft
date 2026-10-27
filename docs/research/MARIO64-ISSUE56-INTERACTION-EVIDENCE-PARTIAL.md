@@ -1,6 +1,6 @@
-# Mario 64 issue 56 — interaction and pickup evidence (partial)
+# Mario 64 issue 56 â€” interaction and pickup evidence (partial)
 
-**Status: reviewed partial evidence.** This is a partial report, not issue completion. The generic zero-star door path has controlled runtime evidence paired with target-ROM code/data analysis. Coin healing and 1-up effects remain unobserved in a controlled collection. This report does not satisfy issue 56’s pickup acceptance criteria, and the issue should remain open.
+**Status: reviewed partial evidence.** This is a partial report, not issue completion. The generic zero-star door path has controlled runtime evidence paired with target-ROM code/data analysis. A hidden one-up life gain is now observed; controlled coin healing remains unobserved. This report does not satisfy issue 56â€™s pickup acceptance criteria, and the issue should remain open.
 
 ## Target and method
 
@@ -10,36 +10,42 @@ The capture used bracketed main-loop counter reads and retained accepted scalar 
 
 ## Shared interaction path
 
-Static analysis of the target ROM shows the coin interaction callback at guest address `0x8024DB2C` (ROM offset `0x8B2C`). For the selected coin path, the callback adds the object’s signed value at `+0x180` to Mario’s signed coin count at `+0xA8`, queues healing ticks by adding four times that value to Mario’s heal counter at `+0xB3`, and sets object interaction status at `+0x134` to `0x8000`. The consumer at `0x802F2F2C` handles that status, dispatches the effect, and clears the object’s active state. These are code-analysis results, not observed effects in the current run.
+Static analysis of the target ROM shows the coin interaction callback at guest address `0x8024DB2C` (ROM offset `0x8B2C`). For the selected coin path, the callback adds the objectâ€™s signed value at `+0x180` to Marioâ€™s signed coin count at `+0xA8`, queues healing ticks by adding four times that value to Marioâ€™s heal counter at `+0xB3`, and sets object interaction status at `+0x134` to `0x8000`. The consumer at `0x802F2F2C` handles that status, dispatches the effect, and clears the objectâ€™s active state. These are code-analysis results, not observed effects in the current run.
 
 The selected red coin hitbox-data record at guest `0x80332794` has selector `0x10`, value `2`, radius `100`, height `64`, and no direct health or loot amount. The predicted counter effect for this record is +2 coins and eight healing ticks. The health update applies 64 units per tick and caps at `0x880` (2,176). With a settled pre-pickup health value of 1,152, the predicted maximum is 1,664 if no other state changes occur. **This prediction has not been confirmed by collecting the coin.**
 
-The one-up behavior loop at `0x802F45B8` checks the one-up object’s own collision list through helper `0x802A1424`; on a Mario match it plays its sound, increments Mario’s signed lives byte at `+0xAD`, and clears object active flags at `+0x74`. This is static analysis only. No live life gain or one-up removal was observed.
+The one-up behavior loop at `0x802F45B8` checks the one-up objectâ€™s own collision list through helper `0x802A1424`; on a Mario match it plays its sound, increments Marioâ€™s signed lives byte at `+0xAD`, and clears object active flags at `+0x74`. This describes static analysis of the stationary variant; the separately observed hidden-pole variant and its shared collector are documented below.
 
 For a normal generic door, selector `4` dispatches through `0x8024E420` (ROM offset `0x9420`). The zero-star door uses required-star count zero and ordinary subtype zero. Native code accepts Mario walking/decelerating actions `0x04000440` or `0x0400044A`; it does not require a jump or an A press. On activation Mario enters action `0x1320` (pull) or `0x1321` (push), while the door enters an opening action and later returns to idle. Door status values map through data at `0x80330260`. Star and warp progression branches are outside this ticket and belong to issue 15.
 
 ## Controlled door observation
 
-The accepted trace was captured continuously before approach through the door’s reset to idle. The scene level was 6; the v5 field at `0x8032DDF4` is a save-file number, not a course identifier, and is not used here as a course claim.
+The accepted trace was captured continuously before approach through the doorâ€™s reset to idle. The scene level was 6; the v5 field at `0x8032DDF4` is a save-file number, not a course identifier, and is not used here as a course claim.
 
-At sequence 18 / loop 257301, Mario was walking (`0x04000440`) at `(-3012.6162, 205, -788.1448)`. The nearby object matched the generic door selector and zero-star/ordinary subtype gates; its door action was idle. At sequence 19 / loop 257307, Mario was in push action `0x1321`, the door was in action `2` with timer `6`, and the door appeared in Mario’s collision list. Mario’s push action continued through sequence 26 while he moved to x `-3423`. By sequence 31 / loop 257377 Mario had returned to idle while the door remained in action `2`; by sequence 32 / loop 257381 the door had returned to action `0` and timer `0`. The sequence supports one generic push-door activation and completion. It does not claim a sampled transient interaction-status flag.
+At sequence 18 / loop 257301, Mario was walking (`0x04000440`) at `(-3012.6162, 205, -788.1448)`. The nearby object matched the generic door selector and zero-star/ordinary subtype gates; its door action was idle. At sequence 19 / loop 257307, Mario was in push action `0x1321`, the door was in action `2` with timer `6`, and the door appeared in Marioâ€™s collision list. Marioâ€™s push action continued through sequence 26 while he moved to x `-3423`. By sequence 31 / loop 257377 Mario had returned to idle while the door remained in action `2`; by sequence 32 / loop 257381 the door had returned to action `0` and timer `0`. The sequence supports one generic push-door activation and completion. It does not claim a sampled transient interaction-status flag.
 
 ## Pickup runtime attempt and limits
 
 In a later BOB runtime capture, Mario was at `(-2446.4414, 0, 2097.4053)`, health `1,152`, lives `2`, coins `0`, and hurt/heal counters `0`. The red coin and one-up target instances were still active in the final valid sample. A guarded movement pulse ended with no meaningful displacement; the monitored nearby behavior entered the hard stop radius. No pickup contact, counter change, healing, life gain, or removal was recorded. Runtime navigation is deferred here rather than reporting a blocked movement attempt as a game effect.
 
-An earlier capture gap coincided with a health decrease; its cause is unknown. No source family or environmental cause is attributed to that change. The current 1,152 health baseline is therefore reported as observed state, not as a controlled damage outcome.
+An earlier capture gap coincided with a health decrease; its cause is unknown. No source family or environmental cause is attributed to that change. That earlier 1,152 health baseline is therefore reported as observed state, not as a controlled damage outcome.
 
 ## Bounded inventory and handoff
 
 Evidence in this report covers the coin selector `0x10`, water-ring selector `0x10000` (healing/status queue path, not a live trial), one-up behavior, and generic door selector `4`. Recovery-heart behavior remains unverified. This is not a complete inventory of all interactive objects. Keys, caps, cannons, warps, star thresholds, course/catalog data, and progression consumers are explicitly handed off to issue 15.
 
+## Castle grounds hidden one-up: runtime observation
+
+A guarded Project64 session in castle grounds (level 16, course 0) started this trial paused with health 2,176 and one life. Mario reached the tree at `(-6269, 402, -2145)`, attached to the observed pole object, and climbed using bounded AnalogUp inputs. The selected spawner had produced a one-up at `(-6270, 1025, -2145)` and two trigger objects at heights 775 and 975. At loop counter 2,709,069 (2026-10-27 02:58:47.665 UTC) the selected one-up was observed in action 3; at 2,709,106 (02:58:48.900 UTC) it was in action 1 with one life. At 2,709,112 (02:58:49.089 UTC) the selected object was absent and lives were two. Health remained 2,176. The session was paused after collection. The guarded helper sent AnalogUp for each climb pulse; a private driver progress field logged an unused navigation choice instead of the actual key and must not be used to reconstruct inputs. These are sampled, non-atomic observations; they bracket the result but do not establish an exact collision frame. Pool-slot reuse must not be interpreted as persistence of the original object.
+
+The selected live behavior at `0x800EF2C8` was independently read twice while paused, canonicalized, and matched uniquely to ROM offset `0x21DF48` over 56 bytes (SHA-256 `8EC6059AB4B87D5FFCB9C8A9B131FA8BC792043469C18D9D6C6D44BEB7F2EB91`). Native pole loop `0x802F496C` calls `0x802F3EA8`, which calls the shared collector `0x802F3C54`; the latter invokes the collision helper and increments the life field before deactivating the object. Function envelope hashes and bounded observations are recorded in [mario64-issue56-pole-scalar-partial.json](mario64-issue56-pole-scalar-partial.json). The source correspondence for the trigger and one-up behavior is [mushroom_1up.inc.c](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/src/game/behaviors/mushroom_1up.inc.c). The target ROM SHA-256 was `17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91`, Project64 executable SHA-256 `C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8`, and input helper SHA-256 `2E78A7B6685C010C8FD2DDAD9D92815A77E9FB87202EAE6DA640A8579B0F9463`. The behavior match was captured separately after collection and does not prove a continuous lifetime by itself.
+
 ## Acceptance status
 
 1. Shared interaction gating, status/effect dispatch, and removal: **static evidence present** for the selected coin and one-up paths; live coin dispatch unverified.
-2. Coin/healing numeric outcome and one-up life gain: **not met**; values above are static predictions only.
+2. Coin/healing numeric outcome and one-up life gain: **partial**; a one-life gain was observed above, while controlled coin/healing remains unverified.
 3. One generic door/switch path: **met for a zero-star generic push door**, with continuous runtime trace and static callback/data pairing.
-4. Controlled collection/activation observations paired with code/data: **partial**; door is paired, pickup collection is not.
+4. Controlled collection/activation observations paired with code/data: **partial**; door and the selected one-up are paired; controlled coin/healing remains unverified.
 5. Bounded inventory and issue 15 handoff: **partial inventory only**, with out-of-scope progression explicitly handed off.
 6. ROM/Project64 identity, sanitized scalar evidence, and unknowns: **present** in this report; raw/private captures are excluded.
 7. Safe scalar/report files under `docs/research`: **reviewed partial files published**; remaining runtime acceptance checks are open.
@@ -47,6 +53,7 @@ Evidence in this report covers the coin selector `0x10`, water-ring selector `0x
 Reviewable numeric native references are published in [mario64-issue56-native-evidence-partial.json](mario64-issue56-native-evidence-partial.json): 24 function envelopes, two data windows, and three unique 128-byte live behavior-to-ROM matches, each with address/offset, length, and SHA-256. These metadata anchors contain no ROM bytes.
 
 The decompilation source is correspondence context only; target-ROM disassembly and runtime observations above are the direct evidence. Relevant primary-source files: [interaction.c](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/src/game/interaction.c), [coin.inc.c](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/src/game/behaviors/coin.inc.c), [red_coin.inc.c](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/src/game/behaviors/red_coin.inc.c), [mushroom_1up.inc.c](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/src/game/behaviors/mushroom_1up.inc.c), [door.inc.c](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/src/game/behaviors/door.inc.c), [water_ring.inc.c](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/src/game/behaviors/water_ring.inc.c), and [mario.c](https://github.com/n64decomp/sm64/blob/9921382a68bb0c865e5e45eb594d9c64db59b1af/src/game/mario.c).
+
 
 
 

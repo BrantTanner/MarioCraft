@@ -8,6 +8,7 @@ param(
     [switch]$Gameplay,
     [switch]$GameplayProbe,
     [switch]$TraversalProbe,
+    [switch]$CameraProbe,
     [switch]$Offline
 )
 $ErrorActionPreference = 'Stop'
@@ -34,6 +35,7 @@ try {
     if ($LifecycleProbe) { $options += '-Dmariocraft.lifecycleProbe=true' }
     if ($ClientProbe) { $options += '-Dmariocraft.clientProbe=true' }
     if ($Gameplay) { $options += '-Dmariocraft.gameplay=true' }
+    if ($CameraProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.cameraProbe=true' }
     if ($TraversalProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.traversalProbe=true' }
     if ($GameplayProbe) { $options += @('-Dmariocraft.gameplay=true','-Dmariocraft.gameplayProbe=true','-Dmariocraft.clientProbe=true') }
     if ($GameplayProbe) {
@@ -43,7 +45,7 @@ try {
             $archive=Join-Path $root ('.local/probe-results/'+$runId)
             [IO.Directory]::CreateDirectory($archive) | Out-Null
             Copy-Item -LiteralPath $resultPath -Destination (Join-Path $archive 'gameplay-result.json')
-            foreach($evidence in @('movement-trace.jsonl','traversal-trace.jsonl','logs/latest.log')) {
+            foreach($evidence in @('movement-trace.jsonl','traversal-trace.jsonl','camera-trace.jsonl','logs/latest.log')) {
                 $evidencePath=Join-Path $root ('.local/run-client/'+$evidence)
                 if(Test-Path -LiteralPath $evidencePath) { Copy-Item -LiteralPath $evidencePath -Destination (Join-Path $archive (Split-Path $evidence -Leaf)) }
             }

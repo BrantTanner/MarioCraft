@@ -20,6 +20,7 @@ minecraft {
             property 'mariocraft.native', project.file('.local/native/sm64.dll').absolutePath
             property 'mariocraft.clientProbe', System.getProperty('mariocraft.clientProbe', 'false')
             property 'mariocraft.gameplay', System.getProperty('mariocraft.gameplay', 'false')
+            property 'mariocraft.cameraProbe', System.getProperty('mariocraft.cameraProbe', 'false')
             property 'mariocraft.traversalProbe', System.getProperty('mariocraft.traversalProbe', 'false')
             property 'mariocraft.gameplayProbe', System.getProperty('mariocraft.gameplayProbe', 'false')
         }

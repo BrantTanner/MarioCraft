@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "camera": true,
+  "frames": 360,
+  "cPulseDegrees": 35.73486328125,
+  "settledDegrees": 0.5281982421875,
+  "inspection": true,
+  "inspectionStoppedMovement": true,
+  "returnedFreeRoam": true,
+  "shouldersIdleNoChange": true,
+  "minObstructionFraction": 0.09462510423434439,
+  "maxControlRenderYawSeparation": 8.941375732421875,
+  "travelled": 3.6558575562021214,
+  "finite": true,
+  "pauseVerified": true,
+  "terrainEdits": 0,
+  "worldReloadReset": true
+}

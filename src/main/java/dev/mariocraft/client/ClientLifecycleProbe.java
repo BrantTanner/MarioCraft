@@ -13,6 +13,7 @@ public final class ClientLifecycleProbe {
     private final Logger log;
     private int phase, ticks, waits;
     private long deadline;
+    private String cameraWorld;
     private boolean captured;
     private long pauseStarted,pauseWorldTick;
     private int pauseFrame;
@@ -51,10 +52,16 @@ public final class ClientLifecycleProbe {
         if (phase == 0 && mc.currentScreen instanceof GuiMainMenu && ++waits > 20) {
             log.info("MARIOCRAFT CLIENT_PROBE opening normal-world");
             phase = 1;
-            mc.launchIntegratedServer(Boolean.getBoolean("mariocraft.gameplayProbe") ? "mariocraft-gameplay-"+System.currentTimeMillis() : "mariocraft-client-probe", "MarioCraft lifecycle probe", new WorldSettings(20261026L, GameType.SURVIVAL, true, false, WorldType.DEFAULT));
+            cameraWorld=Boolean.getBoolean("mariocraft.gameplayProbe") ? "mariocraft-gameplay-"+System.currentTimeMillis() : "mariocraft-client-probe";
+            mc.launchIntegratedServer(cameraWorld, "MarioCraft lifecycle probe", new WorldSettings(20261026L, GameType.SURVIVAL, true, false, WorldType.DEFAULT));
         } else if ((phase == 1 || phase == 3) && mc.player != null && mc.world != null &&
                 (Boolean.getBoolean("mariocraft.gameplayProbe") ? GameplayProbe.complete : ++ticks == 120)) {
             log.info("MARIOCRAFT CLIENT_PROBE player-present phase={} dim={}", phase, mc.player.dimension);
+            if(Boolean.getBoolean("mariocraft.cameraProbe") && phase==1) {
+                mc.loadWorld(null);mc.displayGuiScreen(new GuiMainMenu());
+                GameplayProbe.complete=false;GameplayProbe.currentFrame=0;CameraProbe.reloaded=true;
+                phase=2;return;
+            }
             if(Boolean.getBoolean("mariocraft.gameplayProbe")) { phase=5; mc.shutdown(); return; }
             mc.loadWorld(null);
             mc.displayGuiScreen(new GuiMainMenu());
@@ -63,7 +70,7 @@ public final class ClientLifecycleProbe {
         } else if (phase == 2 && mc.currentScreen instanceof GuiMainMenu && !mc.isIntegratedServerRunning()) {
             log.info("MARIOCRAFT CLIENT_PROBE reloading same-world");
             phase = 3;
-            mc.launchIntegratedServer("mariocraft-client-probe", "MarioCraft lifecycle probe", null);
+            mc.launchIntegratedServer(Boolean.getBoolean("mariocraft.cameraProbe")?cameraWorld:"mariocraft-client-probe", "MarioCraft lifecycle probe", null);
         } else if (phase == 4 && !mc.isIntegratedServerRunning()) {
             log.info("MARIOCRAFT CLIENT_PROBE PASS create-save-reload-save");
             phase = 5;

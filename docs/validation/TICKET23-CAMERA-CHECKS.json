@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "nativeSteps": 360,
+  "finite": true,
+  "inspectionSteps": 40,
+  "keyBindingPulseAndExit": true,
+  "nativeJumpObserved": true,
+  "cPulseDegrees": 35.73489999999998,
+  "settledDegrees": 0.5282000000000266,
+  "minimumObstructionFraction": 0.09462510423434439,
+  "waterEvidence": "synthetic camera contract only; no in-world swimming claim"
+}

@@ -13,6 +13,7 @@ public interface Sm64Library extends Library {
     void sm64_mario_tick(int id, Inputs inputs, State state, Geometry geometry);
     void sm64_set_mario_position(int id, float x, float y, float z);
     void sm64_mario_take_damage(int id, int damage, int subtype, float x, float y, float z);
+    void sm64_set_mario_health(int id, short health);
     byte sm64_mario_attack(int id, float x, float y, float z, float hitboxHeight);
 
     class Surface extends Structure {

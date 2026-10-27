@@ -70,6 +70,21 @@ public final class MarioSession implements AutoCloseable {
         if (triangles > 1024) throw new IllegalStateException("Native geometry count exceeds capacity");
     }
     public boolean attack(float x,float y,float z,float height) { check(); return lib.sm64_mario_attack(mario,x,y,z,height)!=0; }
+    public void damage(int sections,float x,float y,float z) {
+        check();
+        if(sections<1 || sections>8) throw new IllegalArgumentException("Damage must be 1..8 sections");
+        lib.sm64_mario_take_damage(mario,sections,0,x,y,z);
+    }
+    /** Test setup only. No production healing or reset control is exposed. */
+    public void resetHealthForProbe() {
+        configureHealthForProbe(0x880);
+    }
+    public void configureHealthForProbe(int health) {
+        check();
+        if(!Boolean.getBoolean("mariocraft.healthProbe") && !Boolean.getBoolean("mariocraft.combatProbe")) throw new IllegalStateException("Health reset requires opt-in test probe");
+        if(health<0x100 || health>0x880) throw new IllegalArgumentException("Test health setup range");
+        lib.sm64_set_mario_health(mario,(short)health);
+    }
     public void position(float x,float y,float z) { check(); lib.sm64_set_mario_position(mario,x,y,z); }
     @Override public void close() {
         if (closed) return;

@@ -16,6 +16,7 @@ public final class MarioCraft {
         log = event.getModLog();
         MinecraftForge.EVENT_BUS.register(new LifecycleProbe(log));
         MinecraftForge.EVENT_BUS.register(new PlayerBridge());
+        MinecraftForge.EVENT_BUS.register(new dev.mariocraft.health.HealthBridge());
         log.info("MARIOCRAFT bootstrap version=0.1.0 forge=14.23.5.2864");
         proxy.initialize(log);
     }
@@ -24,6 +25,8 @@ public final class MarioCraft {
     }
     @Mod.EventHandler public void stopped(FMLServerStoppedEvent event) {
         PlayerBridge.POSES.clear();
+        dev.mariocraft.health.HealthBridge.OWNERS.values().forEach(dev.mariocraft.health.HealthBridge.Channel::clear);
+        dev.mariocraft.health.HealthBridge.OWNERS.clear();
         log.info("MARIOCRAFT server-stopped");
     }
 }

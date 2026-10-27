@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "evidence": "normal-generated-overworld-with-explicit-test-setups",
+  "frames": 2100,
+  "capturedFrames": 2101,
+  "recipes": [
+    "zombie-ai-repeat",
+    "skeleton-ai-projectile",
+    "explosion",
+    "fall-small",
+    "fall-medium",
+    "fall-large",
+    "lethal-explosion"
+  ],
+  "finitePoses": true,
+  "nativeDrainSteps": 61,
+  "nativeDrainQuantum": 64,
+  "incomingRequests": 7,
+  "protectedRequests": 1,
+  "minimumHealth": [
+    1152,
+    1152,
+    1920,
+    2176,
+    1664,
+    1152,
+    255
+  ],
+  "realAiTargetingAndArrow": true,
+  "vanillaHealthUnchanged": true,
+  "eightSectionProjection": true,
+  "normalTeardown": true,
+  "movementWarnings": 0,
+  "observedIncomingBodyHeight": 1.6,
+  "observedIncomingBodyWidth": 0.74,
+  "conversionVerifiedFromOriginalAmounts": true,
+  "admittedRequestsChangedNativeHealth": true,
+  "terrainEdits": 0,
+  "testOnlyHealthResets": 7,
+  "respawnClaimed": false
+}

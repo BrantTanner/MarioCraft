@@ -22,6 +22,7 @@ minecraft {
             property 'mariocraft.gameplay', System.getProperty('mariocraft.gameplay', 'false')
             property 'mariocraft.combatProbe', System.getProperty('mariocraft.combatProbe', 'false')
             property 'mariocraft.healthProbe', System.getProperty('mariocraft.healthProbe', 'false')
+            property 'mariocraft.hazardProbe', System.getProperty('mariocraft.hazardProbe', 'false')
             property 'mariocraft.waterProbe', System.getProperty('mariocraft.waterProbe', 'false')
             property 'mariocraft.cameraProbe', System.getProperty('mariocraft.cameraProbe', 'false')
             property 'mariocraft.traversalProbe', System.getProperty('mariocraft.traversalProbe', 'false')
@@ -65,6 +66,13 @@ task healthSmoke(type: JavaExec) {
 task waterSmoke(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath + sourceSets.test.runtimeClasspath
     main = 'dev.mariocraft.nativebridge.WaterSmoke'
+    systemProperty 'mariocraft.native', file('.local/native/sm64.dll').absolutePath
+    dependsOn testClasses
+}
+
+task hazardSmoke(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath + sourceSets.test.runtimeClasspath
+    main = 'dev.mariocraft.nativebridge.HazardSmoke'
     systemProperty 'mariocraft.native', file('.local/native/sm64.dll').absolutePath
     dependsOn testClasses
 }

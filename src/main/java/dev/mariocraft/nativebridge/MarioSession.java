@@ -39,6 +39,7 @@ public final class MarioSession implements AutoCloseable {
         synchronized (MarioSession.class) {
             if (active) throw new IllegalStateException("Only one native context is supported");
             lib = (Sm64Library)Native.loadLibrary(library.toAbsolutePath().toString(), Sm64Library.class);
+            if(lib.mariocraft_hazard_abi()!=1) throw new IllegalStateException("Native hazard ABI mismatch; rebuild native backend");
             lib.sm64_global_init(bytes, texture);
             active = true;
         }
@@ -69,6 +70,7 @@ public final class MarioSession implements AutoCloseable {
         int triangles = Short.toUnsignedInt(geometry.numTrianglesUsed);
         if (triangles > 1024) throw new IllegalStateException("Native geometry count exceeds capacity");
     }
+    public boolean hazard(int kind,float nx,float nz) { check();return lib.mariocraft_hazard_contact(mario,kind,nx,nz)!=0; }
     public boolean attack(float x,float y,float z,float height) { check(); return lib.sm64_mario_attack(mario,x,y,z,height)!=0; }
     public void damage(int sections,float x,float y,float z) {
         check();
@@ -81,7 +83,7 @@ public final class MarioSession implements AutoCloseable {
     }
     public void configureHealthForProbe(int health) {
         check();
-        if(!Boolean.getBoolean("mariocraft.healthProbe") && !Boolean.getBoolean("mariocraft.combatProbe") && !Boolean.getBoolean("mariocraft.waterProbe")) throw new IllegalStateException("Health reset requires opt-in test probe");
+        if(!Boolean.getBoolean("mariocraft.healthProbe") && !Boolean.getBoolean("mariocraft.combatProbe") && !Boolean.getBoolean("mariocraft.waterProbe") && !Boolean.getBoolean("mariocraft.hazardProbe")) throw new IllegalStateException("Health reset requires opt-in test probe");
         if(health<0x100 || health>0x880) throw new IllegalArgumentException("Test health setup range");
         lib.sm64_set_mario_health(mario,(short)health);
     }

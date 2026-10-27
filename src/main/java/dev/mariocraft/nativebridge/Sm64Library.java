@@ -5,6 +5,8 @@ import java.util.*;
 
 /** ABI pinned to libsm64 fd11813208272b4271d92bd92feb8f3fdbe61be5, src/libsm64.h. */
 public interface Sm64Library extends Library {
+    int mariocraft_hazard_abi();
+    int mariocraft_hazard_contact(int id,int kind,float nx,float nz);
     void sm64_global_init(byte[] rom, byte[] texture);
     void sm64_global_terminate();
     void sm64_static_surfaces_load(Pointer surfaces, int count);

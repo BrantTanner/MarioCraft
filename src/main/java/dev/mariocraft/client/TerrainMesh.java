@@ -48,7 +48,7 @@ final class TerrainMesh {
         List<int[]> nativeBoxes=new ArrayList<>();
         for(AxisAlignedBB b:boxes) nativeBoxes.add(new int[]{Math.round(x(b.minX)),Math.round(y(b.minY)),Math.round(z(b.minZ)),Math.round(x(b.maxX)),Math.round(y(b.maxY)),Math.round(z(b.maxZ))});
         collisionBoxes=nativeBoxes;
-        boundary=new SurfaceBoundary(BoxSurfaces.build(nativeBoxes));
+        boundary=new SurfaceBoundary(HazardVolume.surfaces(world,this,region,BoxSurfaces.build(nativeBoxes)));
         return at(x,y,z);
     }
 }

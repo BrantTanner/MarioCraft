@@ -1,5 +1,8 @@
 # First executable slice — 26 October 2026
 
+The [first-playable follow-up](TICKET19-FIRST-PLAYABLE.md) records the controller,
+interpolation, camera and cold-bootstrap work after this historical checkpoint.
+
 This checkpoint delivers a buildable early integration, not completion of issue #19
 or the focused mod. See [the current scope and architecture](FOCUSED-READINESS-AND-ARCHITECTURE.md).
 All runtime worlds, game resources, native DLLs, raw logs and framebuffer captures

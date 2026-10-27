@@ -13,5 +13,6 @@ public final class FixedStepClock {
         accumulated %= 1000000000L;
         return steps;
     }
+    public float renderFraction(boolean paused) { return paused ? 1 : interpolation(); }
     public float interpolation() { return accumulated / 1000000000f; }
 }

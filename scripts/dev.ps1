@@ -16,6 +16,7 @@ $env:JAVA_HOME = (Resolve-Path -LiteralPath $JavaHome).Path
 if (-not $GradleHome) { $GradleHome = Join-Path $root '.local/gradle-home' }
 [IO.Directory]::CreateDirectory($GradleHome) | Out-Null
 $env:GRADLE_USER_HOME = (Resolve-Path -LiteralPath $GradleHome).Path
+$GradleHome = $env:GRADLE_USER_HOME
 Push-Location $root
 try {
     $options = @()
@@ -35,7 +36,19 @@ try {
     if ($GameplayProbe) { $options += @('-Dmariocraft.gameplay=true','-Dmariocraft.gameplayProbe=true','-Dmariocraft.clientProbe=true') }
     if ($GameplayProbe) {
         $resultPath=Join-Path $root '.local/run-client/gameplay-result.json'
-        if(Test-Path -LiteralPath $resultPath) { Remove-Item -LiteralPath $resultPath }
+        if(Test-Path -LiteralPath $resultPath) {
+            $runId=[DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffZ')+'-'+[Guid]::NewGuid().ToString('N')
+            $archive=Join-Path $root ('.local/probe-results/'+$runId)
+            [IO.Directory]::CreateDirectory($archive) | Out-Null
+            Copy-Item -LiteralPath $resultPath -Destination (Join-Path $archive 'gameplay-result.json')
+            $capture=Join-Path $root '.local/run-client/screenshots/mariocraft-gameplay.png'
+            if(Test-Path -LiteralPath $capture) { Copy-Item -LiteralPath $capture -Destination (Join-Path $archive 'mariocraft-gameplay.png') }
+            Remove-Item -LiteralPath $resultPath
+        }
+    }
+    if ($Task -eq 'client' -and -not $Offline) {
+        & python ./scripts/ensure-minecraft-assets.py --gradle-home $GradleHome
+        if ($LASTEXITCODE -ne 0) { throw 'Verified Minecraft HTTPS asset setup failed.' }
     }
     & ./gradlew.bat @options $gradleTask
     if ($LASTEXITCODE -ne 0) { throw ('Gradle task failed: ' + $gradleTask) }

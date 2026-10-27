@@ -19,7 +19,10 @@ builds the mod, applies the guarded Forge generated-artifact repair and launches
 an isolated development client. The ROM is automatically found at
 `~/Downloads/Super Mario 64/Super Mario 64 (USA).z64` and checked by SHA-256.
 Native outputs, game resources and runtime worlds remain ignored under `.local/`.
-The complete fresh-bootstrap path has not yet been independently validated.
+The default Windows bootstrap was exercised with a newly downloaded project-local
+JDK and a new Gradle cache through build and client launch. Online launch verifies
+Mojang asset sizes/SHA-1 and fetches missing objects over official HTTPS, repairing
+the legacy ForgeGradle icon-download failure without skipping its asset task.
 
 With an existing Java 8 JDK and dependency cache:
 
@@ -30,8 +33,16 @@ With an existing Java 8 JDK and dependency cache:
 ```
 
 Baseline controls: WASD, Space jump, J attack, Shift crouch, Ctrl slow and Alt
-intermediate input; arrows adjust the baseline camera. Controller support,
-rebinding and mode-specific camera fidelity remain work.
+intermediate input; arrows adjust the baseline camera. The first LWJGL/JInput
+controller with at least two axes/buttons uses X/Y movement, button 0 jump,
+button 1 attack and button 4 crouch (if present). This fixed device profile
+uses an 0.08 radial drift cutoff, preserves smaller analog magnitudes above it,
+and caps diagonals at magnitude 1. Device labels vary; calibration, profiles,
+rebinding and disconnect/reconnect handling remain issue #20 work. Synthetic
+controller samples exercise the same mapper; physical hardware is unverified.
+
+See the [first-playable acceptance candidate](docs/TICKET19-FIRST-PLAYABLE.md)
+for current evidence and its limits.
 
 ## Local validation
 
@@ -39,20 +50,25 @@ rebinding and mode-specific camera fidelity remain work.
 one normal world. Initial same-process teardown exposed queued packet errors;
 those are a probe limitation, not clean persistence acceptance.
 
-`-Task client -GameplayProbe` injects mod-level input without keyboard focus,
+`-Task client -GameplayProbe` injects synthetic controller state through the live
+controller mapper without keyboard focus,
 measures run/jump/landing and camera controls, and spawns a test-only NoAI pig
 for deterministic outgoing-contact testing. Production mob AI is unchanged.
-The wrapper checks the private
+Before clearing a prior result, the wrapper archives it and its existing image
+under a unique private run ID. The wrapper checks the private
 `.local/run-client/gameplay-result.json`; process exit alone is not test success.
-Framebuffer captures remain private.
+Each gameplay probe creates a fresh normally generated world with the same seed;
+the lifecycle-only probe separately reuses its world. A real pause-menu interval
+checks that native frames and world ticks freeze. Framebuffer captures remain private.
 
 Native smoke independently checks C/JNA layout, ROM identity, native run/jump/land,
-geometry and repeated teardown. Asset-free tests check 30 Hz timing across
+geometry and repeated teardown. Translation-only render interpolation avoids
+blending changing native mesh topology. Asset-free tests check 30 Hz timing across
 refresh rates and pause/stall handling.
 
 Incoming damage is not yet converted to native Mario health/reactions. Camera
 following and mob crossover rules are provisional. Full combat coverage, water,
-hazards, controller input and final packaging remain incomplete; gameplay tickets
+hazards, configurable controls and final packaging remain incomplete; gameplay tickets
 remain open.
 
 ## Historical planning record

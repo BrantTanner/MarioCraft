@@ -18,4 +18,15 @@ public class FixedStepClockTest {
         assertEquals(1, clock.advance(10033333334L, false));
         assertEquals(5, clock.advance(60000000000L, false));
     }
+    @Test public void interpolationTracksRemainingFractionAndResetsOnPause() {
+        FixedStepClock clock=new FixedStepClock();
+        clock.advance(0,false);
+        assertEquals(0,clock.advance(16666667,false));
+        assertEquals(.5f,clock.interpolation(),.00001f);
+        assertEquals(1,clock.advance(33333334,false));
+        assertEquals(0,clock.interpolation(),.00001f);
+        clock.advance(50000000,true);
+        assertEquals(0,clock.interpolation(),0);
+        assertEquals(1,clock.renderFraction(true),0);
+    }
 }

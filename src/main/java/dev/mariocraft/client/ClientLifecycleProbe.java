@@ -14,6 +14,9 @@ public final class ClientLifecycleProbe {
     private int phase, ticks, waits;
     private long deadline;
     private boolean captured;
+    private long pauseStarted,pauseWorldTick;
+    private int pauseFrame;
+    private boolean pauseDone;
     ClientLifecycleProbe(Logger log) { this.log = log; }
     @SubscribeEvent public void tick(TickEvent.RenderTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
@@ -29,10 +32,24 @@ public final class ClientLifecycleProbe {
             net.minecraft.util.ScreenShotHelper.saveScreenshot(mc.mcDataDir,"mariocraft-gameplay.png",mc.displayWidth,mc.displayHeight,mc.getFramebuffer());
             log.info("MARIOCRAFT GAMEPLAY_PROBE screenshot-local");
         }
+        if(Boolean.getBoolean("mariocraft.gameplayProbe") && mc.world!=null && GameplayProbe.currentFrame>=170 && !pauseDone) {
+            if(pauseStarted==0) {
+                pauseStarted=System.nanoTime();
+                mc.displayGuiScreen(new net.minecraft.client.gui.GuiIngameMenu());
+            }
+            long elapsed=System.nanoTime()-pauseStarted;
+            if(elapsed<300000000L) { pauseFrame=GameplayProbe.currentFrame; pauseWorldTick=mc.world.getTotalWorldTime(); }
+            else if(elapsed>900000000L) {
+                GameplayProbe.pauseVerified=mc.isGamePaused() && pauseFrame==GameplayProbe.currentFrame && pauseWorldTick==mc.world.getTotalWorldTime();
+                log.info("MARIOCRAFT GAMEPLAY_PROBE pause verified={} frame={} worldTick={}",GameplayProbe.pauseVerified,pauseFrame,pauseWorldTick);
+                pauseDone=true;
+                mc.displayGuiScreen(null);
+            }
+        }
         if (phase == 0 && mc.currentScreen instanceof GuiMainMenu && ++waits > 20) {
             log.info("MARIOCRAFT CLIENT_PROBE opening normal-world");
             phase = 1;
-            mc.launchIntegratedServer("mariocraft-client-probe", "MarioCraft lifecycle probe", new WorldSettings(20261026L, GameType.SURVIVAL, true, false, WorldType.DEFAULT));
+            mc.launchIntegratedServer(Boolean.getBoolean("mariocraft.gameplayProbe") ? "mariocraft-gameplay-"+System.currentTimeMillis() : "mariocraft-client-probe", "MarioCraft lifecycle probe", new WorldSettings(20261026L, GameType.SURVIVAL, true, false, WorldType.DEFAULT));
         } else if ((phase == 1 || phase == 3) && mc.player != null && mc.world != null &&
                 (Boolean.getBoolean("mariocraft.gameplayProbe") ? GameplayProbe.complete : ++ticks == 120)) {
             log.info("MARIOCRAFT CLIENT_PROBE player-present phase={} dim={}", phase, mc.player.dimension);

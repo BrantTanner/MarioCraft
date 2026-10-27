@@ -24,6 +24,9 @@ import java.util.*;
 public final class MarioPlayer {
     private final Logger log;
     private final FixedStepClock clock=new FixedStepClock();
+    private final ControllerInput controller=new ControllerInput();
+    private double previousX,previousY,previousZ,currentX,currentY,currentZ;
+    private boolean poseReady;
     private MarioSession session;
     private TerrainMesh terrain;
     private net.minecraft.client.multiplayer.WorldClient world;
@@ -79,8 +82,18 @@ public final class MarioPlayer {
             } catch(Exception|LinkageError error) { log.error("MARIOCRAFT native player initialization failed",error); close(); failed=true; if(probe!=null) GameplayProbe.fail("native initialization"); return; }
         }
         int count=clock.advance(System.nanoTime(),mc.isGamePaused());
+        if(mc.isGamePaused()) { previousX=currentX; previousY=currentY; previousZ=currentZ; }
         try { for(int i=0;i<count;i++) step(mc); }
         catch(RuntimeException|LinkageError error) { log.error("MARIOCRAFT native step failed; releasing player control",error); close(); failed=true; if(probe!=null) GameplayProbe.fail("native step"); return; }
+        // Keep a usable baseline when terrain would collapse vanilla's camera into the cap.
+        if(!mc.isGamePaused() && BaselineCamera.clearance(mc,yaw,pitch,event.renderTickTime)<1.5) {
+            float selected=yaw; double best=0;
+            for(int offset=-180;offset<=180;offset+=30) {
+                double distance=BaselineCamera.clearance(mc,yaw+offset,pitch,event.renderTickTime);
+                if(distance>best) { best=distance; selected=yaw+offset; }
+            }
+            if(best>=1.5) yaw=selected;
+        }
         mc.player.rotationYaw=mc.player.prevRotationYaw=yaw;
         mc.player.rotationPitch=mc.player.prevRotationPitch=pitch;
         mc.player.setVelocity(0,0,0);
@@ -102,10 +115,12 @@ public final class MarioPlayer {
             input.buttonB=(byte)(key(Keyboard.KEY_J)?1:0);
             input.buttonZ=(byte)(key(Keyboard.KEY_LSHIFT)?1:0);
         }
+        controller.poll(input,controls,log);
         input.camLookX=-(float)Math.sin(Math.toRadians(yaw));
         input.camLookZ=(float)Math.cos(Math.toRadians(yaw));
         if(probe!=null) { input=new Sm64Library.Inputs(); yaw=probe.camera(frames,yaw,mc,log); probe.input(frames,input); input.camLookX=-(float)Math.sin(Math.toRadians(yaw)); input.camLookZ=(float)Math.cos(Math.toRadians(yaw)); }
         if(Math.abs(terrain.x(mc.player.posX))>5000 || Math.abs(terrain.z(mc.player.posZ))>5000 || Math.abs(terrain.y(mc.player.posY))>5000) {
+            poseReady=false;
             terrain=new TerrainMesh(mc.player.posX,mc.player.posY,mc.player.posZ);
             session.position(terrain.x(mc.player.posX),terrain.y(mc.player.posY),terrain.z(mc.player.posZ));
             meshX=Double.POSITIVE_INFINITY;
@@ -122,6 +137,9 @@ public final class MarioPlayer {
         if(!Double.isFinite(x)||!Double.isFinite(y)||!Double.isFinite(z)) throw new IllegalStateException("Nonfinite native player pose");
         // ACT_FLAG_AIR / ACT_FLAG_SWIMMING distinguish an apex from a grounded action.
         PlayerBridge.Pose pose=new PlayerBridge.Pose(x,y,z,(session.state.action & (0x800|0x2000))==0);
+        previousX=currentX; previousY=currentY; previousZ=currentZ;
+        currentX=x; currentY=y; currentZ=z;
+        if(!poseReady) { previousX=x; previousY=y; previousZ=z; poseReady=true; }
         PlayerBridge.POSES.put(playerId,pose);
         mc.player.setPosition(x,y,z);
         if(probe!=null) probe.observe(frames,session.state,yaw,mc,log);
@@ -172,7 +190,10 @@ public final class MarioPlayer {
         int previousTexture=GL11.glGetInteger(GL11.GL_TEXTURE_BINDING_2D);
         GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
         GlStateManager.pushMatrix();
-        GlStateManager.translate(terrain.ox-px,terrain.oy-py,terrain.oz-pz);
+        // Interpolate translation only: native animation may change mesh topology between steps.
+        float alpha=clock.renderFraction(mc.isGamePaused());
+        double dx=(previousX-currentX)*(1-alpha),dy=(previousY-currentY)*(1-alpha),dz=(previousZ-currentZ)*(1-alpha);
+        GlStateManager.translate(terrain.ox-px+dx,terrain.oy-py+dy,terrain.oz-pz+dz);
         GlStateManager.scale(0.01,0.01,0.01);
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_CULL_FACE);
@@ -220,6 +241,6 @@ public final class MarioPlayer {
             Minecraft.getMinecraft().gameSettings.autoJump=previousAutoJump;
             controlledPlayer=null;
         }
-        playerId=null; contacts.clear(); frames=0;
+        playerId=null; contacts.clear(); frames=0; poseReady=false; clock.advance(System.nanoTime(),true);
     }
 }

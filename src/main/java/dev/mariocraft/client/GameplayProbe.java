@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 final class GameplayProbe {
     static volatile boolean complete;
     static volatile int currentFrame;
+    static volatile boolean pauseVerified;
     static final AtomicInteger acceptedContacts=new AtomicInteger();
     static final AtomicInteger nativeAdmissions=new AtomicInteger();
     private double startX,startZ,jumpBase,peak;
@@ -18,6 +19,7 @@ final class GameplayProbe {
     private boolean airborne;
     private boolean landed;
     private boolean cameraTurned;
+    private double cameraClearance;
     private volatile double serverPoseError=Double.POSITIVE_INFINITY;
     private volatile long serverTick=-1;
     private volatile int targetId=-1;
@@ -33,9 +35,10 @@ final class GameplayProbe {
         } catch(java.io.IOException error) { throw new IllegalStateException("Could not save gameplay probe result",error); }
     }
     void input(int frame,Sm64Library.Inputs input) {
-        if(frame>=30 && frame<120) input.stickY=-1;
-        if(frame>=90 && frame<96) input.buttonA=1;
-        if(firstAttackFrame>=0 && frame>=firstAttackFrame && frame<firstAttackFrame+48 && (frame-firstAttackFrame)%20<8) input.buttonB=1;
+        // Synthetic device state enters the same mapping as physical LWJGL samples.
+        ControllerInput.map(input,0,frame>=30 && frame<120?-1:0,
+            frame>=90 && frame<96,
+            firstAttackFrame>=0 && frame>=firstAttackFrame && frame<firstAttackFrame+48 && (frame-firstAttackFrame)%20<8,false);
     }
     float camera(int frame,float yaw,Minecraft mc,Logger log) {
         if(frame>=180 && frame<195) return yaw+3;
@@ -43,13 +46,10 @@ final class GameplayProbe {
             cameraTurned=Math.abs(yaw-startYaw)>20;
             // A private visual QA view, separate from gameplay camera acceptance.
             // Select an unobstructed angle in the existing terrain; do not alter the world.
-            net.minecraft.util.math.Vec3d focus=mc.player.getPositionEyes(1);
             double best=-1;
             float selected=yaw;
             for(int angle=0;angle<360;angle+=30) {
-                net.minecraft.util.math.Vec3d goal=focus.addVector(Math.sin(Math.toRadians(angle))*4,1.3,-Math.cos(Math.toRadians(angle))*4);
-                net.minecraft.util.math.RayTraceResult hit=mc.world.rayTraceBlocks(focus,goal,false,true,false);
-                double distance=hit==null?focus.distanceTo(goal):focus.distanceTo(hit.hitVec);
+                double distance=BaselineCamera.clearance(mc,angle,20,1);
                 if(distance>best) { best=distance; selected=angle; }
             }
             log.info("MARIOCRAFT GAMEPLAY_PROBE visual-QA-view yaw={} clearance={}",selected,best);
@@ -64,18 +64,22 @@ final class GameplayProbe {
         if(frame==90) { jumpBase=mc.player.posY; peak=jumpBase; }
         if(frame>=90 && frame<=160) { peak=Math.max(peak,mc.player.posY); airborne|=(state.action&0x800)!=0; }
         if(frame>=150 && frame<=200 && airborne && (state.action&(0x800|0x2000))==0) landed=true;
+        if(frame==200) cameraClearance=BaselineCamera.clearance(mc,yaw,20,1);
         if(frame==238) {
             final java.util.UUID uuid=mc.player.getUniqueID();
-            final double x=mc.player.posX+Math.sin(state.faceAngle)*0.6;
-            final double y=mc.player.posY;
-            final double z=mc.player.posZ+Math.cos(state.faceAngle)*0.6;
+            final float facing=state.faceAngle;
             mc.getIntegratedServer().addScheduledTask(()->{
                 EntityPlayerMP player=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(uuid);
                 if(player==null) return;
                 EntityPig pig=new EntityPig(player.world);
                 // Deterministic contact fixture only. Production mob AI is unchanged.
                 pig.setNoAI(true);
-                pig.setPosition(x,y,z);
+                boolean clear=false;
+                for(double distance:new double[]{0.6,0.3,0.02}) {
+                    pig.setPosition(player.posX+Math.sin(facing)*distance,player.posY,player.posZ+Math.cos(facing)*distance);
+                    if(player.world.getCollisionBoxes(pig,pig.getEntityBoundingBox()).isEmpty() && player.canEntityBeSeen(pig)) { clear=true; break; }
+                }
+                if(!clear) { fail("No unobstructed contact fixture placement"); return; }
                 player.world.spawnEntity(pig);
                 targetId=pig.getEntityId();
                 log.info("MARIOCRAFT GAMEPLAY_PROBE spawned test-only NoAI pig id={}",targetId);
@@ -101,10 +105,10 @@ final class GameplayProbe {
             double travelled=Math.hypot(mc.player.posX-startX,mc.player.posZ-startZ);
             boolean moved=travelled>1;
             boolean jumped=airborne && peak>jumpBase+0.3;
-            boolean camera=cameraTurned;
-            boolean passed=moved && jumped && landed && camera && acceptedContacts.get()>0 && serverPoseError<=0.05 && ordinaryMobTicks>20;
+            boolean camera=cameraTurned && cameraClearance>=1.5;
+            boolean passed=moved && jumped && landed && camera && acceptedContacts.get()>0 && serverPoseError<=0.05 && ordinaryMobTicks>20 && pauseVerified;
             log.info("MARIOCRAFT GAMEPLAY_PROBE result passed={} moved={} jump={} landed={} camera={} nativeAdmissions={} serverContacts={} travelled={} jumpRise={}",passed,moved,jumped,landed,camera,nativeAdmissions.get(),acceptedContacts.get(),travelled,peak-jumpBase);
-            writeResult("{\"passed\":"+passed+",\"moved\":"+moved+",\"jumped\":"+jumped+",\"landed\":"+landed+",\"cameraControl\":"+camera+",\"nativeAdmissions\":"+nativeAdmissions.get()+",\"serverContacts\":"+acceptedContacts.get()+",\"serverPoseError\":"+(Double.isFinite(serverPoseError)?serverPoseError:-1)+",\"serverTick\":"+serverTick+",\"ordinaryMobTicks\":"+ordinaryMobTicks+",\"poseSampleClientFrame\":340,\"fixtureNoAI\":true,\"travelled\":"+travelled+",\"jumpRise\":"+(peak-jumpBase)+"}");
+            writeResult("{\"passed\":"+passed+",\"moved\":"+moved+",\"jumped\":"+jumped+",\"landed\":"+landed+",\"cameraClearance\":"+cameraClearance+",\"cameraControl\":"+camera+",\"nativeAdmissions\":"+nativeAdmissions.get()+",\"serverContacts\":"+acceptedContacts.get()+",\"serverPoseError\":"+(Double.isFinite(serverPoseError)?serverPoseError:-1)+",\"serverTick\":"+serverTick+",\"ordinaryMobTicks\":"+ordinaryMobTicks+",\"poseSampleClientFrame\":340,\"pauseVerified\":"+pauseVerified+",\"controllerAdapter\":true,\"fixtureNoAI\":true,\"travelled\":"+travelled+",\"jumpRise\":"+(peak-jumpBase)+"}");
             complete=true;
         }
     }

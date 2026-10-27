@@ -54,5 +54,43 @@ public final class NativeSmoke {
                 System.out.println("NATIVE_SMOKE cycle=" + cycle + " peak=" + peak + " triangles=" + Short.toUnsignedInt(session.geometry.numTrianglesUsed) + " health=" + session.state.health);
             }
         }
+        float shortPeak=jumpControl(dll,false,false);
+        float heldPeak=jumpControl(dll,true,false);
+        require(heldPeak>shortPeak+100,"Held A did not preserve the higher jump arc");
+        jumpControl(dll,true,true);
+        System.out.println("MOVEMENT_NATIVE heldPeak="+heldPeak+" releasedPeak="+shortPeak);
+    }
+
+    /** Native-only flat floor: these checks are not normal-world integration evidence. */
+    private static float jumpControl(Path dll,boolean hold,boolean steer) throws Exception {
+        try(MarioSession session=new MarioSession(dll,MarioSession.discoverRom())) {
+            Sm64Library.Surface[] floor=(Sm64Library.Surface[])new Sm64Library.Surface().toArray(2);
+            floor[0].vertices=new int[]{-6000,0,-6000,-6000,0,6000,6000,0,6000};
+            floor[1].vertices=new int[]{-6000,0,-6000,6000,0,6000,6000,0,-6000};
+            session.surfaces(floor); session.create(0,100,0);
+            Sm64Library.Inputs input=new Sm64Library.Inputs(); input.camLookZ=-1;
+            for(int frame=0;frame<60;frame++) session.tick(input);
+            input.buttonA=1; session.tick(input);
+            require(session.state.action==0x03000880,"A did not select normal jump");
+            require(Math.abs(session.state.velocity[1]-38)<0.001,"Normal jump post-update vertical speed");
+            int animation=session.state.animID;
+            input.buttonA=(byte)(hold?1:0);
+            float peak=session.state.position[1];
+            boolean animationAdvanced=false,steered=false,landed=false;
+            for(int frame=1;frame<60;frame++) {
+                if(steer && frame>=5 && frame<15) input.stickX=1;
+                else input.stickX=0;
+                session.tick(input);
+                if(frame==1 && !hold) require(Math.abs(session.state.velocity[1]-9.5f)<0.001,"Early A release must quarter upward velocity");
+                peak=Math.max(peak,session.state.position[1]);
+                animationAdvanced|=session.state.animID==animation && session.state.animFrame>0;
+                steered|=Math.abs(session.state.velocity[0])>1;
+                landed|=(session.state.action&0x800)==0;
+            }
+            require(animationAdvanced,"Jump animation did not advance");
+            require(landed,"Controlled jump did not land");
+            if(steer) require(steered && Math.abs(session.state.position[0])>10,"Airborne lateral input did not steer Mario");
+            return peak;
+        }
     }
 }

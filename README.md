@@ -61,6 +61,9 @@ for deterministic outgoing-contact testing. Production mob AI is unchanged.
 Before clearing a prior result, the wrapper archives it and its existing image
 under a unique private run ID. The wrapper checks the private
 `.local/run-client/gameplay-result.json`; process exit alone is not test success.
+The probe also runs ten bounded ordinary movement recipes on inspected natural
+terrain, recording input/action/velocity/animation scalars. See
+[movement evidence and setup limits](docs/TICKET21-MOVEMENT.md).
 Each gameplay probe creates a fresh normally generated world with the same seed;
 the lifecycle-only probe separately reuses its world. A real pause-menu interval
 checks that native frames and world ticks freeze. Framebuffer captures remain private.

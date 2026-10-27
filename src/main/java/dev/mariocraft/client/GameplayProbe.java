@@ -12,6 +12,34 @@ final class GameplayProbe {
     static volatile boolean complete;
     static volatile boolean syntheticStart;
     private boolean vanillaSuppression;
+    private final AdvancedMovementProbe movement=new AdvancedMovementProbe();
+    private ControlState movementInput;
+    private String baselineResult;
+    private volatile MovementSite site;
+    private boolean findingSite;
+    boolean prepare(Minecraft mc,Logger log) {
+        if(!findingSite) {
+            findingSite=true;
+            final java.util.UUID id=mc.player.getUniqueID();
+            mc.getIntegratedServer().addScheduledTask(()->{
+                try {
+                    EntityPlayerMP player=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(id);
+                    MovementSite selected=MovementSite.find(player.world,(int)player.posX,(int)player.posZ);
+                    player.connection.setPlayerLocation(selected.x+.5,selected.y,selected.z+.5,0,0);
+                    site=selected;
+                    log.info("MARIOCRAFT MOVEMENT_PROBE natural-site setupOnly=true x={} y={} z={} runway=-8..28 width=5 terrainEdits=0",selected.x,selected.y,selected.z);
+                } catch(RuntimeException error) { log.error("Movement site setup",error); fail("natural runway setup"); }
+            });
+        }
+        return site!=null && mc.player.getDistanceSq(site.x+.5,site.y,site.z+.5)<1;
+    }
+    void setup(int frame,dev.mariocraft.nativebridge.MarioSession session,TerrainMesh terrain,Minecraft mc) {
+        if(frame>=380 && (frame-380)%180==0) {
+            // Setup relocation precedes 40 neutral frames; no action/velocity is written.
+            mc.player.setPosition(site.x+.5,site.y,site.z+.5);
+            session.position(terrain.x(mc.player.posX),terrain.y(mc.player.posY)+10,terrain.z(mc.player.posZ));
+        }
+    }
     static volatile int currentFrame;
     static volatile boolean pauseVerified;
     static final AtomicInteger acceptedContacts=new AtomicInteger();
@@ -41,6 +69,7 @@ final class GameplayProbe {
     private int oldJumpCode;
     private boolean bindingPersistence;
     ControlState controls(int frame,MarioBindings bindings) {
+        if(frame>=380) { movementInput=movement.controls(frame-380,bindings); return movementInput; }
         // Alternate keyboard and controller routes within the same actual native player session.
         boolean forward=frame>=30 && frame<120;
         boolean jump=frame>=90 && frame<96;
@@ -102,6 +131,17 @@ final class GameplayProbe {
     }
     void observe(int frame,Sm64Library.State state,float yaw,Minecraft mc,Logger log) {
         currentFrame=frame;
+        if(frame>380 && !movement.done(frame-381)) movement.observe(frame-381,state,movementInput);
+        if(frame==2180) {
+            try {
+                boolean movementPassed=movement.passed();
+                String original=baselineResult;
+                if(!movementPassed) original=original.replace("\"passed\":true","\"passed\":false");
+                writeResult(original.substring(0,original.length()-1)+",\"movementPassed\":"+movementPassed+",\"movementActions\":"+movement.summary()+"}");
+                log.info("MARIOCRAFT MOVEMENT_PROBE actions={}",movement.summary());
+                complete=true;
+            } catch(RuntimeException error) { throw error; }
+        }
         if(targetId>=0 && firstAttackFrame<0 && mc.world.getEntityByID(targetId)!=null) firstAttackFrame=frame+2;
         if(frame==30) { startX=mc.player.posX; startZ=mc.player.posZ; startYaw=yaw; }
         if(frame==90) { jumpBase=mc.player.posY; peak=jumpBase; }
@@ -154,8 +194,7 @@ final class GameplayProbe {
             boolean camera=cameraTurned && cameraClearance>=1.5;
             boolean passed=moved && jumped && landed && camera && acceptedContacts.get()>0 && serverPoseError<=0.05 && ordinaryMobTicks>20 && pauseVerified && controlsVerified && bindingPersistence && vanillaSuppression;
             log.info("MARIOCRAFT GAMEPLAY_PROBE result passed={} moved={} jump={} landed={} camera={} nativeAdmissions={} serverContacts={} travelled={} jumpRise={}",passed,moved,jumped,landed,camera,nativeAdmissions.get(),acceptedContacts.get(),travelled,peak-jumpBase);
-            writeResult("{\"passed\":"+passed+",\"moved\":"+moved+",\"jumped\":"+jumped+",\"landed\":"+landed+",\"cameraClearance\":"+cameraClearance+",\"cameraControl\":"+camera+",\"nativeAdmissions\":"+nativeAdmissions.get()+",\"serverContacts\":"+acceptedContacts.get()+",\"serverPoseError\":"+(Double.isFinite(serverPoseError)?serverPoseError:-1)+",\"serverTick\":"+serverTick+",\"ordinaryMobTicks\":"+ordinaryMobTicks+",\"poseSampleClientFrame\":340,\"pauseVerified\":"+pauseVerified+",\"vanillaSuppression\":"+vanillaSuppression+",\"bindingPersistence\":"+bindingPersistence+",\"controlsVerified\":"+controlsVerified+",\"keyboardControllerEquivalent\":true,\"controllerAdapter\":true,\"fixtureNoAI\":true,\"travelled\":"+travelled+",\"jumpRise\":"+(peak-jumpBase)+"}");
-            complete=true;
+            baselineResult="{\"passed\":"+passed+",\"moved\":"+moved+",\"jumped\":"+jumped+",\"landed\":"+landed+",\"cameraClearance\":"+cameraClearance+",\"cameraControl\":"+camera+",\"nativeAdmissions\":"+nativeAdmissions.get()+",\"serverContacts\":"+acceptedContacts.get()+",\"serverPoseError\":"+(Double.isFinite(serverPoseError)?serverPoseError:-1)+",\"serverTick\":"+serverTick+",\"ordinaryMobTicks\":"+ordinaryMobTicks+",\"poseSampleClientFrame\":340,\"pauseVerified\":"+pauseVerified+",\"vanillaSuppression\":"+vanillaSuppression+",\"bindingPersistence\":"+bindingPersistence+",\"controlsVerified\":"+controlsVerified+",\"keyboardControllerEquivalent\":true,\"controllerAdapter\":true,\"fixtureNoAI\":true,\"travelled\":"+travelled+",\"jumpRise\":"+(peak-jumpBase)+"}";
         }
     }
 }

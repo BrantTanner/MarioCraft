@@ -41,6 +41,10 @@ try {
             $archive=Join-Path $root ('.local/probe-results/'+$runId)
             [IO.Directory]::CreateDirectory($archive) | Out-Null
             Copy-Item -LiteralPath $resultPath -Destination (Join-Path $archive 'gameplay-result.json')
+            foreach($evidence in @('movement-trace.jsonl','logs/latest.log')) {
+                $evidencePath=Join-Path $root ('.local/run-client/'+$evidence)
+                if(Test-Path -LiteralPath $evidencePath) { Copy-Item -LiteralPath $evidencePath -Destination (Join-Path $archive (Split-Path $evidence -Leaf)) }
+            }
             $capture=Join-Path $root '.local/run-client/screenshots/mariocraft-gameplay.png'
             if(Test-Path -LiteralPath $capture) { Copy-Item -LiteralPath $capture -Destination (Join-Path $archive 'mariocraft-gameplay.png') }
             Remove-Item -LiteralPath $resultPath

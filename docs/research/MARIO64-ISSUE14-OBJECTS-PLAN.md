@@ -1,6 +1,6 @@
 # Mario 64 objects, enemies, and interactions plan (#14)
 
-**Status:** parent issue #14 remains open and its original acceptance criteria remain unchanged and unchecked. The first five bounded children ran in order: #52 → #53 → #54 → #55 → #56. #56 remains open because controlled coin/healing and one-up outcomes are unobserved. #60 has published static classification of the 17 previously inventory-only #54 candidates, with three structural ambiguities retained. Selected family AI/contact observations and Mario projectile-contact coverage where reachable remain open. It depends only on completed #52/#53/#54, so it can proceed while #56's reachable pickup route remains unresolved. Complete #60 and #56 before treating this aggregate audit as acceptance-ready. Independent research on #15 and #16 may continue, but #17 cannot start until #14, #15, and #16 actually meet their acceptance criteria; #18 is blocked by #17. No implementation or gameplay prototype begins during this sequence.
+**Status:** #14 remains open with its original criteria unchanged. #52–#56 are closed. #60 has a finite static classification and one observed Bob-omb AI, contact and self-detonation sequence; its separate projectile contact with Mario remains open. #17 follows actual acceptance of #14, #15 and #16, and #18 follows #17.
 
 ## Sequence and dependency graph
 
@@ -19,7 +19,7 @@ Each child links back to #14 and names its predecessors. The GitHub connector us
 
 - [#10 ROM and tooling report](https://github.com/BrantTanner/MarioCraft/blob/main/docs/research/MARIO64-ROM-TOOLING-AND-SCOPE.md) establishes the USA revision 0 ROM and Project64 workflow. The initial static correspondence is limited to the verified prefix; outside it, require a unique whole-block match against ROM bytes or corroborating runtime code.
 - #11 supplies reproducible courtyard movement and action traces, but the courtyard has no nearby enemy. Its B-triggered `0x00800380` transition establishes an action change, not an enemy outcome.
-- #12/#44 inventory health writers and static coin/recovery healing paths, but runtime enemy contact and controlled pickup collection remain unobserved. #12 assigns moving-platform transforms to #14 and separates them from surface-force classification.
+- #12/#44 inventory health writers and static coin/recovery healing paths, and later #54/#60 enemy contact and #56 controlled pickup observations provide bounded runtime examples. #12 assigns moving-platform transforms to #14 and separates them from surface-force classification.
 - #15 owns course placement and progression, including #59’s published static objective/cap and warp/state reports and their open runtime gates. #16 owns scheduling, memory, DMA, RSP/microcode, hardware, and saves; its #61–#65 evidence is published, with remaining requirements recorded per child. #17 audits the full Mario dossier only after #14, #15 and #16 actually meet their acceptance criteria; #18 is blocked by #17 and performs architecture and readiness review.
 
 ## Evidence and publication rules

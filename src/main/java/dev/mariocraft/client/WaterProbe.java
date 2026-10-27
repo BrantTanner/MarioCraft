@@ -66,7 +66,7 @@ final class WaterProbe {
                         if(clear) { shore=new Site(x,w.surface-.8,z,w.surface);break bank; }
                     }
                     if(shore==null) throw new IllegalStateException("Natural +Z shoreline unavailable");
-                    p.connection.setPlayerLocation(shallow.x,shallow.y,shallow.z,0,0);
+                    p.connection.setPlayerLocation(shallow.x,shallow.y,shallow.z,0,0);p.getServer().getPlayerList().serverUpdateMovingPlayer(p);
                     log.info("MARIOCRAFT WATER natural sites shallowDepth={} deepDepth={} terrainEdits=0",shallow.surface-shallow.y,deep.surface-deep.y);
                 } catch(RuntimeException e) { log.error("Water setup",e);GameplayProbe.fail("natural water site setup"); }
             });

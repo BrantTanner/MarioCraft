@@ -39,7 +39,7 @@ final class HealthProbe {
                     EntityPlayerMP p=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(id);
                     MovementSite selected=MovementSite.find(p.world,(int)p.posX,(int)p.posZ);
                     p.world.setWorldTime(13000);p.world.getWorldInfo().setDifficulty(net.minecraft.world.EnumDifficulty.NORMAL);
-                    p.connection.setPlayerLocation(selected.x+.5,selected.y,selected.z+.5,180,0);site=selected;
+                    p.connection.setPlayerLocation(selected.x+.5,selected.y,selected.z+.5,180,0);p.getServer().getPlayerList().serverUpdateMovingPlayer(p);site=selected;
                     log.info("MARIOCRAFT HEALTH natural-site x={} y={} z={} terrainEdits=0",site.x,site.y,site.z);
                 } catch(RuntimeException e) { log.error("Health setup",e);GameplayProbe.fail("health site setup"); }
             });

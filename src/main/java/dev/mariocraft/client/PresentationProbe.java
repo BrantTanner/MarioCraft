@@ -25,7 +25,7 @@ final class PresentationProbe {
     private final Map<String,Object> checks=Collections.synchronizedMap(new LinkedHashMap<>());
     private long deadline,phaseAt;
     private int phase,cycle,frame,closed;
-    private boolean started,fixtureRequested,pauseSampled;
+    private boolean started,fixtureRequested,pauseSampled,gameCaptured;
     private volatile boolean fixtureReady;
     private volatile String failure;
     private volatile EntityItem item;
@@ -36,6 +36,9 @@ final class PresentationProbe {
     private MarioPlayer owner;
     private MarioSession session;
     private MarioAudio audio;
+    private int renders,startRenders,oldLimit;
+    private long sampleAt;
+    private final Map<Integer,double[]> timingReference=new HashMap<>();
     private double startX,startZ;
     private float musicVolume,playerVolume,masterVolume;
     private int pauseFrame;
@@ -65,20 +68,34 @@ final class PresentationProbe {
         ControlState c=new ControlState();c.a=frame>=45 && frame<49 || frame>=105 && frame<109;
         c.y=frame>=70 && frame<90?-1:0;return c;
     }
-    void step(MarioPlayer p,MarioSession s,MarioAudio a) { owner=p;session=s;audio=a;frame++; }
+    void step(MarioPlayer p,MarioSession s,MarioAudio a) {
+        owner=p;session=s;audio=a;frame++;
+        if(frame==60) { sampleAt=System.nanoTime();startRenders=renders; }
+        if(frame==160) {
+            double seconds=(System.nanoTime()-sampleAt)/1e9;
+            checks.put("displayCap"+cycle,cycle==0?30:144);checks.put("achievedRenderHz"+cycle,(renders-startRenders)/seconds);checks.put("achievedNativeHz"+cycle,100/seconds);
+            check("nativeTiming"+cycle,100/seconds>=26 && 100/seconds<=34);
+        }
+        if(frame==60 || frame==100 || frame==130 || frame==160) {
+            double[] value={s.state.action,s.state.velocity[1],s.state.forwardVelocity,s.state.position[1]};
+            if(cycle==0) timingReference.put(frame,value);
+            else { double[] ref=timingReference.get(frame);boolean same=ref!=null;for(int i=0;same && i<value.length;i++) same &= Math.abs(value[i]-ref[i])<=.001f;check("matchedNativeFrame"+frame,same); }
+        }
+    }
     void closed(MarioAudio a) { closedAudio.add(a);closed++; }
     @SubscribeEvent public void tick(TickEvent.RenderTickEvent e) {
         if(e.phase!=TickEvent.Phase.END) return;
-        Minecraft mc=Minecraft.getMinecraft();
+        Minecraft mc=Minecraft.getMinecraft();renders++;if(deadline!=0) mc.gameSettings.limitFramerate=cycle==0?30:144;
         org.lwjgl.opengl.Display.setLocation(-20000,-20000);
         mc.gameSettings.pauseOnLostFocus=false;mc.gameSettings.renderDistanceChunks=4;
-        if(deadline==0) { deadline=System.nanoTime()+360000000000L;phaseAt=System.nanoTime(); }
+        if(deadline==0) { oldLimit=mc.gameSettings.limitFramerate;deadline=System.nanoTime()+360000000000L;phaseAt=System.nanoTime(); }
         if(System.nanoTime()>deadline) failure="bounded presentation timeout phase "+phase;
         if(phase==1 && mc.world!=null && frame==0 && System.nanoTime()-phaseAt>45000000000L) failure="native admission timeout: "+admission;
         if(failure!=null) { finish(mc,false);return; }
         if(phase==0 && mc.currentScreen instanceof Presentation.Title) {
             if(System.nanoTime()-phaseAt<1000000000L) return;
             check("title",true);
+            net.minecraft.util.ScreenShotHelper.saveScreenshot(mc.mcDataDir,"mariocraft-title.png",mc.displayWidth,mc.displayHeight,mc.getFramebuffer());
             net.minecraft.network.NetworkManager remote=new net.minecraft.network.NetworkManager(net.minecraft.network.EnumPacketDirection.CLIENTBOUND);
             io.netty.channel.embedded.EmbeddedChannel channel=new io.netty.channel.embedded.EmbeddedChannel(remote);
             new Presentation().connection(new net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToServerEvent(remote,"VANILLA"));
@@ -92,6 +109,7 @@ final class PresentationProbe {
             ControllerProfile.config.get("presentation","marioSounds",true).set(false);ControllerProfile.config.save();ControllerProfile.config.load();ControllerProfile.reload();check("settingsPersistOff",!ControllerProfile.marioSounds);
             ControllerProfile.config.get("presentation","marioSounds",true).set(true);ControllerProfile.config.save();ControllerProfile.config.load();ControllerProfile.reload();check("settingsPersistOn",ControllerProfile.marioSounds);
             mc.displayGuiScreen(new GuiWorldSelection(title));check("worldSelection",mc.currentScreen instanceof GuiWorldSelection);
+            mc.gameSettings.difficulty=EnumDifficulty.HARD;mc.displayGuiScreen(new GuiCreateWorld(title));check("newWorldNormal",mc.gameSettings.difficulty==EnumDifficulty.NORMAL);
             mc.displayGuiScreen(title);
             musicVolume=mc.gameSettings.getSoundLevel(SoundCategory.MUSIC);playerVolume=mc.gameSettings.getSoundLevel(SoundCategory.PLAYERS);masterVolume=mc.gameSettings.getSoundLevel(SoundCategory.MASTER);
             mc.getSoundHandler().addListener((sound,accessor)-> { if(sound.getCategory()==SoundCategory.MUSIC) music=sound; });
@@ -99,6 +117,11 @@ final class PresentationProbe {
             phase=1;phaseAt=System.nanoTime();mc.launchIntegratedServer(save,"MarioCraft presentation probe",new WorldSettings(20261026L,GameType.SURVIVAL,true,false,WorldType.DEFAULT));return;
         }
         if(phase==1 && owner!=null && owner.persistenceOwnership()) {
+            if(frame>=165 && !gameCaptured) {
+                gameCaptured=true;check("tutorialDisabled",mc.gameSettings.tutorialStep==net.minecraft.client.tutorial.TutorialSteps.NONE);
+                net.minecraft.util.ScreenShotHelper.saveScreenshot(mc.mcDataDir,"mariocraft-final-hud.png",mc.displayWidth,mc.displayHeight,mc.getFramebuffer());
+                if(Boolean.getBoolean("mariocraft.hudProbe")) { mc.displayGuiScreen(new GuiIngameMenu());phase=6;phaseAt=System.nanoTime();return; }
+            }
             mc.setIngameFocus();
             if(!fixtureRequested) {
                 fixtureRequested=true;startX=mc.player.posX;startZ=mc.player.posZ;
@@ -147,9 +170,14 @@ final class PresentationProbe {
         } else if(phase==7 && mc.world==null && !mc.isIntegratedServerRunning()) {
             check("cleanup"+cycle,owner.persistenceClosed() && dev.mariocraft.PlayerBridge.POSES.isEmpty() && dev.mariocraft.health.HealthBridge.OWNERS.isEmpty());
             check("audioClosed"+cycle,closedAudio.stream().allMatch(MarioAudio::silent));
+            if(Boolean.getBoolean("mariocraft.hudProbe")) { finish(mc,true);return; }
             if(cycle++==0) { frame=0;fixtureRequested=fixtureReady=false;siteSearching=false;phase=1;phaseAt=System.nanoTime();mc.launchIntegratedServer(save,"MarioCraft presentation probe",null); }
             else { check("twoAudioCloses",closed==2);finish(mc,true); }
         }
+    }
+    @SubscribeEvent(priority=net.minecraftforge.fml.common.eventhandler.EventPriority.LOWEST,receiveCanceled=true)
+    public void overlay(net.minecraftforge.client.event.RenderGameOverlayEvent.Pre e) {
+        if(e.getType()==net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType.CROSSHAIRS && phase==1 && owner!=null && owner.persistenceOwnership()) check("crosshairHidden",e.isCanceled());
     }
     private void finalChecks(Minecraft mc) {
             mc.displayGuiScreen(new GuiIngameMenu());phase=6;phaseAt=System.nanoTime();
@@ -163,12 +191,14 @@ final class PresentationProbe {
     }
     private void fixtures(Minecraft mc,UUID id) {
         try {
-            EntityPlayerMP p=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(id);BlockPos floor=new BlockPos(p.posX,p.posY-1,p.posZ);
+            EntityPlayerMP p=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(id);
+            for(net.minecraft.entity.Entity old:new ArrayList<net.minecraft.entity.Entity>(p.world.loadedEntityList)) if(old.getTags().contains("mariocraft-presentation-fixture")) old.setDead();
+            BlockPos floor=new BlockPos(p.posX,p.posY-1,p.posZ);
             net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickItem use=new net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickItem(p,EnumHand.MAIN_HAND);MinecraftForge.EVENT_BUS.post(use);check("useBlocked"+cycle,use.isCanceled());
             net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock place=new net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock(p,EnumHand.MAIN_HAND,floor,EnumFacing.UP,new Vec3d(p.posX,p.posY,p.posZ));MinecraftForge.EVENT_BUS.post(place);check("placeBlocked"+cycle,place.isCanceled());
             net.minecraftforge.event.world.BlockEvent.BreakEvent mine=new net.minecraftforge.event.world.BlockEvent.BreakEvent(p.world,floor,p.world.getBlockState(floor),p);MinecraftForge.EVENT_BUS.post(mine);check("mineBlocked"+cycle,mine.isCanceled());
-            item=new EntityItem(p.world,p.posX,p.posY,p.posZ,new ItemStack(Items.EMERALD));item.setNoPickupDelay();p.world.spawnEntity(item);item.onCollideWithPlayer(p);check("itemPickupBlocked"+cycle,!item.isDead && item.getItem().getCount()==1);
-            orb=new EntityXPOrb(p.world,p.posX,p.posY,p.posZ,7);p.world.spawnEntity(orb);int xp=p.experienceTotal;orb.onCollideWithPlayer(p);check("xpPickupBlocked"+cycle,!orb.isDead&&p.experienceTotal==xp);
+            item=new EntityItem(p.world,p.posX,p.posY,p.posZ,new ItemStack(Items.EMERALD));item.addTag("mariocraft-presentation-fixture");item.setNoPickupDelay();p.world.spawnEntity(item);item.onCollideWithPlayer(p);check("itemPickupBlocked"+cycle,!item.isDead && item.getItem().getCount()==1);
+            orb=new EntityXPOrb(p.world,p.posX,p.posY,p.posZ,7);orb.addTag("mariocraft-presentation-fixture");p.world.spawnEntity(orb);int xp=p.experienceTotal;orb.onCollideWithPlayer(p);check("xpPickupBlocked"+cycle,!orb.isDead&&p.experienceTotal==xp);
             p.inventory.setInventorySlotContents(0,new ItemStack(Items.DIAMOND));p.inventory.armorInventory.set(0,new ItemStack(Items.DIAMOND_BOOTS));
             int dimension=p.dimension;p.changeDimension(-1);check("portalBlocked"+cycle,p.dimension==dimension);
             p.getServer().getCommandManager().executeCommand(p,"gamemode creative");check("commandModeBlocked"+cycle,p.interactionManager.getGameType()==GameType.SURVIVAL);
@@ -179,7 +209,7 @@ final class PresentationProbe {
     }
     private void finish(Minecraft mc,boolean pass) {
         if(started) return;started=true;checks.put("passed",pass&&failure==null);if(failure!=null) checks.put("failure",failure);
-        mc.gameSettings.setSoundLevel(SoundCategory.MUSIC,musicVolume);mc.gameSettings.setSoundLevel(SoundCategory.PLAYERS,playerVolume);mc.gameSettings.setSoundLevel(SoundCategory.MASTER,masterVolume);mc.gameSettings.saveOptions();
+        mc.gameSettings.limitFramerate=oldLimit;mc.gameSettings.setSoundLevel(SoundCategory.MUSIC,musicVolume);mc.gameSettings.setSoundLevel(SoundCategory.PLAYERS,playerVolume);mc.gameSettings.setSoundLevel(SoundCategory.MASTER,masterVolume);mc.gameSettings.saveOptions();
         try { Files.write(new java.io.File(mc.mcDataDir,"gameplay-result.json").toPath(),new com.google.gson.GsonBuilder().setPrettyPrinting().create().toJson(checks).getBytes(StandardCharsets.UTF_8)); }
         catch(Exception ex) { throw new IllegalStateException(ex); }
         mc.shutdown();

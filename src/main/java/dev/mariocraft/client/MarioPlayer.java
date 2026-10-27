@@ -91,13 +91,15 @@ public final class MarioPlayer {
             if(movementChannel.pipeline().get("mariocraft_movement")==null) movementChannel.pipeline().addBefore("packet_handler","mariocraft_movement",new MovementPacketGate(id));
             server.addScheduledTask(()-> {
                 try { if(!hold.active || server.getPlayerList().getPlayerByUUID(id)!=original) return;
-                    if(original.interactionManager.getGameType()!=net.minecraft.world.GameType.SURVIVAL || original.world.getWorldInfo().isHardcoreModeEnabled()) { restoreFailure="unsupported-world-mode";return; }
+                    boolean fixture=Boolean.getBoolean("mariocraft.hazardProbe") || Boolean.getBoolean("mariocraft.respawnProbe");
+                    String unsupported=original.interactionManager.getGameType()!=net.minecraft.world.GameType.SURVIVAL?"Survival mode required":original.world.getWorldInfo().isHardcoreModeEnabled()?"Hardcore is unsupported":!fixture && original.dimension!=0?"Overworld required":!fixture && original.world.getDifficulty()!=net.minecraft.world.EnumDifficulty.NORMAL?"Normal difficulty required":null;
+                    if(unsupported!=null) { restoreFailure="unsupported-world:"+unsupported;return; }
                     MarioRestoration.Result result=MarioRestoration.prepare(original);
                     if(hold.active && lifeServer==server) restoration=result;
                 } catch(RuntimeException error) { if(hold.active && lifeServer==server) restoreFailure=error.toString(); }
             });
         }
-        if("unsupported-world-mode".equals(restoreFailure)) { if(!failed) { failed=true;mc.displayGuiScreen(new Presentation.UnsupportedWorld()); }return false; }
+        if(restoreFailure!=null && restoreFailure.startsWith("unsupported-world:")) { if(!failed) { failed=true;mc.displayGuiScreen(new Presentation.UnsupportedWorld(restoreFailure.substring("unsupported-world:".length()))); }return false; }
         if(restoreFailure!=null) { if(!failed) { failed=true;log.error("MARIOCRAFT restore failed {}",restoreFailure);
             mc.displayGuiScreen(new net.minecraft.client.gui.GuiErrorScreen("MarioCraft safe resume unavailable","No safe resume position was found. The world was not modified.")); } return false; }
         MarioRestoration.Result result=restoration;
@@ -465,20 +467,20 @@ public final class MarioPlayer {
     @SubscribeEvent public void vanillaHud(RenderGameOverlayEvent.Pre event) {
         if(session==null && pendingRespawn==null) return;
         switch(event.getType()) {
-            case HOTBAR: case EXPERIENCE: case HEALTH: case ARMOR: case FOOD: case AIR: event.setCanceled(true);if(respawnProbe!=null) respawnProbe.hud(event.getType());break;
+            case CROSSHAIRS: case HOTBAR: case EXPERIENCE: case HEALTH: case ARMOR: case FOOD: case AIR: event.setCanceled(true);if(respawnProbe!=null) respawnProbe.hud(event.getType());break;
             default: break;
         }
     }
     @SubscribeEvent public void healthHud(RenderGameOverlayEvent.Post event) {
         if(session==null || healthChannel.snapshot==null || event.getType()!=RenderGameOverlayEvent.ElementType.ALL) return;
         MarioHealth.Snapshot state=healthChannel.snapshot;
-        int x=event.getResolution().getScaledWidth()/2-48,y=12;
+        int x=12,y=12;
         Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(state.dead?"POWER - fallen":"POWER",x,y,0xFFFFFF);
         for(int i=0;i<8;i++) {
             net.minecraft.client.gui.Gui.drawRect(x+i*12,y+12,x+i*12+10,y+23,0xFF202020);
             net.minecraft.client.gui.Gui.drawRect(x+i*12+1,y+13,x+i*12+9,y+22,i<state.sections?(state.sections<=2?0xFFE04438:0xFF39B968):0xFF555555);
         }
-        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("LIVES "+lives.snapshot().lives,x+112,y,0xFFFFFF);
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("LIVES "+lives.snapshot().lives,x,y+28,0xFFFFFF);
         GlStateManager.color(1,1,1,1);
     }
     @SubscribeEvent public void render(RenderWorldLastEvent event) {

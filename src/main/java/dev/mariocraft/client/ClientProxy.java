@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 public final class ClientProxy extends CommonProxy {
     @Override public void initialize(Logger log) {
         ControllerProfile.initialize();
+        if(AdmissionProbe.INSTANCE!=null) MinecraftForge.EVENT_BUS.register(AdmissionProbe.INSTANCE);
         MinecraftForge.EVENT_BUS.register(new Presentation());
         if(PresentationProbe.INSTANCE!=null) MinecraftForge.EVENT_BUS.register(PresentationProbe.INSTANCE);
         MinecraftForge.EVENT_BUS.register(new ControllerProfile());

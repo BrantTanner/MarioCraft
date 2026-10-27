@@ -53,7 +53,7 @@ final class TraversalProbe {
             try {
                 net.minecraft.entity.player.EntityPlayerMP p=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(id);
                 Site s=find(p.world,(int)p.posX,(int)p.posZ);
-                p.connection.setPlayerLocation(s.x+.5,s.y,s.z+.5,s.yaw(),0); site=s;
+                p.connection.setPlayerLocation(s.x+.5,s.y,s.z+.5,s.yaw(),0);p.getServer().getPlayerList().serverUpdateMovingPlayer(p); site=s;
                 log.info("MARIOCRAFT TRAVERSAL natural-bank x={} y={} z={} direction={},{} height={} terrainEdits=0",s.x,s.y,s.z,s.dx,s.dz,s.height);
             } catch(RuntimeException e) { log.error("Traversal site",e); GameplayProbe.fail("natural traversal bank setup"); }
         }); }

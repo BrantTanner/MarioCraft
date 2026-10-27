@@ -36,6 +36,8 @@ public final class MarioRestoration {
         player.setHealth(player.getMaxHealth());
         player.connection.sendPacket(new net.minecraft.network.play.server.SPacketUpdateHealth(player.getHealth(),player.getFoodStats().getFoodLevel(),player.getFoodStats().getSaturationLevel()));
         player.connection.setPlayerLocation(anchor[0],anchor[1],anchor[2],0,0);
+        // Held movement packets cannot perform vanilla's watched-chunk handoff.
+        player.getServer().getPlayerList().serverUpdateMovingPlayer(player);
         MarioSaveState result=new MarioSaveState(player.dimension,anchor[0],anchor[1],anchor[2],saved==null||pending?MarioLives.FULL_HEALTH:saved.health,lives.snapshot());
         data.publish(player.getUniqueID(),result);return new Result(data,result);
     }

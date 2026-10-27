@@ -13,11 +13,13 @@ public final class ControllerProfile {
     static boolean invertX,invertY;
     static int slot=-1;
     static long revision;
+    static boolean marioSounds=true;
     static void initialize() {
         config=new Configuration(new File(net.minecraft.client.Minecraft.getMinecraft().mcDataDir,"config/mariocraft-controls.cfg"));
         config.load(); reload();
     }
     static void reload() {
+        marioSounds=config.getBoolean("marioSounds","presentation",true,"Original local Mario voice/action sounds. Volume: Options > Music & Sounds > Players; master volume also applies. Minecraft music remains independent.");
         String category="controller";
         slot=config.getInt("slot",category,-1,-1,3,"XInput slot 0-3; -1 selects first connected.");
         x=config.getInt("axisX",category,0,0,63,"Zero-based horizontal axis index.");

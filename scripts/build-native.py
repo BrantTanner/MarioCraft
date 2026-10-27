@@ -16,7 +16,7 @@ dll = out / 'sm64.dll'
 
 def digest_inputs():
     inputs = sorted(p for p in (source / 'src').rglob('*') if p.is_file())
-    inputs += [Path(__file__), source / 'import-mario-geo.py', root / 'scripts/native-abi.c', root / 'scripts/native-hazards.c']
+    inputs += [Path(__file__), source / 'import-mario-geo.py', root / 'scripts/native-abi.c', root / 'scripts/native-hazards.c', root / 'scripts/native-sound.c']
     digest = hashlib.sha256(pin.encode())
     for path in inputs:
         digest.update(str(path.relative_to(root)).encode())
@@ -36,6 +36,8 @@ subprocess.run([sys.executable, 'import-mario-geo.py'], cwd=source, check=True)
 # Enumerate after the importer so a cold checkout includes generated C files.
 folders = ['src', 'src/decomp', 'src/decomp/engine', 'src/decomp/include/PR', 'src/decomp/game', 'src/decomp/pc', 'src/decomp/pc/audio', 'src/decomp/mario', 'src/decomp/tools', 'src/decomp/audio']
 files = [str(p.relative_to(source)).replace('\\', '/') for folder in folders for p in sorted((source / folder).glob('*.c'))]
+files.remove('src/play_sound.c')
+files.append(str(root / 'scripts/native-sound.c'))
 staged = out / 'sm64.build.dll'
 command = [str(compiler), '-shared', '-O2', '-fno-strict-aliasing', '-Wno-incompatible-pointer-types', '-Wno-implicit-function-declaration', '-Wno-int-conversion', '-Wno-pointer-sign', '-Wno-format', '-DSM64_LIB_EXPORT', '-DGBI_FLOATS', '-DVERSION_US', '-DNO_SEGMENTED_MEMORY', '-Isrc/decomp/include', '-Isrc', *files, str(root / 'scripts/native-abi.c'), str(root / 'scripts/native-hazards.c'), '-o', str(staged), '-lm']
 subprocess.run(command, cwd=source, check=True)

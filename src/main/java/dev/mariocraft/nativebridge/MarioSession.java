@@ -14,6 +14,9 @@ public final class MarioSession implements AutoCloseable {
     private boolean closed;
     private int mario = -1;
     private boolean stepped;
+    private boolean audio;
+    public int soundEvents,voiceEvents,actionEvents;
+    private final Sm64Library.SoundCallback soundCallback=(bits,pos)-> { soundEvents++;if((bits>>>28)==2) voiceEvents++;else actionEvents++; };
     public final byte[] texture = new byte[704 * 64 * 4];
     public final Sm64Library.State state = new Sm64Library.State();
     public final Sm64Library.Geometry geometry = new Sm64Library.Geometry();
@@ -49,6 +52,14 @@ public final class MarioSession implements AutoCloseable {
     private void check() {
         if (closed || Thread.currentThread() != owner) throw new IllegalStateException("Native session is closed or called from another thread");
     }
+    /** Native audio is synthesized exclusively by the owning client thread. */
+    public void startAudio() throws IOException {
+        check();if(audio) return;
+        lib.mariocraft_audio_begin(validatedRom(discoverRom()));
+        lib.sm64_register_play_sound_function(soundCallback);audio=true;
+    }
+    public int audio(short[] pcm,int queued) { check();return audio?lib.mariocraft_audio_tick(queued,2100,pcm)*2:0; }
+    public void resetAudio() { check();if(audio) lib.mariocraft_audio_reset(); }
     public void surfaces(Sm64Library.Surface[] surfaces) {
         check();
         for (int i = 0; i < surfaces.length; i++) {
@@ -106,6 +117,7 @@ public final class MarioSession implements AutoCloseable {
     @Override public void close() {
         if (closed) return;
         check();
+        if(audio) { lib.mariocraft_audio_end();lib.sm64_register_play_sound_function(null);audio=false; }
         if (mario >= 0) lib.sm64_mario_delete(mario);
         lib.sm64_global_terminate();
         closed = true;

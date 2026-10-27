@@ -6,6 +6,12 @@ import java.util.*;
 /** ABI pinned to libsm64 fd11813208272b4271d92bd92feb8f3fdbe61be5, src/libsm64.h. */
 public interface Sm64Library extends Library {
     int mariocraft_hazard_abi();
+    interface SoundCallback extends Callback { void invoke(int bits,Pointer position); }
+    void sm64_register_play_sound_function(SoundCallback callback);
+    void mariocraft_audio_begin(byte[] rom);
+    void mariocraft_audio_end();
+    void mariocraft_audio_reset();
+    int mariocraft_audio_tick(int queued,int desired,short[] pcm);
     int mariocraft_hazard_contact(int id,int kind,float nx,float nz);
     void sm64_global_init(byte[] rom, byte[] texture);
     void sm64_global_terminate();

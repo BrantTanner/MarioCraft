@@ -9,7 +9,9 @@ public final class ControlsGuiFactory implements IModGuiFactory {
     public void initialize(Minecraft mc) { }
     public boolean hasConfigGui() { return true; }
     public GuiScreen createConfigGui(GuiScreen parent) {
-        return new GuiConfig(parent,new ConfigElement(ControllerProfile.config.getCategory("controller")).getChildElements(),"mariocraft",false,false,"MarioCraft Controller Profile (keyboard: Options > Controls)");
+        java.util.List<net.minecraftforge.fml.client.config.IConfigElement> elements=new java.util.ArrayList<>(new ConfigElement(ControllerProfile.config.getCategory("controller")).getChildElements());
+        elements.addAll(new ConfigElement(ControllerProfile.config.getCategory("presentation")).getChildElements());
+        return new GuiConfig(parent,elements,"mariocraft",false,false,"MarioCraft Settings (keyboard: Options > Controls)");
     }
     public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() { return null; }
 }

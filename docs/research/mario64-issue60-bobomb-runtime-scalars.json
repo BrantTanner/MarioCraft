@@ -1,0 +1,130 @@
+{
+  "scope": "One selected Bob-omb patrol, chase, body contact and self-detonation; separate overhead-waterbomb contact remains unobserved.",
+  "rom_sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "bobomb_behavior": {
+    "ram": "0x800EE2F4",
+    "rom_offset": "0x21CF74",
+    "length": 56,
+    "sha256": "E7B0739A517A782E94AEECDC56F9D0EEC0B2FD92D4E415E3B25FA5E97DDFBC08"
+  },
+  "samples": [
+    {
+      "trace": "patrol_and_chase",
+      "sequence": 1,
+      "utc_ms": 1793073309070,
+      "main_loop_counter": 2810267,
+      "action": 0,
+      "fuse_lit": 0,
+      "health": 1920
+    },
+    {
+      "trace": "patrol_and_chase",
+      "sequence": 51,
+      "utc_ms": 1793073310654,
+      "main_loop_counter": 2810314,
+      "action": 2,
+      "fuse_lit": 1,
+      "fuse_timer": 1,
+      "health": 1920
+    },
+    {
+      "trace": "patrol_and_chase",
+      "sequence": 54,
+      "utc_ms": 1793073310748,
+      "main_loop_counter": 2810317,
+      "action": 2,
+      "fuse_timer": 4,
+      "selected_body_in_mario_collision_list": true,
+      "body_selector": 2,
+      "body_damage_value": 0,
+      "health": 1920
+    },
+    {
+      "trace": "fuse_and_explosion",
+      "sequence": 1,
+      "utc_ms": 1793073572765,
+      "main_loop_counter": 2818162,
+      "action": 2,
+      "fuse_timer": 137,
+      "active_flags": 257,
+      "health": 1920
+    },
+    {
+      "trace": "fuse_and_explosion",
+      "sequence": 49,
+      "utc_ms": 1793073574279,
+      "main_loop_counter": 2818207,
+      "action": 3,
+      "fuse_timer": 152,
+      "active_flags": 257,
+      "health": 1920
+    },
+    {
+      "trace": "fuse_and_explosion",
+      "sequence": 55,
+      "utc_ms": 1793073574482,
+      "main_loop_counter": 2818213,
+      "action": 3,
+      "fuse_timer": 158,
+      "active_flags": 0,
+      "health": 1920
+    },
+    {
+      "trace": "fuse_and_explosion",
+      "sequence": 56,
+      "utc_ms": 1793073574513,
+      "main_loop_counter": 2818214,
+      "paused": true,
+      "health": 1856,
+      "hurt_counter": 7,
+      "lives": 2,
+      "collision_child_selector": 8,
+      "collision_child_damage_value": 2,
+      "child_parent_matches_selected": true,
+      "mario_interact_matches_child": true
+    }
+  ],
+  "child_behavior_separate_paused_read": {
+    "ram": "0x800EE690",
+    "rom_offset": "0x21D310",
+    "length": 128,
+    "sha256": "D65708FFD6204C525982BDDD35DFEC0872A9A27D9D59EA94A089A8B945926516",
+    "double_read_equal": true,
+    "whole_rom_matches": 1,
+    "counter_before": 2820254,
+    "counter_after": 2820543
+  },
+  "limitations": [
+    "One observed run; samples are counter-bracketed, not atomic; transient states can be missed.",
+    "Damage counter had not fully drained at pause; do not infer a completed 512-point loss.",
+    "A B input did not establish an accepted attack or grab.",
+    "The self-detonation explosion is not the separate overhead-waterbomb projectile contact."
+  ],
+  "explosion_static_native": {
+    "behavior_array": {
+      "rom_offset": "0x21D310",
+      "length": 72,
+      "sha256": "0F1C885E77178C12D16738B6C966928C8ACA248A29B9D1B0942A36BAF17E843C"
+    },
+    "init": {
+      "address": "0x802EAA8C",
+      "rom_offset": "0xA5A8C",
+      "length": 68,
+      "sha256": "C230867930AF2500A54139B7E5A4E841170E40A7B6596D2125DAF0C33A6BA9B7"
+    },
+    "loop": {
+      "address": "0x802EAAD0",
+      "rom_offset": "0xA5AD0",
+      "length": 288,
+      "sha256": "AA0A474F04FC8D5138D2BAE2614547E8E45E4A14424785431C29EE7FE3311245"
+    },
+    "behavior_encoded_hitbox": {
+      "selector": 8,
+      "damage_value": 2,
+      "radius": 150,
+      "height": 150,
+      "down_offset": 150,
+      "intangible": 0
+    }
+  }
+}

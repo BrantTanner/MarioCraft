@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "water": true,
+  "frames": 1680,
+  "minimumHealth": [
+    2176,
+    2112,
+    1050,
+    2159,
+    1962,
+    640,
+    255
+  ],
+  "maximumHealth": [
+    2176,
+    2176,
+    2176,
+    2176,
+    2176,
+    2176,
+    383
+  ],
+  "swimFrames": [
+    0,
+    229,
+    240,
+    120,
+    240,
+    240,
+    240
+  ],
+  "groundFrames": [
+    239,
+    0,
+    0,
+    92,
+    0,
+    0,
+    0
+  ],
+  "camera8Frames": [
+    0,
+    228,
+    240,
+    120,
+    240,
+    240,
+    240
+  ],
+  "maximumSpeed": [
+    2.0,
+    24.0,
+    0.0,
+    25.49858283996582,
+    24.0,
+    0.0,
+    0.0
+  ],
+  "travelBlocks": [
+    0.030000000000001137,
+    9.772500000000008,
+    0.0,
+    3.4124999999999943,
+    8.539481410363651,
+    3.780000000000001,
+    0.0
+  ],
+  "nativeMinusOneSteps": 422,
+  "nativePlus26Steps": 112,
+  "waterHurtAction": true,
+  "drowningDeath": true,
+  "vanillaHealthAndAirUnchanged": true,
+  "safeSurface": true,
+  "safeSubmerged": true,
+  "terrainEdits": 0,
+  "testOnlyHealthResets": 7,
+  "testOnlyRelocations": 7
+}

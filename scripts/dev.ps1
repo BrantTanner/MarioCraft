@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('build', 'client', 'server', 'nativeSmoke', 'traversalSmoke', 'healthSmoke')][string]$Task = 'build',
+    [ValidateSet('build', 'client', 'server', 'nativeSmoke', 'traversalSmoke', 'healthSmoke', 'waterSmoke')][string]$Task = 'build',
     [string]$JavaHome = $env:JAVA_HOME,
     [string]$GradleHome = $env:GRADLE_USER_HOME,
     [switch]$LifecycleProbe,
@@ -11,6 +11,7 @@ param(
     [switch]$CameraProbe,
     [switch]$CombatProbe,
     [switch]$HealthProbe,
+    [switch]$WaterProbe,
     [switch]$Offline
 )
 $ErrorActionPreference = 'Stop'
@@ -39,6 +40,7 @@ try {
     if ($Gameplay) { $options += '-Dmariocraft.gameplay=true' }
     if ($CombatProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.combatProbe=true' }
     if ($HealthProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.healthProbe=true' }
+    if ($WaterProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.waterProbe=true' }
     if ($CameraProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.cameraProbe=true' }
     if ($TraversalProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.traversalProbe=true' }
     if ($GameplayProbe) { $options += @('-Dmariocraft.gameplay=true','-Dmariocraft.gameplayProbe=true','-Dmariocraft.clientProbe=true') }
@@ -49,7 +51,7 @@ try {
             $archive=Join-Path $root ('.local/probe-results/'+$runId)
             [IO.Directory]::CreateDirectory($archive) | Out-Null
             Copy-Item -LiteralPath $resultPath -Destination (Join-Path $archive 'gameplay-result.json')
-            foreach($evidence in @('movement-trace.jsonl','traversal-trace.jsonl','camera-trace.jsonl','combat-trace.jsonl','health-trace.jsonl','logs/latest.log')) {
+            foreach($evidence in @('movement-trace.jsonl','traversal-trace.jsonl','camera-trace.jsonl','combat-trace.jsonl','health-trace.jsonl','water-trace.jsonl','logs/latest.log')) {
                 $evidencePath=Join-Path $root ('.local/run-client/'+$evidence)
                 if(Test-Path -LiteralPath $evidencePath) { Copy-Item -LiteralPath $evidencePath -Destination (Join-Path $archive (Split-Path $evidence -Leaf)) }
             }

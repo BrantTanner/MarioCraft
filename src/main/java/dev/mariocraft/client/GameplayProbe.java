@@ -9,6 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** Explicit test-only input seam. Runs inside a normal world without keyboard/focus automation. */
 final class GameplayProbe {
+    private final WaterProbe water=Boolean.getBoolean("mariocraft.waterProbe")?new WaterProbe():null;
+    boolean waterProbe() { return water!=null; }
+    void waterObserve(int frame,Sm64Library.State state,MarioCamera camera,Minecraft mc,Logger log) { water.observe(frame,state,camera,mc,log); }
     private final HealthProbe health=Boolean.getBoolean("mariocraft.healthProbe")?new HealthProbe():null;
     private final CombatProbe combat=Boolean.getBoolean("mariocraft.combatProbe")?new CombatProbe():null;
     private final CameraProbe cameraProbe=Boolean.getBoolean("mariocraft.cameraProbe")?new CameraProbe():null;
@@ -26,6 +29,7 @@ final class GameplayProbe {
     private volatile MovementSite site;
     private boolean findingSite;
     boolean prepare(Minecraft mc,Logger log) {
+        if(water!=null) return water.prepare(mc,log);
         if(health!=null) return health.prepare(mc,log);
         if(combat!=null) return combat.prepare(mc,log);
         if(cameraProbe!=null) return cameraProbe.prepare(mc,log);
@@ -46,6 +50,7 @@ final class GameplayProbe {
         return site!=null && mc.player.getDistanceSq(site.x+.5,site.y,site.z+.5)<1;
     }
     void setup(int frame,dev.mariocraft.nativebridge.MarioSession session,TerrainMesh terrain,Minecraft mc) {
+        if(water!=null) { water.setup(frame,session,terrain,mc);return; }
         if(health!=null) { health.setup(frame,session,terrain,mc,org.apache.logging.log4j.LogManager.getLogger("MarioCraft"));return; }
         if(combat!=null) { combat.setup(frame,session,terrain,mc,org.apache.logging.log4j.LogManager.getLogger("MarioCraft"));return; }
         if(cameraProbe!=null) return;
@@ -85,6 +90,7 @@ final class GameplayProbe {
     private int oldJumpCode;
     private boolean bindingPersistence;
     ControlState controls(int frame,MarioBindings bindings) {
+        if(water!=null) return water.controls(frame,bindings);
         if(health!=null) return health.controls(frame,bindings);
         if(combat!=null) return combat.controls(frame,bindings);
         if(cameraProbe!=null) return cameraProbe.controls(frame,bindings);

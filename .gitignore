@@ -16,3 +16,12 @@ node_modules/
 .env
 .env.*
 logs/issue10-*.log
+
+# Development outputs and private runtime assets
+.local/
+.gradle/
+build/
+*.class
+*.dylib
+*.so
+!gradle/wrapper/gradle-wrapper.jar

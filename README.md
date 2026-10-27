@@ -1,5 +1,62 @@
 # MarioCraft
 
+Current status (26 October 2026): implementation is underway for the user's
+focused scope of Mario movement, camera and Minecraft mob interactions. The
+[current architecture contract](docs/FOCUSED-READINESS-AND-ARCHITECTURE.md)
+supersedes the historical full-research gates below. This is an early opt-in
+single-player slice, not the completed MVP.
+
+## Build and run
+
+On Windows with Python 3 and PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1 -Launch
+```
+
+Bootstrap installs pinned project-local Java/native tools, builds libsm64,
+builds the mod, applies the guarded Forge generated-artifact repair and launches
+an isolated development client. The ROM is automatically found at
+`~/Downloads/Super Mario 64/Super Mario 64 (USA).z64` and checked by SHA-256.
+Native outputs, game resources and runtime worlds remain ignored under `.local/`.
+The complete fresh-bootstrap path has not yet been independently validated.
+
+With an existing Java 8 JDK and dependency cache:
+
+```powershell
+./scripts/dev.ps1 -JavaHome <jdk8-directory> -GradleHome <gradle-cache> -Task build
+./scripts/dev.ps1 -JavaHome <jdk8-directory> -GradleHome <gradle-cache> -Task nativeSmoke
+./scripts/dev.ps1 -JavaHome <jdk8-directory> -GradleHome <gradle-cache> -Task client -Gameplay
+```
+
+Baseline controls: WASD, Space jump, J attack, Shift crouch, Ctrl slow and Alt
+intermediate input; arrows adjust the baseline camera. Controller support,
+rebinding and mode-specific camera fidelity remain work.
+
+## Local validation
+
+`-Task client -ClientProbe` exercises actual player/world load/save and reloads
+one normal world. Initial same-process teardown exposed queued packet errors;
+those are a probe limitation, not clean persistence acceptance.
+
+`-Task client -GameplayProbe` injects mod-level input without keyboard focus,
+measures run/jump/landing and camera controls, and spawns a test-only NoAI pig
+for deterministic outgoing-contact testing. Production mob AI is unchanged.
+The wrapper checks the private
+`.local/run-client/gameplay-result.json`; process exit alone is not test success.
+Framebuffer captures remain private.
+
+Native smoke independently checks C/JNA layout, ROM identity, native run/jump/land,
+geometry and repeated teardown. Asset-free tests check 30 Hz timing across
+refresh rates and pause/stall handling.
+
+Incoming damage is not yet converted to native Mario health/reactions. Camera
+following and mob crossover rules are provisional. Full combat coverage, water,
+hazards, controller input and final packaging remain incomplete; gameplay tickets
+remain open.
+
+## Historical planning record
+
 A personal project to bring the original Super Mario 64 player, movement,
 camera, and combat into an actual Minecraft Java Edition 1.12.2 world.
 

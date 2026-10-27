@@ -18,6 +18,7 @@ minecraft {
             forceExit false
             workingDirectory project.file('.local/run-client')
             property 'mariocraft.native', project.file('.local/native/sm64.dll').absolutePath
+            property 'mariocraft.distanceProbe', System.getProperty('mariocraft.distanceProbe', 'false')
             property 'mariocraft.presentationProbe', System.getProperty('mariocraft.presentationProbe', 'false')
             property 'mariocraft.clientProbe', System.getProperty('mariocraft.clientProbe', 'false')
             property 'mariocraft.gameplay', System.getProperty('mariocraft.gameplay', 'true')

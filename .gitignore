@@ -28,3 +28,7 @@ build/
 
 # Minecraft utility classes initialize logging during asset-free tests.
 /logs/
+
+# Python validation bytecode
+__pycache__/
+*.pyc

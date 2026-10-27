@@ -9,7 +9,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** Explicit test-only input seam. Runs inside a normal world without keyboard/focus automation. */
 final class GameplayProbe {
+    private final DistanceProbe distance=Boolean.getBoolean("mariocraft.distanceProbe")?new DistanceProbe():null;
     void deathObserve(int frame,Sm64Library.State state,Minecraft mc,Logger log) {
+        if(combat!=null) fail("combat native death before final observation");
         if(health!=null) health.observe(frame,state,mc,log);
         if(hazard!=null) hazard.observe(frame,state,mc,log);
     }
@@ -22,7 +24,7 @@ final class GameplayProbe {
     private final CombatProbe combat=Boolean.getBoolean("mariocraft.combatProbe")?new CombatProbe():null;
     private final CameraProbe cameraProbe=Boolean.getBoolean("mariocraft.cameraProbe")?new CameraProbe():null;
     void combatContact(dev.mariocraft.combat.MarioCombat.Attack attack,net.minecraft.entity.EntityLivingBase target,boolean accepted,float before,float after) { if(combat!=null) combat.contact(attack,target,accepted,before,after); }
-    float initialYaw(float yaw) { return combat!=null?combat.yaw():cameraProbe!=null?cameraProbe.yaw():yaw; }
+    float initialYaw(float yaw) { return distance!=null?180:combat!=null?combat.yaw():cameraProbe!=null?cameraProbe.yaw():yaw; }
     boolean cameraProbe() { return cameraProbe!=null; }
     void cameraObserve(int frame,Sm64Library.State state,MarioCamera camera,Minecraft mc,Logger log) { cameraProbe.observe(frame,state,camera,mc,log); }
     private final TraversalProbe traversal=Boolean.getBoolean("mariocraft.traversalProbe")?new TraversalProbe():null;
@@ -35,6 +37,7 @@ final class GameplayProbe {
     private volatile MovementSite site;
     private boolean findingSite;
     boolean prepare(Minecraft mc,Logger log) {
+        if(distance!=null) return distance.prepare(mc,log);
         if(hazard!=null) return hazard.prepare(mc,log);
         if(water!=null) return water.prepare(mc,log);
         if(health!=null) return health.prepare(mc,log);
@@ -48,7 +51,7 @@ final class GameplayProbe {
                 try {
                     EntityPlayerMP player=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(id);
                     MovementSite selected=MovementSite.find(player.world,(int)player.posX,(int)player.posZ);
-                    player.connection.setPlayerLocation(selected.x+.5,selected.y,selected.z+.5,0,0);
+                    player.connection.setPlayerLocation(selected.x+.5,selected.y,selected.z+.5,0,0);player.getServer().getPlayerList().serverUpdateMovingPlayer(player);
                     site=selected;
                     log.info("MARIOCRAFT MOVEMENT_PROBE natural-site setupOnly=true x={} y={} z={} runway=-8..28 width=5 terrainEdits=0",selected.x,selected.y,selected.z);
                 } catch(RuntimeException error) { log.error("Movement site setup",error); fail("natural runway setup"); }
@@ -57,6 +60,7 @@ final class GameplayProbe {
         return site!=null && mc.player.getDistanceSq(site.x+.5,site.y,site.z+.5)<1;
     }
     void setup(int frame,dev.mariocraft.nativebridge.MarioSession session,TerrainMesh terrain,Minecraft mc) {
+        if(distance!=null) { distance.setup(frame,terrain,mc);return; }
         if(hazard!=null) { hazard.setup(frame,session,terrain,mc);return; }
         if(water!=null) { water.setup(frame,session,terrain,mc);return; }
         if(health!=null) { health.setup(frame,session,terrain,mc,org.apache.logging.log4j.LogManager.getLogger("MarioCraft"));return; }
@@ -98,6 +102,7 @@ final class GameplayProbe {
     private int oldJumpCode;
     private boolean bindingPersistence;
     ControlState controls(int frame,MarioBindings bindings) {
+        if(distance!=null) return distance.controls(frame,bindings);
         if(hazard!=null) return hazard.controls(frame);
         if(water!=null) return water.controls(frame,bindings);
         if(health!=null) return health.controls(frame,bindings);
@@ -150,6 +155,7 @@ final class GameplayProbe {
     }
     void observe(int frame,Sm64Library.State state,float yaw,Minecraft mc,Logger log) {
         currentFrame=frame;
+        if(distance!=null) { distance.observe(frame,state,mc,log);return; }
         if(hazard!=null) { hazard.observe(frame,state,mc,log);return; }
         if(health!=null) { health.observe(frame,state,mc,log);return; }
         if(combat!=null) { combat.observe(frame,state,mc,log);return; }

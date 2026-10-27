@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /** Actual bindings and ordinary generated terrain. No action or velocity writes. */
 final class CombatProbe {
     private static final String[] RECIPES={"punch-fixture","air-kick-fixture","stomp-fixture","dive-fixture","ground-pound-fixture","ground-zombie-ai","airborne-bat-ai","projectile-skeleton-ai"};
-    private static final int LENGTH=180,TOTAL=1620;
+    private static final int LENGTH=180,TOTAL=1440;
     private volatile MovementSite site;
     private boolean finding;
     private volatile UUID targetId;
@@ -42,7 +42,7 @@ final class CombatProbe {
                     EntityPlayerMP player=mc.getIntegratedServer().getPlayerList().getPlayerByUUID(id);
                     MovementSite selected=MovementSite.find(player.world,(int)player.posX,(int)player.posZ);
                     player.world.setWorldTime(13000);player.world.getWorldInfo().setDifficulty(net.minecraft.world.EnumDifficulty.NORMAL);
-                    player.connection.setPlayerLocation(selected.x+.5,selected.y,selected.z+.5,0,0);site=selected;
+                    player.connection.setPlayerLocation(selected.x+.5,selected.y,selected.z+.5,0,0);player.getServer().getPlayerList().serverUpdateMovingPlayer(player);site=selected;
                     log.info("MARIOCRAFT COMBAT natural-site x={} y={} z={} terrainEdits=0",site.x,site.y,site.z);
                 } catch(RuntimeException e) { log.error("Combat site",e);GameplayProbe.fail("combat site setup"); }
             });
@@ -67,7 +67,7 @@ final class CombatProbe {
             });
         }
         // Dive needs a running approach. Spawn before the B edge, on unedited runway.
-        int spawnStep=p==3?78:p>=5?38:20;
+        int spawnStep=p==3?78:p==6?108:p>=5?38:20;
         if(t==spawnStep && spawnAt!=frame && frame<1440) {
             spawnAt=frame;
             double distance=p==3?3:p==2 || p==4?0:p==6?.75:.5;
@@ -98,7 +98,7 @@ final class CombatProbe {
         for(int i=0;i<16;i++) KeyBinding.setKeyBindState(bindings.binding(i).getKeyCode(),false);
         boolean forward=p==3 && t>=40 && t<110;
         boolean a=(p==1 || p==2 || p==4) && t>=40 && t<48;
-        boolean b=p==0 && t>=40 && t<44 || p==1 && t>=43 && t<47 || p==3 && t>=85 && t<89 || p>=5 && t>=40 && t<44;
+        boolean b=p==0 && t>=40 && t<44 || p==1 && t>=43 && t<47 || p==3 && t>=85 && t<89 || p>=5 && p!=6 && t>=40 && t<44 || p==6 && t>=110 && t<170 && t%20<14 && t%20>=10 && !hits.containsKey("airborne-bat-ai:PUNCH");
         boolean crouch=p==4 && t>=49 && t<52;
         KeyBinding.setKeyBindState(bindings.binding(0).getKeyCode(),forward);
         KeyBinding.setKeyBindState(bindings.binding(1).getKeyCode(),p==5 && t>=85 && t<100);

@@ -1,10 +1,10 @@
 # MarioCraft
 
-Current status (27 October 2026): implementation is underway for the user's
-focused scope of Mario movement, camera and Minecraft mob interactions. The
-[current architecture contract](docs/FOCUSED-READINESS-AND-ARCHITECTURE.md)
-supersedes the historical full-research gates below. This is an early opt-in
-single-player slice, not the completed MVP.
+Current status (27 October 2026): the focused local MarioCraft experience is
+implemented for Normal Survival Overworld worlds: Mario movement, camera,
+Minecraft creature combat, health/water/hazards, lives, saving, menus and audio.
+See [delivery evidence, requirements matrix and residual limits](docs/TICKET31-DELIVERY.md).
+Full-game research/course/progression work remains superseded or deferred.
 
 ## Build and run
 
@@ -14,15 +14,14 @@ On Windows with Python 3 and PowerShell:
 powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1 -Launch
 ```
 
-Bootstrap installs pinned project-local Java/native tools, builds libsm64,
-builds the mod, applies the guarded Forge generated-artifact repair and launches
-an isolated development client. The ROM is automatically found at
-`~/Downloads/Super Mario 64/Super Mario 64 (USA).z64` and checked by SHA-256.
-Native outputs, game resources and runtime worlds remain ignored under `.local/`.
-The default Windows bootstrap was exercised with a newly downloaded project-local
-JDK and a new Gradle cache through build and client launch. Online launch verifies
-Mojang asset sizes/SHA-1 and fetches missing objects over official HTTPS, repairing
-the legacy ForgeGradle icon-download failure without skipping its asset task.
+Bootstrap installs pinned project-local Java/native tools, builds and reobfuscates
+the mod, then assembles and launches a private production Forge client under
+`.local/MarioCraft/`. Later use `.local/MarioCraft/Launch MarioCraft.cmd`. Its worlds
+and settings live under `.local/MarioCraft/game/`. The authorized USA ROM is found
+automatically at `~/Downloads/Super Mario 64/Super Mario 64 (USA).z64` and checked
+by SHA-256. First setup needs network access; no game asset extraction or manual
+tool configuration is required on this Windows host with Python 3/PowerShell.
+Do not upload this local package: it includes private game/native resources.
 
 With an existing Java 8 JDK and dependency cache:
 
@@ -84,9 +83,15 @@ fixtures plus ordinary AI-enabled zombie, bat and bow-skeleton contacts. See
 [outgoing combat rules, evidence and limits](docs/TICKET24-MOB-COMBAT.md) and the
 [Overworld camera implementation](docs/TICKET23-CAMERA.md).
 
-Incoming damage is not yet converted to native Mario health/reactions. Broader
-creature coverage, water, hazards and final packaging remain incomplete; later
-gameplay tickets remain open.
+Native incoming health, falls, water, fire/lava, lives/respawn, persistence and
+presentation are implemented. Slice reports [25](docs/TICKET25-MARIO-HEALTH.md),
+[26](docs/TICKET26-WATER.md), [27](docs/TICKET27-FIRE-LAVA.md),
+[28](docs/TICKET28-RESPAWN.md), [29](docs/TICKET29-PERSISTENCE.md) and
+[30](docs/TICKET30-PRESENTATION.md) preserve their acceptance evidence and limits.
+Final production probes run using `python .local/MarioCraft/play.py --probe` followed
+by `combat`, `distance`, `presentation` or `admission`; these create disposable
+normal worlds and keep raw evidence private. `scripts/bootstrap.ps1 -Probe`
+builds/packages and executes the production presentation/lifecycle scenario.
 
 ## Historical planning record
 
@@ -98,13 +103,11 @@ camera, and combat into an actual Minecraft Java Edition 1.12.2 world.
 - [Grill session: all 55 decisions](docs/GRILLING-SESSION.md)
 - [Scope and research gates](docs/PROJECT-SCOPE.md)
 
-Status: planning complete; final scope presented. Repository creation and
-preservation of the grill session were requested next. Game investigation has
-not started, and no prototype has been built.
+The following text records the original plan; current status and scope are above.
 
 Research order: Minecraft first, then Super Mario 64. Both research dossiers
 must be reviewed and approved before prototype work begins.
 
-This repository currently contains planning documentation only. Game binaries,
+The original repository began with planning documentation. Game binaries,
 ROMs, extracted assets, credentials, tool caches, and emulator saves are excluded.
 

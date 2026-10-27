@@ -135,7 +135,7 @@ final class RespawnProbe {
                     dev.mariocraft.ScopeRules.fixtureTransfer(p,-1,new net.minecraft.world.Teleporter(w) {
                         @Override public void placeInPortal(net.minecraft.entity.Entity entity,float yaw) { entity.setLocationAndAngles(selected.getX()+.5,selected.getY()+.1,selected.getZ()+.5,0,0); }
                     },"respawn");
-                    p.connection.setPlayerLocation(selected.getX()+.5,selected.getY()+.1,selected.getZ()+.5,0,0);
+                    p.connection.setPlayerLocation(selected.getX()+.5,selected.getY()+.1,selected.getZ()+.5,0,0);p.getServer().getPlayerList().serverUpdateMovingPlayer(p);
                     netherEntered=true;
                 } catch(RuntimeException e) { failure="dimension setup "+e.getClass().getSimpleName(); }
             });

@@ -14,17 +14,21 @@ public final class Presentation {
     @SubscribeEvent public void open(GuiOpenEvent e) {
         if(!dev.mariocraft.ScopeRules.enabled()) return;
         GuiScreen g=e.getGui();
+        if(g instanceof GuiMainMenu && Minecraft.getMinecraft().gameSettings.tutorialStep!=net.minecraft.client.tutorial.TutorialSteps.NONE) Minecraft.getMinecraft().getTutorial().setStep(net.minecraft.client.tutorial.TutorialSteps.NONE);
         if(g instanceof GuiMainMenu && !(g instanceof Title)) e.setGui(new Title());
         else if(g instanceof GuiContainer || g instanceof GuiMultiplayer || g instanceof net.minecraft.client.multiplayer.GuiConnecting || g instanceof GuiScreenServerList || g instanceof GuiShareToLan) e.setCanceled(true);
     }
     @SubscribeEvent public void init(GuiScreenEvent.InitGuiEvent.Post e) {
         if(!dev.mariocraft.ScopeRules.enabled()) return;
         if(e.getGui() instanceof GuiIngameMenu) e.getButtonList().removeIf(b->b.id==7 || b.id==5 || b.id==6 || b.id==12);
+        if(e.getGui() instanceof GuiOptions && Minecraft.getMinecraft().world!=null) for(GuiButton b:e.getButtonList()) if(b.id==108 || b.id==109) b.enabled=false;
+        if(e.getGui() instanceof GuiCreateWorld) Minecraft.getMinecraft().gameSettings.difficulty=net.minecraft.world.EnumDifficulty.NORMAL;
         if(e.getGui() instanceof GuiCreateWorld) for(GuiButton b:e.getButtonList()) if(b.id==2) { b.enabled=false;b.displayString="Game Mode: Survival"; }
     }
     @SubscribeEvent public void draw(GuiScreenEvent.DrawScreenEvent.Post e) {
         if(!dev.mariocraft.ScopeRules.enabled() || e.getGui() instanceof Title) return;
         GuiScreen g=e.getGui();
+        if(g instanceof GuiMainMenu && Minecraft.getMinecraft().gameSettings.tutorialStep!=net.minecraft.client.tutorial.TutorialSteps.NONE) Minecraft.getMinecraft().getTutorial().setStep(net.minecraft.client.tutorial.TutorialSteps.NONE);
         if(g instanceof GuiWorldSelection || g instanceof GuiCreateWorld || g instanceof GuiIngameMenu || g instanceof GuiOptions || g instanceof GuiControls || g instanceof GuiScreenOptionsSounds || g instanceof net.minecraftforge.fml.client.config.GuiConfig)
             Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("MarioCraft",6,6,0xFFE38C);
     }
@@ -48,16 +52,18 @@ public final class Presentation {
             net.minecraft.client.renderer.GlStateManager.scale(3,3,1);
             drawCenteredString(fontRenderer,"MarioCraft",width/6,20,0xFFE38C);
             net.minecraft.client.renderer.GlStateManager.popMatrix();
-            drawCenteredString(fontRenderer,"Explore a Minecraft world as Mario",width/2,100,0xFFFFFF);
+            drawCenteredString(fontRenderer,"Explore a Minecraft world as Mario",width/2,90,0xFFFFFF);
             for(GuiButton b:buttonList) b.drawButton(mc,x,y,partial);
         }
     }
     static final class UnsupportedWorld extends GuiIngameMenu {
+        private final String reason;
+        UnsupportedWorld(String reason) { this.reason=reason; }
         @Override public void initGui() { super.initGui();buttonList.removeIf(b->b.id!=1); }
         @Override public void drawScreen(int x,int y,float p) {
             super.drawScreen(x,y,p);
-            drawCenteredString(fontRenderer,"MarioCraft supports Survival worlds without Hardcore",width/2,62,0xFFE38C);
-            drawCenteredString(fontRenderer,"Open a supported world to play. This world's mode was preserved.",width/2,76,0xFFFFFF);
+            drawCenteredString(fontRenderer,reason,width/2,62,0xFFE38C);
+            drawCenteredString(fontRenderer,"Open a supported world to play. This world's settings were preserved.",width/2,76,0xFFFFFF);
         }
     }
 }

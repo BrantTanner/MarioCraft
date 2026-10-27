@@ -8,6 +8,7 @@ param(
     [switch]$Gameplay,
     [switch]$GameplayProbe,
     [switch]$TraversalProbe,
+    [switch]$DistanceProbe,
     [switch]$CameraProbe,
     [switch]$CombatProbe,
     [switch]$HealthProbe,
@@ -45,6 +46,7 @@ try {
     if ($ClientProbe) { $options += '-Dmariocraft.clientProbe=true' }
     if ($Gameplay) { $options += '-Dmariocraft.gameplay=true' }
     if ($PresentationProbe) { $options += '-Dmariocraft.presentationProbe=true' }
+    if ($DistanceProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.distanceProbe=true' }
     if ($CombatProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.combatProbe=true' }
     if ($HealthProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.healthProbe=true' }
     if ($PersistenceProbe) { $GameplayProbe=$true; $options += '-Dmariocraft.persistenceProbe=true' }

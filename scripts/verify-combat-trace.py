@@ -21,7 +21,8 @@ required = {
     "projectile-skeleton-ai": ("PUNCH", "800380"),
 }
 checks = {}
-checks["continuousFrames"] = [r["frame"] for r in rows[:1620]] == list(range(1, 1621))
+checks["boundedEightRecipes"] = summary["frames"] in (1440,1620)
+checks["continuousFrames"] = [r["frame"] for r in rows[:summary['frames']]] == list(range(1, summary['frames']+1))
 checks["finitePoses"] = all(math.isfinite(r[k]) for r in rows for k in ("x", "y", "z", "vy", "speed", "face"))
 checks["allRecipesActionsAndInputs"] = all(
     any(r["recipe"] == recipe and r["action"] == action for r in rows)
@@ -44,7 +45,7 @@ checks["normalTeardown"] = all(s in text for s in ("native-player-closed", "worl
 checks["noMovementWarnings"] = not any(s in text.lower() for s in ("moved wrongly", "moved too quickly"))
 checks["zeroTerrainEdits"] = summary["terrainEdits"] == 0
 checks["freshIntegratedPass"] = summary.get("passed") is True
-report = {"passed": all(checks.values()), "checks": checks, "recordedFrames": min(len(rows), 1620),
+report = {"passed": all(checks.values()), "checks": checks, "recordedFrames": min(len(rows), summary['frames']),
     "serverContacts": len(contacts), "fixtureContacts": sum(c[6] == "true" for c in contacts),
     "ordinaryAiContacts": sum(c[6] == "false" for c in contacts),
     "healthChanges": [{"attack": c[1], "requestedDamage": float(c[3]), "before": float(c[4]), "after": float(c[5]), "fixtureNoAI": c[6] == "true"} for c in contacts]}

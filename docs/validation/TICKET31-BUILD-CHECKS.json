@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "unit": {
+    "tests": 51,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "coldCheckout": {
+    "initiallyNoLocalDirectory": true,
+    "developmentCachesCopied": false,
+    "officialDependenciesDownloadedIndependently": true,
+    "laterReuse": "Only the clean checkout own downloaded/generated cache",
+    "finalRuntimeSource": "32460d374410156ae0205971bbecdb0d2df44024",
+    "cleanProductionLaunchPassed": true,
+    "cleanStrictPresentationPassed": true,
+    "fullCleanAcceptanceSource": "83aa436",
+    "finalHudOnlyDelta": "Upper-left POWER/LIVES anchor and short HUD route; at least 165 native frames"
+  },
+  "runtime": {
+    "minecraft": "1.12.2",
+    "forge": "1.12.2-forge-14.23.5.2864",
+    "assetObjects": 1290,
+    "classpathEntries": 42,
+    "payloadChecksums": 45,
+    "modSha256": "da94bf699f161f0e52f8a38df8db91497001dc8bb5141680fc820bc141eb3332",
+    "nativeSha256": "fee316b14e649aeb9aa6b64457e91de8d5c8de211101797119e25e901d9d0c09",
+    "userGameFiles": [
+      "mods/mariocraft-0.1.0.jar"
+    ],
+    "userGameHasProbeData": false,
+    "excludedOptionalScalaLibraries": [
+      "com.typesafe.akka:akka-actor_2.11:2.3.3",
+      "com.typesafe:config:1.2.1",
+      "org.scala-lang:scala-actors-migration_2.11:1.1.0",
+      "org.scala-lang:scala-compiler:2.11.1",
+      "org.scala-lang.plugins:scala-continuations-library_2.11:1.0.2_mc",
+      "org.scala-lang.plugins:scala-continuations-plugin_2.11.1:1.0.2_mc",
+      "org.scala-lang:scala-library:2.11.1",
+      "org.scala-lang:scala-parser-combinators_2.11:1.0.1",
+      "org.scala-lang:scala-reflect:2.11.1",
+      "org.scala-lang:scala-swing_2.11:1.0.1",
+      "org.scala-lang:scala-xml_2.11:1.0.2"
+    ],
+    "manifestSha256": "389a334f48a99ca5efcbc8f8f3ccd8c8ee71f52f8b5506eb8834d8515771cb44"
+  },
+  "sourceScope": "Focused movement/camera/Minecraft mob interaction; full-game research remains deferred"
+}

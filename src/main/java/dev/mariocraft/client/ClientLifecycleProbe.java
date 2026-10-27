@@ -18,12 +18,18 @@ public final class ClientLifecycleProbe {
     private long pauseStarted,pauseWorldTick;
     private int pauseFrame;
     private boolean pauseDone;
+    private long quitAt,worldAt;
     ClientLifecycleProbe(Logger log) { this.log = log; }
     @SubscribeEvent public void tick(TickEvent.RenderTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
         Minecraft mc = Minecraft.getMinecraft();
         if (deadline == 0) deadline = System.nanoTime() + 240000000000L;
-        if (System.nanoTime() > deadline) { log.error("MARIOCRAFT CLIENT_PROBE timeout phase={}", phase); if(Boolean.getBoolean("mariocraft.gameplayProbe")) GameplayProbe.fail("timeout"); mc.shutdown(); return; }
+        if (System.nanoTime() > deadline && phase!=6 && phase!=7 && phase!=5) {
+            log.error("MARIOCRAFT CLIENT_PROBE timeout phase={}",phase);GameplayProbe.fail("bounded lifecycle timeout");
+            if(mc.world!=null) { phase=6;quitAt=System.nanoTime();mc.displayGuiScreen(new net.minecraft.client.gui.GuiIngameMenu()); }
+            else { phase=5;mc.shutdown(); }return;
+        }
+        if(phase==1 && mc.player!=null && GameplayProbe.currentFrame==0 && System.nanoTime()-worldAt>60000000000L) GameplayProbe.fail("native admission timeout");
         // Keep the test window away from the user's desktop; no synthetic input or focus request.
         Display.setLocation(-20000, -20000);
         mc.gameSettings.pauseOnLostFocus = false;
@@ -51,7 +57,7 @@ public final class ClientLifecycleProbe {
         if(pauseDone && mc.currentScreen==null) GameplayProbe.syntheticStart=false;
         if (phase == 0 && mc.currentScreen instanceof GuiMainMenu && ++waits > 20) {
             log.info("MARIOCRAFT CLIENT_PROBE opening normal-world");
-            phase = 1;
+            phase = 1;worldAt=System.nanoTime();
             cameraWorld=Boolean.getBoolean("mariocraft.gameplayProbe") ? "mariocraft-gameplay-"+System.currentTimeMillis() : "mariocraft-client-probe";
             mc.launchIntegratedServer(cameraWorld, "MarioCraft lifecycle probe", new WorldSettings(20261026L, GameType.SURVIVAL, true, false, WorldType.DEFAULT));
         } else if ((phase == 1 || phase == 3) && mc.player != null && mc.world != null &&
@@ -62,11 +68,15 @@ public final class ClientLifecycleProbe {
                 GameplayProbe.complete=false;GameplayProbe.currentFrame=0;CameraProbe.reloaded=true;
                 phase=2;return;
             }
-            if(Boolean.getBoolean("mariocraft.gameplayProbe")) { phase=5; mc.shutdown(); return; }
+            if(Boolean.getBoolean("mariocraft.gameplayProbe")) { phase=6;quitAt=System.nanoTime();mc.displayGuiScreen(new net.minecraft.client.gui.GuiIngameMenu());return; }
             mc.loadWorld(null);
             mc.displayGuiScreen(new GuiMainMenu());
             ticks = 0;
             phase=Boolean.getBoolean("mariocraft.gameplayProbe")?4:phase+1;
+        } else if(phase==6 && System.nanoTime()-quitAt>700000000L) {
+            mc.world.sendQuittingDisconnectingPacket();mc.loadWorld(null);mc.displayGuiScreen(new GuiMainMenu());phase=7;quitAt=System.nanoTime();
+        } else if(phase==7 && mc.world==null && !mc.isIntegratedServerRunning() && System.nanoTime()-quitAt>1000000000L) {
+            phase=5;mc.shutdown();
         } else if (phase == 2 && mc.currentScreen instanceof GuiMainMenu && !mc.isIntegratedServerRunning()) {
             log.info("MARIOCRAFT CLIENT_PROBE reloading same-world");
             phase = 3;

@@ -1,0 +1,57 @@
+{
+  "target_rom_sha256": "17CE077343C6133F8C9F2D6D6D9A4AB62C8CD2AA57C40AEA1F490B4C8BB21D91",
+  "emulator": "Project64 3.0.1.5664-2df3434",
+  "emulator_executable_sha256": "C257C662D4E0B2CE1732B7F4A7D5DD4682F604CB082BBDBFCE5181470D6DBFB8",
+  "scene": {
+    "level": 9,
+    "course": 1,
+    "save_file": 1,
+    "play_mode": 2,
+    "entry": "ordinary castle painting and selected first course entry; intro dialog dismissed and game paused",
+    "mario_position": [
+      -6525.123,
+      0,
+      6431.123
+    ],
+    "health": 2176,
+    "lives": 1
+  },
+  "actor": {
+    "slot": 67,
+    "object": "0x803473A8",
+    "behavior": "0x800EE2F4",
+    "position": [
+      -1900,
+      0,
+      3450
+    ],
+    "action": 0,
+    "active_flags": 259,
+    "hitbox_radius": 50,
+    "hitbox_height": 100
+  },
+  "observations": [
+    {
+      "utc": "2026-10-27T02:42:23.936Z",
+      "counter": 2679650
+    },
+    {
+      "utc": "2026-10-27T02:42:24.828Z",
+      "counter": 2679677
+    }
+  ],
+  "behavior_match": {
+    "utc": "2026-10-27T02:42:48.0077811Z",
+    "length": 56,
+    "sha256": "E7B0739A517A782E94AEECDC56F9D0EEC0B2FD92D4E415E3B25FA5E97DDFBC08",
+    "unique_rom_offset": "0x21CF74",
+    "double_live_read_equal": true,
+    "counter_before": 2680107,
+    "counter_after": 2680371
+  },
+  "limits": [
+    "Paused samples establish presence and identity, not an AI transition, contact, survival, defeat or removal.",
+    "Matching live bytes and full-ROM search occurred in a separate non-atomic bracket from actor samples.",
+    "No projectile contact with Mario was observed."
+  ]
+}

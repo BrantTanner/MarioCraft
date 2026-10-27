@@ -54,6 +54,7 @@ final class CombatProbe {
         if(frame>=TOTAL) return;
         int t=frame%LENGTH,p=Math.min(frame/LENGTH,7);
         if(t==0 && frame<1440) {
+            session.resetHealthForProbe(); // native-health test setup; no production healing
             phase=p;spawnAt=-1;targetId=null;
             mc.player.setPosition(site.x+.5,site.y,site.z+.5);
             session.position(terrain.x(mc.player.posX),terrain.y(mc.player.posY)+10,terrain.z(mc.player.posZ));
@@ -131,7 +132,8 @@ final class CombatProbe {
                     double travel=Math.sqrt(mob.getDistanceSq(spawnX,spawnY,spawnZ));
                     if(observedPhase>=5) ai &= !mob.isAIDisabled();
                     if(phase==5) { zombieTarget|=mob.getAttackTarget()==player;zombiePath|=!mob.getNavigator().noPath();
-                        zombieAttack|=player.getLastDamageSource()!=null && player.getLastDamageSource().getTrueSource()==mob;zombieTicks=mob.ticksExisted;zombieTravel=Math.max(zombieTravel,travel); }
+                        dev.mariocraft.health.HealthBridge.Channel incoming=dev.mariocraft.health.HealthBridge.OWNERS.get(playerId);
+                        zombieAttack|=incoming!=null && incoming.lastCapturedHit!=null && mob.getUniqueID().equals(incoming.lastCapturedHit.trueSource);zombieTicks=mob.ticksExisted;zombieTravel=Math.max(zombieTravel,travel); }
                     if(phase==6) { batMoved|=Math.abs(mob.posY-spawnY)>.05;batTicks=mob.ticksExisted;batTravel=Math.max(batTravel,travel); }
                     if(phase==7) { skeletonTarget|=mob.getAttackTarget()==player;skeletonPath|=!mob.getNavigator().noPath();skeletonTicks=mob.ticksExisted;skeletonTravel=Math.max(skeletonTravel,travel); }
                 }

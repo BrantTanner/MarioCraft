@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "health": true,
+  "frames": 2100,
+  "minimumNativeHealth": [
+    1152,
+    1152,
+    1920,
+    2176,
+    1664,
+    1152,
+    255
+  ],
+  "maximumInvincibility": [
+    30,
+    30,
+    30,
+    0,
+    0,
+    30,
+    0
+  ],
+  "serverDamageReceipts": [
+    3,
+    2,
+    1,
+    0,
+    0,
+    0,
+    1
+  ],
+  "nativeHurtActions": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    true,
+    true
+  ],
+  "landed": [
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false
+  ],
+  "zombieTargetsRealPlayer": true,
+  "skeletonTargetsRealPlayer": true,
+  "skeletonArrow": true,
+  "zombieTicks": 93,
+  "skeletonTicks": 100,
+  "vanillaHealthUnchanged": true,
+  "maximumObservedServerMotion": 0.0784000015258789,
+  "terrainEdits": 0,
+  "testOnlyHealthResets": 7,
+  "respawnImplemented": false
+}

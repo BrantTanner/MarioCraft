@@ -26,6 +26,20 @@ final class TerrainMesh {
     Sm64Library.Surface[] build(World world,double x,double y,double z) {
         AxisAlignedBB region=new AxisAlignedBB(x-9,y-8,z-9,x+9,y+12,z+9);
         List<AxisAlignedBB> boxes=new ArrayList<>(world.getCollisionBoxes(null,region));
+        // Native actions stop when find_floor returns null, even far above landing.
+        // Retain real support below the local region so cliffs can enter freefall.
+        // Only the nearest collision-bearing block in each nearby column is needed;
+        // the ordinary volume takes over before contact. No artificial floor is added.
+        for(int bx=(int)Math.floor(x-3);bx<=(int)Math.floor(x+3);bx++) for(int bz=(int)Math.floor(z-3);bz<=(int)Math.floor(z+3);bz++) {
+            if(!world.isBlockLoaded(new BlockPos(bx,64,bz))) continue;
+            for(int by=(int)Math.floor(region.minY)-1;by>=0;by--) {
+                BlockPos pos=new BlockPos(bx,by,bz);
+                List<AxisAlignedBB> support=new ArrayList<>();
+                net.minecraft.block.state.IBlockState state=world.getBlockState(pos);
+                state.addCollisionBoxToList(world,pos,new AxisAlignedBB(bx,by,bz,bx+1,by+1,bz+1),support,null,false);
+                if(!support.isEmpty()) { boxes.addAll(support);break; }
+            }
+        }
         // Missing chunks are a temporary wall, never an invitation to walk into
         // absent collision. Chunk arrival/removal invalidates this mesh.
         for(int cx=Math.floorDiv((int)Math.floor(region.minX),16);cx<=Math.floorDiv((int)Math.floor(region.maxX),16);cx++)

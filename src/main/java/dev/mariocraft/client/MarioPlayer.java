@@ -2,6 +2,7 @@ package dev.mariocraft.client;
 
 import dev.mariocraft.PlayerBridge;
 import dev.mariocraft.combat.MarioCombat;
+import dev.mariocraft.health.*;
 import dev.mariocraft.nativebridge.*;
 import dev.mariocraft.simulation.FixedStepClock;
 import net.minecraft.client.Minecraft;
@@ -53,6 +54,9 @@ public final class MarioPlayer {
     private final GameplayProbe probe=Boolean.getBoolean("mariocraft.gameplayProbe")?new GameplayProbe():null;
     private final MarioCombat.Ledger contacts=new MarioCombat.Ledger();
     private volatile Object combatSession;
+    private HealthBridge.Channel healthChannel;
+    private long healthSequence;
+    private String lastRequestedExternalSource;
     MarioPlayer(Logger log) { this.log=log; }
     private final MarioBindings bindings=new MarioBindings();
     private final ControlState.Gate keyboardGate=new ControlState.Gate();
@@ -97,6 +101,8 @@ public final class MarioPlayer {
                 session.create(terrain.x(mc.player.posX),terrain.y(mc.player.posY)+10,terrain.z(mc.player.posZ));
                 combatSession=new Object();
                 playerId=mc.player.getUniqueID(); yaw=probe==null?mc.player.rotationYaw:probe.initialYaw(mc.player.rotationYaw);
+                healthChannel=new HealthBridge.Channel(mc.getIntegratedServer().getWorld(world.provider.getDimension()),mc.getIntegratedServer(),world);
+                HealthBridge.OWNERS.put(playerId,healthChannel);
                 cameraModel.reset(mc.player.posX,mc.player.posY,mc.player.posZ,yaw);
                 cameraCollision=new VoxelCamera(world);
                 previousView=mc.getRenderViewEntity(); cameraEntity=new CameraEntity(world);
@@ -201,18 +207,29 @@ public final class MarioPlayer {
                 currentX,projectedY,currentZ,currentY,session.state.faceAngle,session.state.velocity[1],session.state.forwardVelocity);
             resolveCombat(mc,falling,true);
         }
+        HealthBridge.Hit hit=healthChannel.poll();
+        if(hit!=null) {
+            boolean fresh=mc.getIntegratedServer()==healthChannel.server && mc.getIntegratedServer().getWorld(world.provider.getDimension())==healthChannel.serverWorld
+                && world.getTotalWorldTime()-hit.tick>=-5 && world.getTotalWorldTime()-hit.tick<=20;
+            boolean admitted=fresh && healthChannel.active && poseReady && MarioHealth.vulnerable(Short.toUnsignedInt(session.state.health),session.state.action,session.state.invincTimer);
+            if(admitted) { session.damage(hit.damage,terrain.x(hit.x),terrain.y(hit.y),terrain.z(hit.z));lastRequestedExternalSource=hit.kind; }
+            log.info("MARIOCRAFT incoming-hit frame={} source={} immediate={} attacker={} damage={} admitted={} health={} action={} invinc={} minecraftDamage={} bodyHeight={} bodyWidth={}",frames,hit.kind,hit.immediateSource,hit.trueSource,hit.damage,admitted,Short.toUnsignedInt(session.state.health),Integer.toHexString(session.state.action),session.state.invincTimer,hit.minecraftDamage,hit.bodyHeight,hit.bodyWidth);
+        }
         session.tick(input);
+        MarioHealth.Snapshot health=new MarioHealth.Snapshot(++healthSequence,Short.toUnsignedInt(session.state.health),session.state.action,session.state.invincTimer,healthChannel.snapshot,lastRequestedExternalSource);
+        healthChannel.publish(health);
         double x=terrain.ox+session.state.position[0]/100.0;
         double y=terrain.oy+session.state.position[1]/100.0;
         double z=terrain.oz+session.state.position[2]/100.0;
         if(!Double.isFinite(x)||!Double.isFinite(y)||!Double.isFinite(z)) throw new IllegalStateException("Nonfinite native player pose");
         // ACT_FLAG_AIR / ACT_FLAG_SWIMMING distinguish an apex from a grounded action.
-        PlayerBridge.Pose pose=new PlayerBridge.Pose(x,y,z,(session.state.action & (0x800|0x2000))==0);
+        PlayerBridge.Pose pose=new PlayerBridge.Pose(x,y,z,(session.state.action & (0x800|0x2000))==0,(session.state.action&0x8000)!=0?1:1.6);
         previousX=currentX; previousY=currentY; previousZ=currentZ;
         currentX=x; currentY=y; currentZ=z;
         if(!poseReady) { previousX=x; previousY=y; previousZ=z; poseReady=true; }
         PlayerBridge.POSES.put(playerId,pose);
         mc.player.setPosition(x,y,z);
+        PlayerBridge.body(mc.player,pose);
         cameraModel.follow(x,y,z,session.state.faceAngle,session.state.forwardVelocity,cameraCollision);
         if(probe!=null) {
             if(probe.cameraProbe()) probe.cameraObserve(frames,session.state,cameraModel,mc,log);
@@ -287,6 +304,24 @@ public final class MarioPlayer {
         if(session!=null) GlStateManager.translate(0,0,-.05f);
     }
     @SubscribeEvent public void hand(RenderHandEvent event) { if(session!=null) event.setCanceled(true); }
+    @SubscribeEvent public void vanillaHud(RenderGameOverlayEvent.Pre event) {
+        if(session==null) return;
+        switch(event.getType()) {
+            case HEALTH: case ARMOR: case FOOD: case AIR: event.setCanceled(true);break;
+            default: break;
+        }
+    }
+    @SubscribeEvent public void healthHud(RenderGameOverlayEvent.Post event) {
+        if(session==null || healthChannel.snapshot==null || event.getType()!=RenderGameOverlayEvent.ElementType.ALL) return;
+        MarioHealth.Snapshot state=healthChannel.snapshot;
+        int x=event.getResolution().getScaledWidth()/2-48,y=12;
+        Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(state.dead?"POWER - fallen":"POWER",x,y,0xFFFFFF);
+        for(int i=0;i<8;i++) {
+            net.minecraft.client.gui.Gui.drawRect(x+i*12,y+12,x+i*12+10,y+23,0xFF202020);
+            net.minecraft.client.gui.Gui.drawRect(x+i*12+1,y+13,x+i*12+9,y+22,i<state.sections?(state.sections<=2?0xFFE04438:0xFF39B968):0xFF555555);
+        }
+        GlStateManager.color(1,1,1,1);
+    }
     @SubscribeEvent public void render(RenderWorldLastEvent event) {
         if(session==null || cameraModel.inspecting()) return;
         Minecraft mc=Minecraft.getMinecraft();
@@ -337,6 +372,8 @@ public final class MarioPlayer {
     }
     private void close() {
         combatSession=null;
+        if(healthChannel!=null) { healthChannel.clear();if(playerId!=null) HealthBridge.OWNERS.remove(playerId,healthChannel);healthChannel=null; }
+        healthSequence=0;lastRequestedExternalSource=null;
         if(world!=null) world.removeEventListener(terrainChanges);
         terrainChanges.dirty=true; collisionFrozen=false;
         if(playerId!=null) PlayerBridge.POSES.remove(playerId);
@@ -353,6 +390,7 @@ public final class MarioPlayer {
         }
         if(controlledPlayer!=null) {
             controlledPlayer.stepHeight=previousStep;
+            controlledPlayer.setPosition(controlledPlayer.posX,controlledPlayer.posY,controlledPlayer.posZ);
             Minecraft.getMinecraft().gameSettings.thirdPersonView=previousPerspective;
             Minecraft.getMinecraft().gameSettings.autoJump=previousAutoJump;
             Minecraft.getMinecraft().gameSettings.debugCamEnable=previousDebugCamera;

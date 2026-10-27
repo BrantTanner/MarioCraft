@@ -11,7 +11,7 @@ import net.minecraft.block.state.IBlockState;
 final class TerrainChanges implements IWorldEventListener {
     boolean dirty=true;
     private int minX,minY,minZ,maxX,maxY,maxZ;
-    void region(double x,double y,double z) { minX=(int)Math.floor(x-10);minY=(int)Math.floor(y-9);minZ=(int)Math.floor(z-10);maxX=(int)Math.ceil(x+10);maxY=(int)Math.ceil(y+13);maxZ=(int)Math.ceil(z+10); }
+    void region(double x,double y,double z) { minX=(int)Math.floor(x-10);minY=0;minZ=(int)Math.floor(z-10);maxX=(int)Math.ceil(x+10);maxY=(int)Math.ceil(y+13);maxZ=(int)Math.ceil(z+10); }
     private void changed(int x,int y,int z,int x2,int y2,int z2) { if(x<=maxX&&x2>=minX&&y<=maxY&&y2>=minY&&z<=maxZ&&z2>=minZ) dirty=true; }
     public void notifyBlockUpdate(World w,BlockPos p,IBlockState before,IBlockState after,int flags) { if(before!=after) changed(p.getX(),p.getY(),p.getZ(),p.getX(),p.getY(),p.getZ()); }
     public void markBlockRangeForRenderUpdate(int a,int b,int c,int d,int e,int f) { changed(a,b,c,d,e,f); }

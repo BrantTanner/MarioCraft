@@ -32,14 +32,18 @@ With an existing Java 8 JDK and dependency cache:
 ./scripts/dev.ps1 -JavaHome <jdk8-directory> -GradleHome <gradle-cache> -Task client -Gameplay
 ```
 
-Baseline controls: WASD, Space jump, J attack, Shift crouch, Ctrl slow and Alt
-intermediate input; arrows adjust the baseline camera. The first LWJGL/JInput
-controller with at least two axes/buttons uses X/Y movement, button 0 jump,
-button 1 attack and button 4 crouch (if present). This fixed device profile
-uses an 0.08 radial drift cutoff, preserves smaller analog magnitudes above it,
-and caps diagonals at magnitude 1. Device labels vary; calibration, profiles,
-rebinding and disconnect/reconnect handling remain issue #20 work. Synthetic
-controller samples exercise the same mapper; physical hardware is unverified.
+Controls: WASD at full magnitude, Ctrl walk (0.4), Alt intermediate (0.7),
+Space=A/jump, J=B/attack, Shift=Z/crouch, arrows=C/camera, Q/E=L/R shoulders,
+Enter=Start/pause/resume. Rebind under Options > Controls > MarioCraft; bindings
+persist in Minecraft options. Controller mapping, axis inversion, radial cutoff
+and slot selection are under Mods > MarioCraft > Config. The Windows controller
+backend supports Xbox-compatible XInput devices, including disconnect/reconnect;
+DirectInput-only devices are not supported. Release held controls after focus,
+menu or connection changes. Mouse buttons may be bound; mouse look is disabled
+while Mario owns the player. GUI mouse handling remains available.
+
+See [configurable controls and validation](docs/TICKET20-CONTROLS.md) for the full
+controller button/axis table, input ownership policy and synthetic-test limits.
 
 See the [first-playable acceptance candidate](docs/TICKET19-FIRST-PLAYABLE.md)
 for current evidence and its limits.
@@ -50,8 +54,8 @@ for current evidence and its limits.
 one normal world. Initial same-process teardown exposed queued packet errors;
 those are a probe limitation, not clean persistence acceptance.
 
-`-Task client -GameplayProbe` injects synthetic controller state through the live
-controller mapper without keyboard focus,
+`-Task client -GameplayProbe` alternates synthetic controller profile samples and real
+Minecraft KeyBinding state without keyboard focus,
 measures run/jump/landing and camera controls, and spawns a test-only NoAI pig
 for deterministic outgoing-contact testing. Production mob AI is unchanged.
 Before clearing a prior result, the wrapper archives it and its existing image
@@ -68,7 +72,7 @@ refresh rates and pause/stall handling.
 
 Incoming damage is not yet converted to native Mario health/reactions. Camera
 following and mob crossover rules are provisional. Full combat coverage, water,
-hazards, configurable controls and final packaging remain incomplete; gameplay tickets
+hazards and final packaging remain incomplete; later gameplay tickets
 remain open.
 
 ## Historical planning record

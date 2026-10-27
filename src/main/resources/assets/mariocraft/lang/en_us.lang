@@ -1,0 +1,17 @@
+key.categories.mariocraft=MarioCraft
+key.mariocraft.forward=Move forward
+key.mariocraft.back=Move backward
+key.mariocraft.left=Move left
+key.mariocraft.right=Move right
+key.mariocraft.walk=Walk (0.4)
+key.mariocraft.intermediate=Intermediate speed (0.7)
+key.mariocraft.a=A / Jump
+key.mariocraft.b=B / Attack
+key.mariocraft.z=Z / Crouch
+key.mariocraft.c_left=C Left / Camera left
+key.mariocraft.c_right=C Right / Camera right
+key.mariocraft.c_up=C Up / Camera up
+key.mariocraft.c_down=C Down / Camera down
+key.mariocraft.l=L / Camera shoulder left
+key.mariocraft.r=R / Camera shoulder right
+key.mariocraft.start=Start / Pause

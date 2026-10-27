@@ -81,11 +81,17 @@ public final class MarioSession implements AutoCloseable {
     }
     public void configureHealthForProbe(int health) {
         check();
-        if(!Boolean.getBoolean("mariocraft.healthProbe") && !Boolean.getBoolean("mariocraft.combatProbe")) throw new IllegalStateException("Health reset requires opt-in test probe");
+        if(!Boolean.getBoolean("mariocraft.healthProbe") && !Boolean.getBoolean("mariocraft.combatProbe") && !Boolean.getBoolean("mariocraft.waterProbe")) throw new IllegalStateException("Health reset requires opt-in test probe");
         if(health<0x100 || health>0x880) throw new IllegalArgumentException("Test health setup range");
         lib.sm64_set_mario_health(mario,(short)health);
     }
     public void position(float x,float y,float z) { check(); lib.sm64_set_mario_position(mario,x,y,z); }
+    /** Per-step local-origin surface height. Native state stores this as a signed short. */
+    public void waterLevel(int level) {
+        check();
+        if(level<Short.MIN_VALUE || level>Short.MAX_VALUE) throw new IllegalArgumentException("Water level outside native range");
+        lib.sm64_set_mario_water_level(mario,level);
+    }
     @Override public void close() {
         if (closed) return;
         check();

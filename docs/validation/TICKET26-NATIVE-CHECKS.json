@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "evidenceKind": "synthetic-pinned-native-geometry-and-input",
+  "nativeCommit": "fd11813208272b4271d92bd92feb8f3fdbe61be5",
+  "strictEntry100Dry101Wet": true,
+  "deepMinusOneSteps": 90,
+  "surfacePlus26Steps": 44,
+  "surfaceHealthCap": 2176,
+  "surfaceOffsetNativeUnits": 80,
+  "repeatedStrokePeakNativeSpeed": 26.75,
+  "forwardMinusYDiveVelocity": -11.996386,
+  "backwardPlusYRiseVelocity": 11.996386,
+  "dryExit": true,
+  "nativeDrowningAction": "300032c4",
+  "fullHealthLethalStep": 1921,
+  "simulationHz": 30,
+  "lethalHealth": 255,
+  "newProject64Capture": false,
+  "regressions": {
+    "unitTests": 41,
+    "unitFailures": 0,
+    "buildAndReobfuscation": true,
+    "nativeSmoke": true,
+    "healthSmoke": true,
+    "traversalSmoke": true
+  }
+}

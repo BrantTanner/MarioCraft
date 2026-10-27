@@ -215,12 +215,16 @@ public final class MarioPlayer {
             if(admitted) { session.damage(hit.damage,terrain.x(hit.x),terrain.y(hit.y),terrain.z(hit.z));lastRequestedExternalSource=hit.kind; }
             log.info("MARIOCRAFT incoming-hit frame={} source={} immediate={} attacker={} damage={} admitted={} health={} action={} invinc={} minecraftDamage={} bodyHeight={} bodyWidth={}",frames,hit.kind,hit.immediateSource,hit.trueSource,hit.damage,admitted,Short.toUnsignedInt(session.state.health),Integer.toHexString(session.state.action),session.state.invincTimer,hit.minecraftDamage,hit.bodyHeight,hit.bodyWidth);
         }
+        WaterVolume.Sample water=WaterVolume.sample(world,mc.player.posX,mc.player.posY,mc.player.posZ);
+        session.waterLevel(water.nativeLevel(terrain));
         session.tick(input);
         MarioHealth.Snapshot health=new MarioHealth.Snapshot(++healthSequence,Short.toUnsignedInt(session.state.health),session.state.action,session.state.invincTimer,healthChannel.snapshot,lastRequestedExternalSource);
         healthChannel.publish(health);
         double x=terrain.ox+session.state.position[0]/100.0;
         double y=terrain.oy+session.state.position[1]/100.0;
         double z=terrain.oz+session.state.position[2]/100.0;
+        WaterVolume.Sample resultingWater=WaterVolume.sample(world,x,y,z);
+        healthChannel.swimRestoration=new SwimRestoration(x,y,z,resultingWater.wet,resultingWater.surface,Short.toUnsignedInt(session.state.health),session.state.action,session.state.invincTimer);
         if(!Double.isFinite(x)||!Double.isFinite(y)||!Double.isFinite(z)) throw new IllegalStateException("Nonfinite native player pose");
         // ACT_FLAG_AIR / ACT_FLAG_SWIMMING distinguish an apex from a grounded action.
         PlayerBridge.Pose pose=new PlayerBridge.Pose(x,y,z,(session.state.action & (0x800|0x2000))==0,(session.state.action&0x8000)!=0?1:1.6);
@@ -232,7 +236,8 @@ public final class MarioPlayer {
         PlayerBridge.body(mc.player,pose);
         cameraModel.follow(x,y,z,session.state.faceAngle,session.state.forwardVelocity,cameraCollision);
         if(probe!=null) {
-            if(probe.cameraProbe()) probe.cameraObserve(frames,session.state,cameraModel,mc,log);
+            if(probe.waterProbe()) probe.waterObserve(frames,session.state,cameraModel,mc,log);
+            else if(probe.cameraProbe()) probe.cameraObserve(frames,session.state,cameraModel,mc,log);
             else probe.observe(frames,session.state,yaw,mc,log);
         }
         if(frames%30==0) log.info("MARIOCRAFT player-step frame={} action={} pos={},{},{}",frames,Integer.toHexString(session.state.action),x,y,z);

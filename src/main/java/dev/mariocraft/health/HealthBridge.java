@@ -36,6 +36,7 @@ public final class HealthBridge {
         public final Object server;
         public volatile boolean active=true;
         public volatile MarioHealth.Snapshot snapshot;
+        public volatile SwimRestoration swimRestoration;
         public volatile Hit lastCapturedHit;
         private Vec3d explosionOrigin;
         private long explosionTick=Long.MIN_VALUE;

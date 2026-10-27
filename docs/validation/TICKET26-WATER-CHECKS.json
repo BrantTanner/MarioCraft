@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "evidenceKind": "normal-generated-world-input-and-labeled-setup",
+  "frames": 1680,
+  "recipes": [
+    "shallow-ground",
+    "deep-fall-entry-stroke",
+    "surface-heal",
+    "shore-exit-return",
+    "repeat-deep-entry",
+    "surface-explosion",
+    "deep-drowning"
+  ],
+  "surfacePlus26Steps": 43,
+  "drowningMinusOneSteps": 128,
+  "inputWaterJumpGroundAndReturn": true,
+  "nativeDrowningAction": "300032c4",
+  "camera8To16To8": true,
+  "vanillaHealthAndAirUnchanged": true,
+  "meshSamples": 96,
+  "maximumObservedMeshMilliseconds": 73.3243,
+  "meshSamplesOver33Milliseconds": 5,
+  "newProject64Capture": false,
+  "referenceIssues": [
+    44,
+    46,
+    47
+  ]
+}
